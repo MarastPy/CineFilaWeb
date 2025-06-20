@@ -1,455 +1,354 @@
-/* Reset styles */
+/* ==================================================
+   GENERAL STYLES
+================================================== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 body {
-    font-family: 'Nunito', sans-serif;
-    color: #1c1c1c;
-    line-height: 1.6;
-    margin: 0; /* Ensure no default body margin */
+  font-family: 'Nunito', sans-serif;
+  color: #1c1c1c;
+  line-height: 1.6;
 }
-
 h1, h2, h3 {
-    font-family: 'EB Garamond', serif;
-    color: #222;
+  font-family: 'EB Garamond', serif;
+  color: #222;
 }
-
 a {
-    color: #ff9800;
-    text-decoration: none;
-    transition: color 0.3s;
+  color: #ff9800;
+  text-decoration: none;
+  transition: color 0.3s;
 }
-
 a:hover {
-    color: #ffc107;
+  color: #ffc107;
 }
-
-.logo-top {
-    background: #121417;
-    text-align: center;
-    padding: 15px 20px; /* Increased padding */
-}
-
-.logo-top img {
-    height: 60px; /* Slightly larger logo */
-}
-
-.top-banner {
-    background: #1c1e22;
-    color: #ff9800;
-    text-align: center;
-    padding: 10px 0; /* Adjusted padding */
-    font-size: 2rem; /* Slightly larger font */
-    font-weight: 600;
-}
-
-header {
-    background: #1c1e22;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-nav {
-    display: flex;
-    gap: 35px; /* Slightly more space between links */
-}
-
-nav a {
-    font-family: 'EB Garamond', serif;
-    font-weight: 600;
-    font-size: 1.1rem; /* Slightly larger navigation links */
-}
-
-.hero {
-    height: 20vh; /* Adjusted height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px; /* Adjusted padding */
-    position: relative;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
-}
-
-.hero > div {
-    position: relative;
-    z-index: 1;
-}
-
-.hero h1 {
-    font-size: 3.5rem; /* Adjusted font size */
-    color: #fff;
-    margin-bottom: 15px; /* Adjusted margin */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Text shadow for better readability */
-}
-
-.hero p {
-    font-size: 6.2rem; /* Adjusted font size */
-    max-width: 600px; /* Wider text area */
-    margin: 15px auto; /* Adjusted margin */
-    color: #eee;
-}
-
-.section {
-    padding: 40px 0; /* Changed padding to 0 on sides for full width background */
-    margin: 0px auto;
-    max-width: none; /* Allow full width background */
-    background-color: #fff;
-    border-radius: 0;
-    box-shadow: none;
-    text-align: center;
-}
-
-.section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid {
-    text-align: left; /* Override center alignment for block elements */
-}
-
-.section-light-grey {
-    background-color: #f0f2f5;
-}
-
-.section-dark-grey {
-    background-color: #2B2B2B; /* Applying the dark grey background */
-    color: #f0f0f0; /* Suggestion to change text color for contrast */
-}
-
-.two-column-layout {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
-    align-items: center;
-}
-
-.column-text {
-    flex: 1;
-    flex-basis: 50%;
-    text-align: justify;
-    font-size: 1.05rem;
-}
-
-.column-image {
-    flex: 1;
-    flex-basis: 50%;
-}
-
-.column-image img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-    display: block;
-}
-
-.two-column-text-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.text-column {
-    text-align: justify;
-    font-size: 1.05rem;
-}
-
-.cards, .preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 35px;
-}
-
-.card, .preview-item {
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover, .preview-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-}
-
-.card h3, .preview-item h3 {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-}
-
-.card p, .preview-item p {
-    font-size: 0.95rem;
-    color: #555;
-}
-
-.preview-item img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 12px;
-}
-
-footer {
-    text-align: center;
-    padding: 25px;
-    font-size: 0.9rem;
-    background: #16181c;
-    color: #bbb;
-    margin-top: 40px;
-}
-
-.social-links a {
-    color: #bbb;
-    margin: 0 10px;
-}
-
-.social-links a:hover {
-    color: #ddd;
-}
-
-/* Styles for the "About us & contacts" section */
-.team-member {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #e0e0e0;
-    align-items: flex-start;
-}
-
-.team-member:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-.member-left {
-    flex-shrink: 0;
-    width: 220px;
-    text-align: center;
-}
-
-.member-left img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    object-fit: cover;
-    margin-bottom: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
-    display: block; /* Ensure image behaves as block for proper layout */
-}
-
-.member-left h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.member-left .role {
-    font-weight: normal;
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 0;
-}
-
-.member-info {
-    flex-grow: 1;
-    text-align: justify;
-    font-size: 1rem;
-    line-height: 1.7;
-}
-
-.member-info p {
-    margin-bottom: 1.2em;
-}
-
-.member-info p:last-child {
-    margin-bottom: 0;
-}
-
-.email {
-    font-style: italic;
-    font-size: 0.95rem;
-    color: #444;
-}
-
-/* Styles for the News Section */
-.news-section {
-    padding: 40px 0; /* Adjusted padding to 0 on sides for full width background */
-    margin: 0px auto;
-    max-width: none; /* Allow full width background */
-    background-color: #fff;
-    border-radius: 0;
-    box-shadow: none;
-    text-align: center;
-}
-
-.news-section h2, .news-section hr, .news-section .news-grid {
-    text-align: left; /* Override center alignment for specific elements */
-}
-
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 35px;
-}
-
-.news-item-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.news-item {
-    background: #ffffff;
-    border-radius: 0px; /* No border-radius on the news item itself */
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1); /* No initial shadow */
-    padding: 25px;
-    transition: transform 0.3s, box-shadow 0.3s; /* Added box-shadow to transition for smooth hover */
-    text-align: left; /* Align text within news items to the left */
-    position: relative; /* Crucial for z-index to work correctly */
-}
-
-.news-item:hover {
-    transform: scale(1.10); /* Scale the entire news item, including text and image */
-    /*box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18), 0 0 10px 3px rgba(255, 152, 0, 0.5);  Regular shadow + orange glow */
-    z-index: 40; /* Bring the hovered news item to the front */
-}
-
-.news-item h3 {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-}
-
-.news-item p {
-    font-size: 0.95rem;
-    color: #555;
-    margin-bottom: 12px;
-}
-
-.news-date {
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 18px;
-    font-weight: bold;
-}
-
-/* Styles for the news image zoom effect */
-.news-item-image-wrapper {
-    width: 100%;
-    height: 200px; /* Fixed height for consistent news item image display */
-    border-radius: 0; /* Removed border-radius */
-    margin-bottom: 15px; /* Spacing below the image */
-    cursor: zoom-in; /* Indicates interactivity */
-    display: block; /* Ensure this wrapper acts as a block element */
-    /* No overflow hidden here */
-}
-
-/* Target the image DIRECTLY within the wrapper */
-.news-item-image-wrapper img {
-    width: 100%;
-    height: 100%; /* Image fills its wrapper */
-    object-fit: cover; /* Ensures image covers the area without distortion */
-    display: block; /* Removes extra space below image */
-    transition: transform 1.1s ease; /* Keep transition for image to fill wrapper smoothly, but primary scale is on parent */
-    transform-origin: center center; /* Zooms from the center */
-    border-radius: 0; /* Removed border-radius from image */
-    /* Removed transform, z-index, and box-shadow from here, as they are now on .news-item:hover */
-}
-/* End modified styles for news image zoom effect */
-
-
-.read-more-container {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.all-news-link {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: #ff9800;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.3s;
-    margin-top: 25px;
-    font-size: 1rem;
-}
-
-.all-news-link:hover {
-    background-color: #ffc107;
-}
-
-.hidden {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .team-member{
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .member-left {
-        width: 180px;
-    }
-
-    .member-left img {
-        margin-bottom: 15px;
-    }
-
-    .member-info {
-        text-align: left;
-    }
-
-    .two-column-layout, .two-column-text-layout, .preview-grid {
-        flex-direction: column;
-        grid-template-columns: 1fr; /* Ensures single column for grid layouts on small screens */
-        text-align: center;
-    }
-
-    /* Adjust text alignment for columns in mobile if they become centered */
-    .column-text, .text-column {
-        text-align: left;
-    }
-}
-
 .content {
-    padding: 40px 2cm; /* Apply vertical padding and 2cm horizontal padding */
-    max-width: 1200px; /* Limit the max-width of content */
-    margin: 0 auto; /* Center the content within the section */
-    box-shadow: none; /* Ensure no extra shadow */
-    border-radius: 0; /* Ensure no extra border-radius */
+  padding: 40px 2cm;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Added specific styles for .member-middle and .member-right in the About Us section */
+/* ==================================================
+   HEADER, LOGO, NAVIGATION
+================================================== */
+.logo-top {
+  background: #121417;
+  text-align: center;
+  padding: 15px 20px;
+}
+.logo-top img {
+  height: 60px;
+}
+.top-banner {
+  background: #1c1e22;
+  color: #ff9800;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+header {
+  background: #1c1e22;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+nav {
+  display: flex;
+  gap: 35px;
+}
+nav a {
+  font-family: 'EB Garamond', serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* ==================================================
+   SECTIONS
+================================================== */
+.section,
+.news-section {
+  padding: 40px 0;
+  margin: 0 auto;
+  max-width: none;
+  background-color: #fff;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+}
+.section h2,
+.section hr,
+.section p,
+.section ul,
+.section ol,
+.section .two-column-layout,
+.section .two-column-text-layout,
+.section .cards,
+.section .preview-grid,
+.news-section h2,
+.news-section hr,
+.news-section .news-grid {
+  text-align: left;
+}
+.section-light-grey {
+  background-color: #f0f2f5;
+}
+.section-dark-grey {
+  background-color: #2B2B2B;
+  color: #f0f0f0;
+}
+
+/* ==================================================
+   LAYOUTS
+================================================== */
+.two-column-layout {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+.column-text {
+  flex: 1;
+  flex-basis: 50%;
+  text-align: justify;
+  font-size: 1.05rem;
+}
+.column-image {
+  flex: 1;
+  flex-basis: 50%;
+}
+.column-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  display: block;
+}
+.two-column-text-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.text-column {
+  text-align: justify;
+  font-size: 1.05rem;
+}
+
+/* ==================================================
+   GRID ITEMS
+================================================== */
+.cards,
+.preview-grid,
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 35px;
+}
+.card,
+.preview-item,
+.news-item {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover,
+.preview-item:hover,
+.news-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+.card h3,
+.preview-item h3,
+.news-item h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.card p,
+.preview-item p,
+.news-item p {
+  font-size: 0.95rem;
+  color: #555;
+}
+.preview-item img,
+.news-item-image-wrapper img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.news-date {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+/* ==================================================
+   NEWS SPECIFICS
+================================================== */
+.news-item {
+  position: relative;
+}
+.news-item-image-wrapper {
+  width: 100%;
+  height: 200px;
+  cursor: zoom-in;
+}
+.news-item-image-wrapper img {
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.1s ease;
+}
+.news-item:hover {
+  transform: scale(1.1);
+  z-index: 40;
+}
+
+/* ==================================================
+   FOOTER
+================================================== */
+footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 0.9rem;
+  background: #16181c;
+  color: #bbb;
+  margin-top: 40px;
+}
+.social-links a {
+  color: #bbb;
+  margin: 0 10px;
+}
+.social-links a:hover {
+  color: #ddd;
+}
+
+/* ==================================================
+   TEAM SECTIONS
+================================================== */
+.team-member {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: flex-start;
+}
+.team-member:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.member-left {
+  flex-shrink: 0;
+  width: 220px;
+  text-align: center;
+}
+.member-left img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-bottom: 18px;
+}
+.member-left h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.member-left .role {
+  font-weight: normal;
+  font-size: 0.95rem;
+  color: #666;
+}
 .member-middle {
-    flex-shrink: 0; /* Prevents it from shrinking */
-    width: 250px; /* Give it a fixed width */
-    text-align: center;
-    padding-top: 20px; /* Adjust as needed for vertical alignment */
+  flex-shrink: 0;
+  width: 250px;
+  text-align: center;
+  padding-top: 20px;
 }
-
 .member-middle h3 {
-    margin-top: 0;
-    margin-bottom: 5px;
+  margin: 0 0 5px;
+}
+.member-right {
+  flex-grow: 1;
+  text-align: justify;
+}
+.member-info p {
+  margin-bottom: 1.2em;
+}
+.member-info p:last-child {
+  margin-bottom: 0;
+}
+.email {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #444;
 }
 
-.member-right {
-    flex-grow: 1; /* Allows it to take up remaining space */
-    text-align: justify;
+/* ==================================================
+   BUTTONS & LINKS
+================================================== */
+.read-more-container {
+  text-align: center;
+  margin-top: 30px;
+}
+.all-news-link {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #ff9800;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+  margin-top: 25px;
+  font-size: 1rem;
+}
+.all-news-link:hover {
+  background-color: #ffc107;
+}
+.hidden {
+  display: none;
+}
+
+/* ==================================================
+   RESPONSIVE STYLES
+================================================== */
+@media (max-width: 768px) {
+  .team-member {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .member-left {
+    width: 180px;
+  }
+  .member-left img {
+    margin-bottom: 15px;
+  }
+  .member-info {
+    text-align: left;
+  }
+  .two-column-layout,
+  .two-column-text-layout,
+  .preview-grid {
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .column-image {
+    margin-top: 20px;
+  }
+  .column-text,
+  .text-column {
+    text-align: left;
+  }
 }
