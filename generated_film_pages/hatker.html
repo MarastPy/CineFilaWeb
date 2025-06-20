@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hatker - Film Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #1a1a1a;
+            --card-bg: #222222;
+            --text-light: #f0f0f0;
+            --text-muted: #aaaaaa;
+            --accent-gold: #ffcc00;
+            --accent-blue: #00ccff;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* START: Logo and Footer Styles from main 2.html */
+        .logo-top {
+            background: #121417;
+            text-align: center;
+            padding: 15px 20px; /* Increased padding */
+        }
+
+        .logo-top img {
+            height: 60px; /* Slightly larger logo */
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            font-size: 0.9rem;
+            background: #16181c;
+            color: #bbb;
+            margin-top: 40px;
+        }
+
+        .social-links a {
+            color: #bbb;
+            margin: 0 10px;
+        }
+
+        .social-links a:hover {
+            color: #ddd;
+        }
+        /* END: Logo and Footer Styles from main 2.html */
+
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #121212;
+            margin-bottom: 30px;
+        }
+
+        header .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+        }
+
+        header .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .content-section {
+            padding: 20px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .film-details-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+            padding: 0;
+        }
+
+        .poster-column {
+            flex: 0 0 350px;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .poster-column img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease-in-out;
+        }
+        .poster-column img:hover {
+            transform: scale(1.02);
+        }
+
+        .details-column {
+            flex: 1;
+            min-width: 500px;
+        }
+
+        .film-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+        }
+
+        .original-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.4em;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .meta-item {
+            font-size: 1em;
+            color: var(--text-light);
+        }
+        .meta-item strong {
+            display: block;
+            color: var(--accent-gold);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 204, 0, 0.3);
+        }
+
+        .content-block {
+            margin-bottom: 30px;
+        }
+        .content-block p {
+            color: var(--text-light);
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .list-group {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .list-group li {
+            background-color: #2b2b2b;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .list-group li:last-child {
+            margin-bottom: 0;
+        }
+        .list-group li strong {
+            color: var(--accent-gold);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+        .list-group li span {
+            color: var(--text-light);
+            flex-grow: 1;
+        }
+        .list-group.plain li {
+            background: none;
+            padding: 0;
+            box-shadow: none;
+            margin-bottom: 5px;
+        }
+        .list-group.plain li:before {
+            content: "• ";
+            color: var(--accent-gold);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .list-group.plain li strong {
+            margin-right: 5px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .grid-item {
+            background-color: #2b2b2b;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .grid-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            color: var(--accent-gold);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+            padding-bottom: 10px;
+        }
+        .grid-item ul {
+            list-style: none;
+            padding: 0;
+        }
+        .grid-item ul li {
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-size: 0.95em;
+        }
+        .grid-item ul li:before {
+            content: "• ";
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .prod-info p {
+            margin-bottom: 8px;
+        }
+        .prod-info a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .prod-info a:hover {
+            color: #4dc3ff;
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .film-details-layout {
+                flex-direction: column;
+            }
+            .poster-column {
+                flex: none;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .poster-column img {
+                max-width: 300px;
+            }
+            .details-column {
+                min-width: unset;
+                width: 100%;
+            }
+            .film-title {
+                font-size: 2.8em;
+            }
+            .original-title {
+                font-size: 1.2em;
+            }
+            .section-title {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 15px;
+            }
+            header .logo {
+                font-size: 2.5em;
+            }
+            header .tagline {
+                font-size: 1em;
+            }
+            .content-section {
+                padding: 15px;
+            }
+            .film-title {
+                font-size: 2em;
+            }
+            .original-title {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+            .meta-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .list-group li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .list-group li strong {
+                margin-bottom: 5px;
+            }
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-top">
+        <img src="G:\My Drive\CineFilcka\graphics\logo\Cinefila_logo_white_web.svg" alt="Cinefila Logo">
+    </div>
+    <header>
+        <div class="logo">CINEFILA</div>
+        <div class="tagline">FILM CATALOGUE</div>
+    </header>
+
+    <div class="content-section film-details-layout">
+        <div class="poster-column">
+            <img src="https://via.placeholder.com/400x600/333333/FFFFFF?text=Film+Poster" alt="Hatker Poster">
+        </div>
+        <div class="details-column">
+            <h1 class="film-title">Hatker</h1>
+            <div class="original-title">Hatker</div>
+
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <strong>Year</strong>
+                    <p>February 2025</p>
+                </div>
+                <div class="meta-item">
+                    <strong>Duration</strong>
+                    <p>00:07:33</p>
+                </div>
+                <div class="meta-item">
+                    <strong>Country</strong>
+                    <p>Argentina</p>
+                </div>
+                <div class="meta-item">
+                    <strong>Language</strong>
+                    <p>no dialogue</p>
+                </div>
+                <div class="meta-item">
+                    <strong>Subtitles</strong>
+                    <p>Not specified</p>
+                </div>
+                <div class="meta-item">
+                    <strong>Genres</strong>
+                    <p>animation, absurd, mystery</p>
+                </div>
+                <div class="meta-item">
+                    <strong>Keywords</strong>
+                    <p>hat, power</p>
+                </div>
+                <div class="meta-item">
+                    <strong>Target Group</strong>
+                    <p>Not specified</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="content-section">
+            <h2 class="section-title">Logline</h2>
+            <div class="content-block">
+                <p>In a world ruled by a mysterious telephone, power shifts from a distant force to the people themselves—revealing how the oppressed become oppressors.</p>
+            </div>
+        </div>
+    
+    
+        <div class="content-section">
+            <h2 class="section-title">Synopsis</h2>
+            <div class="content-block">
+                <p>On a late night in a run-down office, a group of workers find themselves stuck to the ceiling by their hats. Blindly carrying out their tasks, they are oblivious to the absurdity of their situation. When an old telephone rings, they begin to disappear one by one. A worker named Hatker dares to confront the reality, ultimately turning the Kafkaesque</p>
+            </div>
+        </div>
+    
+    
+        <div class="content-section">
+            <h2 class="section-title">Director's Note</h2>
+            <div class="content-block">
+                <p>Hatker explores the theme of power, symbolized by a telephone dictating behavior from afar. As the story unfolds, power proves decentralized—internalized and reproduced by individuals themselves. Inspired by my own experience in a corporate office, the film uses the metaphor of “hats” to represent the roles we adopt until the protagonist chooses to break free by taking his off.</p>
+            </div>
+        </div>
+    
+
+    <div class="content-section">
+        <h2 class="section-title">Crew</h2>
+        <div class="content-block">
+            <ul class="list-group">
+                <li><strong>Director(s):</strong> <span>Alejandro Ariel Martin</span></li>
+<li><strong>Screenplay writer(s):</strong> <span>Alejandro Ariel Martin, Florencia Pilotti</span></li>
+<li><strong>Director(s) of Photography:</strong> <span>Alejandro Ariel Martin</span></li>
+<li><strong>Editor(s):</strong> <span>Alejandro Ariel Martin</span></li>
+<li><strong>Sound director(s):</strong> <span>Santiago Zecca</span></li>
+<li><strong>Music composer(s):</strong> <span>Hermes Scipioni</span></li>
+<li><strong>Cast:</strong> <span>Not specified</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">Production</h2>
+        <div class="content-block prod-info">
+            <h3>Producers</h3>
+            <p>
+                <strong>Name:</strong> Alejandro Ariel Martin, Florencia Pilotti<br>
+                <strong>Address:</strong> Not specified<br>
+                <strong>Postal code, city:</strong> Not specified<br>
+                <strong>Country:</strong> Not specified<br>
+                <strong>WEB:</strong> <a href="Not specified" target="_blank">Not specified</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="content-section grid-container">
+        <div class="grid-item">
+            <h3>Festivals</h3>
+            <ul class="list-group plain">
+                <li>1. 4. 2025, Argentina: BAFICI - Buenos Aires International Festival of Independent Cinema</li>
+<li>June 2025, France: Annecy Festival</li>
+            </ul>
+        </div>
+        <div class="grid-item">
+            <h3>Awards</h3>
+            <ul class="list-group plain">
+                <li>No awards information available.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">Technical Details</h2>
+        <div class="grid-container">
+            
+            <div class="grid-item">
+                <h3>Screening Format</h3>
+                <ul class="list-group plain">
+                    <li>File: DCP</li>
+                </ul>
+            </div>
+        
+
+            <div class="grid-item">
+                <h3>Sound Mix</h3>
+                <ul class="list-group plain">
+                    <li>Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li>
+                </ul>
+            </div>
+        
+
+            <div class="grid-item">
+                <h3>Colour</h3>
+                <ul class="list-group plain">
+                    <li>Colour</li>
+                </ul>
+            </div>
+        
+        </div>
+    </div>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61572536315236" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com/cinefilacz/" target="_blank">Instagram</a> |
+            <a href="https://www.linkedin.com/in/alexandrahroncova/" target="_blank">LinkedIn</a> |
+            <a href="https://vimeo.com/cinefilacz/" target="_blank">Vimeo</a>
+        </div>
+        &copy; 2025 Cinefila. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Catalogue Index</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #121212;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+        header .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #ffcc00;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+        }
+        header .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            color: #aaaaaa;
+            font-weight: 300;
+        }
+        .index-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #222222;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 204, 0, 0.3);
+            padding-bottom: 15px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 15px;
+            background-color: #2b2b2b;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        li:hover {
+            background-color: #3a3a3a;
+        }
+        a {
+            color: #00ccff;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            display: block;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #4dc3ff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 15px;
+            }
+            header .logo {
+                font-size: 2.5em;
+            }
+            header .tagline {
+                font-size: 1em;
+            }
+            .index-container {
+                padding: 20px;
+                margin: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            a {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CINEFILA</div>
+        <div class="tagline">FILM CATALOGUE</div>
+    </header>
+    <div class="index-container">
+        <h1>All Films</h1>
+        <ul>
+            <li><a href="generated_film_pages/the_compatriot.html">The Compatriot</a></li>
+<li><a href="generated_film_pages/hatker.html">Hatker</a></li>
+<li><a href="generated_film_pages/the_hedgehog.html">The Hedgehog</a></li>
+<li><a href="generated_film_pages/home.html">Home</a></li>
+<li><a href="generated_film_pages/return.html">Return</a></li>
+<li><a href="generated_film_pages/test_fiction_movie.html">TEST: fiction movie</a></li>
+        </ul>
+    </div>
+</body>
+</html>
