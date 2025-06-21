@@ -1,3 +1,6 @@
 cd "G:\My Drive\CineFilcka\html new"
 python -m http.server
 python -m SimpleHTTPServer
+
+
+ahoj
