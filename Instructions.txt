@@ -3,4 +3,3 @@ python -m http.server
 python -m SimpleHTTPServer
 
 
-ahoj debile je3t2 jendou
