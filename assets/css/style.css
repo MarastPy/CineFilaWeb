@@ -10,6 +10,7 @@ body {
   font-family: 'Nunito', sans-serif;
   color: #1c1c1c;
   line-height: 1.6;
+  /* REMOVE padding-top: 160px; */
 }
 h1, h2, h3 {
   font-family: 'EB Garamond', serif;
@@ -32,31 +33,47 @@ a:hover {
 /* ==================================================
    HEADER, LOGO, NAVIGATION
 ================================================== */
+/* Logo stays fixed at the top */
 .logo-top {
-  background: #121417;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   text-align: center;
   padding: 15px 20px;
+  background: #121417;
+  z-index: 1001; /* Highest z-index */
 }
 .logo-top img {
   height: 60px;
 }
+
+/* Banner is BELOW the logo by default */
 .top-banner {
-  background: #1c1e22;
+  position: fixed;
+  top: 90px; /* Below .logo-top */
+  left: 0;
+  right: 0;
+  background: #121417;
   color: #ff9800;
   text-align: center;
   padding: 10px 0;
   font-size: 2rem;
   font-weight: 600;
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
-header {
-  background: #1c1e22;
-  color: #fff;
+
+/* Main Header BELOW the banner */
+#main-header {
+  position: sticky;
+  top: 90px; /* Sticks right below the logo-top */
+  z-index: 1000;
+  background: #121417;
+  color: #ffffff;
   padding: 15px 20px;
   display: flex;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 nav {
   display: flex;
@@ -66,6 +83,11 @@ nav a {
   font-family: 'EB Garamond', serif;
   font-weight: 600;
   font-size: 1.1rem;
+}
+
+/* When scrolled down, hide the top banner */
+body.scrolled .top-banner {
+  display: none;
 }
 
 /* ==================================================
@@ -80,6 +102,7 @@ nav a {
   border-radius: 0;
   box-shadow: none;
   text-align: center;
+  margin-top: 160px;
 }
 .section h2,
 .section hr,

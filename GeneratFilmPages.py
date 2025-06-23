@@ -3,7 +3,7 @@ import os
 import re
 
 # Define paths
-json_file_path = r'C:\Users\maha\PycharmProjects\CineFila\extracted_data\all_html_data.json'
+json_file_path = r'extracted_data\all_html_data.json'
 output_folder = 'generated_film_pages'
 index_file_name = 'index.html'
 
