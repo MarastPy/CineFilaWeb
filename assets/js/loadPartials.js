@@ -12,8 +12,9 @@ async function loadPartials() {
   await load('./partials/header.html', 'header-container');
   await load('./partials/footer.html', 'footer-container');
 
-  // 2️⃣ AFTER load is complete, add the scroll behavior
+  // 2️⃣ Add scroll behavior AFTER load is complete
   window.addEventListener('scroll', function() {
+    // Trigger scrolled state when scroll position is > 60px
     if (window.scrollY > 100) {
       document.body.classList.add('scrolled');
     } else {
@@ -22,4 +23,5 @@ async function loadPartials() {
   });
 }
 
+// Init
 window.addEventListener('DOMContentLoaded', loadPartials);
