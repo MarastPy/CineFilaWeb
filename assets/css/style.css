@@ -10,13 +10,13 @@ body {
   font-family: 'Nunito', sans-serif;
   color: #1c1c1c;
   line-height: 1.6;
-  /*padding-top: 60px;  <--- THIS IS CRITICAL INITIAL VALUE */
-  /*transition: padding-top 5.3s ease;*/
+  /* padding-top: calc(60px ); top-banner height + main-header height */
+  /*transition: padding-top 0.3s ease; Add transition for smooth change */
 }
 
 body.scrolled {
   /* ... existing styles ... */
-  padding-top: 30px; /* <--- THIS IS CRITICAL SCROLLED VALUE */
+  padding-top: 60px; /* <--- THIS IS CRITICAL SCROLLED VALUE */
 }
 h1, h2, h3 {
   font-family: 'EB Garamond', serif;
@@ -81,8 +81,9 @@ a:hover {
 }
 
 body.scrolled .top-banner {
+  height: 0;
   opacity: 0;
-  pointer-events: none;
+  /*pointer-events: none;*/
   /*visibility: hidden;*/
 }
 
@@ -111,7 +112,7 @@ body.scrolled {
     /* You'll need to calculate or set the height of your main header when scrolled */
     /* A simpler approach is to set it to 90px + main-header-actual-height-scrolled */
     /* Let's assume a main-header-height-scrolled of 60px (padding 15+15=30, plus content) */
-    padding-top: 150px; /* If main-header maintains its height, it's 90px logo + 60px main-header */
+    padding-top: 140px; /* If main-header maintains its height, it's 90px logo + 60px main-header */
     /* IMPORTANT: Measure the actual height of #main-header when it's shrunk if you apply shrinking. */
 }
 nav {
@@ -153,7 +154,8 @@ nav a:hover {
 .section .preview-grid,
 .news-section h2,
 .news-section hr,
-.news-section .news-grid {
+.news-section
+.news-grid {
   text-align: left;
 }
 .section-light-grey {
@@ -273,7 +275,9 @@ nav a:hover {
   color: #555;
   flex-grow: 1;
 }
-
+section.news-section {
+  scroll-margin-top: 160px; /* Adjust this based on total fixed header height */
+}
 
 /* ==================================================
    FOOTER

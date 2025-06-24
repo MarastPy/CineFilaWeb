@@ -9,8 +9,10 @@ async function loadPartials() {
   };
 
   // 1️⃣ Load the header and footer
+  // IMPORTANT: Ensure these paths are correct relative to where your HTML files are located
+  // If your partials are in a folder named 'partials' directly under your site root:
   await load('./partials/header.html', 'header-container');
-  await load('./partials/footer.html', 'footer-container');
+  await load('./partials/footer.html', 'footer-container'); // Assuming you'll create a footer.html
 
   // 2️⃣ Add scroll behavior AFTER load is complete
   window.addEventListener('scroll', function() {
