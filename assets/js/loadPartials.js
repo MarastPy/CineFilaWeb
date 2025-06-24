@@ -15,7 +15,7 @@ async function loadPartials() {
   // 2️⃣ Add scroll behavior AFTER load is complete
   window.addEventListener('scroll', function() {
     // Trigger scrolled state when scroll position is > 60px
-    if (window.scrollY > 100) {
+    if (window.scrollY > 60) {
       document.body.classList.add('scrolled');
     } else {
       document.body.classList.remove('scrolled');
