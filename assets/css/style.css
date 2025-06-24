@@ -10,7 +10,6 @@ body {
   font-family: 'Nunito', sans-serif;
   color: #1c1c1c;
   line-height: 1.6;
-  /* REMOVE padding-top: 160px; */
 }
 h1, h2, h3 {
   font-family: 'EB Garamond', serif;
@@ -33,61 +32,89 @@ a:hover {
 /* ==================================================
    HEADER, LOGO, NAVIGATION
 ================================================== */
-/* Logo stays fixed at the top */
+.header-area {
+  position: relative;
+  padding-top: 150px
+  z-index: 1000;
+  background: #121417;
+}
+
+
 .logo-top {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  height: 90px;
   text-align: center;
   padding: 15px 20px;
   background: #121417;
-  z-index: 1001; /* Highest z-index */
+  z-index: 1003;
 }
 .logo-top img {
   height: 60px;
+  display: block;
+  margin: 0 auto;
 }
 
-/* Banner is BELOW the logo by default */
 .top-banner {
-  position: fixed;
-  top: 90px; /* Below .logo-top */
+  position: relative;
+  top: 90px;
   left: 0;
   right: 0;
+  height: 60px;
   background: #121417;
   color: #ff9800;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 2rem;
-  font-weight: 600;
-  z-index: 1000;
-  transition: all 0.3s ease;
+  /*z-index: 1001;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px
+  /*transition: opacity 0.3s ease, visibility 0.3s ease;*/
 }
 
-/* Main Header BELOW the banner */
+body.scrolled .top-banner {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 #main-header {
-  position: sticky;
-  top: 90px; /* Sticks right below the logo-top */
-  z-index: 1000;
+  position: relative;
+  margin-top: 90;
+  top: 90px; /* ✅ Initial state: sit right BELOW .top-banner */
+  z-index: 1002;
   background: #121417;
-  color: #ffffff;
   padding: 15px 20px;
   display: flex;
   justify-content: center;
+  /*transition: top 0.3s ease, background 0.3s ease;*/
 }
+
+body.scrolled #main-header {
+  position: fixed;
+  /*top: 90px; /* ✅ After scroll, stick right BELOW the .logo-top */
+  left: 0;
+  right: 0;
+  background: #121417;
+}
+
 nav {
   display: flex;
+  justify-content: center;
   gap: 35px;
+  align-items: center;
 }
 nav a {
   font-family: 'EB Garamond', serif;
   font-weight: 600;
   font-size: 1.1rem;
+  color: #ffffff;
+  padding: 8px 0;
 }
-
-/* When scrolled down, hide the top banner */
-body.scrolled .top-banner {
-  display: none;
+nav a:hover {
+  color: #ffc107;
 }
 
 /* ==================================================
@@ -95,14 +122,11 @@ body.scrolled .top-banner {
 ================================================== */
 .section,
 .news-section {
-  padding: 40px 0;
+  padding: 100px 0;
   margin: 0 auto;
   max-width: none;
   background-color: #fff;
-  border-radius: 0;
-  box-shadow: none;
   text-align: center;
-  margin-top: 160px;
 }
 .section h2,
 .section hr,
@@ -169,42 +193,60 @@ body.scrolled .top-banner {
 .preview-grid,
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 35px;
+  grid-template-columns: repeat(3, 300px); /* fixed width 300px per column */
+  gap: 30px 25px; /* vertical gap 30px, horizontal gap 25px */
+  justify-content: center; /* center the whole grid */
+  margin-bottom: 40px;
+  max-width: 960px; /* 3 columns * 300px + gaps ~ 960px total */
+  margin-left: auto;
+  margin-right: auto;
 }
-.card,
-.preview-item,
+
+/* News item */
 .news-item {
   background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  /*border-radius: 15px;*/
+  /*box-shadow: 0 6px 14px rgba(0,0,0,0.1);*/
   padding: 25px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 2.1s;
 }
-.card:hover,
-.preview-item:hover,
+
 .news-item:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  z-index: 10;
 }
-.card h3,
-.preview-item h3,
+
+/* Image wrapper */
+.news-item-image-wrapper {
+  width: 100%;
+  height: 180px; /* a bit smaller to fit */
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  cursor: zoom-in;
+}
+
+.news-item-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.1s ease;
+}
+
+.news-item:hover .news-item-image-wrapper img {
+  transform: scale(1.1);
+}
+
+/* Titles and text */
 .news-item h3 {
   font-size: 1.3rem;
   margin-bottom: 12px;
 }
-.card p,
-.preview-item p,
-.news-item p {
-  font-size: 0.95rem;
-  color: #555;
-}
-.preview-item img,
-.news-item-image-wrapper img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
+
 .news-date {
   font-size: 0.9rem;
   color: #777;
@@ -212,27 +254,12 @@ body.scrolled .top-banner {
   font-weight: bold;
 }
 
-/* ==================================================
-   NEWS SPECIFICS
-================================================== */
-.news-item {
-  position: relative;
+.news-item p {
+  font-size: 0.95rem;
+  color: #555;
+  flex-grow: 1;
 }
-.news-item-image-wrapper {
-  width: 100%;
-  height: 200px;
-  cursor: zoom-in;
-}
-.news-item-image-wrapper img {
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 1.1s ease;
-}
-.news-item:hover {
-  transform: scale(1.1);
-  z-index: 40;
-}
+
 
 /* ==================================================
    FOOTER
