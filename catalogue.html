@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinefila | Katalog filmů</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <main class="catalogue-main-content content">
+    <header class="catalogue-header">
+        <h1>Katalog filmů</h1>
+        <hr class="header-line">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Vyhledat film..." onkeyup="if(event.keyCode === 13) performSearch()">
+            <button onclick="performSearch()">Vyhledat</button>
+        </div>
+    </header>
+
+    <aside class="filters">
+        <h2>Filtrování</h2>
+        <div class="filter-group">
+            <h3>Žánry</h3>
+            <select id="genresFilter" onchange="applyFilters()">
+                <option value="">Všechny žánry</option>
+                </select>
+        </div>
+        <div class="filter-group">
+            <h3>Délka</h3>
+            <div id="runtimeFilter" class="filter-options">
+                <label><input type="checkbox" value="short" onchange="applyFilters()"> Krátkometrážní (do 30 min)</label><br>
+                <label><input type="checkbox" value="mid-length" onchange="applyFilters()"> Středometrážní (30-60 min)</label><br>
+                <label><input type="checkbox" value="full-length" onchange="applyFilters()"> Celovečerní (nad 60 min)</label><br>
+            </div>
+        </div>
+        <div class="filter-group">
+            <h3>Rok</h3>
+            <select id="yearFilter" onchange="applyFilters()">
+                <option value="">Všechny roky</option>
+                </select>
+        </div>
+        <div class="filter-group">
+            <h3>Země produkce</h3>
+            <select id="countryFilter" onchange="applyFilters()">
+                <option value="">Všechny země</option>
+                </select>
+        </div>
+        <div class="filter-group">
+            <h3>Cílová skupina</h3>
+            <h4>Rating</h4>
+            <select id="ratingFilter" onchange="applyFilters()">
+                <option value="">Všechny ratingy</option>
+                </select>
+            <h4>Publikum</h4>
+            <select id="audienceFilter" onchange="applyFilters()">
+                <option value="">Všechna publika</option>
+                </select>
+            <h4>Ostatní</h4>
+            <select id="targetGroupOtherFilter" onchange="applyFilters()">
+                <option value="">Ostatní</option>
+                </select>
+        </div>
+        <div class="filter-group">
+            <h3>Témata</h3>
+            <select id="keywordsFilter" onchange="applyFilters()">
+                <option value="">Všechna témata</option>
+                </select>
+        </div>
+        <button onclick="resetFilters()">Zrušit filtry</button>
+    </aside>
+
+    <div class="catalogue-layout">
+        <section class="film-list">
+            <div id="filmContainer" class="film-grid">
+                </div>
+        </section>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="assets/js/loadPartials.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

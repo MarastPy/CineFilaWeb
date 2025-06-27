@@ -539,4 +539,331 @@ footer {
   .preview-item h3 {
     font-size: 1.15rem; /* Adjust title size */
   }
+/* ==================================================
+   9. CATALOGUE SPECIFIC STYLES - Filters next to each other
+   ================================================== */
+
+.catalogue-main-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 40px; /* Consistent gap between main sections (header, layout) */
+}
+
+.catalogue-header {
+    background-color: #333;
+    color: white;
+    padding: 30px 40px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.catalogue-header h1 {
+    font-family: 'EB Garamond', serif;
+    color: white;
+    font-size: 2.8rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.catalogue-header .header-line {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+    width: 50%;
+    margin: 20px auto 30px auto;
+}
+
+.search-container {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container input {
+    flex-grow: 1;
+    padding: 12px 18px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 1.1em;
+    color: #333;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.search-container button {
+    padding: 12px 25px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.catalogue-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allows the layout to wrap on smaller screens */
+}
+
+.filters {
+    background-color: #f8f8f8;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    width: 280px; /* Fixed width for the filter sidebar */
+    flex-shrink: 0;
+    position: sticky;
+    top: 80px;
+
+    /* New: Flexbox properties for filter groups inside */
+    display: flex;
+    flex-wrap: wrap; /* Allows filter groups to be next to each other */
+    justify-content: space-between; /* Distribute space evenly */
+    align-items: flex-start; /* Align groups at the top */
+    gap: 20px 15px; /* Vertical and horizontal gap between filter groups */
+}
+
+.filters h2 {
+    font-family: 'EB Garamond', serif;
+    color: #222;
+    margin-top: 0;
+    margin-bottom: 25px; /* More space below main filter heading */
+    width: 100%; /* Make main heading take full width */
+    text-align: center;
+}
+
+.filters h3, .filters h4 {
+    font-family: 'EB Garamond', serif;
+    color: #222;
+    margin-top: 0;
+    margin-bottom: 15px;
+    width: 100%; /* Ensure sub-headings take full width within their group */
+}
+
+
+.filter-group {
+    /* Adjusted for horizontal layout */
+    flex: 1 1 45%; /* Allow groups to grow/shrink, with a base width for two columns */
+    max-width: calc(50% - 15px); /* Max width for two columns with gap */
+    margin-bottom: 0; /* No bottom margin, use gap from parent */
+    padding-bottom: 0; /* No bottom padding */
+    border-bottom: none; /* No border for horizontal layout */
+    display: flex; /* Make filter group a flex container */
+    flex-direction: column; /* Stack contents within the group */
+}
+
+.filter-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Styles for dropdowns */
+.filters select {
+    width: 100%; /* Take full width of its parent filter-group */
+    padding: 10px 15px;
+    margin-bottom: 0; /* Removed margin-bottom here, rely on filter-group gap */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1em;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.4H18.8c-7.4%200-13.2%206.4-13.2%2013.2%200%204.8%202.4%209.6%206.4%2012.8l128%20127.9c3.6%203.6%208%206.4%2012.8%206.4s9.2-2.8%2012.8-6.4L280.8%2082.2c3.6-3.2%206.4-8%206.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.filter-options label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.filters button {
+    width: 100%; /* Button takes full width of filter sidebar */
+    padding: 10px 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filters button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+.film-list {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.film-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.film-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    height: 100%;
+}
+
+.film-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.film-card h3 {
+    font-family: 'EB Garamond', serif;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-size: 1.5rem;
+}
+
+.film-card p {
+    font-family: 'Nunito', sans-serif;
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.film-card strong {
+    color: #333;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 1.2em;
+    color: #777;
+    padding: 40px 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .catalogue-main-content.content {
+        padding: 40px 15px;
+        gap: 30px;
+    }
+
+    .catalogue-header {
+        padding: 20px 20px;
+        margin-bottom: 15px;
+    }
+
+    .catalogue-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .catalogue-layout {
+        flex-direction: column; /* Stack filters and film list on smaller screens */
+        gap: 20px;
+    }
+
+    .filters {
+        width: 100%; /* Filters take full width */
+        position: static;
+        top: auto;
+        padding: 20px;
+        flex-direction: column; /* Stack filter groups again on smaller screens */
+        gap: 0; /* Reset gap for filter groups */
+    }
+
+    .filters h2, .filters h3, .filters h4 {
+        margin-bottom: 10px;
+        text-align: left; /* Align text left when stacked */
+        width: auto; /* Revert width */
+    }
+
+    .filter-group {
+        flex: none; /* Revert flex properties */
+        max-width: none; /* Revert max-width */
+        margin-bottom: 20px; /* Reintroduce margin-bottom for stacked groups */
+        padding-bottom: 15px; /* Reintroduce padding-bottom */
+        border-bottom: 1px solid #eee; /* Reintroduce border */
+    }
+
+    .filter-group:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .filters select,
+    .search-container input,
+    .search-container button {
+        margin-bottom: 10px;
+    }
+
+    .search-container {
+        flex-direction: column;
+        max-width: none;
+        gap: 10px;
+    }
+
+    .film-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 15px;
+    }
+
+    .film-list {
+        padding: 20px;
+    }
+
+    .film-card {
+        padding: 15px;
+    }
+
+    .film-card h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .film-grid {
+        grid-template-columns: 1fr;
+    }
 }
