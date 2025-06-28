@@ -1,8 +1,8 @@
-let allFilms = []; // Zde se uloží všechna data z JSON
-let filteredFilms = []; // Zde se uloží filtrované filmy pro zobrazení
+let allFilms = []; // Stores all data from JSON
+let filteredFilms = []; // Stores filtered films for display
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Ověříme, zda jsme na stránce katalogu
+    // Check if we are on the catalogue page
     if (document.getElementById('filmContainer')) {
         fetchData();
     }
@@ -10,28 +10,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchData() {
     try {
-        const response = await fetch('extracted_data/all_html_data.json');
+        const response = await fetch('extracted_data/all_html_data.json'); // Assumes JSON data is here
         if (!response.ok) {
-            throw new Error(`HTTP chyba! Status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
         allFilms = await response.json();
         filteredFilms = [...allFilms];
         populateFilters();
         displayFilms(filteredFilms);
     } catch (error) {
-        console.error('Chyba při načítání dat:', error);
+        console.error('Error fetching data:', error);
         const filmContainer = document.getElementById('filmContainer');
         if (filmContainer) {
-            filmContainer.innerHTML = '<p>Nepodařilo se načíst data filmů. Zkuste to prosím později.</p>';
+            filmContainer.innerHTML = '<p>Failed to load film data. Please try again later.</p>';
         }
     }
 }
 
 /**
- * Zaokrouhlí runtime filmu na celou minutu (do 0:40 dolů, nad 0:40 nahoru)
- * a vrátí kategorii délky.
- * @param {string} runtimeString Např. "00:24:34"
- * @returns {string|null} "short", "mid-length", "full-length" nebo null
+ * Rounds the film runtime to the nearest minute (down if < 0:40, up if >= 0:40)
+ * and returns the length category.
+ * @param {string} runtimeString E.g., "00:24:34"
+ * @returns {string|null} "short", "mid-length", "full-length" or null
  */
 function getRoundedRuntime(runtimeString) {
     if (!runtimeString || typeof runtimeString !== 'string') return null;
@@ -60,7 +60,7 @@ function getRoundedRuntime(runtimeString) {
 }
 
 /**
- * Naplní dynamické filtry (select dropdowny) na základě dostupných dat.
+ * Populates dynamic filters (select dropdowns) based on available data.
  */
 function populateFilters() {
     const genres = new Set();
@@ -109,16 +109,16 @@ function populateFilters() {
         }
     });
 
-    // Funkce pro generování <select> a <option>
+    // Function to generate <select> and <option>
     const generateSelectOptions = (id, items, defaultText) => {
         const selectElement = document.getElementById(id);
         if (!selectElement) return;
 
-        selectElement.innerHTML = `<option value="">${defaultText}</option>`; // Přidat výchozí volbu
+        selectElement.innerHTML = `<option value="">${defaultText}</option>`; // Add default option
 
         const sortedItems = [...items].filter(item => item && item !== 'N/A').sort((a, b) => {
-            if (id === 'yearFilter') return parseInt(b, 10) - parseInt(a, 10); // Roky sestupně
-            return a.localeCompare(b); // Ostatní abecedně
+            if (id === 'yearFilter') return parseInt(b, 10) - parseInt(a, 10); // Years descending
+            return a.localeCompare(b); // Others alphabetically
         });
 
         sortedItems.forEach(item => {
@@ -129,28 +129,28 @@ function populateFilters() {
         });
     };
 
-    generateSelectOptions('genresFilter', genres, 'Všechny žánry');
-    generateSelectOptions('yearFilter', years, 'Všechny roky');
-    generateSelectOptions('countryFilter', countries, 'Všechny země');
-    generateSelectOptions('ratingFilter', ratings, 'Všechny ratingy');
-    generateSelectOptions('audienceFilter', audiences, 'Všechna publika');
-    generateSelectOptions('targetGroupOtherFilter', targetGroupOthers, 'Ostatní');
-    generateSelectOptions('keywordsFilter', keywords, 'Všechna témata');
+    generateSelectOptions('genresFilter', genres, 'All Genres');
+    generateSelectOptions('yearFilter', years, 'All Years');
+    generateSelectOptions('countryFilter', countries, 'All Countries');
+    generateSelectOptions('ratingFilter', ratings, 'All Ratings');
+    generateSelectOptions('audienceFilter', audiences, 'All Audiences');
+    generateSelectOptions('targetGroupOtherFilter', targetGroupOthers, 'Other');
+    generateSelectOptions('keywordsFilter', keywords, 'All Themes');
 }
 
 /**
- * Aplikuje vybrané filtry na seznam filmů a aktualizuje zobrazení.
+ * Applies selected filters to the film list and updates the display.
  */
 function applyFilters() {
     let currentFilms = [...allFilms];
 
-    // Získání vybraných hodnot z dropdownů
+    // Get selected values from dropdowns
     const getSelectedValue = (id) => {
         const selectElement = document.getElementById(id);
         return selectElement ? selectElement.value : '';
     };
 
-    // Získání vybraných hodnot z checkboxů (pro runtime)
+    // Get selected values from checkboxes (for runtime)
     const getSelectedCheckboxes = (id) => {
         return Array.from(document.querySelectorAll(`#${id} input[type="checkbox"]:checked`)).map(cb => cb.value);
     };
@@ -161,8 +161,8 @@ function applyFilters() {
     const selectedRating = getSelectedValue('ratingFilter');
     const selectedAudience = getSelectedValue('audienceFilter');
     const selectedTargetGroupOther = getSelectedValue('targetGroupOtherFilter');
-    const selectedKeyword = getSelectedValue('keywordsFilter'); // Pro dropdown je to jedna hodnota
-    const selectedRuntimes = getSelectedCheckboxes('runtimeFilter'); // Toto zůstává pole z checkboxů
+    const selectedKeyword = getSelectedValue('keywordsFilter'); // For dropdown, it's a single value
+    const selectedRuntimes = getSelectedCheckboxes('runtimeFilter'); // This remains an array from checkboxes
 
 
     filteredFilms = currentFilms.filter(filmData => {
@@ -170,13 +170,13 @@ function applyFilters() {
 
         let passesAllFilters = true;
 
-        // Filtr žánrů (pro dropdown - porovnáváme, zda film obsahuje vybraný žánr)
+        // Genre filter (for dropdown - compares if film contains the selected genre)
         if (selectedGenre) {
             const filmGenres = filmData.Film.Genre_List || [];
             passesAllFilters = passesAllFilters && filmGenres.includes(selectedGenre);
         }
 
-        // Filtr roku
+        // Year filter
         if (selectedYear) {
             let filmYear = null;
             if (filmData.Film.Date_of_completion) {
@@ -190,32 +190,32 @@ function applyFilters() {
             passesAllFilters = passesAllFilters && (filmYear === selectedYear);
         }
 
-        // Filtr země produkce (pro dropdown)
+        // Country of production filter (for dropdown)
         if (selectedCountry) {
             const filmCountries = filmData.Film.Country_of_production ? filmData.Film.Country_of_production.split(',').map(c => c.trim()) : [];
             passesAllFilters = passesAllFilters && filmCountries.includes(selectedCountry);
         }
 
-        // Filtr cílové skupiny (Rating)
+        // Target audience filter (Rating)
         if (selectedRating) {
             passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Rating === selectedRating);
         }
-        // Filtr cílové skupiny (Audience)
+        // Target audience filter (Audience)
         if (selectedAudience) {
             passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Audience === selectedAudience);
         }
-        // Filtr cílové skupiny (Other)
+        // Target audience filter (Other)
         if (selectedTargetGroupOther) {
             passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Other === selectedTargetGroupOther);
         }
 
-        // Filtr klíčových slov (Keywords - pro dropdown)
+        // Keywords filter (for dropdown)
         if (selectedKeyword) {
             const filmKeywords = filmData.Film.Keywords ? filmData.Film.Keywords.split(',').map(k => k.trim()) : [];
             passesAllFilters = passesAllFilters && filmKeywords.includes(selectedKeyword);
         }
 
-        // Filtr délky (používá stále checkboxy)
+        // Length filter (still uses checkboxes)
         if (selectedRuntimes.length > 0) {
             const filmRuntimeCategory = getRoundedRuntime(filmData.Film.Runtime);
             passesAllFilters = passesAllFilters && selectedRuntimes.includes(filmRuntimeCategory);
@@ -229,8 +229,8 @@ function applyFilters() {
 
 
 /**
- * Provede textové vyhledávání v seznamu filmů.
- * @param {boolean} resetFiltersBeforeSearch Pokud je true, filtry se resetují před vyhledáváním.
+ * Performs text search in the film list.
+ * @param {boolean} resetFiltersBeforeSearch If true, filters are reset before searching.
  */
 function performSearch(resetFiltersBeforeSearch = true) {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -304,95 +304,75 @@ function performSearch(resetFiltersBeforeSearch = true) {
 
 
 /**
- * Zobrazí filmy v kontejneru na stránce.
- * @param {Array<Object>} films Pole filmových dat k zobrazení.
+ * Displays films in the container on the page.
+ * @param {Array<Object>} films Array of film data to display.
  */
 function displayFilms(films) {
     const container = document.getElementById('filmContainer');
     if (!container) return;
-    container.innerHTML = '';
+    container.innerHTML = ''; // Clear the container
 
     if (films.length === 0) {
-        container.innerHTML = '<p class="no-results">Nenalezeny žádné filmy odpovídající vybraným kritériím.</p>';
+        container.innerHTML = '<p class="no-results">No films found matching the selected criteria.</p>';
         return;
     }
 
+    // Create a list for film titles
+    const filmList = document.createElement('ul');
+    filmList.classList.add('film-name-list'); // Add class for list styling
+
     films.forEach(filmData => {
         if (!filmData || !filmData.Film) {
-            console.warn('Přeskočena neplatná data filmu:', filmData);
+            console.warn('Skipped invalid film data:', filmData);
             return;
         }
 
-        const filmCard = document.createElement('div');
-        filmCard.classList.add('film-card');
+        const englishTitle = filmData.Film.Title_English || filmData.Film.Title_Original || 'Unknown Title';
+        const originalTitle = filmData.Film.Title_Original || '';
+        const displayTitle = englishTitle !== 'Unknown Title' ? englishTitle : originalTitle;
 
-        const getDisplayValue = (value, defaultValue = 'Neznámý') => {
-            if (Array.isArray(value)) {
-                return value.length > 0 ? value.join(', ') : defaultValue;
-            }
-            return value || defaultValue;
-        };
+        // ASSUME filmData contains a unique ID for URL generation
+        // CUSTOMIZE THIS ACCORDING TO THE ACTUAL STRUCTURE OF YOUR DATA AND FILM DETAIL URLs
+        const filmId = filmData.Film.ID || filmData.Film.Title_English.replace(/\s+/g, '-').toLowerCase(); // Example ID generation
+        const filmDetailUrl = `film-detail.html?id=${filmId}`; // Example URL for film detail
 
-        const director = getDisplayValue(filmData.Crew && filmData.Crew['Director(s)'], 'Neznámý');
-        const englishTitle = getDisplayValue(filmData.Film.Title_English);
-        const originalTitle = getDisplayValue(filmData.Film.Title_Original);
-        const genres = getDisplayValue(filmData.Film.Genre_List);
-        const runtime = getDisplayValue(filmData.Film.Runtime);
-        const country = getDisplayValue(filmData.Film.Country_of_production);
-        const logline = getDisplayValue(filmData.Logline, 'Není k dispozici');
-
-        let completionYear = 'Neznámý';
-        if (filmData.Film.Date_of_completion) {
-            const date = new Date(filmData.Film.Date_of_completion);
-            if (!isNaN(date.getFullYear())) {
-                completionYear = date.getFullYear().toString();
-            }
-        } else if (filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
-             const date = new Date(filmData.Premiere[0].Date);
-            if (!isNaN(date.getFullYear())) {
-                completionYear = date.getFullYear().toString();
-            }
-        }
-
-        filmCard.innerHTML = `
-            <h3>${englishTitle !== 'Neznámý' ? englishTitle : originalTitle}</h3>
-            ${englishTitle !== originalTitle && originalTitle !== 'Neznámý' ? `<p><strong>Originální název:</strong> ${originalTitle}</p>` : ''}
-            <p><strong>Žánr:</strong> ${genres}</p>
-            <p><strong>Délka:</strong> ${runtime}</p>
-            <p><strong>Země produkce:</strong> ${country}</p>
-            <p><strong>Režie:</strong> ${director}</p>
-            <p><strong>Rok:</strong> ${completionYear}</p>
-            <p><strong>Logline:</strong> ${logline}</p>
-        `;
-        container.appendChild(filmCard);
+        const listItem = document.createElement('li');
+        const filmLink = document.createElement('a');
+        filmLink.href = filmDetailUrl; // Set URL for click-through
+        filmLink.textContent = displayTitle; // Display film title
+        listItem.appendChild(filmLink);
+        filmList.appendChild(listItem);
     });
+
+    container.appendChild(filmList); // Add list to the container
 }
 
+
 /**
- * Resetuje všechny filtry a volitelně vyčistí vyhledávací pole.
- * @param {boolean} clearSearch Pokud je true, vyčistí se vyhledávací pole.
+ * Resets all filters and optionally clears the search field.
+ * @param {boolean} clearSearch If true, the search field will be cleared.
  */
 function resetFilters(clearSearch = true) {
-    // Resetovat všechny dropdowny
+    // Reset all dropdowns
     const selects = document.querySelectorAll('.filters select');
     selects.forEach(sel => sel.value = '');
 
-    // Odznačit všechny checkboxy (pro runtime)
+    // Uncheck all checkboxes (for runtime)
     const checkboxes = document.querySelectorAll('#runtimeFilter input[type="checkbox"]');
     checkboxes.forEach(cb => cb.checked = false);
 
-    // Vyčistit vyhledávací pole, pokud je nastaveno
+    // Clear search field if set
     if (clearSearch) {
         const searchInput = document.getElementById('searchInput');
         if (searchInput) searchInput.value = '';
     }
 
-    // Znovu zobrazit všechny filmy
+    // Re-display all films
     filteredFilms = [...allFilms];
     displayFilms(filteredFilms);
 }
 
-// Zpřístupnění funkcí v globálním scope pro HTML onchange/onclick
+// Make functions accessible in the global scope for HTML onchange/onclick
 window.applyFilters = applyFilters;
 window.performSearch = performSearch;
 window.resetFilters = resetFilters;

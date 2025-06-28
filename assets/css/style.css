@@ -434,436 +434,244 @@ footer {
   color: #ddd;
 }
 
-/* ==================================================
-   9. RESPONSIVE STYLES
+/* ==================================================\
+   7. CATALOGUE SPECIFIC STYLES
    ================================================== */
-@media (max-width: 768px) {
-  body {
-    padding-top: 60px; /* For mobile, initial padding can be just logo-top */
-  }
-
-  body.scrolled {
-    padding-top: 60px; /* On scroll, still just logo-top */
-  }
-
-  .logo-top {
-    height: 60px; /* Adjust logo top height for smaller screens */
-    padding: 10px 20px;
-  }
-  .logo-top img {
-    height: 40px; /* Smaller logo on mobile */
-  }
-
-  .top-banner {
-    top: 60px; /* Position below new mobile logo-top height */
-    height: 40px; /* Smaller banner on mobile */
-    font-size: 24px; /* Adjust font size for mobile banner */
-  }
-
-  body.scrolled .top-banner {
-    height: 0;
-    opacity: 0;
-    visibility: hidden;
-    font-size: 0;
-  }
-
-  #main-header {
-    top: 100px; /* Initial: below 60px logo + 40px banner */
-    padding: 10px 15px; /* Smaller padding */
-  }
-
-  body.scrolled #main-header {
-    top: 60px; /* Scrolled: below 60px logo */
-  }
-
-  .content {
-    padding: 20px 15px; /* Adjust content padding for smaller screens */
-  }
-
-  .team-member {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .member-left {
-    width: 180px;
-  }
-
-  .member-left img {
-    margin-bottom: 15px;
-  }
-
-  .member-info {
-    text-align: left;
-  }
-
-  .two-column-layout,
-  .two-column-text-layout {
-    flex-direction: column;
-    grid-template-columns: 1fr; /* Single column for text layout */
-    text-align: center;
-  }
-
-  .column-image {
-    margin-top: 20px;
-    width: 100%;
-    height: auto; /* Ensure image scales correctly */
-  }
-
-  .column-text,
-  .text-column {
-    text-align: left;
-  }
-
-  /* Responsive adjustments for grids */
-  .cards,
-  .preview-grid,
-  .news-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Allow columns to wrap */
-    gap: 20px; /* Adjust gap for mobile */
-    padding: 0 15px; /* Add some side padding to the grid itself */
-  }
-
-  .news-item,
-  .preview-item {
-    padding: 20px; /* Slightly less padding on mobile */
-  }
-
-  .news-item-image-wrapper,
-  .preview-item-image-wrapper {
-    height: 150px; /* Slightly smaller image height on mobile */
-  }
-
-  .news-item h3,
-  .preview-item h3 {
-    font-size: 1.15rem; /* Adjust title size */
-  }
-/* ==================================================
-   9. CATALOGUE SPECIFIC STYLES - Filters next to each other
-   ================================================== */
-
-.catalogue-main-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 40px; /* Consistent gap between main sections (header, layout) */
-}
-
 .catalogue-header {
-    background-color: #333;
-    color: white;
-    padding: 30px 40px;
     text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .catalogue-header h1 {
-    font-family: 'EB Garamond', serif;
-    color: white;
-    font-size: 2.8rem;
-    margin: 0;
-    line-height: 1.2;
+    font-size: 3em;
+    margin-bottom: 10px;
 }
 
-.catalogue-header .header-line {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
-    width: 50%;
-    margin: 20px auto 30px auto;
+.catalogue-main-content {
+    padding-top: 0; /* Adjust if partials already add padding */
 }
 
 .search-container {
     display: flex;
-    gap: 15px;
-    width: 100%;
-    max-width: 600px;
     justify-content: center;
-    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
-.search-container input {
-    flex-grow: 1;
-    padding: 12px 18px;
+.search-container input[type="text"] {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    font-size: 1.1em;
-    color: #333;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    font-size: 1em;
+    width: 100%;
+    max-width: 400px;
 }
 
 .search-container button {
-    padding: 12px 25px;
-    border-radius: 5px;
-    border: none;
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
 .search-container button:hover {
     background-color: #0056b3;
-    transform: translateY(-2px);
 }
 
-.catalogue-layout {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    flex-wrap: wrap; /* Allows the layout to wrap on smaller screens */
+
+/* Filters next to each other layout */
+.catalogue-wrapper {
+    display: flex; /* Klíčové: Nastaví flexbox layout pro přímé potomky */
+    gap: 20px; /* Mezera mezi filtry a seznamem filmů */
+    margin-top: 20px; /* Mezera od hlavičky */
+    flex-wrap: wrap; /* Důležité pro responzivitu: Pokud se elementy nevejdou, zalamují se */
 }
 
 .filters {
-    background-color: #f8f8f8;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    width: 280px; /* Fixed width for the filter sidebar */
-    flex-shrink: 0;
-    position: sticky;
-    top: 80px;
-
-    /* New: Flexbox properties for filter groups inside */
-    display: flex;
-    flex-wrap: wrap; /* Allows filter groups to be next to each other */
-    justify-content: space-between; /* Distribute space evenly */
-    align-items: flex-start; /* Align groups at the top */
-    gap: 20px 15px; /* Vertical and horizontal gap between filter groups */
+    flex: 0 0 250px; /* Klíčové: Nastaví pevnou šířku 250px pro filtry.
+                       `flex-grow: 0` zabrání růstu, `flex-shrink: 0` zabrání zmenšování.*/
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #eee; /* Oddělovač */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    align-self: flex-start; /* Zarovná filtry k hornímu okraji (pokud je obsah delší) */
 }
 
-.filters h2 {
-    font-family: 'EB Garamond', serif;
-    color: #222;
-    margin-top: 0;
-    margin-bottom: 25px; /* More space below main filter heading */
-    width: 100%; /* Make main heading take full width */
-    text-align: center;
+.film-list {
+    flex-grow: 1; /* Klíčové: Seznam filmů zabere veškerý dostupný zbývající prostor */
+    padding: 20px;
 }
 
-.filters h3, .filters h4 {
-    font-family: 'EB Garamond', serif;
-    color: #222;
-    margin-top: 0;
-    margin-bottom: 15px;
-    width: 100%; /* Ensure sub-headings take full width within their group */
+.film-grid { /* Změníme název na film-name-list, nebo upravíme stávající */
+    /* Vzhledem k tomu, že teď zobrazujeme seznam názvů, nemusí být grid vhodné.
+       Můžeme to stylovat jako jednoduchý seznam. */
 }
 
+.film-name-list {
+    list-style: none; /* Odstraníme odrážky seznamu */
+    padding: 0;
+    margin: 0;
+}
 
+.film-name-list li {
+    margin-bottom: 10px; /* Mezera mezi názvy filmů */
+    border-bottom: 1px dashed #eee; /* Lehký oddělovač */
+    padding-bottom: 10px;
+}
+
+.film-name-list li:last-child {
+    border-bottom: none;
+}
+
+.film-name-list li a {
+    text-decoration: none; /* Odstraníme podtržení odkazu */
+    color: #333; /* Barva textu */
+    font-size: 1.1em;
+    font-weight: 600;
+    display: block; /* Aby zabíral celou šířku */
+    padding: 5px 0;
+}
+
+.film-name-list li a:hover {
+    color: #007bff; /* Barva při najetí myší */
+    text-decoration: underline;
+}
+
+/* Stylování pro skupiny filtrů */
 .filter-group {
-    /* Adjusted for horizontal layout */
-    flex: 1 1 45%; /* Allow groups to grow/shrink, with a base width for two columns */
-    max-width: calc(50% - 15px); /* Max width for two columns with gap */
-    margin-bottom: 0; /* No bottom margin, use gap from parent */
-    padding-bottom: 0; /* No bottom padding */
-    border-bottom: none; /* No border for horizontal layout */
-    display: flex; /* Make filter group a flex container */
-    flex-direction: column; /* Stack contents within the group */
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
 }
 
-.filter-group:last-child {
+.filter-group:last-of-type {
     border-bottom: none;
     margin-bottom: 0;
-    padding-bottom: 0;
 }
 
-/* Styles for dropdowns */
+.filter-group h3, .filter-group h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #555;
+}
+
 .filters select {
-    width: 100%; /* Take full width of its parent filter-group */
-    padding: 10px 15px;
-    margin-bottom: 0; /* Removed margin-bottom here, rely on filter-group gap */
+    width: 100%;
+    padding: 8px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
+    border-radius: 4px;
+    background-color: white;
     font-size: 1em;
-    color: #333;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.4H18.8c-7.4%200-13.2%206.4-13.2%2013.2%200%204.8%202.4%209.6%206.4%2012.8l128%20127.9c3.6%203.6%208%206.4%2012.8%206.4s9.2-2.8%2012.8-6.4L280.8%2082.2c3.6-3.2%206.4-8%206.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 0.7em top 50%, 0 0;
-    background-size: 0.65em auto, 100%;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+    margin-bottom: 10px;
 }
 
 .filter-options label {
     display: block;
-    margin-bottom: 8px;
-    cursor: pointer;
-    font-size: 0.95em;
-    color: #555;
+    margin-bottom: 5px;
 }
 
 .filters button {
-    width: 100%; /* Button takes full width of filter sidebar */
-    padding: 10px 15px;
-    background-color: #dc3545;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1.1em;
     margin-top: 20px;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .filters button:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-}
-
-.film-list {
-    flex-grow: 1;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.film-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.film-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    height: 100%;
-}
-
-.film-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
-}
-
-.film-card h3 {
-    font-family: 'EB Garamond', serif;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #007bff;
-    font-size: 1.5rem;
-}
-
-.film-card p {
-    font-family: 'Nunito', sans-serif;
-    margin: 5px 0;
-    font-size: 0.95em;
-    color: #555;
-    line-height: 1.6;
-}
-
-.film-card strong {
-    color: #333;
+    background-color: #0056b3;
 }
 
 .no-results {
     text-align: center;
-    font-size: 1.2em;
     color: #777;
-    padding: 40px 20px;
+    font-style: italic;
+    margin-top: 50px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
-    .catalogue-main-content.content {
-        padding: 40px 15px;
-        gap: 30px;
-    }
-
-    .catalogue-header {
-        padding: 20px 20px;
-        margin-bottom: 15px;
-    }
-
-    .catalogue-header h1 {
-        font-size: 2.2rem;
-    }
-
-    .catalogue-layout {
-        flex-direction: column; /* Stack filters and film list on smaller screens */
-        gap: 20px;
-    }
-
-    .filters {
-        width: 100%; /* Filters take full width */
-        position: static;
-        top: auto;
-        padding: 20px;
-        flex-direction: column; /* Stack filter groups again on smaller screens */
-        gap: 0; /* Reset gap for filter groups */
-    }
-
-    .filters h2, .filters h3, .filters h4 {
-        margin-bottom: 10px;
-        text-align: left; /* Align text left when stacked */
-        width: auto; /* Revert width */
-    }
-
-    .filter-group {
-        flex: none; /* Revert flex properties */
-        max-width: none; /* Revert max-width */
-        margin-bottom: 20px; /* Reintroduce margin-bottom for stacked groups */
-        padding-bottom: 15px; /* Reintroduce padding-bottom */
-        border-bottom: 1px solid #eee; /* Reintroduce border */
-    }
-
-    .filter-group:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
-
-    .filters select,
-    .search-container input,
-    .search-container button {
-        margin-bottom: 10px;
-    }
-
-    .search-container {
-        flex-direction: column;
-        max-width: none;
-        gap: 10px;
-    }
-
-    .film-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 15px;
-    }
-
-    .film-list {
-        padding: 20px;
-    }
-
-    .film-card {
-        padding: 15px;
-    }
-
-    .film-card h3 {
-        font-size: 1.3rem;
-    }
-}
-
+/* ==================================================
+   8. RESPONSIVE DESIGN
+   ================================================== */
 @media (max-width: 768px) {
-    .film-grid {
-        grid-template-columns: 1fr;
-    }
+  .content {
+    padding: 20px 15px; /* Adjust padding for smaller screens */
+  }
+
+  .top-bar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5em;
+  }
+
+  .hero-content p {
+    font-size: 1em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  .two-column-layout,
+  .two-column-text-layout,
+  .team-member {
+    flex-direction: column; /* Stack columns on smaller screens */
+  }
+
+  .column-image, .column-text,
+  .text-column,
+  .member-left, .member-middle, .member-right {
+      min-width: unset; /* Remove min-width to allow full width */
+      flex: 1 1 100%; /* Take full width */
+      text-align: center; /* Center text/image for stacked columns */
+  }
+
+  .member-left img {
+      width: 150px; /* Smaller image on mobile */
+      height: 150px;
+  }
+
+  .member-middle hr {
+      width: 50%; /* Adjust HR width for centering */
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .search-container input[type="text"],
+  .search-container button {
+      max-width: 100%; /* Allow inputs/buttons to take full width */
+  }
+
+  .catalogue-wrapper {
+      flex-direction: column; /* Na mobilu pod sebou */
+  }
+
+  .filters {
+      flex: none;
+      width: auto;
+      border-right: none;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .film-list {
+      padding: 0; /* Remove padding as content div already has it */
+  }
 }

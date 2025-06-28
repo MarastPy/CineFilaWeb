@@ -20,59 +20,59 @@
         </div>
     </header>
 
-    <aside class="filters">
-        <h2>Filtrování</h2>
-        <div class="filter-group">
-            <h3>Žánry</h3>
-            <select id="genresFilter" onchange="applyFilters()">
-                <option value="">Všechny žánry</option>
+    <div class="catalogue-wrapper">
+        <aside class="filters">
+            <h2>Filtrování</h2>
+            <div class="filter-group">
+                <h3>Žánry</h3>
+                <select id="genresFilter" onchange="applyFilters()">
+                    <option value="">Všechny žánry</option>
                 </select>
-        </div>
-        <div class="filter-group">
-            <h3>Délka</h3>
-            <div id="runtimeFilter" class="filter-options">
-                <label><input type="checkbox" value="short" onchange="applyFilters()"> Krátkometrážní (do 30 min)</label><br>
-                <label><input type="checkbox" value="mid-length" onchange="applyFilters()"> Středometrážní (30-60 min)</label><br>
-                <label><input type="checkbox" value="full-length" onchange="applyFilters()"> Celovečerní (nad 60 min)</label><br>
             </div>
-        </div>
-        <div class="filter-group">
-            <h3>Rok</h3>
-            <select id="yearFilter" onchange="applyFilters()">
-                <option value="">Všechny roky</option>
+            <div class="filter-group">
+                <h3>Délka</h3>
+                <div id="runtimeFilter" class="filter-options">
+                    <label><input type="checkbox" value="short" onchange="applyFilters()"> Krátkometrážní (do 30 min)</label><br>
+                    <label><input type="checkbox" value="mid-length" onchange="applyFilters()"> Středometrážní (30-60 min)</label><br>
+                    <label><input type="checkbox" value="full-length" onchange="applyFilters()"> Celovečerní (nad 60 min)</label><br>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>Rok</h3>
+                <select id="yearFilter" onchange="applyFilters()">
+                    <option value="">Všechny roky</option>
                 </select>
-        </div>
-        <div class="filter-group">
-            <h3>Země produkce</h3>
-            <select id="countryFilter" onchange="applyFilters()">
-                <option value="">Všechny země</option>
+            </div>
+            <div class="filter-group">
+                <h3>Země produkce</h3>
+                <select id="countryFilter" onchange="applyFilters()">
+                    <option value="">Všechny země</option>
                 </select>
-        </div>
-        <div class="filter-group">
-            <h3>Cílová skupina</h3>
-            <h4>Rating</h4>
-            <select id="ratingFilter" onchange="applyFilters()">
-                <option value="">Všechny ratingy</option>
+            </div>
+            <div class="filter-group">
+                <h3>Cílová skupina</h3>
+                <h4>Rating</h4>
+                <select id="ratingFilter" onchange="applyFilters()">
+                    <option value="">Všechny ratingy</option>
                 </select>
-            <h4>Publikum</h4>
-            <select id="audienceFilter" onchange="applyFilters()">
-                <option value="">Všechna publika</option>
+                <h4>Publikum</h4>
+                <select id="audienceFilter" onchange="applyFilters()">
+                    <option value="">Všechna publika</option>
                 </select>
-            <h4>Ostatní</h4>
-            <select id="targetGroupOtherFilter" onchange="applyFilters()">
-                <option value="">Ostatní</option>
+                <h4>Ostatní</h4>
+                <select id="targetGroupOtherFilter" onchange="applyFilters()">
+                    <option value="">Ostatní</option>
                 </select>
-        </div>
-        <div class="filter-group">
-            <h3>Témata</h3>
-            <select id="keywordsFilter" onchange="applyFilters()">
-                <option value="">Všechna témata</option>
+            </div>
+            <div class="filter-group">
+                <h3>Témata</h3>
+                <select id="keywordsFilter" onchange="applyFilters()">
+                    <option value="">Všechna témata</option>
                 </select>
-        </div>
-        <button onclick="resetFilters()">Zrušit filtry</button>
-    </aside>
+            </div>
+            <button onclick="resetFilters()">Zrušit filtry</button>
+        </aside>
 
-    <div class="catalogue-layout">
         <section class="film-list">
             <div id="filmContainer" class="film-grid">
                 </div>
