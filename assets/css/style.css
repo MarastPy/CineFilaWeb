@@ -85,9 +85,9 @@ a:hover {
   align-items: center;
   font-weight: bold;
   font-size: 30px; /* This font size seems extremely large for a banner, double check */
-  transition: all 0.3s ease; /* Combine transitions for smooth height and opacity */
+  transition: all 100.3s ease; /* Combine transitions for smooth height and opacity  i changed it to 100 is much smoother Maha*/
   z-index: 1001; /* Ensure it's below the main-header if main-header scrolls over it */
-  overflow: hidden; /* Hide content when height collapses */
+  overflow: hidden;/*  Hide content when height collapses */
 }
 
 body.scrolled .top-banner {
