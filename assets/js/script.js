@@ -331,18 +331,23 @@ function displayFilms(films) {
         const originalTitle = filmData.Film.Title_Original || '';
         const displayTitle = englishTitle !== 'Unknown Title' ? englishTitle : originalTitle;
 
-        // --- MODIFICATION START ---
-
-        // Assuming filmData.Film.ID or filmData.Film.Title_English can be used to derive the filename
         let filenameBase;
         if (filmData.Film.ID) {
             filenameBase = String(filmData.Film.ID); // Use ID directly if it's suitable for a filename
         } else if (filmData.Film.Title_English) {
-            // Sanitize the English title to create a valid filename (lowercase, replace spaces with hyphens, remove special characters)
-            filenameBase = filmData.Film.Title_English.replace(/[^\w\s]/gi, '').replace(/\s+/g, '-').toLowerCase();
+            // Sanitize the English title to create a valid filename
+            // Replace non-word characters (except spaces) with empty string,
+            // then replace one or more spaces with an underscore.
+            filenameBase = filmData.Film.Title_English
+                .replace(/[^\w\s]/gi, '') // Remove non-word characters (but keep spaces)
+                .replace(/\s+/g, '_')     // Replace one or more spaces with an underscore
+                .toLowerCase();
         } else if (filmData.Film.Title_Original) {
             // Fallback to original title if English title is not available
-            filenameBase = filmData.Film.Title_Original.replace(/[^\w\s]/gi, '').replace(/\s+/g, '-').toLowerCase();
+            filenameBase = filmData.Film.Title_Original
+                .replace(/[^\w\s]/gi, '')
+                .replace(/\s+/g, '_')
+                .toLowerCase();
         } else {
             console.warn('Could not derive a filename for film:', filmData);
             return; // Skip this film if no suitable identifier is found
@@ -350,8 +355,6 @@ function displayFilms(films) {
 
         // Construct the full path
         const filmDetailUrl = `generated_film_pages/${filenameBase}.html`;
-
-        // --- MODIFICATION END ---
 
         const listItem = document.createElement('li');
         const filmLink = document.createElement('a');
