@@ -1,82 +1,90 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cinefila | Katalog filmů</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cinefila | Film Catalogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&family=Nunito:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
 <body>
   <div id="header-container"></div>
 
   <main class="catalogue-main-content content">
     <header class="catalogue-header">
-        <h1>Katalog filmů</h1>
-        <hr class="header-line">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Vyhledat film..." onkeyup="if(event.keyCode === 13) performSearch()">
-            <button onclick="performSearch()">Vyhledat</button>
-        </div>
+      <h1>Film Catalogue</h1>
+      <hr class="header-line" />
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search film..."
+          onkeyup="if(event.keyCode === 13) performSearch()"
+        />
+        <button onclick="performSearch()">Search</button>
+      </div>
     </header>
 
     <div class="catalogue-wrapper">
-        <aside class="filters">
-            <h2>Filtrování</h2>
-            <div class="filter-group">
-                <h3>Žánry</h3>
-                <select id="genresFilter" onchange="applyFilters()">
-                    <option value="">Všechny žánry</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <h3>Délka</h3>
-                <div id="runtimeFilter" class="filter-options">
-                    <label><input type="checkbox" value="short" onchange="applyFilters()"> Krátkometrážní (do 30 min)</label><br>
-                    <label><input type="checkbox" value="mid-length" onchange="applyFilters()"> Středometrážní (30-60 min)</label><br>
-                    <label><input type="checkbox" value="full-length" onchange="applyFilters()"> Celovečerní (nad 60 min)</label><br>
-                </div>
-            </div>
-            <div class="filter-group">
-                <h3>Rok</h3>
-                <select id="yearFilter" onchange="applyFilters()">
-                    <option value="">Všechny roky</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <h3>Země produkce</h3>
-                <select id="countryFilter" onchange="applyFilters()">
-                    <option value="">Všechny země</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <h3>Cílová skupina</h3>
-                <h4>Rating</h4>
-                <select id="ratingFilter" onchange="applyFilters()">
-                    <option value="">Všechny ratingy</option>
-                </select>
-                <h4>Publikum</h4>
-                <select id="audienceFilter" onchange="applyFilters()">
-                    <option value="">Všechna publika</option>
-                </select>
-                <h4>Ostatní</h4>
-                <select id="targetGroupOtherFilter" onchange="applyFilters()">
-                    <option value="">Ostatní</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <h3>Témata</h3>
-                <select id="keywordsFilter" onchange="applyFilters()">
-                    <option value="">Všechna témata</option>
-                </select>
-            </div>
-            <button onclick="resetFilters()">Zrušit filtry</button>
-        </aside>
+      <!-- HORIZONTAL FILTERS -->
+      <div class="horizontal-filters">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label for="genresFilter">Genre</label>
+            <select id="genresFilter" onchange="applyFilters()">
+              <option value="">All Genres</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="lengthFilter">Length</label>
+            <select id="lengthFilter" onchange="applyFilters()">
+              <option value="">All Lengths</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="yearFilter">Year</label>
+            <select id="yearFilter" onchange="applyFilters()">
+              <option value="">All Years</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="countryFilter">Country</label>
+            <select id="countryFilter" onchange="applyFilters()">
+              <option value="">All Countries</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="ratingFilter">Rating</label>
+            <select id="ratingFilter" onchange="applyFilters()">
+              <option value="">All Ratings</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="audienceFilter">Audience</label>
+            <select id="audienceFilter" onchange="applyFilters()">
+              <option value="">All Audiences</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="targetGroupOtherFilter">Other</label>
+            <select id="targetGroupOtherFilter" onchange="applyFilters()">
+              <option value="">Other</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="keywordsFilter">Themes</label>
+            <select id="keywordsFilter" onchange="applyFilters()">
+              <option value="">All Themes</option>
+            </select>
+          </div>
+        </div>
+        <button class="clear-filters-btn" onclick="resetFilters()">Clear Filters</button>
+      </div>
 
-        <section class="film-list">
-            <div id="filmContainer" class="film-grid">
-                </div>
-        </section>
+      <!-- Film list -->
+      <section class="film-list">
+        <div id="filmContainer" class="film-grid"></div>
+      </section>
     </div>
   </main>
 

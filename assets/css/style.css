@@ -434,7 +434,7 @@ footer {
   color: #ddd;
 }
 
-/* ==================================================\
+/* ==================================================
    7. CATALOGUE SPECIFIC STYLES
    ================================================== */
 .catalogue-header {
@@ -483,44 +483,29 @@ footer {
     background-color: #0056b3;
 }
 
-
-/* Filters next to each other layout */
+/* Catalogue layout */
 .catalogue-wrapper {
-    display: flex; /* Klíčové: Nastaví flexbox layout pro přímé potomky */
-    gap: 20px; /* Mezera mezi filtry a seznamem filmů */
-    margin-top: 20px; /* Mezera od hlavičky */
-    flex-wrap: wrap; /* Důležité pro responzivitu: Pokud se elementy nevejdou, zalamují se */
+    margin-top: 20px;
 }
 
-.filters {
-    flex: 0 0 250px; /* Klíčové: Nastaví pevnou šířku 250px pro filtry.
-                       `flex-grow: 0` zabrání růstu, `flex-shrink: 0` zabrání zmenšování.*/
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-right: 1px solid #eee; /* Oddělovač */
-    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-    align-self: flex-start; /* Zarovná filtry k hornímu okraji (pokud je obsah delší) */
-}
-
+/* Film list styles */
 .film-list {
-    flex-grow: 1; /* Klíčové: Seznam filmů zabere veškerý dostupný zbývající prostor */
     padding: 20px;
 }
 
-.film-grid { /* Změníme název na film-name-list, nebo upravíme stávající */
-    /* Vzhledem k tomu, že teď zobrazujeme seznam názvů, nemusí být grid vhodné.
-       Můžeme to stylovat jako jednoduchý seznam. */
+.film-grid {
+    /* Optional styling if you later switch back to grid layout */
 }
 
 .film-name-list {
-    list-style: none; /* Odstraníme odrážky seznamu */
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .film-name-list li {
-    margin-bottom: 10px; /* Mezera mezi názvy filmů */
-    border-bottom: 1px dashed #eee; /* Lehký oddělovač */
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #eee;
     padding-bottom: 10px;
 }
 
@@ -529,65 +514,65 @@ footer {
 }
 
 .film-name-list li a {
-    text-decoration: none; /* Odstraníme podtržení odkazu */
-    color: #333; /* Barva textu */
+    text-decoration: none;
+    color: #333;
     font-size: 1.1em;
     font-weight: 600;
-    display: block; /* Aby zabíral celou šířku */
+    display: block;
     padding: 5px 0;
 }
 
 .film-name-list li a:hover {
-    color: #007bff; /* Barva při najetí myší */
+    color: #007bff;
     text-decoration: underline;
 }
 
-/* Stylování pro skupiny filtrů */
+/* NEW Horizontal Filters */
+.horizontal-filters {
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f2f5; /* ← This adds the background */
+  border-radius: 30px; /* Optional: makes it look smoother */
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centers the filters horizontally */
+  gap: 15px;
+  max-width: 1200px; /* optional limit to how wide it can get */
+  width: 100%;
+}
+
 .filter-group {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
+  flex: 0 1 180px; /* consistent width per filter */
 }
 
-.filter-group:last-of-type {
-    border-bottom: none;
-    margin-bottom: 0;
+.filter-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 1em;
 }
 
-.filter-group h3, .filter-group h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.filters select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-    font-size: 1em;
-    margin-bottom: 10px;
-}
-
-.filter-options label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.filters button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+.clear-filters-btn {
+    margin: 15px auto 0; /* Top margin + auto left/right */
+    padding: 10px 20px;
+    background-color: #121417;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.1em;
-    margin-top: 20px;
+    font-size: 1em;
+    display: block; /* Ensure margin: auto works */
 }
 
-.filters button:hover {
+.clear-filters-btn:hover {
     background-color: #0056b3;
 }
 
@@ -603,7 +588,7 @@ footer {
    ================================================== */
 @media (max-width: 768px) {
   .content {
-    padding: 20px 15px; /* Adjust padding for smaller screens */
+    padding: 20px 15px;
   }
 
   .top-bar {
@@ -632,46 +617,55 @@ footer {
   .two-column-layout,
   .two-column-text-layout,
   .team-member {
-    flex-direction: column; /* Stack columns on smaller screens */
+    flex-direction: column;
   }
 
   .column-image, .column-text,
   .text-column,
   .member-left, .member-middle, .member-right {
-      min-width: unset; /* Remove min-width to allow full width */
-      flex: 1 1 100%; /* Take full width */
-      text-align: center; /* Center text/image for stacked columns */
+      min-width: unset;
+      flex: 1 1 100%;
+      text-align: center;
   }
 
   .member-left img {
-      width: 150px; /* Smaller image on mobile */
+      width: 150px;
       height: 150px;
   }
 
   .member-middle hr {
-      width: 50%; /* Adjust HR width for centering */
+      width: 50%;
       margin-left: auto;
       margin-right: auto;
   }
 
   .search-container input[type="text"],
   .search-container button {
-      max-width: 100%; /* Allow inputs/buttons to take full width */
+      max-width: 100%;
   }
 
-  .catalogue-wrapper {
-      flex-direction: column; /* Na mobilu pod sebou */
+  .filter-row {
+      flex-direction: column;
+
   }
 
-  .filters {
-      flex: none;
-      width: auto;
-      border-right: none;
-      border-bottom: 1px solid #eee;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  .filter-group {
+      width: 100%;
+  }
+
+ .filter-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 0.95em;
+  color: #333;
+}
+
+  .clear-filters-btn {
+      width: 100%;
   }
 
   .film-list {
-      padding: 0; /* Remove padding as content div already has it */
+      padding: 0;
   }
 }

@@ -70,6 +70,7 @@ function populateFilters() {
     const audiences = new Set();
     const targetGroupOthers = new Set();
     const keywords = new Set();
+    const lengths = new Set(); // New Set for film lengths
 
     allFilms.forEach(filmData => {
         if (!filmData || !filmData.Film) return;
@@ -107,6 +108,12 @@ function populateFilters() {
         if (filmData.Film.Keywords) {
             filmData.Film.Keywords.split(',').forEach(keyword => keywords.add(keyword.trim()));
         }
+
+        // Add film length to the lengths Set
+        const filmLengthCategory = getRoundedRuntime(filmData.Film.Runtime);
+        if (filmLengthCategory) {
+            lengths.add(filmLengthCategory);
+        }
     });
 
     // Function to generate <select> and <option>
@@ -116,15 +123,20 @@ function populateFilters() {
 
         selectElement.innerHTML = `<option value="">${defaultText}</option>`; // Add default option
 
+        // Define a custom sort order for lengths
+        const lengthOrder = ['short', 'mid-length', 'full-length'];
+
         const sortedItems = [...items].filter(item => item && item !== 'N/A').sort((a, b) => {
             if (id === 'yearFilter') return parseInt(b, 10) - parseInt(a, 10); // Years descending
+            if (id === 'lengthFilter') return lengthOrder.indexOf(a) - lengthOrder.indexOf(b); // Custom order for lengths
             return a.localeCompare(b); // Others alphabetically
         });
 
         sortedItems.forEach(item => {
             const option = document.createElement('option');
             option.value = item;
-            option.textContent = item;
+            // Capitalize the first letter for display
+            option.textContent = item.charAt(0).toUpperCase() + item.slice(1);
             selectElement.appendChild(option);
         });
     };
@@ -136,6 +148,7 @@ function populateFilters() {
     generateSelectOptions('audienceFilter', audiences, 'All Audiences');
     generateSelectOptions('targetGroupOtherFilter', targetGroupOthers, 'Other');
     generateSelectOptions('keywordsFilter', keywords, 'All Themes');
+    generateSelectOptions('lengthFilter', lengths, 'All Lengths'); // Call for Length filter
 }
 
 /**
@@ -150,19 +163,14 @@ function applyFilters() {
         return selectElement ? selectElement.value : '';
     };
 
-    // Get selected values from checkboxes (for runtime)
-    const getSelectedCheckboxes = (id) => {
-        return Array.from(document.querySelectorAll(`#${id} input[type="checkbox"]:checked`)).map(cb => cb.value);
-    };
-
     const selectedGenre = getSelectedValue('genresFilter');
     const selectedYear = getSelectedValue('yearFilter');
     const selectedCountry = getSelectedValue('countryFilter');
     const selectedRating = getSelectedValue('ratingFilter');
     const selectedAudience = getSelectedValue('audienceFilter');
     const selectedTargetGroupOther = getSelectedValue('targetGroupOtherFilter');
-    const selectedKeyword = getSelectedValue('keywordsFilter'); // For dropdown, it's a single value
-    const selectedRuntimes = getSelectedCheckboxes('runtimeFilter'); // This remains an array from checkboxes
+    const selectedKeyword = getSelectedValue('keywordsFilter');
+    const selectedLength = getSelectedValue('lengthFilter'); // Changed to single value from dropdown
 
 
     filteredFilms = currentFilms.filter(filmData => {
@@ -215,10 +223,10 @@ function applyFilters() {
             passesAllFilters = passesAllFilters && filmKeywords.includes(selectedKeyword);
         }
 
-        // Length filter (still uses checkboxes)
-        if (selectedRuntimes.length > 0) {
+        // Length filter (now uses dropdown)
+        if (selectedLength) { // Check if a length is actually selected
             const filmRuntimeCategory = getRoundedRuntime(filmData.Film.Runtime);
-            passesAllFilters = passesAllFilters && selectedRuntimes.includes(filmRuntimeCategory);
+            passesAllFilters = passesAllFilters && (filmRuntimeCategory === selectedLength);
         }
 
         return passesAllFilters;
@@ -376,10 +384,6 @@ function resetFilters(clearSearch = true) {
     // Reset all dropdowns
     const selects = document.querySelectorAll('.filters select');
     selects.forEach(sel => sel.value = '');
-
-    // Uncheck all checkboxes (for runtime)
-    const checkboxes = document.querySelectorAll('#runtimeFilter input[type="checkbox"]');
-    checkboxes.forEach(cb => cb.checked = false);
 
     // Clear search field if set
     if (clearSearch) {
