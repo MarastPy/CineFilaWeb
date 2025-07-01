@@ -98,6 +98,8 @@ a:hover {
   justify-content: center;
   transition: top 0.3s ease, background 0.3s ease;
   font-family: 'Nunito', sans-serif;
+  /* border: 2px solid white;  Adjust thickness (2px) and color (white) as needed */
+  /* box-sizing: border-box; Ensures padding and border are included in the element's total width/height */
 }
 
 body:not(.scrolled) {
@@ -160,7 +162,7 @@ nav a:hover {
 
 .section-dark-grey {
   background-color: #2B2B2B;
-  color: #f0f0f0;
+  color: white;
 }
 
 section.news-section,
