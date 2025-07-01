@@ -12,6 +12,7 @@ body {
   color: #1c1c1c;
   line-height: 1.6;
   transition: padding-top 0.3s ease; /* Add transition for smooth change */
+  background-color: #2b2b2b; /* Ensure whole body has the dark background */
 }
 
 body.scrolled {
@@ -62,8 +63,7 @@ a:hover {
 
 .header-area {
   position: relative;
-  /* padding-top: 60px; REMOVE or set to 0 if banner is gone */
-  padding-top: 0; /* No initial padding for a banner if it's gone or not influencing the layout */
+  padding-top: 0;
   z-index: 1000;
   background: #2b2b2b;
 }
@@ -86,19 +86,9 @@ a:hover {
   margin: 0 auto;
 }
 
-/* REMOVE or comment out the entire .top-banner rule if you remove it from HTML */
-/* If you keep it but want it to be *above* the fixed area, you need JS to make it disappear
-   and adjust body padding. But your current setup makes it fixed.
-   To make it *not* part of the fixed header stack, you'd make it `position: absolute`
-   within .header-area and adjust .header-area padding-top to encompass its height
-   only *before* scroll. This is more complex. */
-
-/* Let's assume for now, we want the logo and main header to be the *only* fixed elements. */
-
 #main-header {
   position: fixed;
-  /* Initial position: below logo-top (90px) */
-  top: 90px; /* Changed from 150px to 90px */
+  top: 90px;
   left: 0;
   right: 0;
   z-index: 1002;
@@ -110,30 +100,11 @@ a:hover {
   font-family: 'Nunito', sans-serif;
 }
 
-/* No change needed for body.scrolled #main-header top, it was already 90px */
-body.scrolled #main-header {
-  top: 90px;
-}
-
-/* Adjust body padding for scrolled state */
 body:not(.scrolled) {
-  /* Initial padding when not scrolled: Logo (90px) + Main Header (assumed 60px) = 150px */
   padding-top: 150px;
 }
 body.scrolled {
-  /* Scrolled padding: Logo (90px) + Main Header (assumed 60px) = 150px */
-  padding-top: 150px; /* Consistent padding-top for scrolled state based on fixed elements */
-}
-
-/* The transition on body padding-top is already there which is good */
-/*
-body.scrolled {
-  padding-top: 60px; // Your existing rule for `body.scrolled` - this looks problematic if the logo is 90px
-}
-*/
-/* Corrected body.scrolled rule for consistency */
-body.scrolled {
-    padding-top: 150px; /* Total height of fixed header (logo + main-header) */
+  padding-top: 150px;
 }
 
 nav {
@@ -447,13 +418,14 @@ footer {
    7. CATALOGUE SPECIFIC STYLES
    ================================================== */
 .catalogue-header {
-    text-align: center;
+    text-align: left; /* Changed to left align */
     margin-bottom: 30px;
 }
 
 .catalogue-header h1 {
     font-size: 3em;
     margin-bottom: 10px;
+    color: #ffffff; /* Film Catalogue title to white */
 }
 
 .catalogue-main-content {
@@ -502,6 +474,7 @@ footer {
 /* Film list styles */
 .film-list {
     padding: 20px;
+    background-color: #2b2b2b; /* Ensures the film list area has the dark background */
 }
 
 .film-grid {
@@ -575,7 +548,7 @@ footer {
   flex-direction: column;
   align-items: center;
   background-color: #f0f2f5; /* ← This adds the background */
-  border-radius: 8px; /* Optional: makes it look smoother */
+  border-radius: 0; /* Removed border-radius */
   /*border: 1px solid #ccc;*/
 }
 
