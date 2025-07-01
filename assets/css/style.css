@@ -490,10 +490,11 @@ footer {
 
 /* Style for individual film cards within the grid */
 .film-item-card { /* Renamed from .film-name-list li for clarity and direct application */
-    background-color: #3a3a3a; /* Slightly lighter dark background for each film card */
+    /*background-color: #3a3a3a; /* Slightly lighter dark background for each film card */
     padding: 20px;
     border-radius: 8px; /* Rounded corners for individual film cards */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+    /* Removed box-shadow for a borderless look */
+    box-shadow: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex; /* Still use flexbox for content within the card */
     flex-direction: column; /* Stack content vertically within the card */
@@ -508,13 +509,10 @@ footer {
 }
 
 .film-item-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-}
+    transform: translateY(-5px);
 
-/* Removed the .film-name-list selector as the <ul> element is no longer generated with it.
-   If you still have an <ul> in your HTML that needs basic list-style: none,
-   you might re-add a more generic ul style or apply it directly to #filmContainer. */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /
+}
 
 /* Style for the div holding title, meta, image, and logline */
 .film-title-meta {
@@ -525,7 +523,7 @@ footer {
 /* Applies to the film title link */
 .film-item-card a { /* Adjusted selector for the new class */
     text-decoration: none;
-    color: #ff9800;
+    color: white; /* Changed title color to white */
     font-size: 1.1em;
     font-weight: 600;
     display: block;
@@ -533,8 +531,16 @@ footer {
 }
 
 .film-item-card a:hover { /* Adjusted selector for the new class */
-    color: #ffc107;
+    color: #ffc107; /* Keep hover color */
     text-decoration: underline;
+}
+
+/* New style for the director's name */
+.film-director {
+  font-size: 0.9em;
+  color: white; /* Lighter color for readability on dark background */
+  margin-top: 5px;
+  margin-bottom: 10px; /* Space between director and image */
 }
 
 /* Styles for the film still image */
@@ -551,7 +557,7 @@ footer {
 /* Styles for the logline */
 .film-logline {
     font-size: 0.95em;
-    color: #ccc;
+    color: white;
     margin-top: 10px;
     line-height: 1.4;
     text-align: left;
@@ -565,7 +571,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f2f5;
+  background-color: #2b2b2b; /* Changed to dark background */
   border-radius: 0;
 }
 
@@ -588,7 +594,7 @@ footer {
   margin-bottom: 5px;
   font-weight: 600;
   font-size: 0.95em;
-  color: #333;
+  color: #f0f0f0; /* Changed to light color for dark background */
 }
 
 .filter-group select {

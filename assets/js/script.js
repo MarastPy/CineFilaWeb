@@ -70,7 +70,7 @@ function populateFilters() {
     const audiences = new Set();
     const targetGroupOthers = new Set();
     const keywords = new Set();
-    const lengths = new Set();
+    const lengths = new Set(); // New Set for film lengths
 
     allFilms.forEach(filmData => {
         if (!filmData || !filmData.Film) return;
@@ -79,43 +79,40 @@ function populateFilters() {
             filmData.Film.Genre_List.forEach(genre => genres.add(genre.trim()));
         }
 
+        let filmYear = null;
         if (filmData.Film.Date_of_completion) {
             const date = new Date(filmData.Film.Date_of_completion);
             if (!isNaN(date.getFullYear())) {
-                years.add(date.getFullYear().toString());
-            }
-        } else if (filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
-            const date = new Date(filmData.Premiere[0].Date);
-            if (!isNaN(date.getFullYear())) {
-                years.add(date.getFullYear().toString());
+                filmYear = date.getFullYear().toString();
             }
         }
+        if (!filmYear && filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
+            const date = new Date(filmData.Premiere[0].Date);
+            if (!isNaN(date.getFullYear())) {
+                filmYear = date.getFullYear().toString();
+            }
+        }
+        if (filmYear) years.add(filmYear);
+
 
         if (filmData.Film.Country_of_production) {
             filmData.Film.Country_of_production.split(',').forEach(country => countries.add(country.trim()));
         }
 
-        if (filmData.Film.Film_rating) {
-            filmData.Film.Film_rating.split(',').forEach(rating => ratings.add(rating.trim()));
-        }
-
-        if (filmData.Film.Audience_target_group) {
-            filmData.Film.Audience_target_group.split(',').forEach(audience => audiences.add(audience.trim()));
-        }
-
-        if (filmData.Film.Target_group_other) {
-            filmData.Film.Target_group_other.split(',').forEach(other => targetGroupOthers.add(other.trim()));
+        if (filmData.Film.Target_Group) {
+            if (filmData.Film.Target_Group.Rating) ratings.add(filmData.Film.Target_Group.Rating.trim());
+            if (filmData.Film.Target_Group.Audience) audiences.add(filmData.Film.Target_Group.Audience.trim());
+            if (filmData.Film.Target_Group.Other) targetGroupOthers.add(filmData.Film.Target_Group.Other.trim());
         }
 
         if (filmData.Film.Keywords) {
             filmData.Film.Keywords.split(',').forEach(keyword => keywords.add(keyword.trim()));
         }
 
-        if (filmData.Film.Runtime) {
-            const lengthCategory = getRoundedRuntime(filmData.Film.Runtime);
-            if (lengthCategory) {
-                lengths.add(lengthCategory);
-            }
+        // Add film length to the lengths Set
+        const filmLengthCategory = getRoundedRuntime(filmData.Film.Runtime);
+        if (filmLengthCategory) {
+            lengths.add(filmLengthCategory);
         }
     });
 
@@ -145,13 +142,13 @@ function populateFilters() {
     };
 
     generateSelectOptions('genresFilter', genres, 'All Genres');
-    generateSelectOptions('lengthFilter', lengths, 'All Lengths');
     generateSelectOptions('yearFilter', years, 'All Years');
     generateSelectOptions('countryFilter', countries, 'All Countries');
     generateSelectOptions('ratingFilter', ratings, 'All Ratings');
     generateSelectOptions('audienceFilter', audiences, 'All Audiences');
     generateSelectOptions('targetGroupOtherFilter', targetGroupOthers, 'Other');
     generateSelectOptions('keywordsFilter', keywords, 'All Themes');
+    generateSelectOptions('lengthFilter', lengths, 'All Lengths'); // Call for Length filter
 }
 
 /**
@@ -173,7 +170,7 @@ function applyFilters() {
     const selectedAudience = getSelectedValue('audienceFilter');
     const selectedTargetGroupOther = getSelectedValue('targetGroupOtherFilter');
     const selectedKeyword = getSelectedValue('keywordsFilter');
-    const selectedLength = getSelectedValue('lengthFilter');
+    const selectedLength = getSelectedValue('lengthFilter'); // Changed to single value from dropdown
 
 
     filteredFilms = currentFilms.filter(filmData => {
@@ -189,55 +186,47 @@ function applyFilters() {
 
         // Year filter
         if (selectedYear) {
-            let filmYear = '';
+            let filmYear = null;
             if (filmData.Film.Date_of_completion) {
                 const date = new Date(filmData.Film.Date_of_completion);
-                if (!isNaN(date.getFullYear())) {
-                    filmYear = date.getFullYear().toString();
-                }
-            } else if (filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
+                if (!isNaN(date.getFullYear())) filmYear = date.getFullYear().toString();
+            }
+            if (!filmYear && filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
                 const date = new Date(filmData.Premiere[0].Date);
-                if (!isNaN(date.getFullYear())) {
-                    filmYear = date.getFullYear().toString();
-                }
+                if (!isNaN(date.getFullYear())) filmYear = date.getFullYear().toString();
             }
             passesAllFilters = passesAllFilters && (filmYear === selectedYear);
         }
 
-        // Country filter
+        // Country of production filter (for dropdown)
         if (selectedCountry) {
             const filmCountries = filmData.Film.Country_of_production ? filmData.Film.Country_of_production.split(',').map(c => c.trim()) : [];
             passesAllFilters = passesAllFilters && filmCountries.includes(selectedCountry);
         }
 
-        // Rating filter
+        // Target audience filter (Rating)
         if (selectedRating) {
-            const filmRatings = filmData.Film.Film_rating ? filmData.Film.Film_rating.split(',').map(r => r.trim()) : [];
-            passesAllFilters = passesAllFilters && filmRatings.includes(selectedRating);
+            passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Rating === selectedRating);
         }
-
-        // Audience filter
+        // Target audience filter (Audience)
         if (selectedAudience) {
-            const filmAudiences = filmData.Film.Audience_target_group ? filmData.Film.Audience_target_group.split(',').map(a => a.trim()) : [];
-            passesAllFilters = passesAllFilters && filmAudiences.includes(selectedAudience);
+            passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Audience === selectedAudience);
         }
-
-        // Target Group Other filter
+        // Target audience filter (Other)
         if (selectedTargetGroupOther) {
-            const filmTargetGroupOthers = filmData.Film.Target_group_other ? filmData.Film.Target_group_other.split(',').map(o => o.trim()) : [];
-            passesAllFilters = passesAllFilters && filmTargetGroupOthers.includes(selectedTargetGroupOther);
+            passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Other === selectedTargetGroupOther);
         }
 
-        // Keywords filter (Themes)
+        // Keywords filter (for dropdown)
         if (selectedKeyword) {
             const filmKeywords = filmData.Film.Keywords ? filmData.Film.Keywords.split(',').map(k => k.trim()) : [];
             passesAllFilters = passesAllFilters && filmKeywords.includes(selectedKeyword);
         }
 
-        // Length filter
-        if (selectedLength) {
-            const filmLengthCategory = getRoundedRuntime(filmData.Film.Runtime);
-            passesAllFilters = passesAllFilters && (filmLengthCategory === selectedLength);
+        // Length filter (now uses dropdown)
+        if (selectedLength) { // Check if a length is actually selected
+            const filmRuntimeCategory = getRoundedRuntime(filmData.Film.Runtime);
+            passesAllFilters = passesAllFilters && (filmRuntimeCategory === selectedLength);
         }
 
         return passesAllFilters;
@@ -275,7 +264,7 @@ function performSearch(resetFiltersBeforeSearch = true) {
         const englishTitle = getText(filmData.Film.Title_English);
         const originalTitle = getText(filmData.Film.Title_Original);
         const genres = getArrayText(filmData.Film.Genre_List);
-        const keywords = getText(filmData.Film.Keywords); // Restored to searchable text
+        const keywords = getText(filmData.Film.Keywords);
 
         let releaseInfo = '';
         if (filmData.Film.Date_of_completion) {
@@ -309,12 +298,12 @@ function performSearch(resetFiltersBeforeSearch = true) {
         const aspectRatio = getText(filmData.Technical_Details && filmData.Technical_Details.Aspect_Ratio);
         const color = getText(filmData.Technical_Details && filmData.Technical_Details.Colour);
 
-        let roundedRuntimeSearch = getRoundedRuntime(filmData.Film.Runtime); // Restored to searchable text
+        let roundedRuntimeSearch = getRoundedRuntime(filmData.Film.Runtime);
 
-        // Added logline to searchable text
-        const logline = getText(filmData.Film.Logline);
 
-        // Updated searchableText to include all filter terms and logline
+        const logline = getText(filmData.Logline || filmData.Film.Logline_English || filmData.Film.Logline_Original);
+
+
         const searchableText = `${englishTitle} ${originalTitle} ${genres} ${keywords} ${releaseInfo} ${runtime} ${language} ${country} ${festivals} ${director} ${writer} ${cinematographer} ${editor} ${musicComposer} ${soundDirector} ${producerName} ${companyName} ${cast} ${soundMix} ${aspectRatio} ${color} ${roundedRuntimeSearch} ${logline}`;
 
         return searchableText.includes(searchTerm);
@@ -329,12 +318,8 @@ function performSearch(resetFiltersBeforeSearch = true) {
  * Displays films in the container on the page.
  * @param {Array<Object>} films Array of film data to display.
  */
-/**
- * Displays films in the container on the page.
- * @param {Array<Object>} films Array of film data to display.
- */
 function displayFilms(films) {
-    const container = document.getElementById('filmContainer'); // This is .film-grid
+    const container = document.getElementById('filmContainer'); // This is already .film-grid
     if (!container) return;
     container.innerHTML = ''; // Clear the container
 
@@ -342,10 +327,6 @@ function displayFilms(films) {
         container.innerHTML = '<p class="no-results">No films found matching the selected criteria.</p>';
         return;
     }
-
-    // Removed the creation of <ul>. The <li> elements will now be direct children of filmContainer.
-    // const filmList = document.createElement('ul');
-    // filmList.classList.add('film-name-list'); // This class is no longer needed on a <ul>
 
     films.forEach(filmData => {
         if (!filmData || !filmData.Film) {
@@ -356,31 +337,6 @@ function displayFilms(films) {
         const englishTitle = filmData.Film.Title_English || filmData.Film.Title_Original || 'Unknown Title';
         const originalTitle = filmData.Film.Title_Original || '';
         const displayTitle = englishTitle !== 'Unknown Title' ? englishTitle : originalTitle;
-
-        let filmYear = '';
-        if (filmData.Film.Date_of_completion) {
-            const date = new Date(filmData.Film.Date_of_completion);
-            if (!isNaN(date.getFullYear())) {
-                filmYear = date.getFullYear().toString();
-            }
-        } else if (filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
-            const date = new Date(filmData.Premiere[0].Date);
-            if (!isNaN(date.getFullYear())) {
-                filmYear = date.getFullYear().toString();
-            }
-        }
-
-        let filmDuration = '';
-        if (filmData.Film.Runtime) {
-            const parts = filmData.Film.Runtime.split(':');
-            if (parts.length >= 2) {
-                const hours = parseInt(parts[0], 10);
-                const minutes = parseInt(parts[1], 10);
-                if (!isNaN(hours) && !isNaN(minutes)) {
-                    filmDuration = (hours * 60 + minutes) + ' min';
-                }
-            }
-        }
 
         let filenameBase;
         if (filmData.Film.ID) {
@@ -401,54 +357,53 @@ function displayFilms(films) {
         }
 
         const filmDetailUrl = `generated_film_pages/${filenameBase}.html`;
+        const filmStillUrl = `images/stills/${filenameBase}/${filenameBase}_1.png`; // Assuming image path for film stills
 
-        const listItem = document.createElement('li');
-        listItem.classList.add('film-item-card'); // Add a class to style individual film cards
+        // Extract director(s)
+        let directorNames = '';
+        if (filmData.Crew && filmData.Crew['Director(s)']) {
+            // Take the first director if there are multiple, or just the whole string if only one
+            directorNames = filmData.Crew['Director(s)'].split(',')[0].trim();
+        }
 
-        const titleAndMetaDiv = document.createElement('div');
-        titleAndMetaDiv.classList.add('film-title-meta');
+        // Create the card element
+        const filmCard = document.createElement('div'); // This will be the .film-item-card
+        filmCard.classList.add('film-item-card');
+
+        // Create the title section (film-title-meta)
+        const titleMetaDiv = document.createElement('div');
+        titleMetaDiv.classList.add('film-title-meta');
 
         const filmLink = document.createElement('a');
         filmLink.href = filmDetailUrl;
+        filmLink.textContent = displayTitle;
+        titleMetaDiv.appendChild(filmLink);
+        filmCard.appendChild(titleMetaDiv);
 
-        // Construct the display text: Name | Year | Duration
-        let displayText = displayTitle;
-        if (filmYear) {
-            displayText += ` | ${filmYear}`;
+        // Add director name if available
+        if (directorNames) {
+            const directorElement = document.createElement('p'); // Use a paragraph for director
+            directorElement.classList.add('film-director'); // Add a class for potential styling
+            directorElement.textContent = `by ${directorNames}`;
+            filmCard.appendChild(directorElement);
         }
-        if (filmDuration) {
-            displayText += ` | ${filmDuration}`;
-        }
-        filmLink.textContent = displayText;
-        titleAndMetaDiv.appendChild(filmLink);
 
-        // Add the image
-        const filmImage = document.createElement('img');
-        const imagePath = `images/stills/${filenameBase}/${filenameBase}_1.png`;
+        // Add film still image
+        const filmStillImg = document.createElement('img');
+        filmStillImg.src = filmStillUrl;
+        filmStillImg.alt = `Still from ${displayTitle}`;
+        filmStillImg.classList.add('film-still');
+        filmCard.appendChild(filmStillImg);
 
-        filmImage.src = imagePath;
-        filmImage.alt = `${displayTitle} Still`;
-        filmImage.classList.add('film-still');
-        filmImage.onerror = function() {
-            // Fallback to a placeholder image if the specific image is not found
-            this.src = 'assets/images/placeholder.png';
-        };
-        titleAndMetaDiv.appendChild(filmImage);
+        // Add logline
+        const loglineElement = document.createElement('p');
+        loglineElement.classList.add('film-logline');
+        loglineElement.textContent = filmData.Logline || filmData.Film.Logline_English || filmData.Film.Logline_Original || '';
+        filmCard.appendChild(loglineElement);
 
-        // Add the logline
-        const loglineParagraph = document.createElement('p');
-        loglineParagraph.classList.add('film-logline');
-        loglineParagraph.textContent = filmData.Logline || 'No logline available.';
-        titleAndMetaDiv.appendChild(loglineParagraph);
-
-        listItem.appendChild(titleAndMetaDiv); // Append the div containing link, image, and logline
-        // Directly append listItem to the container (film-grid)
-        container.appendChild(listItem);
+        container.appendChild(filmCard); // Append the whole card directly to the filmContainer (which is the grid)
     });
-
-    // Removed: container.appendChild(filmList);
 }
-
 
 
 /**
