@@ -11,26 +11,65 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       line-height: 1.6;
+      /* New styles for centering the content */
+      max-width: 1200px; /* Set a maximum width for your content */
+      margin: 0 auto; /* This centers the body horizontally */
+      padding-top: 20px; /* Add padding to the top if needed */
+      padding-bottom: 50px; /* Add padding to the bottom if needed */
     }
-    h1, h2, h3 {
-      margin-bottom: 0;
+    h1 { /* Main Film Title */
+      font-size: 2.5em; /* Larger than default */
+      margin-bottom: 0.1em; /* Reduced bottom margin */
+    }
+    h2 { /* If you introduce H2 later */
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+    h3 { /* Section Titles like "Logline", "Festivals", "Crew" */
+      font-size: 1.4em; /* Slightly larger than standard paragraph text */
+      margin-top: 25px; /* More space above sections */
+      margin-bottom: 5px; /* Less space below title before content */
+    }
+        .logo-container { /* New style for logo positioning */
+      text-align: center;
+      margin-bottom: 30px; /* Space below the logo */
+    }
+    .logo-container img {
+      max-width: 200px; /* Adjust logo size as needed */
+      height: auto;
     }
     .subtitle {
       font-style: italic;
       margin-bottom: 10px;
     }
+    .horizontal-line {
+      border-bottom: 1px solid white;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
     .info-line {
       margin-bottom: 20px;
+      font-weight: bold;
     }
-    .poster-section {
+    .top-section {
       display: flex;
-      gap: 20px;
-      margin-bottom: 20px;
+      gap: 40px;
       flex-wrap: wrap;
     }
-    .poster-section img {
-      max-width: 300px;
+    .poster-column {
+      flex: 0 0 250px;
+      max-width: 250px;
+    }
+    .info-column {
+      flex: 1;
+      min-width: 300px;
+    }
+    .poster-column img {
+      max-width: 100%;
+      height: auto;
       border: 2px solid white;
+      display: block;
+      margin-bottom: 10px;
     }
     .block {
       margin-bottom: 20px;
@@ -48,36 +87,49 @@
       flex: 1;
       min-width: 300px;
     }
+    /* New style for the aligned section */
+    .aligned-section {
+      margin-left: calc(250px + 40px); /* Poster column width + gap */
+      margin-right: 20px; /* Adjust as needed for overall page padding */
+      margin-bottom: 20px;
+    }
     a {
       color: white;
     }
   </style>
 </head>
 <body>
+  <div class="logo-container">
+    <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo" />
+  </div>
+
   <h1>Home</h1>
   <div class="subtitle">Original Title: Domov</div>
-  <div class="info-line">animation, documentary, experimental,  | Februrary 2025 | 5 minutes | Belarussian with English, Czech subtitles | Czech Republic</div>
+  <div class="horizontal-line"></div>
 
-  <div class="poster-section">
-    <div>
-      <img src="../images/posters/home.jpg" alt="Poster" />
-      <div class="label">Poster</div>
-      <div><a href="../images/posters/home.jpg">Link to poster</a></div>
-      <div class="label">Still</div>
-      <img src="../images/stills/home/home_1.png" alt="Still" />
+  <div class="info-line">animation, documentary, experimental | Februrary 2025 | 5 minutes | Belarussian with English, Czech subtitles | Czech Republic</div>
+
+  <div class="top-section">
+    <div class="poster-column">
+      <div>
+        <img src="../images/posters/home/home.jpg" alt="Poster" />
+        <div class="label">Poster</div>
+        <div><a href="../images/posters/home/home.jpg">Link to poster</a></div>
+        <div class="label">Still</div>
+        <img src="../images/stills/home/home_1.png" alt="Still" />
+      </div>
     </div>
 
-    <div class="half">
+    <div class="info-column">
       <h3>Logline</h3><p>An auteur short animated documentary exploring the inner feelings of home. What does home mean to each of us?</p>
       <h3>Synopsis</h3><p>An auteur film on the theme of inner feelings of home. What is home for each of us? Where is this place located? What is it connected to? Is home a specific place, or is home within us? A journey around the world in search of that "home" - the place where you feel you belong. Where you are safe and among your own.</p>
       <h3>Director's Note</h3><p>I really liked studying and living in the Czech Republic, but throughout my studies I kept thinking about my home, about my family that I left behind in Belarus. Being a foreigner was not as easy as I thought. I had to go through many hardships, but the hardest was homesickness and family. This feeling tormented me, the thoughts didn't want to leave my head and I decided to release these emotions in my work.</p>
       <h3>Target Group</h3><p>15+, general audience</p>
-      <h3>Story Topics & Notes</h3><p>home, home sick, lyrical</p>
+      
     </div>
   </div>
 
-  <div class="block">
-    <h3>Festival, Crew, Cast & Technical Info</h3>
+  <div class="aligned-section"> <h3>Festival, Crew, Cast & Technical Info</h3>
     <div class="flex-row">
       <div class="half">
         <div class="label">Festivals</div>
@@ -91,7 +143,7 @@
       </div>
       <div class="half">
         <div class="label">Crew</div>
-        <h3></h3><ul><li>Director: Anastasiya Skarko</li><li>Screenplay writer: Anastasiya Skarko</li><li>Director of Photography: </li><li>Editor: </li><li>Sound director: Miroslav Chaloupka</li><li>Art director: </li><li>Music composer: Yaraslau Dubashynski</li></ul>
+        <h3></h3><ul><li>Director: Anastasiya Skarko</li><li>Screenplay writer: Anastasiya Skarko</li><li>Sound director: Miroslav Chaloupka</li><li>Music composer: Yaraslau Dubashynski</li></ul>
         <div class="label">Cast</div>
         
       </div>
