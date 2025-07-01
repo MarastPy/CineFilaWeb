@@ -18,9 +18,22 @@ body.scrolled {
   padding-top: 60px; /* Logo-top height when scrolled */
 }
 
-h1, h2, h3 {
+h1 {
   font-family: 'EB Garamond', serif;
   color: #222;
+  font-size: 4.5em; /* Example size for h1 */
+}
+
+h2 {
+  font-family: 'EB Garamond', serif;
+  color: #222;
+  font-size: 1.5em; /* Example size for h2 */
+}
+
+h3 {
+  font-family: 'EB Garamond', serif;
+  color: #222;
+  font-size: 1.3em; /* Example size for h3 */
 }
 
 a {
@@ -49,7 +62,8 @@ a:hover {
 
 .header-area {
   position: relative;
-  padding-top: 60px; /* Space for logo-top + top-banner */
+  /* padding-top: 60px; REMOVE or set to 0 if banner is gone */
+  padding-top: 0; /* No initial padding for a banner if it's gone or not influencing the layout */
   z-index: 1000;
   background: #2b2b2b;
 }
@@ -59,7 +73,7 @@ a:hover {
   top: 0;
   left: 0;
   right: 0;
-  height: 90px; /* Original height */
+  height: 90px;
   text-align: center;
   padding: 15px 20px;
   background: #2b2b2b;
@@ -72,34 +86,19 @@ a:hover {
   margin: 0 auto;
 }
 
-.top-banner {
-  position: fixed; /* Changed to fixed to be part of the fixed header calculation */
-  top: 90px; /* Position below logo-top initially */
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: #2b2b2b;
-  color: #ff9800;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 30px; /* This font size seems extremely large for a banner, double check */
-  transition: all 100.3s ease; /* Combine transitions for smooth height and opacity  i changed it to 100 is much smoother Maha*/
-  z-index: 1001; /* Ensure it's below the main-header if main-header scrolls over it */
-  overflow: hidden;/*  Hide content when height collapses */
-}
+/* REMOVE or comment out the entire .top-banner rule if you remove it from HTML */
+/* If you keep it but want it to be *above* the fixed area, you need JS to make it disappear
+   and adjust body padding. But your current setup makes it fixed.
+   To make it *not* part of the fixed header stack, you'd make it `position: absolute`
+   within .header-area and adjust .header-area padding-top to encompass its height
+   only *before* scroll. This is more complex. */
 
-body.scrolled .top-banner {
-  height: 0;
-  opacity: 0;
-  visibility: hidden; /* Completely hide when scrolled */
-  font-size: 0; /* Shrink text instantly */
-}
+/* Let's assume for now, we want the logo and main header to be the *only* fixed elements. */
 
 #main-header {
-  position: fixed; /* Changed to fixed so it always sticks */
-  top: 150px; /* Initial position: below logo-top (90px) + top-banner (60px) */
+  position: fixed;
+  /* Initial position: below logo-top (90px) */
+  top: 90px; /* Changed from 150px to 90px */
   left: 0;
   right: 0;
   z-index: 1002;
@@ -107,24 +106,34 @@ body.scrolled .top-banner {
   padding: 15px 20px;
   display: flex;
   justify-content: center;
-  transition: top 0.3s ease, background 0.3s ease; /* Smooth transition for 'top' property */
+  transition: top 0.3s ease, background 0.3s ease;
+  font-family: 'Nunito', sans-serif;
 }
 
+/* No change needed for body.scrolled #main-header top, it was already 90px */
 body.scrolled #main-header {
-  top: 90px; /* When scrolled, position below logo-top (90px) */
-  /* background can change if needed on scroll, currently same */
+  top: 90px;
 }
 
 /* Adjust body padding for scrolled state */
-/* Calculate based on actual fixed header height.
-   Initial: 90px (logo) + 60px (banner) = 150px
-   Scrolled: 90px (logo) + ~60px (main-header height including padding) = ~150px
-   If main-header height shrinks, adjust this. */
 body:not(.scrolled) {
-  padding-top: 150px; /* Initial padding when not scrolled */
+  /* Initial padding when not scrolled: Logo (90px) + Main Header (assumed 60px) = 150px */
+  padding-top: 150px;
 }
 body.scrolled {
-  padding-top: calc(90px + 60px); /* Logo height + main-header height when scrolled. Assuming main-header stays roughly 60px tall. */
+  /* Scrolled padding: Logo (90px) + Main Header (assumed 60px) = 150px */
+  padding-top: 150px; /* Consistent padding-top for scrolled state based on fixed elements */
+}
+
+/* The transition on body padding-top is already there which is good */
+/*
+body.scrolled {
+  padding-top: 60px; // Your existing rule for `body.scrolled` - this looks problematic if the logo is 90px
+}
+*/
+/* Corrected body.scrolled rule for consistency */
+body.scrolled {
+    padding-top: 150px; /* Total height of fixed header (logo + main-header) */
 }
 
 nav {
@@ -202,7 +211,7 @@ section.team-section { /* Added team section for scroll-margin-top if it's a tar
   flex: 1;
   flex-basis: 50%;
   text-align: justify;
-  font-size: 1.05rem;
+  font-size: 1.3em;
 }
 
 .column-image {
@@ -449,6 +458,8 @@ footer {
 
 .catalogue-main-content {
     padding-top: 0; /* Adjust if partials already add padding */
+    background-color: #2b2b2b; /* Added for matching background */
+    color: #f0f0f0; /* Adjust text color for dark background */
 }
 
 .search-container {
@@ -503,19 +514,29 @@ footer {
     margin: 0;
 }
 
+/* Update .film-name-list li to manage layout of new elements */
 .film-name-list li {
-    margin-bottom: 10px;
+    margin-bottom: 20px; /* More space between film entries */
+    padding-bottom: 15px;
     border-bottom: 1px dashed #eee;
-    padding-bottom: 10px;
+    display: flex; /* Use flexbox for better control of internal elements */
+    flex-direction: column; /* Stack content vertically */
+    align-items: flex-start; /* Align content to the left */
 }
 
 .film-name-list li:last-child {
     border-bottom: none;
 }
 
+/* Style for the div holding title, meta, image, and logline */
+.film-title-meta {
+    width: 100%; /* Take full width of the list item */
+    margin-bottom: 10px; /* Space between the meta info and the image */
+}
+
 .film-name-list li a {
     text-decoration: none;
-    color: #333;
+    color: #ff9800; /* Lighter color for links on dark background */
     font-size: 1.1em;
     font-weight: 600;
     display: block;
@@ -523,8 +544,27 @@ footer {
 }
 
 .film-name-list li a:hover {
-    color: #007bff;
+    color: #ffc107; /* Hover color */
     text-decoration: underline;
+}
+
+/* Styles for the film still image */
+.film-still {
+    max-width: 300px; /* Adjust maximum width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+    margin-top: 10px; /* Space between title/meta and image */
+    border-radius: 5px; /* Slightly rounded corners for the image */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+/* Styles for the logline */
+.film-logline {
+    font-size: 0.95em;
+    color: #ccc; /* Lighter color for logline text */
+    margin-top: 10px; /* Space between image and logline */
+    line-height: 1.4;
+    text-align: left; /* Ensure logline text is left-aligned */
 }
 
 /* NEW Horizontal Filters */

@@ -64,13 +64,13 @@ function getRoundedRuntime(runtimeString) {
  */
 function populateFilters() {
     const genres = new Set();
-    const years = new Set();
-    const countries = new Set();
-    const ratings = new Set();
-    const audiences = new Set();
-    const targetGroupOthers = new Set();
-    const keywords = new Set();
-    const lengths = new Set(); // New Set for film lengths
+    // const years = new Set(); // Removed
+    // const countries = new Set(); // Removed
+    // const ratings = new Set(); // Removed
+    // const audiences = new Set(); // Removed
+    // const targetGroupOthers = new Set(); // Removed
+    // const keywords = new Set(); // Removed
+    // const lengths = new Set(); // Removed
 
     allFilms.forEach(filmData => {
         if (!filmData || !filmData.Film) return;
@@ -79,41 +79,7 @@ function populateFilters() {
             filmData.Film.Genre_List.forEach(genre => genres.add(genre.trim()));
         }
 
-        let filmYear = null;
-        if (filmData.Film.Date_of_completion) {
-            const date = new Date(filmData.Film.Date_of_completion);
-            if (!isNaN(date.getFullYear())) {
-                filmYear = date.getFullYear().toString();
-            }
-        }
-        if (!filmYear && filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
-            const date = new Date(filmData.Premiere[0].Date);
-            if (!isNaN(date.getFullYear())) {
-                filmYear = date.getFullYear().toString();
-            }
-        }
-        if (filmYear) years.add(filmYear);
-
-
-        if (filmData.Film.Country_of_production) {
-            filmData.Film.Country_of_production.split(',').forEach(country => countries.add(country.trim()));
-        }
-
-        if (filmData.Film.Target_Group) {
-            if (filmData.Film.Target_Group.Rating) ratings.add(filmData.Film.Target_Group.Rating.trim());
-            if (filmData.Film.Target_Group.Audience) audiences.add(filmData.Film.Target_Group.Audience.trim());
-            if (filmData.Film.Target_Group.Other) targetGroupOthers.add(filmData.Film.Target_Group.Other.trim());
-        }
-
-        if (filmData.Film.Keywords) {
-            filmData.Film.Keywords.split(',').forEach(keyword => keywords.add(keyword.trim()));
-        }
-
-        // Add film length to the lengths Set
-        const filmLengthCategory = getRoundedRuntime(filmData.Film.Runtime);
-        if (filmLengthCategory) {
-            lengths.add(filmLengthCategory);
-        }
+        // Removed logic for years, countries, ratings, audiences, targetGroupOthers, keywords, lengths
     });
 
     // Function to generate <select> and <option>
@@ -142,13 +108,7 @@ function populateFilters() {
     };
 
     generateSelectOptions('genresFilter', genres, 'All Genres');
-    generateSelectOptions('yearFilter', years, 'All Years');
-    generateSelectOptions('countryFilter', countries, 'All Countries');
-    generateSelectOptions('ratingFilter', ratings, 'All Ratings');
-    generateSelectOptions('audienceFilter', audiences, 'All Audiences');
-    generateSelectOptions('targetGroupOtherFilter', targetGroupOthers, 'Other');
-    generateSelectOptions('keywordsFilter', keywords, 'All Themes');
-    generateSelectOptions('lengthFilter', lengths, 'All Lengths'); // Call for Length filter
+    // Removed calls for other filters: generateSelectOptions('yearFilter', years, 'All Years'); etc.
 }
 
 /**
@@ -164,13 +124,13 @@ function applyFilters() {
     };
 
     const selectedGenre = getSelectedValue('genresFilter');
-    const selectedYear = getSelectedValue('yearFilter');
-    const selectedCountry = getSelectedValue('countryFilter');
-    const selectedRating = getSelectedValue('ratingFilter');
-    const selectedAudience = getSelectedValue('audienceFilter');
-    const selectedTargetGroupOther = getSelectedValue('targetGroupOtherFilter');
-    const selectedKeyword = getSelectedValue('keywordsFilter');
-    const selectedLength = getSelectedValue('lengthFilter'); // Changed to single value from dropdown
+    // const selectedYear = getSelectedValue('yearFilter'); // Removed
+    // const selectedCountry = getSelectedValue('countryFilter'); // Removed
+    // const selectedRating = getSelectedValue('ratingFilter'); // Removed
+    // const selectedAudience = getSelectedValue('audienceFilter'); // Removed
+    // const selectedTargetGroupOther = getSelectedValue('targetGroupOtherFilter'); // Removed
+    // const selectedKeyword = getSelectedValue('keywordsFilter'); // Removed
+    // const selectedLength = getSelectedValue('lengthFilter'); // Removed
 
 
     filteredFilms = currentFilms.filter(filmData => {
@@ -184,50 +144,7 @@ function applyFilters() {
             passesAllFilters = passesAllFilters && filmGenres.includes(selectedGenre);
         }
 
-        // Year filter
-        if (selectedYear) {
-            let filmYear = null;
-            if (filmData.Film.Date_of_completion) {
-                const date = new Date(filmData.Film.Date_of_completion);
-                if (!isNaN(date.getFullYear())) filmYear = date.getFullYear().toString();
-            }
-            if (!filmYear && filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
-                const date = new Date(filmData.Premiere[0].Date);
-                if (!isNaN(date.getFullYear())) filmYear = date.getFullYear().toString();
-            }
-            passesAllFilters = passesAllFilters && (filmYear === selectedYear);
-        }
-
-        // Country of production filter (for dropdown)
-        if (selectedCountry) {
-            const filmCountries = filmData.Film.Country_of_production ? filmData.Film.Country_of_production.split(',').map(c => c.trim()) : [];
-            passesAllFilters = passesAllFilters && filmCountries.includes(selectedCountry);
-        }
-
-        // Target audience filter (Rating)
-        if (selectedRating) {
-            passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Rating === selectedRating);
-        }
-        // Target audience filter (Audience)
-        if (selectedAudience) {
-            passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Audience === selectedAudience);
-        }
-        // Target audience filter (Other)
-        if (selectedTargetGroupOther) {
-            passesAllFilters = passesAllFilters && (filmData.Film.Target_Group && filmData.Film.Target_Group.Other === selectedTargetGroupOther);
-        }
-
-        // Keywords filter (for dropdown)
-        if (selectedKeyword) {
-            const filmKeywords = filmData.Film.Keywords ? filmData.Film.Keywords.split(',').map(k => k.trim()) : [];
-            passesAllFilters = passesAllFilters && filmKeywords.includes(selectedKeyword);
-        }
-
-        // Length filter (now uses dropdown)
-        if (selectedLength) { // Check if a length is actually selected
-            const filmRuntimeCategory = getRoundedRuntime(filmData.Film.Runtime);
-            passesAllFilters = passesAllFilters && (filmRuntimeCategory === selectedLength);
-        }
+        // Removed logic for other filters
 
         return passesAllFilters;
     });
@@ -264,7 +181,7 @@ function performSearch(resetFiltersBeforeSearch = true) {
         const englishTitle = getText(filmData.Film.Title_English);
         const originalTitle = getText(filmData.Film.Title_Original);
         const genres = getArrayText(filmData.Film.Genre_List);
-        const keywords = getText(filmData.Film.Keywords);
+        // const keywords = getText(filmData.Film.Keywords); // Removed from searchable text
 
         let releaseInfo = '';
         if (filmData.Film.Date_of_completion) {
@@ -298,10 +215,13 @@ function performSearch(resetFiltersBeforeSearch = true) {
         const aspectRatio = getText(filmData.Technical_Details && filmData.Technical_Details.Aspect_Ratio);
         const color = getText(filmData.Technical_Details && filmData.Technical_Details.Colour);
 
-        let roundedRuntimeSearch = getRoundedRuntime(filmData.Film.Runtime);
+        // let roundedRuntimeSearch = getRoundedRuntime(filmData.Film.Runtime); // Removed from searchable text
 
+        // Added logline to searchable text
+        const logline = getText(filmData.Film.Logline);
 
-        const searchableText = `${englishTitle} ${originalTitle} ${genres} ${keywords} ${releaseInfo} ${runtime} ${language} ${country} ${festivals} ${director} ${writer} ${cinematographer} ${editor} ${musicComposer} ${soundDirector} ${producerName} ${companyName} ${cast} ${roundedRuntimeSearch} ${soundMix} ${aspectRatio} ${color}`;
+        // Updated searchableText to exclude removed filter terms and include logline
+        const searchableText = `${englishTitle} ${originalTitle} ${genres} ${releaseInfo} ${runtime} ${language} ${country} ${festivals} ${director} ${writer} ${cinematographer} ${editor} ${musicComposer} ${soundDirector} ${producerName} ${companyName} ${cast} ${soundMix} ${aspectRatio} ${color} ${logline}`;
 
         return searchableText.includes(searchTerm);
     });
@@ -311,6 +231,10 @@ function performSearch(resetFiltersBeforeSearch = true) {
 }
 
 
+/**
+ * Displays films in the container on the page.
+ * @param {Array<Object>} films Array of film data to display.
+ */
 /**
  * Displays films in the container on the page.
  * @param {Array<Object>} films Array of film data to display.
@@ -339,40 +263,96 @@ function displayFilms(films) {
         const originalTitle = filmData.Film.Title_Original || '';
         const displayTitle = englishTitle !== 'Unknown Title' ? englishTitle : originalTitle;
 
+        let filmYear = '';
+        if (filmData.Film.Date_of_completion) {
+            const date = new Date(filmData.Film.Date_of_completion);
+            if (!isNaN(date.getFullYear())) {
+                filmYear = date.getFullYear().toString();
+            }
+        } else if (filmData.Premiere && filmData.Premiere[0] && filmData.Premiere[0].Date) {
+            const date = new Date(filmData.Premiere[0].Date);
+            if (!isNaN(date.getFullYear())) {
+                filmYear = date.getFullYear().toString();
+            }
+        }
+
+        let filmDuration = '';
+        if (filmData.Film.Runtime) {
+            const parts = filmData.Film.Runtime.split(':');
+            if (parts.length >= 2) {
+                const hours = parseInt(parts[0], 10);
+                const minutes = parseInt(parts[1], 10);
+                if (!isNaN(hours) && !isNaN(minutes)) {
+                    filmDuration = (hours * 60 + minutes) + ' min';
+                }
+            }
+        }
+
         let filenameBase;
         if (filmData.Film.ID) {
-            filenameBase = String(filmData.Film.ID); // Use ID directly if it's suitable for a filename
+            filenameBase = String(filmData.Film.ID);
         } else if (filmData.Film.Title_English) {
-            // Sanitize the English title to create a valid filename
-            // Replace non-word characters (except spaces) with empty string,
-            // then replace one or more spaces with an underscore.
             filenameBase = filmData.Film.Title_English
-                .replace(/[^\w\s]/gi, '') // Remove non-word characters (but keep spaces)
-                .replace(/\s+/g, '_')     // Replace one or more spaces with an underscore
+                .replace(/[^\w\s]/gi, '')
+                .replace(/\s+/g, '_')
                 .toLowerCase();
         } else if (filmData.Film.Title_Original) {
-            // Fallback to original title if English title is not available
             filenameBase = filmData.Film.Title_Original
                 .replace(/[^\w\s]/gi, '')
                 .replace(/\s+/g, '_')
                 .toLowerCase();
         } else {
             console.warn('Could not derive a filename for film:', filmData);
-            return; // Skip this film if no suitable identifier is found
+            return;
         }
 
-        // Construct the full path
         const filmDetailUrl = `generated_film_pages/${filenameBase}.html`;
 
         const listItem = document.createElement('li');
+
+        const titleAndMetaDiv = document.createElement('div');
+        titleAndMetaDiv.classList.add('film-title-meta');
+
         const filmLink = document.createElement('a');
-        filmLink.href = filmDetailUrl; // Set URL for click-through
-        filmLink.textContent = displayTitle; // Display film title
-        listItem.appendChild(filmLink);
+        filmLink.href = filmDetailUrl;
+
+        // Construct the display text: Name | Year | Duration
+        let displayText = displayTitle;
+        if (filmYear) {
+            displayText += ` | ${filmYear}`;
+        }
+        if (filmDuration) {
+            displayText += ` | ${filmDuration}`;
+        }
+        filmLink.textContent = displayText;
+        titleAndMetaDiv.appendChild(filmLink);
+
+        // Add the image
+        const filmImage = document.createElement('img');
+        // MODIFIED LINE: Use filenameBase to construct the dynamic image path
+        // This assumes your image structure is `images/stills/{film_name}/{film_name}_1.png`
+        const imagePath = `images/stills/${filenameBase}/${filenameBase}_1.png`;
+
+        filmImage.src = imagePath;
+        filmImage.alt = `${displayTitle} Still`;
+        filmImage.classList.add('film-still');
+        filmImage.onerror = function() {
+            // Fallback to a placeholder image if the specific image is not found
+            this.src = 'assets/images/placeholder.png';
+        };
+        titleAndMetaDiv.appendChild(filmImage);
+
+        // Add the logline
+        const loglineParagraph = document.createElement('p');
+        loglineParagraph.classList.add('film-logline');
+        loglineParagraph.textContent = filmData.Film.Logline || 'No logline available.'; // Assuming Film.Logline holds the logline
+        titleAndMetaDiv.appendChild(loglineParagraph);
+
+        listItem.appendChild(titleAndMetaDiv); // Append the div containing link, image, and logline
         filmList.appendChild(listItem);
     });
 
-    container.appendChild(filmList); // Add list to the container
+    container.appendChild(filmList);
 }
 
 

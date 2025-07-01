@@ -26,7 +26,6 @@
     </header>
 
     <div class="catalogue-wrapper">
-      <!-- HORIZONTAL FILTERS -->
       <div class="horizontal-filters">
         <div class="filter-row">
           <div class="filter-group">
@@ -35,53 +34,10 @@
               <option value="">All Genres</option>
             </select>
           </div>
-          <div class="filter-group">
-            <label for="lengthFilter">Length</label>
-            <select id="lengthFilter" onchange="applyFilters()">
-              <option value="">All Lengths</option>
-            </select>
           </div>
-          <div class="filter-group">
-            <label for="yearFilter">Year</label>
-            <select id="yearFilter" onchange="applyFilters()">
-              <option value="">All Years</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="countryFilter">Country</label>
-            <select id="countryFilter" onchange="applyFilters()">
-              <option value="">All Countries</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="ratingFilter">Rating</label>
-            <select id="ratingFilter" onchange="applyFilters()">
-              <option value="">All Ratings</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="audienceFilter">Audience</label>
-            <select id="audienceFilter" onchange="applyFilters()">
-              <option value="">All Audiences</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="targetGroupOtherFilter">Other</label>
-            <select id="targetGroupOtherFilter" onchange="applyFilters()">
-              <option value="">Other</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="keywordsFilter">Themes</label>
-            <select id="keywordsFilter" onchange="applyFilters()">
-              <option value="">All Themes</option>
-            </select>
-          </div>
-        </div>
         <button class="clear-filters-btn" onclick="resetFilters()">Clear Filters</button>
       </div>
 
-      <!-- Film list -->
       <section class="film-list">
         <div id="filmContainer" class="film-grid"></div>
       </section>
