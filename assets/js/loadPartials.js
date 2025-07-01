@@ -9,8 +9,6 @@ async function loadPartials() {
   };
 
   // 1️⃣ Load the header and footer
-  // IMPORTANT: Ensure these paths are correct relative to where your HTML files are located
-  // If your partials are in a folder named 'partials' directly under your site root:
   await load('./partials/header.html', 'header-container');
   await load('./partials/footer.html', 'footer-container'); // Assuming you'll create a footer.html
 
@@ -21,6 +19,31 @@ async function loadPartials() {
       document.body.classList.add('scrolled');
     } else {
       document.body.classList.remove('scrolled');
+    }
+  });
+
+  // 3️⃣ Add mobile navigation toggle behavior
+  document.addEventListener('DOMContentLoaded', () => {
+    const headerContainer = document.getElementById('header-container');
+    if (headerContainer) {
+      // Assuming you've added an element with class 'hamburger-menu-icon' to header.html
+      const hamburger = headerContainer.querySelector('.hamburger-menu-icon');
+      const nav = headerContainer.querySelector('nav');
+
+      if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+          document.body.classList.toggle('menu-open'); // Toggles a class on the body
+          nav.classList.toggle('active'); // Toggles a class on the nav element
+        });
+
+        // Optional: Close menu when a navigation link is clicked
+        nav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            document.body.classList.remove('menu-open');
+            nav.classList.remove('active');
+          });
+        });
+      }
     }
   });
 }
