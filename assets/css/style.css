@@ -418,20 +418,20 @@ footer {
    7. CATALOGUE SPECIFIC STYLES
    ================================================== */
 .catalogue-header {
-    text-align: left; /* Changed to left align */
+    text-align: left;
     margin-bottom: 30px;
 }
 
 .catalogue-header h1 {
     font-size: 3em;
     margin-bottom: 10px;
-    color: #ffffff; /* Film Catalogue title to white */
+    color: #ffffff;
 }
 
 .catalogue-main-content {
-    padding-top: 0; /* Adjust if partials already add padding */
-    background-color: #2b2b2b; /* Added for matching background */
-    color: #f0f0f0; /* Adjust text color for dark background */
+    padding-top: 0;
+    background-color: #2b2b2b;
+    color: #f0f0f0;
 }
 
 .search-container {
@@ -474,32 +474,47 @@ footer {
 /* Film list styles */
 .film-list {
     padding: 20px;
-    background-color: #2b2b2b; /* Ensures the film list area has the dark background */
+    background-color: #2b2b2b;
 }
 
+/* --- FILM GRID LAYOUT --- */
 .film-grid {
-    /* Optional styling if you later switch back to grid layout */
+    display: grid;
+    /* This creates responsive columns: as many as fit, each at least 300px wide, growing to fill space */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px; /* Space between grid items */
+    justify-content: center; /* Center the grid items if they don't fill the row */
+    padding: 0; /* Remove default padding from filmContainer if any */
+    list-style: none; /* Ensure no bullet points from ul */
 }
 
-.film-name-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+/* Style for individual film cards within the grid */
+.film-item-card { /* Renamed from .film-name-list li for clarity and direct application */
+    background-color: #3a3a3a; /* Slightly lighter dark background for each film card */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for individual film cards */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* Still use flexbox for content within the card */
+    flex-direction: column; /* Stack content vertically within the card */
+    align-items: flex-start; /* Align content to the left within the card */
+    height: 100%; /* Ensure all cards in a row are same height */
+    text-align: left; /* Ensure text within the card is left-aligned */
 
-/* Update .film-name-list li to manage layout of new elements */
-.film-name-list li {
-    margin-bottom: 20px; /* More space between film entries */
-    padding-bottom: 15px;
-    border-bottom: 1px dashed #eee;
-    display: flex; /* Use flexbox for better control of internal elements */
-    flex-direction: column; /* Stack content vertically */
-    align-items: flex-start; /* Align content to the left */
-}
-
-.film-name-list li:last-child {
+    /* Remove old list item styling no longer needed for grid items */
+    margin-bottom: 0;
+    padding-bottom: 0;
     border-bottom: none;
 }
+
+.film-item-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Removed the .film-name-list selector as the <ul> element is no longer generated with it.
+   If you still have an <ul> in your HTML that needs basic list-style: none,
+   you might re-add a more generic ul style or apply it directly to #filmContainer. */
 
 /* Style for the div holding title, meta, image, and logline */
 .film-title-meta {
@@ -507,37 +522,40 @@ footer {
     margin-bottom: 10px; /* Space between the meta info and the image */
 }
 
-.film-name-list li a {
+/* Applies to the film title link */
+.film-item-card a { /* Adjusted selector for the new class */
     text-decoration: none;
-    color: #ff9800; /* Lighter color for links on dark background */
+    color: #ff9800;
     font-size: 1.1em;
     font-weight: 600;
     display: block;
     padding: 5px 0;
 }
 
-.film-name-list li a:hover {
-    color: #ffc107; /* Hover color */
+.film-item-card a:hover { /* Adjusted selector for the new class */
+    color: #ffc107;
     text-decoration: underline;
 }
 
 /* Styles for the film still image */
 .film-still {
-    max-width: 300px; /* Adjust maximum width as needed */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove extra space below image */
-    margin-top: 10px; /* Space between title/meta and image */
-    border-radius: 5px; /* Slightly rounded corners for the image */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    object-fit: cover;
 }
 
 /* Styles for the logline */
 .film-logline {
     font-size: 0.95em;
-    color: #ccc; /* Lighter color for logline text */
-    margin-top: 10px; /* Space between image and logline */
+    color: #ccc;
+    margin-top: 10px;
     line-height: 1.4;
-    text-align: left; /* Ensure logline text is left-aligned */
+    text-align: left;
+    flex-grow: 1;
 }
 
 /* NEW Horizontal Filters */
@@ -547,23 +565,30 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f0f2f5; /* ← This adds the background */
-  border-radius: 0; /* Removed border-radius */
-  /*border: 1px solid #ccc;*/
+  background-color: #f0f2f5;
+  border-radius: 0;
 }
 
 .filter-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* centers the filters horizontally */
+  justify-content: center;
   gap: 15px;
-  max-width: 1200px; /* optional limit to how wide it can get */
+  max-width: 1200px;
   width: 100%;
-  margin-top: 25px; /* Adds 25px space above the filter rows */
+  margin-top: 25px;
 }
 
 .filter-group {
-  flex: 0 1 180px; /* consistent width per filter */
+  flex: 0 1 180px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 0.95em;
+  color: #333;
 }
 
 .filter-group select {
@@ -573,10 +598,10 @@ footer {
   border-radius: 4px;
   background-color: white;
   font-size: 1em;
+  color: #333;
 }
 
 .clear-filters-btn {
-    margin: 15px auto 0; /* Top margin + auto left/right */
     margin: 15px auto 25px;
     padding: 10px 20px;
     background-color: #2b2b2b;
@@ -585,11 +610,12 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    display: block; /* Ensure margin: auto works */
+    display: block;
+    transition: background-color 0.3s ease;
 }
 
 .clear-filters-btn:hover {
-    background-color: #2b2b2b;
+    background-color: #555;
 }
 
 .no-results {
@@ -669,19 +695,16 @@ footer {
       width: 100%;
   }
 
- .filter-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 600;
-  font-size: 0.95em;
-  color: #333;
-}
-
   .clear-filters-btn {
       width: 100%;
   }
 
   .film-list {
       padding: 0;
+  }
+
+  /* Adjust film grid for smaller screens */
+  .film-grid {
+      grid-template-columns: 1fr; /* Single column on small screens */
   }
 }

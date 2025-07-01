@@ -329,8 +329,12 @@ function performSearch(resetFiltersBeforeSearch = true) {
  * Displays films in the container on the page.
  * @param {Array<Object>} films Array of film data to display.
  */
+/**
+ * Displays films in the container on the page.
+ * @param {Array<Object>} films Array of film data to display.
+ */
 function displayFilms(films) {
-    const container = document.getElementById('filmContainer');
+    const container = document.getElementById('filmContainer'); // This is .film-grid
     if (!container) return;
     container.innerHTML = ''; // Clear the container
 
@@ -339,9 +343,9 @@ function displayFilms(films) {
         return;
     }
 
-    // Create a list for film titles
-    const filmList = document.createElement('ul');
-    filmList.classList.add('film-name-list'); // Add class for list styling
+    // Removed the creation of <ul>. The <li> elements will now be direct children of filmContainer.
+    // const filmList = document.createElement('ul');
+    // filmList.classList.add('film-name-list'); // This class is no longer needed on a <ul>
 
     films.forEach(filmData => {
         if (!filmData || !filmData.Film) {
@@ -399,6 +403,7 @@ function displayFilms(films) {
         const filmDetailUrl = `generated_film_pages/${filenameBase}.html`;
 
         const listItem = document.createElement('li');
+        listItem.classList.add('film-item-card'); // Add a class to style individual film cards
 
         const titleAndMetaDiv = document.createElement('div');
         titleAndMetaDiv.classList.add('film-title-meta');
@@ -433,15 +438,17 @@ function displayFilms(films) {
         // Add the logline
         const loglineParagraph = document.createElement('p');
         loglineParagraph.classList.add('film-logline');
-        loglineParagraph.textContent = filmData.Film.Logline || 'No logline available.'; // Assuming Film.Logline holds the logline
+        loglineParagraph.textContent = filmData.Logline || 'No logline available.';
         titleAndMetaDiv.appendChild(loglineParagraph);
 
         listItem.appendChild(titleAndMetaDiv); // Append the div containing link, image, and logline
-        filmList.appendChild(listItem);
+        // Directly append listItem to the container (film-grid)
+        container.appendChild(listItem);
     });
 
-    container.appendChild(filmList);
+    // Removed: container.appendChild(filmList);
 }
+
 
 
 /**
