@@ -137,7 +137,7 @@ nav a:hover {
   margin: 0 auto;
   max-width: none; /* Allows content to span full width if needed */
   background-color: #fff;
-  text-align: center; /* Center the section content */
+  text-align: Left; /* Center the section content */
 }
 
 /* Align text content within sections to the left */
