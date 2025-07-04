@@ -15,8 +15,13 @@ body {
   background-color: #2b2b2b; /* Ensure whole body has the dark background */
 }
 
+/* Adjusted padding-top for the body to accommodate both fixed header elements */
+body:not(.scrolled) {
+  padding-top: 150px; /* Original height of logo-top (90px) + main-header (60px) */
+}
+
 body.scrolled {
-  padding-top: 60px; /* Logo-top height when scrolled */
+  padding-top: 150px; /* Keep consistent padding when scrolled */
 }
 
 h1 {
@@ -78,17 +83,29 @@ a:hover {
   padding: 15px 20px;
   background: #2b2b2b;
   z-index: 1003;
+  transition: height 0.3s ease, padding 0.3s ease; /* Add transition for smooth change */
 }
 
 .logo-top img {
   height: 60px;
   display: block;
   margin: 0 auto;
+  transition: height 0.3s ease; /* Add transition for smooth change */
 }
+
+body.scrolled .logo-top {
+  height: 60px; /* Smaller height when scrolled */
+  padding: 10px 20px;
+}
+
+body.scrolled .logo-top img {
+  height: 40px; /* Smaller logo when scrolled */
+}
+
 
 #main-header {
   position: fixed;
-  top: 90px;
+  top: 90px; /* Stays below the logo-top */
   left: 0;
   right: 0;
   z-index: 1002;
@@ -100,11 +117,8 @@ a:hover {
   font-family: 'Nunito', sans-serif;
 }
 
-body:not(.scrolled) {
-  padding-top: 150px;
-}
-body.scrolled {
-  padding-top: 150px;
+body.scrolled #main-header {
+  top: 60px; /* Moves up to be below the smaller logo-top when scrolled */
 }
 
 nav {
@@ -162,8 +176,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 /* ==================================================
    3. GLOBAL SECTION STYLES
    ================================================== */
-.section,
-.news-section {
+.section, .news-section {
   padding: 90px 0;
   margin: 0 auto;
   max-width: none; /* Allows content to span full width if needed */
@@ -172,18 +185,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 }
 
 /* Align text content within sections to the left */
-.section h2,
-.section hr,
-.section p,
-.section ul,
-.section ol,
-.section .two-column-layout,
-.section .two-column-text-layout,
-.section .cards,
-.section .preview-grid,
-.news-section h2,
-.news-section hr,
-.news-section .news-grid { /* Added .news-grid specifically */
+.section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid { /* Added .news-grid specifically */
   text-align: left;
 }
 
@@ -193,18 +195,19 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 
 .section-dark-grey {
   background-color: #2B2B2B;
-  color: white;
-}
-.section-dark-grey .content h1 {
-    color: #FFFFFF; /* This will make the "Film Catalogue" h1 white */
+  color: #f0f2f5;
 }
 
-
-section.news-section,
-section.team-section { /* Added team section for scroll-margin-top if it's a target */
-  scroll-margin-top: 160px; /* Adjust this based on total fixed header height (logo-top + main-header) */
+.section-dark-grey h1,
+.section-dark-grey h2,
+.section-dark-grey h3,
+.section-dark-grey p {
+  color: #f0f2f5;
 }
 
+.section-white {
+  background-color: #fff;
+}
 /* ==================================================
    4. LAYOUTS (General Purpose)
    ================================================== */
