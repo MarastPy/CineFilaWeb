@@ -195,6 +195,10 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
   background-color: #2B2B2B;
   color: white;
 }
+.section-dark-grey .content h1 {
+    color: #FFFFFF; /* This will make the "Film Catalogue" h1 white */
+}
+
 
 section.news-section,
 section.team-section { /* Added team section for scroll-margin-top if it's a target */
@@ -458,7 +462,7 @@ footer {
 .catalogue-header h1 {
   font-size: 3em;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: #FFFFFF; /* Make sure this line is exactly here */
 }
 
 .catalogue-main-content {
@@ -756,6 +760,9 @@ footer {
 /* ==================================================\
    9. RESPONSIVE DESIGN
    ================================================== */
+/* ==================================================
+   9. RESPONSIVE DESIGN
+   ================================================== */
 @media (max-width: 768px) {
   .content {
     padding: 20px 15px;
@@ -774,9 +781,29 @@ footer {
   }
 
   /* Header and Navigation adjustments */
+  /* ADD/UPDATE: Styles for the overall header area on mobile */
+  .header-area {
+    display: flex; /* Make header-area a flex container */
+    flex-direction: row; /* Arrange logo and hamburger side-by-side */
+    justify-content: space-between; /* Push logo left, hamburger right */
+    align-items: center; /* Vertically align items */
+    padding: 10px 20px; /* Add some padding */
+    position: fixed; /* Keep header fixed at the top */
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #2b2b2b; /* Match your body background or header background */
+    z-index: 1000; /* Ensure it stays on top */
+    height: 70px; /* Consistent height for mobile header */
+  }
+
   .logo-top {
     height: 70px; /* Smaller logo area on mobile */
-    padding: 10px 15px;
+    padding: 0; /* Adjust padding here if needed, based on header-area padding */
+    /* REMOVE any position: absolute; or transform here if present for mobile,
+       as it's now part of flex layout. */
+    position: static;
+    transform: none;
   }
 
   .logo-top img {
@@ -793,6 +820,10 @@ footer {
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 80px; /* Space for logo-top when menu is open */
+    position: fixed; /* Keep it fixed when it slides in */
+    left: 0; /* Align to left when open */
+    background-color: rgba(0, 0, 0, 0.95); /* Dark overlay when menu is open */
+    z-index: 999; /* Below hamburger, but above content */
   }
 
   body.menu-open #main-header {
@@ -805,6 +836,7 @@ footer {
     text-align: center;
     width: 100%;
     padding: 20px 0;
+    display: flex; /* Ensure nav is flex to manage links */
   }
 
   nav a {
@@ -814,7 +846,11 @@ footer {
   }
 
   .hamburger-menu-icon {
-    display: block; /* Show hamburger on mobile */
+    display: block; /* SHOW hamburger on mobile */
+    /* IMPORTANT: Override any global absolute positioning */
+    position: static; /* Make it participate in the flex layout of .header-area */
+    transform: none; /* Remove any previous transform */
+    /* margin-left: auto; is now applied by justify-content: space-between on .header-area */
   }
 
   body:not(.scrolled) {
