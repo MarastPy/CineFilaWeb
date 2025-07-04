@@ -855,8 +855,6 @@ footer {
   z-index: 1001;
 }
 
-
-
   body:not(.scrolled) {
     padding-top: 70px; /* Adjust body padding for mobile header */
   }
