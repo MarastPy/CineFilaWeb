@@ -846,13 +846,6 @@ footer {
   height: 70px;
 }
 
-.hamburger-menu-icon {
-  display: block; /* Makes the hamburger visible on mobile */
-  position: static; /* Overrides any absolute positioning and allows flexbox to work */
-  transform: none; /* Resets any transform that might interfere */
-  /* Other styles like cursor, font-size, color, z-index should be set globally or here */
-}
-
 /* Also ensure your global .hamburger-menu-icon is display: none; */
 .hamburger-menu-icon {
   display: none; /* Hidden by default on desktop */
@@ -861,6 +854,8 @@ footer {
   color: #f0f0f0;
   z-index: 1001;
 }
+
+
 
   body:not(.scrolled) {
     padding-top: 70px; /* Adjust body padding for mobile header */
