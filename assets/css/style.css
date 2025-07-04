@@ -782,34 +782,6 @@ footer {
 
   /* Header and Navigation adjustments */
   /* ADD/UPDATE: Styles for the overall header area on mobile */
-  .header-area {
-    display: flex; /* Make header-area a flex container */
-    flex-direction: row; /* Arrange logo and hamburger side-by-side */
-    justify-content: space-between; /* Push logo left, hamburger right */
-    align-items: center; /* Vertically align items */
-    padding: 10px 20px; /* Add some padding */
-    position: fixed; /* Keep header fixed at the top */
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: #2b2b2b; /* Match your body background or header background */
-    z-index: 1000; /* Ensure it stays on top */
-    height: 70px; /* Consistent height for mobile header */
-  }
-
-  .logo-top {
-    height: 70px; /* Smaller logo area on mobile */
-    padding: 0; /* Adjust padding here if needed, based on header-area padding */
-    /* REMOVE any position: absolute; or transform here if present for mobile,
-       as it's now part of flex layout. */
-    position: static;
-    transform: none;
-  }
-
-  .logo-top img {
-    height: 50px; /* Smaller logo image */
-  }
-
   #main-header {
     top: 0; /* Align header to top when menu is open */
     padding: 0;
@@ -826,6 +798,19 @@ footer {
     z-index: 999; /* Below hamburger, but above content */
   }
 
+
+  .logo-top {
+    height: 70px; /* Smaller logo area on mobile */
+    padding: 0; /* Adjust padding here if needed, based on header-area padding */
+    /* REMOVE any position: absolute; or transform here if present for mobile,
+       as it's now part of flex layout. */
+    position: static;
+    transform: none;
+  }
+
+  .logo-top img {
+    height: 50px; /* Smaller logo image */
+  }
   body.menu-open #main-header {
     transform: translateX(0); /* Slide in */
   }
@@ -845,13 +830,37 @@ footer {
     width: 100%;
   }
 
-  .hamburger-menu-icon {
-    display: block; /* SHOW hamburger on mobile */
-    /* IMPORTANT: Override any global absolute positioning */
-    position: static; /* Make it participate in the flex layout of .header-area */
-    transform: none; /* Remove any previous transform */
-    /* margin-left: auto; is now applied by justify-content: space-between on .header-area */
-  }
+.header-area {
+  display: flex; /* Makes it a flex container */
+  flex-direction: row; /* Arranges children (logo, hamburger) in a row */
+  justify-content: space-between; /* Pushes logo to left, hamburger to right */
+  align-items: center; /* Vertically aligns them */
+  /* Ensure other header styling like padding, background-color, position: fixed, width, top, left, z-index are also present */
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #2b2b2b; /* Example: ensure header has a background */
+  z-index: 1000;
+  height: 70px;
+}
+
+.hamburger-menu-icon {
+  display: block; /* Makes the hamburger visible on mobile */
+  position: static; /* Overrides any absolute positioning and allows flexbox to work */
+  transform: none; /* Resets any transform that might interfere */
+  /* Other styles like cursor, font-size, color, z-index should be set globally or here */
+}
+
+/* Also ensure your global .hamburger-menu-icon is display: none; */
+.hamburger-menu-icon {
+  display: none; /* Hidden by default on desktop */
+  cursor: pointer;
+  font-size: 30px;
+  color: #f0f0f0;
+  z-index: 1001;
+}
 
   body:not(.scrolled) {
     padding-top: 70px; /* Adjust body padding for mobile header */
