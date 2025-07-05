@@ -185,7 +185,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 }
 
 /* Align text content within sections to the left */
-.section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid { /* Added .news-grid specifically */
+.section h2, .section hr, .section p, .section ul, .section ul, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid { /* Added .news-grid specifically */
   text-align: left;
 }
 
@@ -454,7 +454,7 @@ footer {
   color: #ddd;
 }
 
-/* ==================================================
+/* ==================================================\
    7. CATALOGUE SPECIFIC STYLES
    ================================================== */
 .catalogue-header {
@@ -851,7 +851,7 @@ footer {
 
 /* Also ensure your global .hamburger-menu-icon is display: none; */
 .hamburger-menu-icon {
-  display: none; /* Hidden by default on desktop */
+  display: block; /* Changed to block for visibility on mobile */
   cursor: pointer;
   font-size: 30px;
   color: #f0f0f0;

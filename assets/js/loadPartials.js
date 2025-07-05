@@ -47,3 +47,4 @@ async function loadPartials() {
     }
   });
 }
+loadPartials(); // Call loadPartials directly to ensure it runs
