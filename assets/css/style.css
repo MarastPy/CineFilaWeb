@@ -765,9 +765,6 @@ footer {
   background-color: #ffc107;
 }
 
-/* ==================================================\
-   9. RESPONSIVE DESIGN
-   ================================================== */
 /* ==================================================
    9. RESPONSIVE DESIGN
    ================================================== */
@@ -839,19 +836,18 @@ footer {
   }
 
 .header-area {
-  display: flex; /* Makes it a flex container */
-  flex-direction: row; /* Arranges children (logo, hamburger) in a row */
-  justify-content: space-between; /* Pushes logo to left, hamburger to right */
-  align-items: center; /* Vertically aligns them */
-  /* Ensure other header styling like padding, background-color, position: fixed, width, top, left, z-index are also present */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
-  position: fixed;
+  position: fixed; /* This makes it the fixed bar at the top */
   width: 100%;
   top: 0;
   left: 0;
-  background-color: #2b2b2b; /* Example: ensure header has a background */
-  z-index: 1000;
-  height: 70px;
+  background-color: #2b2b2b;
+  z-index: 1000; /* Ensures header bar is above content */
+  height: 70px; /* Consistent height for the fixed header bar */
 }
 
 /* Updated .hamburger-menu-icon for image */
