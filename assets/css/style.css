@@ -151,6 +151,8 @@ nav a:hover {
   z-index: 1004; /* Above everything else */
 }
 
+/* The .bar styles are removed/commented out as you're using an image now */
+/*
 .hamburger-menu-icon .bar {
   display: block;
   width: 25px;
@@ -159,8 +161,10 @@ nav a:hover {
   background-color: #fff;
   transition: all 0.3s ease-in-out;
 }
+*/
 
-/* Transform hamburger to 'x' when menu is open */
+/* Transform hamburger to 'x' when menu is open (these styles are for the bars, not an image) */
+/*
 body.menu-open .hamburger-menu-icon .bar:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -172,6 +176,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(2) {
 body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+*/
 
 /* ==================================================
    3. GLOBAL SECTION STYLES
@@ -849,14 +854,27 @@ footer {
   height: 70px;
 }
 
-/* Also ensure your global .hamburger-menu-icon is display: none; */
+/* Updated .hamburger-menu-icon for image */
 .hamburger-menu-icon {
-  display: none; /* Hidden by default on desktop */
+  display: block; /* Make the container visible on mobile */
   cursor: pointer;
-  font-size: 30px;
-  color: #f0f0f0;
-  z-index: 1001;
+  /* Original padding removed as image handles its own size,
+     or adjusted if needed for click area. */
+  padding: 0; /* No padding if image fills container */
+  position: absolute; /* Keep absolute positioning as discussed for right alignment */
+  right: 20px;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  z-index: 1004; /* Above everything else */
 }
+
+/* Style for the image inside the hamburger-menu-icon */
+.hamburger-menu-icon img {
+  width: 30px; /* Adjust size as needed for your icon image */
+  height: auto;
+  display: block;
+}
+
 
   body:not(.scrolled) {
     padding-top: 70px; /* Adjust body padding for mobile header */
