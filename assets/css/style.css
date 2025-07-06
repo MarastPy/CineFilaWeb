@@ -221,13 +221,14 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
   gap: 40px;
   margin-bottom: 40px;
   align-items: center;
+  font-size: 1.05em;
 }
 
 .column-text {
   flex: 1;
   flex-basis: 50%;
   text-align: justify;
-  font-size: 1.3em;
+  font-size: 1.05em;
 }
 
 .column-image {
@@ -277,7 +278,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 /* Apply common styles for hover effects and general appearance */
 .news-item,
 .preview-item { /* Added .preview-item here */
-  background: #fff;
+  /*background: #fff;*/
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -290,7 +291,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 .news-item:hover,
 .preview-item:hover { /* Added .preview-item here */
   transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  /*box-shadow: 0 8px 20px rgba(0,0,0,0.18);*/
   z-index: 10;
 }
 
@@ -325,6 +326,13 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
   margin-bottom: 12px;
 }
 
+.news-item p,
+.preview-item p { /* Added .preview-item here */
+  font-size: 0.95rem;
+  color: #fff; /* This is the text color */
+  flex-grow: 1;
+}
+
 .news-date {
   font-size: 0.9rem;
   color: #777;
@@ -335,7 +343,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 .news-item p,
 .preview-item p { /* Added .preview-item here */
   font-size: 0.95rem;
-  color: #555;
+  color: #777;
   flex-grow: 1;
 }
 
