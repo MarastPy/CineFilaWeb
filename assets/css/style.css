@@ -151,34 +151,6 @@ nav a:hover {
   z-index: 1004; /* Above everything else */
 }
 
-
-/* The .bar styles are removed/commented out as you're using an image now */
-/*
-.hamburger-menu-icon .bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  background-color: #fff;
-  transition: all 0.3s ease-in-out;
-}
-*/
-
-/* Transform hamburger to 'x' when menu is open (these styles are for the bars, not an image) */
-/*
-body.menu-open .hamburger-menu-icon .bar:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-body.menu-open .hamburger-menu-icon .bar:nth-child(2) {
-  opacity: 0;
-}
-
-body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-*/
-
 /* ==================================================
    3. GLOBAL SECTION STYLES
    ================================================== */
