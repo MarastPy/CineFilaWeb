@@ -388,7 +388,7 @@ nav a:hover {
 /* Individual Team Member Container */
 /* Layout and general styling for each team member's information block. */
 .team-member {
-  background-color: #f0f2f5;
+  /*background-color: #f0f2f5;*/
   display: flex;
   gap: 40px;
   margin-bottom: 50px;
@@ -894,7 +894,7 @@ footer {
     height: auto;
     padding: 0;
     transform: none;
-    text-align: left;
+    text-align: flex;
   }
 
   .logo-top img {

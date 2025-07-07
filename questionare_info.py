@@ -2,6 +2,7 @@ import os
 from bs4 import BeautifulSoup
 import json
 import pandas as pd
+import subprocess
 from bs4.element import NavigableString, Tag  # Import Tag explicitly for type checking
 
 
@@ -679,3 +680,7 @@ if __name__ == "__main__":
 
     print(f"\nScript finished. Check the '{output_directory}' folder for the JSON and Excel files.")
     print("You can modify 'html_files_folder' to point to your actual directory of HTML files.")
+
+subprocess.run(["python", "generate_pages.py"])
+
+
