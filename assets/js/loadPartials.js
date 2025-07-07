@@ -9,7 +9,7 @@ async function loadPartials() {
   };
 
   // Load header and footer
-  await load('./partials/header.html', 'header-container');
+  await load('./partials/header.html', 'header-container'); // This ensures header is loaded first
   await load('./partials/footer.html', 'footer-container');
 
   // Scroll behavior
@@ -21,26 +21,31 @@ async function loadPartials() {
     }
   });
 
-  // Mobile nav toggle logic
-  document.addEventListener('DOMContentLoaded', () => {
-    const headerContainer = document.getElementById('header-container');
-    if (headerContainer) {
-      const hamburger = headerContainer.querySelector('.hamburger-menu-icon');
-      const nav = headerContainer.querySelector('.main-nav');
+  // Mobile nav toggle logic - NOW ATTACHED AFTER header.html IS LOADED
+  const headerContainer = document.getElementById('header-container');
+  if (headerContainer) {
+    const hamburger = headerContainer.querySelector('.hamburger-menu-icon');
+    // Assuming your main navigation element inside header.html has the class 'main-nav'
+    // If it has id="main-header" as per previous CSS, you might need:
+    // const nav = headerContainer.querySelector('#main-header');
+    const nav = headerContainer.querySelector('.main-nav');
 
-      if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-          document.body.classList.toggle('menu-open');
-        });
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', () => {
+        document.body.classList.toggle('menu-open');
+      });
 
-        nav.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            document.body.classList.remove('menu-open');
-          });
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          document.body.classList.remove('menu-open');
         });
-      }
+      });
+    } else {
+        console.error('Hamburger or Navigation element not found after header load.');
     }
-  });
+  } else {
+      console.error('Header container not found.');
+  }
 }
 
 loadPartials();
