@@ -196,6 +196,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 
 .section-light-grey {
   background-color: #f0f2f5;
+  color: #1c1c1c;
 }
 
 .section-dark-grey {
@@ -212,6 +213,13 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 
 .section-white {
   background-color: #fff;
+}
+
+.section-light-grey h1,
+.section-light-grey h2,
+.section-light-grey h3,
+.section-light-grey p {
+  color: #1c1c1c;
 }
 /* ==================================================
    4. LAYOUTS (General Purpose)
@@ -321,6 +329,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 
 /* Titles and text for News & Preview */
 .news-item h3 {
+  color: #1c1c1c;
   min-height: 55px;
   font-size: 1.3rem; /* Keep existing font size */
   margin: 15px 15px 10px 15px; /* Keep existing margins */
@@ -336,7 +345,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 
 .news-item p {
   font-size: 0.95rem; /* Keep existing font size */
-  color: #000000; /* White text for news item paragraphs */
+  color: #1c1c1c; /* White text for news item paragraphs */
   flex-grow: 1; /* Keep existing flex-grow */
   line-height: 1.5;
   padding: 0 15px 15px 15px;
@@ -349,7 +358,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 
 .news-date {
   font-size: 0.9rem;
-  color: #2b2b2b;
+  color: #444;
   margin-bottom: 18px;
   font-weight: bold;
 }
@@ -372,6 +381,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
    6. TEAM SECTION
    ================================================== */
 .team-member {
+  background-color: #f0f2f5;
   display: flex;
   gap: 40px;
   margin-bottom: 50px;
@@ -401,6 +411,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 }
 
 .member-left h3 {
+  color: #1c1c1c;
   font-size: 1.2rem;
   margin-bottom: 8px;
   font-weight: bold;
@@ -408,6 +419,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 }
 
 .member-left .role {
+  color: #444;
   font-weight: normal;
   font-size: 0.95rem;
   color: #666;
@@ -421,6 +433,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 }
 
 .member-middle h3 {
+  color: #1c1c1c;
   margin: 0 0 5px;
 }
 
@@ -430,6 +443,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 }
 
 .member-info p {
+  color: #1c1c1c;
   margin-bottom: 1.2em;
 }
 
@@ -438,6 +452,7 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 }
 
 .email {
+  color: #444;
   font-style: italic;
   font-size: 0.95rem;
   color: #444;
@@ -568,7 +583,7 @@ footer {
 
 /* Style for individual film cards within the grid */
 .film-item-card {
-  background-color: #3a3a3a; /* Slightly lighter dark background for cards */
+  background-color: #2b2b2b; /* Slightly lighter dark background for cards */
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
