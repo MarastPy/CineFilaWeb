@@ -833,9 +833,39 @@ footer {
   }
 
   /* Header and Navigation adjustments */
-  /* ADD/UPDATE: Styles for the overall header area on mobile */
+  /* Styles for the overall header area on mobile */
+  .header-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed; /* This makes it the fixed bar at the top */
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #2b2b2b;
+    z-index: 1000; /* Ensures header bar is above content */
+    height: 70px; /* Consistent height for the fixed header bar */
+  }
+
+  .logo-top {
+    position: static; /* Make logo-top part of the flex flow in header-area */
+    height: auto; /* Allow height to be determined by content */
+    padding: 0; /* Remove padding here as header-area has it */
+    transform: none; /* Remove any transforms */
+    text-align: left; /* Align logo to left within the header-area */
+  }
+
+  .logo-top img {
+    height: 50px; /* Smaller logo image */
+    margin: 0; /* Remove auto margin to align left */
+  }
+
   #main-header {
+    position: fixed; /* Keep fixed to slide in */
     top: 0; /* Align header to top when menu is open */
+    left: 0;
     padding: 0;
     height: 100vh; /* Full height when open */
     width: 100%;
@@ -844,25 +874,10 @@ footer {
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 80px; /* Space for logo-top when menu is open */
-    position: fixed; /* Keep it fixed when it slides in */
-    left: 0; /* Align to left when open */
     background-color: rgba(0, 0, 0, 0.95); /* Dark overlay when menu is open */
     z-index: 999; /* Below hamburger, but above content */
   }
 
-
-  .logo-top {
-    height: 70px; /* Smaller logo area on mobile */
-    padding: 0; /* Adjust padding here if needed, based on header-area padding */
-    /* REMOVE any position: absolute; or transform here if present for mobile,
-       as it's now part of flex layout. */
-    position: static;
-    transform: none;
-  }
-
-  .logo-top img {
-    height: 50px; /* Smaller logo image */
-  }
   body.menu-open #main-header {
     transform: translateX(0); /* Slide in */
   }
@@ -880,34 +895,18 @@ footer {
     font-size: 1.5rem; /* Larger links for touch */
     padding: 15px 0;
     width: 100%;
+    color: #ffffff; /* Ensure white text for navigation links */
   }
-
-.header-area {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  position: fixed; /* This makes it the fixed bar at the top */
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: #2b2b2b;
-  z-index: 1000; /* Ensures header bar is above content */
-  height: 70px; /* Consistent height for the fixed header bar */
-}
 
 /* Updated .hamburger-menu-icon for image */
 .hamburger-menu-icon {
   display: block; /* Make the container visible on mobile */
   cursor: pointer;
-  /* Original padding removed as image handles its own size,
-     or adjusted if needed for click area. */
   padding: 0; /* No padding if image fills container */
-  position: absolute; /* Keep absolute positioning as discussed for right alignment */
+  position: fixed; /* Keep absolute positioning as discussed for right alignment */
   right: 20px;
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for vertical centering */
+  top: 20px; /* Aligned with the top of the header area */
+  transform: translateY(0); /* Remove vertical centering as top is set */
   z-index: 1004; /* Above everything else */
 }
 
