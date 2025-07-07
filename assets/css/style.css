@@ -151,6 +151,7 @@ nav a:hover {
   z-index: 1004; /* Above everything else */
 }
 
+
 /* The .bar styles are removed/commented out as you're using an image now */
 /*
 .hamburger-menu-icon .bar {
