@@ -1,29 +1,37 @@
 /* ==================================================
    1. BASE & UTILITIES
    ================================================== */
+
+/* Universal Box-Sizing Reset */
+/* Applies to all elements, ensuring padding and borders are included in an element's total width and height. */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body Base Styles */
+/* Sets the default font, text color, line height, and background for the entire page. */
 body {
   font-family: 'Nunito', sans-serif;
   color: #1c1c1c;
   line-height: 1.6;
-  transition: padding-top 0.3s ease; /* Add transition for smooth change */
-  background-color: #2b2b2b; /* Ensure whole body has the dark background */
+  transition: padding-top 0.3s ease; /* Smooth transition for padding changes */
+  background-color: #2b2b2b; /* Ensures the whole body has the dark background */
 }
 
-/* Adjusted padding-top for the body to accommodate both fixed header elements */
+/* Body Padding for Fixed Headers */
+/* Adjusts top padding on the body to prevent content from being hidden by fixed headers, accounting for scrolled state. */
 body:not(.scrolled) {
   padding-top: 150px; /* Original height of logo-top (90px) + main-header (60px) */
 }
 
 body.scrolled {
-  padding-top: 150px; /* Keep consistent padding when scrolled */
+  padding-top: 150px; /* Consistent padding when scrolled */
 }
 
+/* Typography - Headings */
+/* Defines font families, colors, and sizes for various heading levels. */
 h1 {
   font-family: 'EB Garamond', serif;
   color: #222;
@@ -42,6 +50,8 @@ h3 {
   font-size: 1.3em; /* Example size for h3 */
 }
 
+/* Typography - Links */
+/* Sets default link color, removes underlines, and adds a smooth transition for hover effects. */
 a {
   color: #ff9800;
   text-decoration: none;
@@ -52,6 +62,8 @@ a:hover {
   color: #ffc107;
 }
 
+/* Utility Classes */
+/* General-purpose classes for common layout or visibility needs. */
 .content {
   padding: 40px 2cm;
   max-width: 1200px;
@@ -66,6 +78,8 @@ a:hover {
    2. HEADER & NAVIGATION
    ================================================== */
 
+/* Header Area Container */
+/* Defines the overall container for the header elements, often used for positioning and background. */
 .header-area {
   position: relative;
   padding-top: 0;
@@ -73,6 +87,8 @@ a:hover {
   background: #2b2b2b;
 }
 
+/* Top Logo Section */
+/* Styles for the fixed logo area at the very top of the page, including its transitions and scrolled state. */
 .logo-top {
   position: fixed;
   top: 0;
@@ -83,14 +99,14 @@ a:hover {
   padding: 15px 20px;
   background: #2b2b2b;
   z-index: 1003;
-  transition: height 0.3s ease, padding 0.3s ease; /* Add transition for smooth change */
+  transition: height 0.3s ease, padding 0.3s ease;
 }
 
 .logo-top img {
   height: 60px;
   display: block;
   margin: 0 auto;
-  transition: height 0.3s ease; /* Add transition for smooth change */
+  transition: height 0.3s ease;
 }
 
 body.scrolled .logo-top {
@@ -102,7 +118,8 @@ body.scrolled .logo-top img {
   height: 40px; /* Smaller logo when scrolled */
 }
 
-
+/* Main Navigation Header */
+/* Styles for the primary navigation bar, including its fixed positioning and scrolled state. */
 #main-header {
   position: fixed;
   top: 90px; /* Stays below the logo-top */
@@ -121,6 +138,8 @@ body.scrolled #main-header {
   top: 60px; /* Moves up to be below the smaller logo-top when scrolled */
 }
 
+/* Navigation Links Container */
+/* Styles for the layout and spacing of navigation links. */
 nav {
   display: flex;
   justify-content: center;
@@ -128,6 +147,8 @@ nav {
   align-items: center;
 }
 
+/* Individual Navigation Links */
+/* Specific styling for the text and hover effects of navigation menu items. */
 nav a {
   font-family: 'EB Garamond', serif;
   font-weight: 600;
@@ -140,7 +161,8 @@ nav a:hover {
   color: #ffc107;
 }
 
-/* Hamburger menu icon for mobile */
+/* Hamburger Menu Icon (Mobile) */
+/* Styles for the icon that toggles the mobile navigation menu. */
 .hamburger-menu-icon {
   display: none; /* Hidden by default on desktop */
   cursor: pointer;
@@ -154,6 +176,9 @@ nav a:hover {
 /* ==================================================
    3. GLOBAL SECTION STYLES
    ================================================== */
+
+/* Default Section Styling */
+/* Base padding, width, background, and text alignment for all general sections. */
 .section, .news-section {
   padding: 90px 0;
   margin: 0 auto;
@@ -162,19 +187,24 @@ nav a:hover {
   text-align: Left; /* Center the section content */
 }
 
-/* Align text content within sections to the left */
-.section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid { /* Added .news-grid specifically */
+/* Text Alignment within Sections */
+/* Ensures specific content types within sections are left-aligned. */
+.section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid {
   text-align: left;
 }
 
+/* Section Color Themes */
+/* Classes for applying different background and text color schemes to sections. */
 .section-light-grey {
   background-color: #f0f2f5;
   color: #1c1c1c;
+  padding: 90px 0;
 }
 
 .section-dark-grey {
   background-color: #2B2B2B;
   color: #f0f2f5;
+  padding: 90px 0;
 }
 
 .section-dark-grey h1,
@@ -194,9 +224,13 @@ nav a:hover {
 .section-light-grey p {
   color: #1c1c1c;
 }
+
 /* ==================================================
    4. LAYOUTS (General Purpose)
    ================================================== */
+
+/* Two-Column Layout (Text and Image) */
+/* Flexbox-based layout for arranging content in two columns, often text next to an image. */
 .two-column-layout {
   display: flex;
   gap: 40px;
@@ -224,6 +258,8 @@ nav a:hover {
   display: block;
 }
 
+/* Two-Column Text Layout */
+/* Grid-based layout specifically for two columns of text content. */
 .two-column-text-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -239,6 +275,9 @@ nav a:hover {
 /* ==================================================
    5. GRID COMPONENTS (Cards, Preview, News)
    ================================================== */
+
+/* Grid Containers (Cards, Preview, News) */
+/* Defines the grid structure and spacing for multiple types of card-like components. */
 .cards,
 .preview-grid,
 .news-grid {
@@ -252,33 +291,32 @@ nav a:hover {
   margin-right: auto;
 }
 
-/* --- Card Item (General) --- */
+/* Card Item (General) - Placeholder for specific .card-item styles if they exist */
 /* Add specific styles for .card-item if it exists and differs from news/preview */
 
-/* --- News Item & Preview Item (Unified Styling) --- */
-/* Apply common styles for hover effects and general appearance */
+/* News Item & Preview Item (Unified Styling) */
+/* Common styles for individual news and preview cards, including base appearance and hover effects. */
 .news-item,
-.preview-item { /* Added .preview-item here */
-  /*background: #fff;*/
+.preview-item {
   padding: 25px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s; /* Adjusted box-shadow transition for consistency */
-  box-shadow: 0 6px 14px rgba(0,0,0,0.1); /* Added initial shadow for visual consistency */
-  border-radius: 15px; /* Added border-radius for consistency */
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  border-radius: 15px;
 }
 
 .news-item:hover,
-.preview-item:hover { /* Added .preview-item here */
+.preview-item:hover {
   transform: translateY(-8px);
-  /*box-shadow: 0 8px 20px rgba(0,0,0,0.18);*/
   z-index: 10;
 }
 
-/* Image wrapper for News & Preview */
+/* Image Wrappers for Grid Items */
+/* Styles for the containers holding images within news and preview items. */
 .news-item-image-wrapper,
-.preview-item-image-wrapper { /* Added .preview-item-image-wrapper here */
+.preview-item-image-wrapper {
   width: 100%;
   height: 180px;
   overflow: hidden;
@@ -288,47 +326,54 @@ nav a:hover {
 }
 
 .news-item-image-wrapper img,
-.preview-item-image-wrapper img { /* Added .preview-item-image-wrapper img here */
+.preview-item-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease; /* Adjusted transition for consistency */
+  transition: transform 0.3s ease;
 }
 
 .news-item:hover .news-item-image-wrapper img,
-.preview-item:hover .preview-item-image-wrapper img { /* Added .preview-item here */
+.preview-item:hover .preview-item-image-wrapper img {
   transform: scale(1.1);
 }
 
-/* Titles and text for News & Preview */
+/* Titles and Text for News Items */
+/* Specific typography and spacing for titles and paragraphs within news cards. */
 .news-item h3 {
   color: #1c1c1c;
   min-height: 55px;
-  font-size: 1.3rem; /* Keep existing font size */
-  margin: 15px 15px 10px 15px; /* Keep existing margins */
-  color: #000000; /* White text for news item titles */
+  font-size: 1.3rem;
+  margin: 15px 15px 10px 15px;
+  color: #000000;
 }
-.preview-item h3 { /* Added .preview-item here */
+
+.news-item p {
+  font-size: 0.95rem;
+  color: #1c1c1c;
+  flex-grow: 1;
+  line-height: 1.5;
+  padding: 0 15px 15px 15px;
+}
+
+/* Titles and Text for Preview Items */
+/* Specific typography and spacing for titles and paragraphs within preview cards. */
+.preview-item h3 {
   min-height: 55px;
   font-size: 1.3rem;
-  margin: 15px 15px 10px 15px; /* Keep existing margins */
+  margin: 15px 15px 10px 15px;
   margin-bottom: 12px;
   color: #ffffff;
 }
 
-.news-item p {
-  font-size: 0.95rem; /* Keep existing font size */
-  color: #1c1c1c; /* White text for news item paragraphs */
-  flex-grow: 1; /* Keep existing flex-grow */
-  line-height: 1.5;
-  padding: 0 15px 15px 15px;
-}
-.preview-item p { /* Added .preview-item here */
+.preview-item p {
   font-size: 0.95rem;
-  color: #ffffff; /* This is the text color */
+  color: #ffffff;
   flex-grow: 1;
 }
 
+/* News Date Styling */
+/* Styles for the date displayed on news items. */
 .news-date {
   font-size: 0.9rem;
   color: #444;
@@ -336,23 +381,12 @@ nav a:hover {
   font-weight: bold;
 }
 
-/* Styling for paragraphs within news items */
-.news-item p {
-  font-size: 0.95rem;
-  color: #000000; /* Example: White color for news item paragraphs */
-  flex-grow: 1;
-}
-
-/* Styling for paragraphs within preview items */
-.preview-item p {
-  font-size: 0.95rem;
-  color: #ffffff; /* Example: A lighter grey color for preview item paragraphs */
-  flex-grow: 1;
-}
-
 /* ==================================================
    6. TEAM SECTION
    ================================================== */
+
+/* Individual Team Member Container */
+/* Layout and general styling for each team member's information block. */
 .team-member {
   background-color: #f0f2f5;
   display: flex;
@@ -369,6 +403,8 @@ nav a:hover {
   margin-bottom: 0;
 }
 
+/* Team Member Left Column (Image and Basic Info) */
+/* Styles for the section containing the member's photo, name, and role. */
 .member-left {
   flex-shrink: 0;
   width: 220px;
@@ -398,6 +434,8 @@ nav a:hover {
   color: #666;
 }
 
+/* Team Member Middle Column (Optional/Specific Info) */
+/* A specific column for additional centered information, if used. */
 .member-middle {
   flex-shrink: 0;
   width: 250px;
@@ -410,6 +448,8 @@ nav a:hover {
   margin: 0 0 5px;
 }
 
+/* Team Member Right Column (Detailed Information) */
+/* Styles for the main text content/biography of the team member. */
 .member-right {
   flex-grow: 1;
   text-align: justify;
@@ -434,11 +474,16 @@ nav a:hover {
 /* ==================================================
    7. BUTTONS & LINKS
    ================================================== */
+
+/* Read More Container */
+/* Aligns the "read more" or "all news" link. */
 .read-more-container {
   text-align: center;
   margin-top: 30px;
 }
 
+/* "All News" Button/Link */
+/* Styles for a prominent link or button to view more news. */
 .all-news-link {
   display: inline-block;
   padding: 12px 25px;
@@ -455,9 +500,29 @@ nav a:hover {
   background-color: #ffc107;
 }
 
+/* Reset Button */
+/* Styles for a button typically used to clear filters. */
+.reset-button {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #00000; /* Explicitly white */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.95em;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: #ffc107;
+}
+
 /* ==================================================
    8. FOOTER
    ================================================== */
+
+/* Footer Container */
+/* Overall styling for the page footer, including background, text alignment, and spacing. */
 footer {
   text-align: center;
   padding: 25px;
@@ -467,6 +532,8 @@ footer {
   margin-top: 40px;
 }
 
+/* Social Links */
+/* Styling for social media icons or links within the footer. */
 .social-links a {
   color: #bbb;
   margin: 0 10px;
@@ -477,8 +544,11 @@ footer {
 }
 
 /* ==================================================
-   7. CATALOGUE SPECIFIC STYLES
+   9. CATALOGUE SPECIFIC STYLES
    ================================================== */
+
+/* Catalogue Header */
+/* Styles for the main heading and introductory text of the catalogue page. */
 .catalogue-header {
   text-align: left;
   margin-bottom: 30px;
@@ -487,15 +557,19 @@ footer {
 .catalogue-header h1 {
   font-size: 3em;
   margin-bottom: 10px;
-  color: #ffffff; /* Explicitly white */
+  color: #ffffff;
 }
 
+/* Main Catalogue Content Area */
+/* Defines the primary content area for the catalogue, often with a dark background. */
 .catalogue-main-content {
   padding-top: 0;
   background-color: #2b2b2b;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
 }
 
+/* Search Container */
+/* Layout and styling for the search input and button. */
 .search-container {
   display: flex;
   justify-content: center;
@@ -506,19 +580,19 @@ footer {
 
 .search-container input[type="text"] {
   padding: 10px 15px;
-  border: 1px solid #555; /* Changed border to a darker grey */
+  border: 1px solid #555;
   border-radius: 5px;
   font-size: 1em;
   width: 100%;
   max-width: 400px;
-  background-color: #3a3a3a; /* Ensure input background is dark */
-  color: #ffffff; /* Changed to white */
+  background-color: #3a3a3a;
+  color: #ffffff;
 }
 
 .search-container button {
   padding: 10px 20px;
   background-color: #2b2b2b;
-  color: #ffffff; /* Explicitly white */
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -530,41 +604,44 @@ footer {
   background-color: #2b2b2b;
 }
 
-/* Catalogue layout */
+/* Catalogue Wrapper */
+/* General wrapper for catalogue content. */
 .catalogue-wrapper {
   margin-top: 20px;
 }
 
-/* Film list styles */
+/* Film List Styles (General) */
+/* Base styles for film listings. */
 .film-list {
   padding: 20px;
   background-color: #2b2b2b;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
 }
 
-/* --- FILM GRID LAYOUT --- */
+/* Film Grid Layout */
+/* Responsive grid for displaying film item cards. */
 .film-grid {
   display: grid;
-  /* This creates responsive columns: as many as fit, each at least 300px wide, growing to fill space */
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px; /* Space between grid items */
-  justify-content: center; /* Center the grid items if they don't fill the row */
-  padding: 0; /* Remove default padding from filmContainer if any */
-  list-style: none; /* Ensure no bullet points from ul */
-  color: #ffffff; /* Changed to white */
+  gap: 30px;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+  color: #ffffff;
 }
 
-/* Style for individual film cards within the grid */
+/* Individual Film Item Card */
+/* Styling for each movie card within the catalogue grid. */
 .film-item-card {
-  background-color: #2b2b2b; /* Slightly lighter dark background for cards */
+  background-color: #2b2b2b;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensure cards take full height in grid */
+  height: 100%;
 }
 
 .film-item-card:hover {
@@ -574,14 +651,14 @@ footer {
 
 .film-thumbnail {
   width: 100%;
-  height: 200px; /* Fixed height for thumbnails */
-  object-fit: cover; /* Cover the area, cropping if necessary */
+  height: 200px;
+  object-fit: cover;
   display: block;
 }
 
 .film-info {
   padding: 15px;
-  flex-grow: 1; /* Allows film-info to take up available space */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -590,34 +667,35 @@ footer {
   font-family: 'EB Garamond', serif;
   font-size: 1.6em;
   margin-bottom: 8px;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
 }
 
 .film-year-runtime {
   font-size: 0.9em;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
 .film-genres,
 .film-director {
   font-size: 0.9em;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   margin-bottom: 6px;
 }
 
 .film-logline {
   font-size: 0.95em;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   line-height: 1.5;
-  margin-top: auto; /* Pushes logline to the bottom of the flex container */
+  margin-top: auto;
 }
 
-/* Film detail page styles */
+/* Film Detail Page Styles */
+/* Styles specifically for the page displaying detailed information about a single film. */
 .film-detail-container {
   padding: 60px 0;
   background-color: #2b2b2b;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
 }
 
 .film-detail-content {
@@ -650,14 +728,14 @@ footer {
 .film-detail-title {
   font-family: 'EB Garamond', serif;
   font-size: 3.5em;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
 .film-detail-original-title {
   font-family: 'EB Garamond', serif;
   font-size: 1.8em;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   margin-bottom: 20px;
   font-style: italic;
 }
@@ -665,11 +743,11 @@ footer {
 .film-detail-meta p {
   font-size: 1.1em;
   margin-bottom: 8px;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
 }
 
 .film-detail-meta strong {
-  color: #ffffff; /* Explicitly white */
+  color: #ffffff;
 }
 
 .film-detail-logline {
@@ -677,14 +755,14 @@ footer {
   line-height: 1.6;
   margin-top: 25px;
   margin-bottom: 30px;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   font-style: italic;
 }
 
 .film-detail-synopsis {
   font-size: 1em;
   line-height: 1.7;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   margin-bottom: 25px;
   text-align: justify;
 }
@@ -696,7 +774,7 @@ footer {
 .film-detail-section h3 {
   font-family: 'EB Garamond', serif;
   font-size: 1.8em;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   margin-bottom: 15px;
   border-bottom: 1px solid rgba(255, 152, 0, 0.3);
   padding-bottom: 5px;
@@ -710,14 +788,16 @@ footer {
 
 .film-detail-section li {
   font-size: 1em;
-  color: #ffffff; /* Changed to white */
+  color: #ffffff;
   margin-bottom: 5px;
 }
 
 .film-detail-section li strong {
-  color: #ffffff; /* Explicitly white */
+  color: #ffffff;
 }
 
+/* Film Stills Grid */
+/* Grid layout for displaying movie stills on the detail page. */
 .film-stills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -738,120 +818,108 @@ footer {
   transform: scale(1.03);
 }
 
-/* Filters */
+/* Filters for Catalogue */
+/* Styles for the filter dropdowns and their layout. */
 .filters {
   display: flex;
-  flex-wrap: wrap; /* Allow filters to wrap on smaller screens */
+  flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 30px;
-  justify-content: center; /* Center filters */
-  padding: 0 20px; /* Add some padding on smaller screens */
+  justify-content: center;
+  padding: 0 20px;
 }
 
 .filters select {
   padding: 10px 15px;
-  border: 1px solid #555; /* Changed border to darker grey */
+  border: 1px solid #555;
   border-radius: 5px;
   font-size: 0.95em;
   background-color: #ffffff;
-  color: #00000; /* Changed to white */
-  appearance: none; /* Remove default dropdown arrow */
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.5%2075.1a17.6%2017.6%200%200%200-24.7%2024.7l140.2%20140.2a17.6%2017.6%200%200%200%2024.7%200l140.2-140.2a17.6%2017.6%200%200%200%200-24.7z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow changed to white */
+  color: #00000;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.5%2075.1a17.6%2017.6%200%200%200-24.7%2024.7l140.2%20140.2a17.6%2017.6%200%200%200%2024.7%200l140.2-140.2a17.6%2017.6%200%200%200%200-24.7z%22%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 12px;
   cursor: pointer;
-  flex-grow: 1; /* Allow filters to grow and shrink */
-  min-width: 150px; /* Minimum width for select boxes */
+  flex-grow: 1;
+  min-width: 150px;
 }
 
 .filters select option {
   background-color: #ffffff;
-  color: #00000; /* Changed to white */
+  color: #00000;
 }
 
-.reset-button {
-  padding: 10px 20px;
-  background-color: #ffffff;
-  color: #00000; /* Explicitly white */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.95em;
-  transition: background-color 0.3s ease;
-}
-
-.reset-button:hover {
-  background-color: #ffc107;
-}
 /* ==================================================
-   9. RESPONSIVE DESIGN
+   10. RESPONSIVE DESIGN
    ================================================== */
+
+/* Tablet and Smaller Devices (max-width: 768px) */
 @media (max-width: 768px) {
   .content {
     padding: 20px 15px;
   }
 
   h1 {
-    font-size: 3em; /* Adjust h1 for smaller screens */
+    font-size: 3em;
   }
 
   h2 {
-    font-size: 1.8em; /* Adjust h2 for smaller screens */
+    font-size: 1.8em;
   }
 
   h3 {
-    font-size: 1.2em; /* Adjust h3 for smaller screens */
+    font-size: 1.2em;
   }
 
   /* Header and Navigation adjustments */
-  /* Styles for the overall header area on mobile */
   .header-area {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    position: fixed; /* This makes it the fixed bar at the top */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     background-color: #2b2b2b;
-    z-index: 1000; /* Ensures header bar is above content */
-    height: 70px; /* Consistent height for the fixed header bar */
+    z-index: 1000;
+    height: 70px;
   }
 
   .logo-top {
-    position: static; /* Make logo-top part of the flex flow in header-area */
-    height: auto; /* Allow height to be determined by content */
-    padding: 0; /* Remove padding here as header-area has it */
-    transform: none; /* Remove any transforms */
-    text-align: left; /* Align logo to left within the header-area */
+    position: static;
+    height: auto;
+    padding: 0;
+    transform: none;
+    text-align: left;
   }
 
   .logo-top img {
-    height: 50px; /* Smaller logo image */
-    margin: 0; /* Remove auto margin to align left */
+    height: 50px;
+    margin: 0;
   }
 
   #main-header {
-    position: fixed; /* Keep fixed to slide in */
-    top: 0; /* Align header to top when menu is open */
+    position: fixed;
+    top: 0;
     left: 0;
     padding: 0;
-    height: 100vh; /* Full height when open */
+    height: 100vh;
     width: 100%;
-    transform: translateX(100%); /* Start off-screen */
+    transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 80px; /* Space for logo-top when menu is open */
-    background-color: rgba(0, 0, 0, 0.95); /* Dark overlay when menu is open */
-    z-index: 999; /* Below hamburger, but above content */
+    padding-top: 80px;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 999;
   }
 
   body.menu-open #main-header {
-    transform: translateX(0); /* Slide in */
+    transform: translateX(0);
   }
 
   nav {
@@ -860,41 +928,39 @@ footer {
     text-align: center;
     width: 100%;
     padding: 20px 0;
-    display: flex; /* Ensure nav is flex to manage links */
+    display: flex;
   }
 
   nav a {
-    font-size: 1.5rem; /* Larger links for touch */
+    font-size: 1.5rem;
     padding: 15px 0;
     width: 100%;
-    color: #ffffff; /* Ensure white text for navigation links */
+    color: #ffffff;
   }
 
-/* Updated .hamburger-menu-icon for image */
-.hamburger-menu-icon {
-  display: block; /* Make the container visible on mobile */
-  cursor: pointer;
-  padding: 0; /* No padding if image fills container */
-  position: fixed; /* Keep absolute positioning as discussed for right alignment */
-  right: 20px;
-  top: 20px; /* Aligned with the top of the header area */
-  transform: translateY(0); /* Remove vertical centering as top is set */
-  z-index: 1004; /* Above everything else */
-}
+  .hamburger-menu-icon {
+    display: block;
+    cursor: pointer;
+    padding: 0;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    transform: translateY(0);
+    z-index: 1004;
+  }
 
-/* Style for the image inside the hamburger-menu-icon */
-.hamburger-menu-icon img {
-  width: 30px; /* Adjust size as needed for your icon image */
-  height: auto;
-  display: block;
-}
-
+  .hamburger-menu-icon img {
+    width: 30px;
+    height: auto;
+    display: block;
+  }
 
   body:not(.scrolled) {
-    padding-top: 70px; /* Adjust body padding for mobile header */
+    padding-top: 70px;
   }
+
   body.scrolled {
-    padding-top: 70px; /* Adjust body padding for mobile header when scrolled */
+    padding-top: 70px;
   }
 
   /* General Layouts */
@@ -902,7 +968,7 @@ footer {
   .two-column-text-layout,
   .team-member {
     flex-direction: column;
-    gap: 30px; /* Adjust gap for mobile */
+    gap: 30px;
   }
 
   .column-image,
@@ -912,12 +978,12 @@ footer {
   .member-middle,
   .member-right {
     min-width: unset;
-    flex: 1 1 100%; /* Ensure they take full width */
-    text-align: center; /* Center text for single column */
+    flex: 1 1 100%;
+    text-align: center;
   }
 
   .column-image img {
-    max-width: 80%; /* Constrain image width in single column */
+    max-width: 80%;
     margin: 0 auto;
   }
 
@@ -925,27 +991,27 @@ footer {
   .cards,
   .preview-grid,
   .news-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* More flexible grid for mobile */
-    gap: 20px; /* Smaller gap on mobile */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
     max-width: 100%;
   }
 
   /* Team section specifics */
   .member-left,
   .member-middle {
-    width: 100%; /* Full width for member info blocks */
+    width: 100%;
   }
 
   .member-left img {
-    max-width: 180px; /* Constrain team member image */
+    max-width: 180px;
   }
 
   .team-member {
-    align-items: center; /* Center items when stacked */
+    align-items: center;
   }
 
   .member-right {
-    text-align: center; /* Center text when stacked */
+    text-align: center;
   }
 
   /* Catalogue specific */
@@ -956,8 +1022,8 @@ footer {
   }
 
   .film-detail-poster {
-    width: 80%; /* Make poster take more width on mobile */
-    max-width: 300px; /* Cap max width */
+    width: 80%;
+    max-width: 300px;
   }
 
   .film-detail-title {
@@ -975,10 +1041,11 @@ footer {
   .film-detail-synopsis,
   .film-detail-section h3,
   .film-detail-section li {
-    text-align: center; /* Center content on mobile */
+    text-align: center;
   }
 }
 
+/* Smaller Mobile Devices (max-width: 480px) */
 @media (max-width: 480px) {
   .content {
     padding: 15px 10px;
@@ -1014,7 +1081,7 @@ footer {
   .preview-grid,
   .news-grid,
   .film-grid {
-    grid-template-columns: minmax(250px, 1fr); /* Single column on very small screens */
+    grid-template-columns: minmax(250px, 1fr);
     gap: 15px;
   }
 
@@ -1026,11 +1093,11 @@ footer {
   .filters select,
   .search-container input[type="text"],
   .search-container button {
-    width: 90%; /* Make filter elements take more width */
+    width: 90%;
     max-width: 300px;
   }
 
   .film-detail-poster {
-    width: 90%; /* Even larger poster on very small screens */
+    width: 90%;
   }
 }
