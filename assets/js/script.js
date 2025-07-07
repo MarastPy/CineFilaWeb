@@ -67,6 +67,12 @@ function populateFilters() {
     const genres = new Set();
     const years = new Set();
     const lengths = new Set();
+    // Add other filter categories here (countries, ratings, audiences, keywords)
+    const countries = new Set();
+    const ratings = new Set();
+    const audiences = new Set();
+    const keywords = new Set();
+
 
     allFilms.forEach(film => {
         // Collect genres
@@ -84,11 +90,32 @@ function populateFilters() {
                 lengths.add(lengthCategory);
             }
         }
+        // Collect countries
+        if (film.Film && film.Film.Country && Array.isArray(film.Film.Country)) {
+            film.Film.Country.forEach(country => countries.add(country.trim()));
+        }
+        // Collect ratings
+        if (film.Film && film.Film.Rating) {
+            ratings.add(film.Film.Rating.trim());
+        }
+        // Collect audiences
+        if (film.Film && film.Film.Audience && Array.isArray(film.Film.Audience)) {
+            film.Film.Audience.forEach(audience => audiences.add(audience.trim()));
+        }
+        // Collect keywords (themes)
+        if (film.Film && film.Film.Keywords && Array.isArray(film.Film.Keywords)) {
+            film.Film.Keywords.forEach(keyword => keywords.add(keyword.trim()));
+        }
     });
 
-    populateSelect('genreFilter', Array.from(genres).sort());
+    populateSelect('genresFilter', Array.from(genres).sort());
     populateSelect('yearFilter', Array.from(years).sort((a, b) => b - a)); // Sort years descending
     populateSelect('lengthFilter', ['short', 'mid-length', 'full-length']); // Specific order for lengths
+    // Populate other selects
+    populateSelect('countryFilter', Array.from(countries).sort());
+    populateSelect('ratingFilter', Array.from(ratings).sort());
+    populateSelect('audienceFilter', Array.from(audiences).sort());
+    populateSelect('keywordsFilter', Array.from(keywords).sort());
 }
 
 /**
@@ -114,14 +141,22 @@ function populateSelect(selectId, options) {
  */
 function applyFilters() {
     const searchInput = document.getElementById('searchInput');
-    const genreFilter = document.getElementById('genreFilter');
+    const genreFilter = document.getElementById('genresFilter'); // Corrected ID
     const yearFilter = document.getElementById('yearFilter');
     const lengthFilter = document.getElementById('lengthFilter');
+    const countryFilter = document.getElementById('countryFilter');
+    const ratingFilter = document.getElementById('ratingFilter');
+    const audienceFilter = document.getElementById('audienceFilter');
+    const keywordsFilter = document.getElementById('keywordsFilter');
 
     const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
     const selectedGenre = genreFilter ? genreFilter.value : '';
     const selectedYear = yearFilter ? yearFilter.value : '';
     const selectedLength = lengthFilter ? lengthFilter.value : '';
+    const selectedCountry = countryFilter ? countryFilter.value : '';
+    const selectedRating = ratingFilter ? ratingFilter.value : '';
+    const selectedAudience = audienceFilter ? audienceFilter.value : '';
+    const selectedKeywords = keywordsFilter ? keywordsFilter.value : '';
 
     filteredFilms = allFilms.filter(film => {
         const title = film.Film && (film.Film.Title_English || film.Film.Title_Original || '').toLowerCase();
@@ -132,24 +167,27 @@ function applyFilters() {
         const genres = film.Film && film.Film.Genre ? film.Film.Genre.map(g => g.toLowerCase()) : [];
         const year = film.Film && film.Film.Year ? film.Film.Year.toString() : '';
         const runtimeCategory = film.Film && film.Film.Runtime ? getRoundedRuntime(film.Film.Runtime) : null;
+        const countries = film.Film && film.Film.Country ? film.Film.Country.map(c => c.toLowerCase()) : [];
+        const rating = film.Film && film.Film.Rating ? film.Film.Rating.toLowerCase() : '';
+        const audience = film.Film && film.Film.Audience ? film.Film.Audience.map(a => a.toLowerCase()) : [];
+        const keywords = film.Film && film.Film.Keywords ? film.Film.Keywords.map(k => k.toLowerCase()) : [];
 
-        const matchesSearch = searchTerm === '' ||
-                              title.includes(searchTerm) ||
-                              originalTitle.includes(searchTerm) ||
-                              logline.toLowerCase().includes(searchTerm) ||
-                              synopsis.toLowerCase().includes(searchTerm) ||
-                              director.includes(searchTerm);
 
+        const matchesSearch = searchTerm === '' || title.includes(searchTerm) || originalTitle.includes(searchTerm) || logline.toLowerCase().includes(searchTerm) || synopsis.toLowerCase().includes(searchTerm) || director.includes(searchTerm);
         const matchesGenre = selectedGenre === '' || genres.includes(selectedGenre.toLowerCase());
         const matchesYear = selectedYear === '' || year === selectedYear;
         const matchesLength = selectedLength === '' || runtimeCategory === selectedLength;
+        const matchesCountry = selectedCountry === '' || countries.includes(selectedCountry.toLowerCase());
+        const matchesRating = selectedRating === '' || rating === selectedRating.toLowerCase();
+        const matchesAudience = selectedAudience === '' || audience.includes(selectedAudience.toLowerCase());
+        const matchesKeywords = selectedKeywords === '' || keywords.includes(selectedKeywords.toLowerCase());
 
-        return matchesSearch && matchesGenre && matchesYear && matchesLength;
+
+        return matchesSearch && matchesGenre && matchesYear && matchesLength && matchesCountry && matchesRating && matchesAudience && matchesKeywords;
     });
 
     displayFilms(filteredFilms);
 }
-
 
 /**
  * Displays the given array of film objects in the filmContainer grid.
@@ -157,72 +195,56 @@ function applyFilters() {
  */
 function displayFilms(films) {
     const container = document.getElementById('filmContainer');
-    if (!container) return;
-
+    if (!container) return; // Ensure the container exists
     container.innerHTML = ''; // Clear previous films
 
-    if (films.length === 0) {
-        container.innerHTML = '<p>No films found matching your criteria.</p>';
-        return;
-    }
-
     films.forEach(filmData => {
+        // Extract Source_File, convert to lowercase, and remove .html extension
+        let sourceFileName = filmData.Source_File;
+        const filmFolder = sourceFileName ? sourceFileName.replace(/\.html$/i, '').toLowerCase() : '';
+
+        // Create the anchor tag wrapper for the entire film card
+        const filmLink = document.createElement('a');
+        filmLink.href = `generated_film_pages/${filmFolder}.html`; // Use processed Source_File for linking
+        filmLink.classList.add('preview-item-link'); // Apply the news-item-link class
+
+        // Create the main film card div (matching news-item structure)
         const filmCard = document.createElement('div');
-        filmCard.classList.add('film-item-card');
-        filmCard.setAttribute('data-film-id', filmData.FilmID || filmData.Film.FilmID); // Ensure FilmID is accessible
+        filmCard.classList.add('preview-item'); // Apply the news-item class
 
-        // Event listener for clicking the card
-        filmCard.addEventListener('click', () => {
-            window.location.href = `generated_film_pages/${filmData.FilmID || filmData.Film.FilmID}.html`;
-        });
-
-        // Determine the title to display
+        // Film Title (h3)
         const displayTitle = filmData.Film.Title_English || filmData.Film.Title_Original || 'Untitled';
-        const displayOriginalTitle = filmData.Film.Title_Original && filmData.Film.Title_Original !== displayTitle ? ` (${filmData.Film.Title_Original})` : '';
+        const filmTitleElement = document.createElement('h3');
+        filmTitleElement.textContent = displayTitle;
+        filmCard.appendChild(filmTitleElement);
 
-        // Add title
-        const titleElement = document.createElement('h3');
-        titleElement.classList.add('film-title');
-        titleElement.textContent = displayTitle + displayOriginalTitle;
-        filmCard.appendChild(titleElement);
+        // Image Wrapper
+        const imageWrapper = document.createElement('div');
+        imageWrapper.classList.add('news-item-image-wrapper'); // Apply news-item-image-wrapper class
+        const filmStillImg = document.createElement('img');
+        // Dynamically construct image path using the processed filmFolder: images/stills/{filmFolder}/{filmFolder}_1.png
+        filmStillImg.src = filmFolder ? `images/stills/${filmFolder}/${filmFolder}_1.png` : '';
+        filmStillImg.alt = `Still from ${displayTitle}`;
+        imageWrapper.appendChild(filmStillImg);
+        filmCard.appendChild(imageWrapper);
 
-        // Add year and runtime
+        // Add Year and Runtime (similar to news-date)
         const yearRuntimeElement = document.createElement('p');
-        yearRuntimeElement.classList.add('film-year-runtime');
-        const runtime = filmData.Film.Runtime ? filmData.Film.Runtime.substring(0, 5) : 'N/A'; // "HH:MM"
-        yearRuntimeElement.textContent = `${filmData.Film.Year || 'N/A'} | ${runtime}`;
+        yearRuntimeElement.classList.add('news-date'); // Using news-date for styling consistency
+        yearRuntimeElement.textContent = `${filmData.Film.Year || ''}${filmData.Film.Year && filmData.Film.Runtime ? ' | ' : ''}${filmData.Film.Runtime ? getRoundedRuntime(filmData.Film.Runtime).charAt(0).toUpperCase() + getRoundedRuntime(filmData.Film.Runtime).slice(1) + '-length' : ''}`;
         filmCard.appendChild(yearRuntimeElement);
 
-        // Add genres
-        const genresElement = document.createElement('p');
-        genresElement.classList.add('film-genres');
-        genresElement.textContent = `Genres: ${filmData.Film.Genre && filmData.Film.Genre.length > 0 ? filmData.Film.Genre.join(', ') : 'N/A'}`;
-        filmCard.appendChild(genresElement);
-
-        // Add director
-        const directorElement = document.createElement('p');
-        directorElement.classList.add('film-director');
-        directorElement.textContent = `Director: ${filmData.Film.Director || 'N/A'}`;
-        filmCard.appendChild(directorElement);
-
-        // Add film still (thumbnail)
-        const filmStillUrl = filmData.Film.Film_Stills && filmData.Film.Film_Stills.length > 0 ? filmData.Film.Film_Stills[0] : 'placeholder.jpg'; // Fallback
-        const filmStillImg = document.createElement('img');
-        filmStillImg.src = filmStillUrl;
-        filmStillImg.alt = `Still from ${displayTitle}`;
-        filmStillImg.classList.add('film-thumbnail'); // Changed to film-thumbnail
-        filmCard.appendChild(filmStillImg);
-
-        // Add logline
+        // Logline (main description, similar to index news item)
         const loglineElement = document.createElement('p');
-        loglineElement.classList.add('film-logline');
+        loglineElement.classList.add('news-item-description'); // Use news-item-description for consistency
         loglineElement.textContent = filmData.Logline || filmData.Film.Logline_English || filmData.Film.Logline_Original || '';
         filmCard.appendChild(loglineElement);
 
-        container.appendChild(filmCard); // Append the whole card directly to the filmContainer (which is the grid)
+        // Append the film card to the link, and the link to the container
+        filmLink.appendChild(filmCard);
+        container.appendChild(filmLink);
     });
 }
-
 
 /**
  * Resets all filters and optionally clears the search field.
@@ -230,7 +252,7 @@ function displayFilms(films) {
  */
 function resetFilters(clearSearch = true) {
     // Reset all dropdowns
-    const selects = document.querySelectorAll('.filters select');
+    const selects = document.querySelectorAll('.filter-group select'); // Adjusted selector
     selects.forEach(sel => sel.value = '');
 
     // Clear search field if set
@@ -247,4 +269,4 @@ function resetFilters(clearSearch = true) {
 // Make functions accessible in the global scope for HTML onchange/onclick
 window.applyFilters = applyFilters;
 window.resetFilters = resetFilters;
-window.getRoundedRuntime = getRoundedRuntime; // Make available if needed for debugging or other scripts
+window.performSearch = applyFilters; // Assume performSearch just triggers applyFilters

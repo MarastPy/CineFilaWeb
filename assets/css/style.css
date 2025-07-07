@@ -320,30 +320,51 @@ body.menu-open .hamburger-menu-icon .bar:nth-child(3) {
 }
 
 /* Titles and text for News & Preview */
-.news-item h3,
+.news-item h3 {
+  min-height: 55px;
+  font-size: 1.3rem; /* Keep existing font size */
+  margin: 15px 15px 10px 15px; /* Keep existing margins */
+  color: #000000; /* White text for news item titles */
+}
 .preview-item h3 { /* Added .preview-item here */
+  min-height: 55px;
   font-size: 1.3rem;
+  margin: 15px 15px 10px 15px; /* Keep existing margins */
   margin-bottom: 12px;
+  color: #ffffff;
 }
 
-.news-item p,
+.news-item p {
+  font-size: 0.95rem; /* Keep existing font size */
+  color: #000000; /* White text for news item paragraphs */
+  flex-grow: 1; /* Keep existing flex-grow */
+  line-height: 1.5;
+  padding: 0 15px 15px 15px;
+}
 .preview-item p { /* Added .preview-item here */
   font-size: 0.95rem;
-  color: #fff; /* This is the text color */
+  color: #ffffff; /* This is the text color */
   flex-grow: 1;
 }
 
 .news-date {
   font-size: 0.9rem;
-  color: #777;
+  color: #2b2b2b;
   margin-bottom: 18px;
   font-weight: bold;
 }
 
-.news-item p,
-.preview-item p { /* Added .preview-item here */
+/* Styling for paragraphs within news items */
+.news-item p {
   font-size: 0.95rem;
-  color: #777;
+  color: #000000; /* Example: White color for news item paragraphs */
+  flex-grow: 1;
+}
+
+/* Styling for paragraphs within preview items */
+.preview-item p {
+  font-size: 0.95rem;
+  color: #ffffff; /* Example: A lighter grey color for preview item paragraphs */
   flex-grow: 1;
 }
 
@@ -478,13 +499,13 @@ footer {
 .catalogue-header h1 {
   font-size: 3em;
   margin-bottom: 10px;
-  color: #FFFFFF; /* Make sure this line is exactly here */
+  color: #ffffff; /* Explicitly white */
 }
 
 .catalogue-main-content {
   padding-top: 0;
   background-color: #2b2b2b;
-  color: #f0f0f0;
+  color: #ffffff; /* Changed to white */
 }
 
 .search-container {
@@ -497,17 +518,19 @@ footer {
 
 .search-container input[type="text"] {
   padding: 10px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #555; /* Changed border to a darker grey */
   border-radius: 5px;
   font-size: 1em;
   width: 100%;
   max-width: 400px;
+  background-color: #3a3a3a; /* Ensure input background is dark */
+  color: #ffffff; /* Changed to white */
 }
 
 .search-container button {
   padding: 10px 20px;
   background-color: #2b2b2b;
-  color: white;
+  color: #ffffff; /* Explicitly white */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -528,6 +551,7 @@ footer {
 .film-list {
   padding: 20px;
   background-color: #2b2b2b;
+  color: #ffffff; /* Changed to white */
 }
 
 /* --- FILM GRID LAYOUT --- */
@@ -539,6 +563,7 @@ footer {
   justify-content: center; /* Center the grid items if they don't fill the row */
   padding: 0; /* Remove default padding from filmContainer if any */
   list-style: none; /* Ensure no bullet points from ul */
+  color: #ffffff; /* Changed to white */
 }
 
 /* Style for individual film cards within the grid */
@@ -548,7 +573,7 @@ footer {
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  color: #f0f0f0;
+  color: #ffffff; /* Changed to white */
   display: flex;
   flex-direction: column;
   height: 100%; /* Ensure cards take full height in grid */
@@ -577,25 +602,25 @@ footer {
   font-family: 'EB Garamond', serif;
   font-size: 1.6em;
   margin-bottom: 8px;
-  color: #ff9800; /* Highlight title */
+  color: #ffffff; /* Changed to white */
 }
 
 .film-year-runtime {
   font-size: 0.9em;
-  color: #bbb;
+  color: #ffffff; /* Changed to white */
   margin-bottom: 10px;
 }
 
 .film-genres,
 .film-director {
   font-size: 0.9em;
-  color: #ccc;
+  color: #ffffff; /* Changed to white */
   margin-bottom: 6px;
 }
 
 .film-logline {
   font-size: 0.95em;
-  color: #e0e0e0;
+  color: #ffffff; /* Changed to white */
   line-height: 1.5;
   margin-top: auto; /* Pushes logline to the bottom of the flex container */
 }
@@ -604,7 +629,7 @@ footer {
 .film-detail-container {
   padding: 60px 0;
   background-color: #2b2b2b;
-  color: #f0f0f0;
+  color: #ffffff; /* Changed to white */
 }
 
 .film-detail-content {
@@ -637,14 +662,14 @@ footer {
 .film-detail-title {
   font-family: 'EB Garamond', serif;
   font-size: 3.5em;
-  color: #ff9800;
+  color: #ffffff; /* Changed to white */
   margin-bottom: 10px;
 }
 
 .film-detail-original-title {
   font-family: 'EB Garamond', serif;
   font-size: 1.8em;
-  color: #e0e0e0;
+  color: #ffffff; /* Changed to white */
   margin-bottom: 20px;
   font-style: italic;
 }
@@ -652,11 +677,11 @@ footer {
 .film-detail-meta p {
   font-size: 1.1em;
   margin-bottom: 8px;
-  color: #ccc;
+  color: #ffffff; /* Changed to white */
 }
 
 .film-detail-meta strong {
-  color: #fff;
+  color: #ffffff; /* Explicitly white */
 }
 
 .film-detail-logline {
@@ -664,14 +689,14 @@ footer {
   line-height: 1.6;
   margin-top: 25px;
   margin-bottom: 30px;
-  color: #f0f0f0;
+  color: #ffffff; /* Changed to white */
   font-style: italic;
 }
 
 .film-detail-synopsis {
   font-size: 1em;
   line-height: 1.7;
-  color: #e0e0e0;
+  color: #ffffff; /* Changed to white */
   margin-bottom: 25px;
   text-align: justify;
 }
@@ -683,7 +708,7 @@ footer {
 .film-detail-section h3 {
   font-family: 'EB Garamond', serif;
   font-size: 1.8em;
-  color: #ff9800;
+  color: #ffffff; /* Changed to white */
   margin-bottom: 15px;
   border-bottom: 1px solid rgba(255, 152, 0, 0.3);
   padding-bottom: 5px;
@@ -697,12 +722,12 @@ footer {
 
 .film-detail-section li {
   font-size: 1em;
-  color: #e0e0e0;
+  color: #ffffff; /* Changed to white */
   margin-bottom: 5px;
 }
 
 .film-detail-section li strong {
-  color: #fff;
+  color: #ffffff; /* Explicitly white */
 }
 
 .film-stills-grid {
@@ -737,14 +762,13 @@ footer {
 
 .filters select {
   padding: 10px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #555; /* Changed border to darker grey */
   border-radius: 5px;
   font-size: 0.95em;
-  background-color: #3a3a3a;
-  color: #f0f0f0;
-  border: 1px solid #555;
+  background-color: #ffffff;
+  color: #00000; /* Changed to white */
   appearance: none; /* Remove default dropdown arrow */
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23f0f0f0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.5%2075.1a17.6%2017.6%200%200%200-24.7%2024.7l140.2%20140.2a17.6%2017.6%200%200%200%2024.7%200l140.2-140.2a17.6%2017.6%200%200%200%200-24.7z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.5%2075.1a17.6%2017.6%200%200%200-24.7%2024.7l140.2%20140.2a17.6%2017.6%200%200%200%2024.7%200l140.2-140.2a17.6%2017.6%200%200%200%200-24.7z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow changed to white */
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 12px;
@@ -754,25 +778,24 @@ footer {
 }
 
 .filters select option {
-  background-color: #3a3a3a;
-  color: #f0f0f0;
+  background-color: #ffffff;
+  color: #00000; /* Changed to white */
 }
 
 .reset-button {
   padding: 10px 20px;
-  background-color: #ff9800;
-  color: white;
+  background-color: #ffffff;
+  color: #00000; /* Explicitly white */
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.95em;
+  font-size: 1.95em;
   transition: background-color 0.3s ease;
 }
 
 .reset-button:hover {
   background-color: #ffc107;
 }
-
 /* ==================================================
    9. RESPONSIVE DESIGN
    ================================================== */
