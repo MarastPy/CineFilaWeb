@@ -1,5 +1,5 @@
-let allFilms = []; // Stores all data from JSON
-let filteredFilms = []; // Stores filtered films for display
+let allFilms = [];
+let filteredFilms = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('filmContainer')) {
@@ -27,7 +27,6 @@ async function fetchData() {
 
 function getRoundedRuntime(runtimeString) {
     if (!runtimeString || typeof runtimeString !== 'string') return null;
-
     const parts = runtimeString.split(':').map(Number);
     if (parts.length < 2) return null;
 
@@ -51,39 +50,32 @@ function populateFilters() {
     allFilms.forEach(film => {
         const f = film.Film || {};
 
-        // Genres
         if (f.Genre_List && Array.isArray(f.Genre_List)) {
             f.Genre_List.forEach(genre => genres.add(genre.trim()));
         }
 
-        // Year (from Date_of_completion)
         if (f.Date_of_completion) {
             const match = f.Date_of_completion.match(/\b\d{4}\b/);
             if (match) years.add(match[0]);
         }
 
-        // Lengths
         if (f.Runtime) {
             const lengthCategory = getRoundedRuntime(f.Runtime);
             if (lengthCategory) lengths.add(lengthCategory);
         }
 
-        // Country
         if (f.Country_of_production) {
             countries.add(f.Country_of_production.trim());
         }
 
-        // Rating
         if (f.Target_Group?.Rating) {
             ratings.add(f.Target_Group.Rating.trim());
         }
 
-        // Audience
         if (f.Target_Group?.Audience) {
             audiences.add(f.Target_Group.Audience.trim());
         }
 
-        // Keywords
         if (f.Keywords) {
             f.Keywords.split(',').forEach(k => keywords.add(k.trim()));
         }
@@ -100,15 +92,27 @@ function populateFilters() {
 
 function populateSelect(selectId, options) {
     const selectElement = document.getElementById(selectId);
-    if (selectElement) {
-        selectElement.innerHTML = '<option value="">All</option>';
-        options.forEach(option => {
-            const opt = document.createElement('option');
-            opt.value = option;
-            opt.textContent = option.charAt(0).toUpperCase() + option.slice(1);
-            selectElement.appendChild(opt);
-        });
-    }
+    if (!selectElement) return;
+
+    const placeholders = {
+        genresFilter: 'Genre',
+        yearFilter: 'Year',
+        lengthFilter: 'Length',
+        countryFilter: 'Country',
+        ratingFilter: 'Rating',
+        audienceFilter: 'Audience',
+        keywordsFilter: 'Themes'
+    };
+
+    const label = placeholders[selectId] || 'Select';
+    selectElement.innerHTML = `<option value="" disabled selected>${label}</option>`;
+
+    options.forEach(option => {
+        const opt = document.createElement('option');
+        opt.value = option;
+        opt.textContent = option.charAt(0).toUpperCase() + option.slice(1);
+        selectElement.appendChild(opt);
+    });
 }
 
 function applyFilters() {
@@ -132,12 +136,13 @@ function applyFilters() {
 
     filteredFilms = allFilms.filter(film => {
         const f = film.Film || {};
+        const crew = film.Crew || {};
 
         const title = (f.Title_English || f.Title_Original || '').toLowerCase();
         const originalTitle = (f.Title_Original || '').toLowerCase();
         const logline = (film.Logline || '').toLowerCase();
         const synopsis = (film.Synopsis || '').toLowerCase();
-        const director = (f.Director || '').toLowerCase();
+        const director = (crew['Director(s)'] || '').toLowerCase();
 
         const genres = f.Genre_List?.map(g => g.toLowerCase()) || [];
         const runtimeCategory = f.Runtime ? getRoundedRuntime(f.Runtime) : null;
@@ -146,9 +151,7 @@ function applyFilters() {
         const country = f.Country_of_production?.toLowerCase() || '';
         const rating = f.Target_Group?.Rating?.toLowerCase() || '';
         const audience = f.Target_Group?.Audience?.toLowerCase() || '';
-        const keywords = f.Keywords
-            ? f.Keywords.split(',').map(k => k.trim().toLowerCase())
-            : [];
+        const keywords = f.Keywords ? f.Keywords.split(',').map(k => k.trim().toLowerCase()) : [];
 
         const matchesSearch = !searchTerm || title.includes(searchTerm) || originalTitle.includes(searchTerm) || logline.includes(searchTerm) || synopsis.includes(searchTerm) || director.includes(searchTerm);
         const matchesGenre = !selectedGenre || genres.includes(selectedGenre.toLowerCase());
@@ -173,6 +176,7 @@ function displayFilms(films) {
 
     films.forEach(filmData => {
         const f = filmData.Film || {};
+        const crew = filmData.Crew || {};
         const sourceFileName = filmData.Source_File;
         const filmFolder = sourceFileName ? sourceFileName.replace(/\.html$/i, '').toLowerCase() : '';
 
@@ -183,10 +187,25 @@ function displayFilms(films) {
         const filmCard = document.createElement('div');
         filmCard.classList.add('preview-item');
 
-        const displayTitle = f.Title_English || f.Title_Original || 'Untitled';
-        const filmTitleElement = document.createElement('h3');
-        filmTitleElement.textContent = displayTitle;
-        filmCard.appendChild(filmTitleElement);
+        const displayTitle = (f.Title_English || f.Title_Original || 'Untitled').trim();
+        const year = f.Date_of_completion?.match(/\b\d{4}\b/)?.[0] || '';
+        const runtimeParts = f.Runtime?.split(':').map(Number) || [];
+        const totalMinutes = (runtimeParts[0] || 0) * 60 + (runtimeParts[1] || 0) + ((runtimeParts[2] || 0) >= 40 ? 1 : 0);
+        const directorName = (crew['Director(s)'] || 'Unknown Director').trim();
+        const loglineText = (filmData.Logline || '').trim();
+
+        const titleMetaElement = document.createElement('h3');
+        titleMetaElement.classList.add('film-card-title-meta');
+        let metaText = displayTitle;
+        if (year) metaText += ` | ${year}`;
+        if (totalMinutes > 0) metaText += ` | ${totalMinutes} min`;
+        titleMetaElement.textContent = metaText;
+        filmCard.appendChild(titleMetaElement);
+
+        const directorElement = document.createElement('p');
+        directorElement.classList.add('film-card-director');
+        directorElement.textContent = `by ${directorName}`;
+        filmCard.appendChild(directorElement);
 
         const imageWrapper = document.createElement('div');
         imageWrapper.classList.add('news-item-image-wrapper');
@@ -196,18 +215,9 @@ function displayFilms(films) {
         imageWrapper.appendChild(filmStillImg);
         filmCard.appendChild(imageWrapper);
 
-        const lengthLabel = f.Runtime ? getRoundedRuntime(f.Runtime) : '';
-        const displayLength = lengthLabel ? lengthLabel.charAt(0).toUpperCase() + lengthLabel.slice(1) + '-length' : '';
-        const year = f.Date_of_completion?.match(/\b\d{4}\b/)?.[0] || '';
-
-        const yearRuntimeElement = document.createElement('p');
-        yearRuntimeElement.classList.add('news-date');
-        yearRuntimeElement.textContent = `${year}${year && displayLength ? ' | ' : ''}${displayLength}`;
-        filmCard.appendChild(yearRuntimeElement);
-
         const loglineElement = document.createElement('p');
         loglineElement.classList.add('news-item-description');
-        loglineElement.textContent = filmData.Logline || '';
+        loglineElement.textContent = loglineText;
         filmCard.appendChild(loglineElement);
 
         filmLink.appendChild(filmCard);
@@ -217,7 +227,7 @@ function displayFilms(films) {
 
 function resetFilters(clearSearch = true) {
     const selects = document.querySelectorAll('.filter-group select');
-    selects.forEach(sel => sel.value = '');
+    selects.forEach(sel => sel.selectedIndex = 0);
 
     if (clearSearch) {
         const searchInput = document.getElementById('searchInput');

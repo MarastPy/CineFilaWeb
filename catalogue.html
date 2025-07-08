@@ -15,62 +15,54 @@
         <h1>Film Catalogue</h1>
     </div>
       <hr class="header-line" />
-      <div class="search-container">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Search film..."
-          onkeyup="if(event.keyCode === 13) performSearch()"
-        />
-        <button onclick="performSearch()">Search</button>
-      </div>
-    </header>
 
     <div class="catalogue-wrapper">
-      <div class="filters"> <div class="filter-group">
-          <label for="genresFilter">Genre</label>
+      <div class="filters">
+        <div class="filter-group search-filter-group">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Title"
+            onkeyup="if(event.keyCode === 13) performSearch()"
+          />
+          <button onclick="performSearch()">Search</button>
+        </div>
+        <br>
+        <div class="filter-group">
+<!--           <label for="genresFilter">Genres</label> -->
           <select id="genresFilter" onchange="applyFilters()">
-            <option value="">All Genres</option>
+            <option value="" disabled selected>Genre</option>
           </select>
         </div>
         <div class="filter-group">
-          <label for="yearFilter">Year</label>
           <select id="yearFilter" onchange="applyFilters()">
-            <option value="">All Years</option>
+            <option value="">Year</option>
           </select>
         </div>
         <div class="filter-group">
-          <label for="countryFilter">Country</label>
-          <select id="countryFilter" onchange="applyFilters()">
-            <option value="">All Countries</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="ratingFilter">Rating</label>
           <select id="ratingFilter" onchange="applyFilters()">
-            <option value="">All Ratings</option>
+            <option value="">Rating</option>
           </select>
         </div>
         <div class="filter-group">
-          <label for="audienceFilter">Audience</label>
           <select id="audienceFilter" onchange="applyFilters()">
-            <option value="">All Audiences</option>
+            <option value="">Audience</option>
           </select>
         </div>
         <div class="filter-group">
-          <label for="keywordsFilter">Themes</label>
           <select id="keywordsFilter" onchange="applyFilters()">
-            <option value="">All Themes</option>
+            <option value="">Themes</option>
           </select>
         </div>
         <div class="filter-group">
-          <label for="lengthFilter">Length</label>
           <select id="lengthFilter" onchange="applyFilters()">
-              <option value="">All Lengths</option>
+              <option value="">Length</option>
           </select>
+        </div>
+        <br>
         </div>
         <div class="filter-group reset-button-group">
-          <label>&nbsp;</label> <button class="clear-filters-btn" onclick="resetFilters()">Clear Filters</button>
+          <button class="clear-filters-btn" onclick="resetFilters()">Clear Filters</button>
         </div>
       </div>
 

@@ -500,12 +500,12 @@ nav a:hover {
   background-color: #ffc107;
 }
 
-/* Reset Button */
-/* Styles for a button typically used to clear filters. */
+/* Reset Button (General - not used directly for .clear-filters-btn anymore) */
+/* Kept for reference or other buttons if needed */
 .reset-button {
-  padding: 10px 20px;
+  padding: 15px 100px;
   background-color: #ffffff;
-  color: #00000; /* Explicitly white */
+  color: #00000;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -568,7 +568,7 @@ footer {
   color: #ffffff;
 }
 
-/* Search Container */
+/* Search Container (General) */
 /* Layout and styling for the search input and button. */
 .search-container {
   display: flex;
@@ -657,7 +657,7 @@ footer {
 }
 
 .film-info {
-  padding: 15px;
+  padding: 10px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -678,9 +678,9 @@ footer {
 
 .film-genres,
 .film-director {
-  font-size: 0.9em;
+  font-size: 1.1em;
   color: #ffffff;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .film-logline {
@@ -822,11 +822,55 @@ footer {
 /* Styles for the filter dropdowns and their layout. */
 .filters {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
   gap: 15px;
   margin-bottom: 30px;
   justify-content: center;
   padding: 0 20px;
+  align-items: flex-start; /* Align items to the top */
+}
+
+.filter-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%; /* Default to full width for stacking on small screens */
+  max-width: 300px; /* Limit individual filter group width */
+}
+
+/* Search input and button styling */
+.filter-group.search-filter-group {
+    flex-direction: row; /* Keep input and button side-by-side on desktop */
+    width: 100%;
+    max-width: 600px; /* Limit overall width for larger screens */
+    align-items: center;
+}
+
+.filter-group.search-filter-group input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px; /* Smaller padding, similar to filters */
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 0.95em; /* Smaller font size, similar to filters */
+    background-color: #ffffff;
+    color: #000000;
+    max-width: calc(100% - 70px); /* Adjust max-width to leave space for button */
+}
+
+.filter-group.search-filter-group button {
+    padding: 10px 15px; /* Smaller padding, similar to filters */
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em; /* Smaller font size, similar to filters */
+    transition: background-color 0.3s ease;
+}
+
+.filter-group.search-filter-group button:hover {
+    background-color: #ffc107;
 }
 
 .filters select {
@@ -843,12 +887,28 @@ footer {
   background-size: 12px;
   cursor: pointer;
   flex-grow: 1;
-  min-width: 150px;
+  min-width: 150px; /* Minimum width for select boxes */
 }
 
 .filters select option {
   background-color: #ffffff;
   color: #00000;
+}
+
+/* Reset button styling Catalgue Clear Filters */
+.filter-group.reset-button-group button.clear-filters-btn {
+    padding: 15px 90px; /* Significantly bigger padding */
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.00em; /* Significantly bigger font size */
+    transition: background-color 0.3s ease;
+}
+
+.filter-group.reset-button-group button.clear-filters-btn:hover {
+    background-color: #ffc107;
 }
 
 /* ==================================================
@@ -1043,6 +1103,24 @@ footer {
   .film-detail-section li {
     text-align: center;
   }
+
+  /* Filters for Tablet */
+  .filters {
+    flex-direction: row; /* Keep filter groups in a row for tablets */
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-group {
+    width: calc(50% - 15px); /* Two columns with gap for tablets */
+    max-width: unset; /* Remove max-width for tablet flex */
+  }
+
+  .filter-group.search-filter-group,
+  .filter-group.reset-button-group {
+      width: 100%; /* Search and Reset still take full width */
+      max-width: 600px;
+  }
 }
 
 /* Smaller Mobile Devices (max-width: 480px) */
@@ -1086,18 +1164,55 @@ footer {
   }
 
   .filters {
-    flex-direction: column;
+    flex-direction: column; /* Stack filter groups vertically on small screens */
     align-items: center;
+    gap: 15px; /* Adjust gap for vertical stacking */
   }
 
-  .filters select,
-  .search-container input[type="text"],
-  .search-container button {
-    width: 90%;
-    max-width: 300px;
+  .filter-group {
+      width: 100%; /* Ensure filter groups take full width */
+      justify-content: center;
   }
 
-  .film-detail-poster {
-    width: 90%;
+  /* Ensure select boxes are two per row within their filter-group */
+  .filter-group:not(.search-filter-group):not(.reset-button-group) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between; /* Distribute items with space */
+      width: 90%; /* Adjust width to fit two items with space */
   }
+
+  .filters select {
+    width: 48%; /* Adjusted width to allow two items per row with gap */
+    max-width: none; /* Removed max-width to allow flexible width */
+    min-width: unset; /* Allow it to shrink */
+  }
+
+  /* Search input and button on small screens */
+  .filter-group.search-filter-group {
+      flex-direction: column; /* Stack search input and button */
+      width: 90%; /* Take up most of the width */
+      max-width: 300px;
+  }
+
+  .filter-group.search-filter-group input[type="text"] {
+      width: 100%; /* Full width within its group */
+      max-width: unset; /* Remove max-width */
+      margin-bottom: 10px; /* Space between input and button */
+  }
+
+  .filter-group.search-filter-group button {
+      width: 100%; /* Full width within its group */
+  }
+}
+
+/* Desktop layout (3 tiles in a row for filters) */
+@media (min-width: 769px) {
+    .filter-group:not(.search-filter-group):not(.reset-button-group) {
+        width: calc(33.33% - 10px); /* 3 columns with gap */
+    }
+
+    .filters select {
+        width: 100%; /* Ensure select takes full width of its 3-column filter-group */
+    }
 }
