@@ -89,7 +89,7 @@ function populateFilters() {
     populateSelect('audienceFilter', Array.from(audiences).sort());
     populateSelect('keywordsFilter', Array.from(keywords).sort());
 }
-
+// made  for the filters titles //
 function populateSelect(selectId, options) {
     const selectElement = document.getElementById(selectId);
     if (!selectElement) return;

@@ -895,7 +895,11 @@ footer {
   color: #00000;
 }
 
-/* Reset button styling Catalgue Clear Filters */
+/* Reset button styling */
+.filter-group.reset-button-group {
+    max-width: unset; /* Override the default max-width for this specific group to allow full width */
+}
+
 .filter-group.reset-button-group button.clear-filters-btn {
     padding: 15px 90px; /* Significantly bigger padding */
     background-color: #ffffff;
