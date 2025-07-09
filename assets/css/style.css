@@ -18,6 +18,8 @@ body {
   line-height: 1.6;
   transition: padding-top 0.3s ease; /* Smooth transition for padding changes */
   background-color: #2b2b2b; /* Ensures the whole body has the dark background */
+  text-align: justify; /* Justify all text within the body */
+  font-size: 1.05em; /* Enlarges the base font size for the entire document */
 }
 
 /* Body Padding for Fixed Headers */
@@ -184,14 +186,15 @@ nav a:hover {
   margin: 0 auto;
   max-width: none; /* Allows content to span full width if needed */
   background-color: #fff;
-  text-align: Left; /* Center the section content */
+  /* Removed text-align: Left; to allow body's justify to apply */
 }
 
 /* Text Alignment within Sections */
 /* Ensures specific content types within sections are left-aligned. */
-.section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid {
+/* Removed this block to allow body's justify to apply to these elements */
+/* .section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid {
   text-align: left;
-}
+} */
 
 /* Section Color Themes */
 /* Classes for applying different background and text color schemes to sections. */

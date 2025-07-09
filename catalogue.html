@@ -14,7 +14,6 @@
     <div class="catalogue-header">
         <h1>Film Catalogue</h1>
     </div>
-      <p style="color: white;">This is the collection of films for film distribution owned by Alexandra Hroncová:</p>
       <br>
       <hr class="header-line" />
     <div class="catalogue-wrapper">
@@ -42,11 +41,6 @@
           </select>
         </div>
         <div class="filter-group">
-          <select id="ratingFilter" onchange="applyFilters()">
-            <option value="">Rating</option>
-          </select>
-        </div>
-        <div class="filter-group">
           <select id="audienceFilter" onchange="applyFilters()">
             <option value="">Audience</option>
           </select>
@@ -67,6 +61,8 @@
           <button class="clear-filters-btn" onclick="resetFilters()">Clear Filters</button>
         </div>
       </div>
+      <br>
+      <hr class="header-line" />
 
       <section class="film-list">
         <div id="filmContainer" class="film-grid"></div>
