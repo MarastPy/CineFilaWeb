@@ -41,7 +41,7 @@ h1 {
 h2 {
   font-family: 'EB Garamond', serif;
   color: #222;
-  font-size: 2.5em; /* Example size for h2 */
+  font-size: 1.5em; /* Example size for h2 */
 }
 
 h3 {
@@ -622,38 +622,50 @@ footer {
 /* Responsive grid for displaying film item cards. */
 .film-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  justify-content: center;
+  grid-template-columns: repeat(3, 350px); /* Fixed width 350px per column, aligned with news/preview */
+  gap: 30px 25px; /* Vertical gap 30px, horizontal gap 25px, aligned with news/preview */
+  justify-content: center; /* Center the whole grid */
   padding: 0;
   list-style: none;
   color: #ffffff;
+  max-width: 1100px; /* Aligned with news/preview */
+  margin-left: auto; /* Aligned with news/preview */
+  margin-right: auto; /* Aligned with news/preview */
 }
 
 /* Individual Film Item Card */
 /* Styling for each movie card within the catalogue grid. */
 .film-item-card {
   background-color: #2b2b2b;
-  border-radius: 8px;
+  border-radius: 15px; /* Aligned with news/preview */
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1); /* Aligned with news/preview */
+  transition: transform 0.3s, box-shadow 0.3s; /* Aligned with news/preview */
   color: #ffffff;
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 25px; /* Aligned with news/preview */
 }
 
 .film-item-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-8px); /* Aligned with news/preview */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Aligned with news/preview (adjusted slightly for contrast) */
+  z-index: 10; /* Aligned with news/preview */
 }
 
 .film-thumbnail {
   width: 100%;
-  height: 200px;
+  height: 250px; /* Increased height, aligned with news/preview image wrappers */
   object-fit: cover;
   display: block;
+  border-radius: 5px; /* Consistent with news/preview images */
+  margin-bottom: 12px; /* Consistent with news/preview images */
+  cursor: zoom-in; /* Consistent with news/preview images */
+}
+
+.film-item-card:hover .film-thumbnail {
+  transform: scale(1.1); /* Aligned with news/preview image hover effect */
 }
 
 .film-info {
@@ -1056,7 +1068,8 @@ footer {
   /* Grid components */
   .cards,
   .preview-grid,
-  .news-grid {
+  .news-grid,
+  .film-grid { /* Added film-grid here */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     max-width: 100%;
@@ -1163,7 +1176,8 @@ footer {
   /* Adjust grid columns further for very small screens */
   .cards,
   .preview-grid,
-  .news-grid {
+  .news-grid,
+  .film-grid { /* Added film-grid here */
     grid-template-columns: minmax(250px, 1fr);
     gap: 15px;
   }
