@@ -38,6 +38,7 @@ h1 {
   font-family: 'EB Garamond', serif;
   color: #222;
   font-size: 4.5em; /* Example size for h1 */
+  text-align: left; /* Explicitly set h1 to left align */
 }
 
 h2 {
@@ -1044,6 +1045,10 @@ footer {
     padding-top: 70px;
   }
 
+  body { /* Added this specific body rule for media query */
+    text-align: justify;
+  }
+
   /* General Layouts */
   .two-column-layout,
   .two-column-text-layout,
@@ -1060,7 +1065,7 @@ footer {
   .member-right {
     min-width: unset;
     flex: 1 1 100%;
-    text-align: center;
+    text-align: justify; /* Changed from center to justify */
   }
 
   .column-image img {
@@ -1093,7 +1098,7 @@ footer {
   }
 
   .member-right {
-    text-align: center;
+    text-align: justify; /* Changed from center to justify */
   }
 
   /* Catalogue specific */
@@ -1110,12 +1115,12 @@ footer {
 
   .film-detail-title {
     font-size: 2.5em;
-    text-align: center;
+    text-align: justify; /* Changed from center to justify */
   }
 
   .film-detail-original-title {
     font-size: 1.4em;
-    text-align: center;
+    text-align: justify; /* Changed from center to justify */
   }
 
   .film-detail-meta p,
@@ -1123,7 +1128,7 @@ footer {
   .film-detail-synopsis,
   .film-detail-section h3,
   .film-detail-section li {
-    text-align: center;
+    text-align: justify; /* Changed from center to justify */
   }
 
   /* Filters for Tablet */
