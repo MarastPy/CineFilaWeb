@@ -18,14 +18,12 @@ body {
   line-height: 1.6;
   transition: padding-top 0.3s ease; /* Smooth transition for padding changes */
   background-color: #2b2b2b; /* Ensures the whole body has the dark background */
-  text-align: justify; /* Justify all text within the body */
-  font-size: 1.05em; /* Enlarges the base font size for the entire document */
 }
 
 /* Body Padding for Fixed Headers */
 /* Adjusts top padding on the body to prevent content from being hidden by fixed headers, accounting for scrolled state. */
 body:not(.scrolled) {
-  padding-top: 150px; /* Original height of logo-top (90px) + main-header (60px) */
+  padding-top: 300px; /* Original 150px + estimated 230px for the new banner */
 }
 
 body.scrolled {
@@ -38,7 +36,6 @@ h1 {
   font-family: 'EB Garamond', serif;
   color: #222;
   font-size: 4.5em; /* Example size for h1 */
-  text-align: left; /* Explicitly set h1 to left align */
 }
 
 h2 {
@@ -75,6 +72,26 @@ a:hover {
 
 .hidden {
   display: none;
+}
+
+/* New Initial Info Banner */
+#initial-info-banner {
+  background-color: #2b2b2b; /* Matches section-dark-grey */
+  color: #ffffff; /* Matches section-dark-grey */
+  padding: 20px 2cm; /* Reduced from 40px to 20px top/bottom */
+  text-align: center; /* To center content */
+  overflow: hidden;
+  max-height: 500px; /* A safe initial max-height for content, will collapse to 0 */
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+}
+
+body.scrolled #initial-info-banner {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0; /* Ensure no residual margin */
+  margin-bottom: 0; /* Ensure no residual margin */
 }
 
 /* ==================================================
@@ -187,15 +204,14 @@ nav a:hover {
   margin: 0 auto;
   max-width: none; /* Allows content to span full width if needed */
   background-color: #fff;
-  /* Removed text-align: Left; to allow body's justify to apply */
+  text-align: Left; /* Center the section content */
 }
 
 /* Text Alignment within Sections */
 /* Ensures specific content types within sections are left-aligned. */
-/* Removed this block to allow body's justify to apply to these elements */
-/* .section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid {
+.section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid {
   text-align: left;
-} */
+}
 
 /* Section Color Themes */
 /* Classes for applying different background and text color schemes to sections. */
@@ -322,8 +338,7 @@ nav a:hover {
 .news-item-image-wrapper,
 .preview-item-image-wrapper {
   width: 100%;
-  aspect-ratio: 16 / 9; /* Applied 16:9 aspect ratio */
-  /* height: 250px; Removed fixed height */
+  height: 250px; /* Increased height */
   overflow: hidden;
   border-radius: 5px;
   margin-bottom: 12px;
@@ -661,8 +676,7 @@ footer {
 
 .film-thumbnail {
   width: 100%;
-  aspect-ratio: 16 / 9; /* Applied 16:9 aspect ratio */
-  /* height: 250px; Removed fixed height */
+  height: 250px; /* Increased height, aligned with news/preview image wrappers */
   object-fit: cover;
   display: block;
   border-radius: 5px; /* Consistent with news/preview images */
@@ -825,8 +839,7 @@ footer {
 
 .film-still {
   width: 100%;
-  aspect-ratio: 16 / 9; /* Applied 16:9 aspect ratio */
-  /* height: 180px; Removed fixed height */
+  height: 180px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -974,6 +987,10 @@ footer {
     height: 70px;
   }
 
+  #initial-info-banner { /* Adjust padding for mobile screens */
+    padding: 20px 15px;
+  }
+
   .logo-top {
     position: static;
     height: auto;
@@ -1041,15 +1058,12 @@ footer {
   }
 
   body:not(.scrolled) {
-    padding-top: 70px;
+    padding-top: 70px; /* Revert to mobile header height + banner estimated height */
+    /* Needs re-estimation for mobile */
   }
 
   body.scrolled {
-    padding-top: 70px;
-  }
-
-  body { /* Added this specific body rule for media query */
-    text-align: justify;
+    padding-top: 70px; /* Consistent with existing mobile header */
   }
 
   /* General Layouts */
@@ -1068,7 +1082,7 @@ footer {
   .member-right {
     min-width: unset;
     flex: 1 1 100%;
-    text-align: justify; /* Changed from center to justify */
+    text-align: center;
   }
 
   .column-image img {
@@ -1101,7 +1115,7 @@ footer {
   }
 
   .member-right {
-    text-align: justify; /* Changed from center to justify */
+    text-align: center;
   }
 
   /* Catalogue specific */
@@ -1118,12 +1132,12 @@ footer {
 
   .film-detail-title {
     font-size: 2.5em;
-    text-align: justify; /* Changed from center to justify */
+    text-align: center;
   }
 
   .film-detail-original-title {
     font-size: 1.4em;
-    text-align: justify; /* Changed from center to justify */
+    text-align: center;
   }
 
   .film-detail-meta p,
@@ -1131,7 +1145,7 @@ footer {
   .film-detail-synopsis,
   .film-detail-section h3,
   .film-detail-section li {
-    text-align: justify; /* Changed from center to justify */
+    text-align: center;
   }
 
   /* Filters for Tablet */
@@ -1177,7 +1191,7 @@ footer {
 
   body:not(.scrolled),
   body.scrolled {
-    padding-top: 60px;
+    padding-top: 70px;
   }
 
   #main-header {
