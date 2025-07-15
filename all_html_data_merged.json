@@ -1,0 +1,793 @@
+[
+  {
+    "Film": {
+      "Title_Original": "Krajan",
+      "Title_English": "The Compatriot",
+      "Title_Other": "",
+      "Language_Original": "Czech, German",
+      "Language_Subtitles": "English, Czech",
+      "Country_of_production": "Czech Republic",
+      "Date_of_completion": "",
+      "Runtime": "00:24:34",
+      "Number_of_series": "",
+      "Number_of_episodes": "",
+      "Titles_and_runtime_of_episodes": "",
+      "First_Film": "No",
+      "Genre_List": [
+        "psychological",
+        "drama",
+        "historical",
+        "war"
+      ],
+      "Genre_Other": "",
+      "Keywords": "WWII, second world war, Sudeten",
+      "Target_Group": {
+        "Rating": "12+",
+        "Audience": "general audience",
+        "Other": ""
+      }
+    },
+    "Premiere": [
+      {
+        "Date": "",
+        "Country": "",
+        "Name_of_place_of_premiere": ""
+      }
+    ],
+    "Festivals": [
+      {
+        "Date": "September 2025",
+        "Country": "Czech Republic",
+        "Name_of_Festival": "ZLÍN FILM FESTIVAL – International Film Festival for Children and Youth"
+      }
+    ],
+    "Awards": [
+      {
+        "Date": "2024",
+        "Country": "USA",
+        "Festival_Section_of_Competition": "Student Academy Awards - Golden Medal"
+      }
+    ],
+    "Logline": "On New Year's Eve 1944, two Sudeten men—one a widower, the other an SS officer—confront a shared past in a snowbound cottage cut off from the world.",
+    "Synopsis": "On New Year’s Eve 1944, widower Petr Bernat and SS officer Konrad Neumann meet in a remote cottage during a snowstorm. United only by their Sudeten origins, their conversation shifts from trivial topics to painful truths, leading to a fateful night for both men.",
+    "Directors_Note": "",
+    "Crew": {
+      "Director(s)": "Viktor Horák, Pavel Sýkora",
+      "Screenplay_writer(s)": "Petr Pelech, Pavel Sýkora",
+      "Director(s)_of_Photography": "Pavel Sýkora",
+      "Editor(s)": "Lukáš Skalník",
+      "Sound_director(s)": "Yurii Fenynets",
+      "Art_director(s)": "",
+      "Music_composer(s)": "Jakub Zajíc",
+      "Cast": [
+        "Jiří Štěpnička",
+        "Pavel Batěk",
+        "Martin Hlubocký"
+      ]
+    },
+    "Director_Bio": {
+      "Date_of_birth": "",
+      "Bio_Text": ""
+    },
+    "Director_Filmography": [],
+    "Technical_Details": {
+      "Shooting_Format": {
+        "Film": "",
+        "Video": "",
+        "Other": ""
+      },
+      "Camera": "",
+      "Anamorphic_Lens": "No",
+      "Animation_Technique": "",
+      "Animation_Technique_Other": "",
+      "Video_Editing_Software": "",
+      "Digital_Audio_Workstation": "",
+      "Screening_Format": {
+        "Film": "",
+        "Tape": "",
+        "File": "DCP",
+        "Other": ""
+      },
+      "Resolution": "",
+      "Resolution_Other": "",
+      "Speed": {
+        "Scan_Method": "",
+        "FPS": "",
+        "FPS_Other": ""
+      },
+      "Aspect_Ratio": "",
+      "Aspect_Ratio_Other": "",
+      "Sound_Mix": "Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)",
+      "Sound_Mix_Other": "",
+      "Colour": "Colour",
+      "Notes": ""
+    },
+    "Production": {
+      "Producers": {
+        "Name": "FAMO",
+        "Address": "Lipová alej 2068",
+        "Postal code, city": "397 01 Písek",
+        "Country": "Czech Republic",
+        "WEB": "www.filmovka.cz"
+      },
+      "Production_Company": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Co_Producer": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      }
+    },
+    "Source_File": "Compatriot.html",
+    "Aditional_Info": {},
+    "Ranking": "Milan Marčetić",
+    "Review": "Milan Marčetić",
+    "Sales": "Milan Marčetić",
+    "Trailer_url": ""
+  },
+  {
+    "Film": {
+      "Title_Original": "Hatker",
+      "Title_English": "Hatker",
+      "Title_Other": "",
+      "Language_Original": "no dialogue",
+      "Language_Subtitles": "",
+      "Country_of_production": "Argentina",
+      "Date_of_completion": "February 2025",
+      "Runtime": "00:07:33",
+      "Number_of_series": "",
+      "Number_of_episodes": "",
+      "Titles_and_runtime_of_episodes": "",
+      "First_Film": "No",
+      "Genre_List": [
+        "animation",
+        "absurd",
+        "mystery"
+      ],
+      "Genre_Other": "",
+      "Keywords": "hat, power",
+      "Target_Group": {
+        "Rating": "",
+        "Audience": "",
+        "Other": ""
+      }
+    },
+    "Premiere": [
+      {
+        "Date": "1. 4. 2025",
+        "Country": "Argentina",
+        "Name_of_place_of_premiere": "BAFICI - Buenos Aires International Festival of Independent Cinema"
+      }
+    ],
+    "Festivals": [
+      {
+        "Date": "1. 4. 2025",
+        "Country": "Argentina",
+        "Name_of_Festival": "BAFICI - Buenos Aires International Festival of Independent Cinema"
+      },
+      {
+        "Date": "June 2025",
+        "Country": "France",
+        "Name_of_Festival": "Annecy Festival"
+      }
+    ],
+    "Awards": [
+      {
+        "Date": "",
+        "Country": "",
+        "Festival_Section_of_Competition": ""
+      }
+    ],
+    "Logline": "In a world ruled by a mysterious telephone, power shifts from a distant force to the people themselves—revealing how the oppressed become oppressors.",
+    "Synopsis": "On a late night in a run-down office, a group of workers find themselves stuck to the ceiling by their hats. Blindly carrying out their tasks, they are oblivious to the absurdity of their situation. When an old telephone rings, they begin to disappear one by one. A worker named Hatker dares to confront the reality, ultimately turning the Kafkaesque",
+    "Directors_Note": "Hatker explores the theme of power, symbolized by a telephone dictating behavior from afar. As the story unfolds, power proves decentralized—internalized and reproduced by individuals themselves. Inspired by my own experience in a corporate office, the film uses the metaphor of “hats” to represent the roles we adopt until the protagonist chooses to break free by taking his off.",
+    "Crew": {
+      "Director(s)": "Alejandro Ariel Martin",
+      "Screenplay_writer(s)": "Alejandro Ariel Martin, Florencia Pilotti",
+      "Director(s)_of_Photography": "Alejandro Ariel Martin",
+      "Editor(s)": "Alejandro Ariel Martin",
+      "Sound_director(s)": "Santiago Zecca",
+      "Art_director(s)": "Carolina Cairo, Alejandro Ariel Martin",
+      "Music_composer(s)": "Hermes Scipioni",
+      "Cast": []
+    },
+    "Director_Bio": {
+      "Date_of_birth": "",
+      "Bio_Text": "Alejandro Ariel Martin is an Argentinian Film Director. He has a degree in Social Communication from the UNR and a postgraduate degree in Creative Communication from the Autonomous University of Barcelona.\nHe is the director and scriptwriter of the short film “Epirenov” (2020). Epirenov has participated in 93 international festivals and has obtained 22 awards."
+    },
+    "Director_Filmography": [
+      "Epirenov (2020)",
+      "Hatker (2025)"
+    ],
+    "Technical_Details": {
+      "Shooting_Format": {
+        "Film": "",
+        "Video": "DSLR/DSLM",
+        "Other": ""
+      },
+      "Camera": "",
+      "Anamorphic_Lens": "No",
+      "Animation_Technique": "stop-motion",
+      "Animation_Technique_Other": "",
+      "Video_Editing_Software": "",
+      "Digital_Audio_Workstation": "",
+      "Screening_Format": {
+        "Film": "",
+        "Tape": "",
+        "File": "DCP",
+        "Other": ""
+      },
+      "Resolution": "4k",
+      "Resolution_Other": "",
+      "Speed": {
+        "Scan_Method": "",
+        "FPS": "24",
+        "FPS_Other": ""
+      },
+      "Aspect_Ratio": "1.85 (\"flat format\")",
+      "Aspect_Ratio_Other": "",
+      "Sound_Mix": "Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)",
+      "Sound_Mix_Other": "",
+      "Colour": "Colour",
+      "Notes": ""
+    },
+    "Production": {
+      "Producers": {
+        "Name": "Alejandro Ariel Martin, Florencia Pilotti",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Production_Company": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Co_Producer": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      }
+    },
+    "Source_File": "Hatker.html"
+  },
+  {
+    "Film": {
+      "Title_Original": "Ježek",
+      "Title_English": "The Hedgehog",
+      "Title_Other": "",
+      "Language_Original": "no dialogue",
+      "Language_Subtitles": "",
+      "Country_of_production": "Czech Republic",
+      "Date_of_completion": "February 2023",
+      "Runtime": "00:01:30",
+      "Number_of_series": "",
+      "Number_of_episodes": "",
+      "Titles_and_runtime_of_episodes": "",
+      "First_Film": "No",
+      "Genre_List": [
+        "animation",
+        "children",
+        "comedy"
+      ],
+      "Genre_Other": "",
+      "Keywords": "hedgehog, swimming pool, child's imagination",
+      "Target_Group": {
+        "Rating": "3+",
+        "Audience": "family",
+        "Other": ""
+      }
+    },
+    "Premiere": [
+      {
+        "Date": "",
+        "Country": "",
+        "Name_of_place_of_premiere": ""
+      }
+    ],
+    "Festivals": [
+      {
+        "Date": "",
+        "Country": "Sweden",
+        "Name_of_Festival": "Uppsala International Short Film Festival"
+      },
+      {
+        "Date": "",
+        "Country": "Belgium",
+        "Name_of_Festival": "Anima - the Brussels Animation Film Festival"
+      },
+      {
+        "Date": "",
+        "Country": "Sweden",
+        "Name_of_Festival": "BUFF Malmö Film Festival"
+      }
+    ],
+    "Awards": [
+      {
+        "Date": "",
+        "Country": "",
+        "Festival_Section_of_Competition": ""
+      }
+    ],
+    "Logline": "Can hedgehog swim?",
+    "Synopsis": "Slightly moralising pun, filmed with pleasant exaggeration and a sense of animation shorthand. A child's imagination knows no bounds, and anyone who gets too carried away, whether drawing or just looking at a picture, can end up getting really wet. A hedgehog like that doesn't seem to be a very good swimmer, but he's all the more powerful.",
+    "Directors_Note": "",
+    "Crew": {
+      "Director(s)": "Daniela Hýbnerová",
+      "Screenplay_writer(s)": "Daniela Hýbnerová",
+      "Director(s)_of_Photography": "",
+      "Editor(s)": "",
+      "Sound_director(s)": "",
+      "Art_director(s)": "",
+      "Music_composer(s)": "",
+      "Cast": []
+    },
+    "Director_Bio": {
+      "Date_of_birth": "",
+      "Bio_Text": "Daniela Hýbnerová graduated from the Animation Department at FAMU in Prague. Her short animated film The One About the Shirt won 2nd place in the international round of the Nespresso Talents 2020 competition. Daniela is a fan of Formula 1 racing, film music and the world of Harry Potter."
+    },
+    "Director_Filmography": [
+      "Misophonia Orchestra (2022)",
+      "Kuku [Cuckoo](2020)",
+      "Medvědění [Bearing] (2018)",
+      "Závodní horečka [Racing Fever] (2017)",
+      "Nezbeda (2015)"
+    ],
+    "Technical_Details": {
+      "Shooting_Format": {
+        "Film": "",
+        "Video": "",
+        "Other": ""
+      },
+      "Camera": "",
+      "Anamorphic_Lens": "No",
+      "Animation_Technique": "2D computer",
+      "Animation_Technique_Other": "",
+      "Video_Editing_Software": "",
+      "Digital_Audio_Workstation": "",
+      "Screening_Format": {
+        "Film": "",
+        "Tape": "",
+        "File": "",
+        "Other": ""
+      },
+      "Resolution": "",
+      "Resolution_Other": "",
+      "Speed": {
+        "Scan_Method": "",
+        "FPS": "",
+        "FPS_Other": ""
+      },
+      "Aspect_Ratio": "",
+      "Aspect_Ratio_Other": "",
+      "Sound_Mix": "",
+      "Sound_Mix_Other": "",
+      "Colour": "Colour",
+      "Notes": ""
+    },
+    "Production": {
+      "Producers": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Production_Company": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Co_Producer": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      }
+    },
+    "Source_File": "Hedgehog.html"
+  },
+  {
+    "Film": {
+      "Title_Original": "Domov",
+      "Title_English": "Home",
+      "Title_Other": "",
+      "Language_Original": "Belarussian",
+      "Language_Subtitles": "English, Czech",
+      "Country_of_production": "Czech Republic",
+      "Date_of_completion": "Februrary 2025",
+      "Runtime": "00:05:45",
+      "Number_of_series": "",
+      "Number_of_episodes": "",
+      "Titles_and_runtime_of_episodes": "",
+      "First_Film": "No",
+      "Genre_List": [
+        "animation",
+        "documentary",
+        "experimental"
+      ],
+      "Genre_Other": "",
+      "Keywords": "home, home sick, lyrical",
+      "Target_Group": {
+        "Rating": "15+",
+        "Audience": "general audience",
+        "Other": ""
+      }
+    },
+    "Premiere": [
+      {
+        "Date": "",
+        "Country": "",
+        "Name_of_place_of_premiere": ""
+      }
+    ],
+    "Festivals": [
+      {
+        "Date": "May 2025",
+        "Country": "Czech Republic",
+        "Name_of_Festival": "Anifilm"
+      },
+      {
+        "Date": "May 2025",
+        "Country": "Germany",
+        "Name_of_Festival": "Neisse Film Festival"
+      },
+      {
+        "Date": "June 2025",
+        "Country": "Czech Republic",
+        "Name_of_Festival": "ZLÍN FILM FESTIVAL – International Film Festival for Children and Youth"
+      }
+    ],
+    "Awards": [
+      {
+        "Date": "",
+        "Country": "",
+        "Festival_Section_of_Competition": ""
+      }
+    ],
+    "Logline": "An auteur short animated documentary exploring the inner feelings of home. What does home mean to each of us?",
+    "Synopsis": "An auteur film on the theme of inner feelings of home. What is home for each of us? Where is this place located? What is it connected to? Is home a specific place, or is home within us? A journey around the world in search of that \"home\" - the place where you feel you belong. Where you are safe and among your own.",
+    "Directors_Note": "I really liked studying and living in the Czech Republic, but throughout my studies I kept thinking about my home, about my family that I left behind in Belarus. Being a foreigner was not as easy as I thought. I had to go through many hardships, but the hardest was homesickness and family. This feeling tormented me, the thoughts didn't want to leave my head and I decided to release these emotions in my work.",
+    "Crew": {
+      "Director(s)": "Anastasiya Skarko",
+      "Screenplay_writer(s)": "Anastasiya Skarko",
+      "Director(s)_of_Photography": "",
+      "Editor(s)": "",
+      "Sound_director(s)": "Miroslav Chaloupka",
+      "Art_director(s)": "",
+      "Music_composer(s)": "Yaraslau Dubashynski",
+      "Cast": []
+    },
+    "Director_Bio": {
+      "Date_of_birth": "05.09.1998",
+      "Bio_Text": "Anastasiya was born in Minsk, Belarus. Since 2018, she has worked as an art editor at the magazine of satire and humor \"Vozhik\". In 2020-2024 she studied animation at the Ladislav Sutnar Faculty of Design and Art at the University of West Bohemia in Pilsen."
+    },
+    "Director_Filmography": [
+      "Jak vám mohu pomoci? [How can I help you?] (2022) - one episode from the eight-part Czech television animated series"
+    ],
+    "Technical_Details": {
+      "Shooting_Format": {
+        "Film": "",
+        "Video": "",
+        "Other": ""
+      },
+      "Camera": "",
+      "Anamorphic_Lens": "No",
+      "Animation_Technique": "",
+      "Animation_Technique_Other": "",
+      "Video_Editing_Software": "",
+      "Digital_Audio_Workstation": "",
+      "Screening_Format": {
+        "Film": "",
+        "Tape": "",
+        "File": "",
+        "Other": ""
+      },
+      "Resolution": "",
+      "Resolution_Other": "",
+      "Speed": {
+        "Scan_Method": "",
+        "FPS": "",
+        "FPS_Other": ""
+      },
+      "Aspect_Ratio": "1.78 (16:9)",
+      "Aspect_Ratio_Other": "",
+      "Sound_Mix": "Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)",
+      "Sound_Mix_Other": "",
+      "Colour": "Black & White",
+      "Notes": ""
+    },
+    "Production": {
+      "Producers": {
+        "Name": "University of West Bohemia",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Production_Company": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Co_Producer": {
+        "Name": "MAUR FILM",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      }
+    },
+    "Source_File": "Home.html"
+  },
+  {
+    "Film": {
+      "Title_Original": "Návrat",
+      "Title_English": "Return",
+      "Title_Other": "",
+      "Language_Original": "Czech",
+      "Language_Subtitles": "English",
+      "Country_of_production": "Czech Republic",
+      "Date_of_completion": "",
+      "Runtime": "00:24:48",
+      "Number_of_series": "",
+      "Number_of_episodes": "",
+      "Titles_and_runtime_of_episodes": "",
+      "First_Film": "No",
+      "Genre_List": [
+        "drama",
+        "psychological"
+      ],
+      "Genre_Other": "",
+      "Keywords": "local politician, bad day, woman in distress",
+      "Target_Group": {
+        "Rating": "15+",
+        "Audience": "adults",
+        "Other": ""
+      }
+    },
+    "Premiere": [
+      {
+        "Date": "",
+        "Country": "",
+        "Name_of_place_of_premiere": ""
+      }
+    ],
+    "Festivals": [
+      {
+        "Date": "",
+        "Country": "",
+        "Name_of_Festival": ""
+      }
+    ],
+    "Awards": [
+      {
+        "Date": "",
+        "Country": "",
+        "Festival_Section_of_Competition": ""
+      }
+    ],
+    "Logline": "",
+    "Synopsis": "",
+    "Directors_Note": "",
+    "Crew": {
+      "Director(s)": "Lukáš Valíšek",
+      "Screenplay_writer(s)": "Lukáš Valíšek",
+      "Director(s)_of_Photography": "Marcela Mencelová, Vojtěch Adalbert Dvořák",
+      "Editor(s)": "Adéla Kelbichová",
+      "Sound_director(s)": "Jakub Jedlička",
+      "Art_director(s)": "",
+      "Music_composer(s)": "Václav Chalupský",
+      "Cast": [
+        "Alena Štréblová: Tricia",
+        "Alžběta Nováková: Laura",
+        "Jindřiška Dudziaková: Veronika",
+        "Jakub Jelínek: Marek",
+        "Mikuláš Čížek: Andrej"
+      ]
+    },
+    "Director_Bio": {
+      "Date_of_birth": "",
+      "Bio_Text": "Lukáš Valíšek studies at the Department of Screenwriting and Dramaturgy at FAMU. He is involved in both scriptwriting, dramaturgy and directing as well. He has collaborated on several student films in the past."
+    },
+    "Director_Filmography": [],
+    "Technical_Details": {
+      "Shooting_Format": {
+        "Film": "",
+        "Video": "",
+        "Other": ""
+      },
+      "Camera": "",
+      "Anamorphic_Lens": "No",
+      "Animation_Technique": "",
+      "Animation_Technique_Other": "",
+      "Video_Editing_Software": "",
+      "Digital_Audio_Workstation": "",
+      "Screening_Format": {
+        "Film": "",
+        "Tape": "",
+        "File": "",
+        "Other": ""
+      },
+      "Resolution": "",
+      "Resolution_Other": "",
+      "Speed": {
+        "Scan_Method": "",
+        "FPS": "",
+        "FPS_Other": ""
+      },
+      "Aspect_Ratio": "",
+      "Aspect_Ratio_Other": "",
+      "Sound_Mix": "",
+      "Sound_Mix_Other": "",
+      "Colour": "Colour",
+      "Notes": ""
+    },
+    "Production": {
+      "Producers": {
+        "Name": "Barbora Podškubková",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Production_Company": {
+        "Name": "FAMU",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Co_Producer": {
+        "Name": "Česká televize",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      }
+    },
+    "Source_File": "Return.html"
+  },
+  {
+    "Film": {
+      "Title_Original": "SnowBlind",
+      "Title_English": "SnowBlind",
+      "Title_Other": "",
+      "Language_Original": "unintelligible language",
+      "Language_Subtitles": "",
+      "Country_of_production": "Czech Republic",
+      "Date_of_completion": "",
+      "Runtime": "00:08:53",
+      "Number_of_series": "",
+      "Number_of_episodes": "",
+      "Titles_and_runtime_of_episodes": "",
+      "First_Film": "No",
+      "Genre_List": [
+        "experimental"
+      ],
+      "Genre_Other": "",
+      "Keywords": "",
+      "Target_Group": {
+        "Rating": "",
+        "Audience": "",
+        "Other": ""
+      }
+    },
+    "Premiere": [
+      {
+        "Date": "",
+        "Country": "",
+        "Name_of_place_of_premiere": ""
+      }
+    ],
+    "Festivals": [
+      {
+        "Date": "",
+        "Country": "",
+        "Name_of_Festival": ""
+      }
+    ],
+    "Awards": [
+      {
+        "Date": "",
+        "Country": "",
+        "Festival_Section_of_Competition": ""
+      }
+    ],
+    "Logline": "",
+    "Synopsis": "",
+    "Directors_Note": "",
+    "Crew": {
+      "Director(s)": "Tomáš Rampula",
+      "Screenplay_writer(s)": "Tomáš Rampula",
+      "Director(s)_of_Photography": "",
+      "Editor(s)": "Tomáš Rampula",
+      "Sound_director(s)": "Alex Strapkova, Tomáš Rampula",
+      "Art_director(s)": "",
+      "Music_composer(s)": "",
+      "Cast": []
+    },
+    "Director_Bio": {
+      "Date_of_birth": "",
+      "Bio_Text": ""
+    },
+    "Director_Filmography": [
+      "Time Metallurgist (2024)",
+      "Místo (2020)",
+      "Vyčerpané Slunce [Exhausted sun] (2019)"
+    ],
+    "Technical_Details": {
+      "Shooting_Format": {
+        "Film": "",
+        "Video": "",
+        "Other": ""
+      },
+      "Camera": "",
+      "Anamorphic_Lens": "No",
+      "Animation_Technique": "",
+      "Animation_Technique_Other": "",
+      "Video_Editing_Software": "",
+      "Digital_Audio_Workstation": "",
+      "Screening_Format": {
+        "Film": "",
+        "Tape": "",
+        "File": "",
+        "Other": ""
+      },
+      "Resolution": "",
+      "Resolution_Other": "",
+      "Speed": {
+        "Scan_Method": "",
+        "FPS": "",
+        "FPS_Other": ""
+      },
+      "Aspect_Ratio": "",
+      "Aspect_Ratio_Other": "",
+      "Sound_Mix": "",
+      "Sound_Mix_Other": "",
+      "Colour": "Black & White",
+      "Notes": ""
+    },
+    "Production": {
+      "Producers": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Production_Company": {
+        "Name": "Ochi&Ushi",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Co_Producer": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      }
+    },
+    "Source_File": "SnowBlind.html"
+  }
+]
