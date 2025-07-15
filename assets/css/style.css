@@ -136,7 +136,7 @@ body.scrolled .logo-top {
 }
 
 body.scrolled .logo-top img {
-  height: 40px; /* Smaller logo when scrolled */
+  height: 70px; /* Smaller logo when scrolled */
   margin: 0; /* Remove auto margins to align the image to the left */
 }
 
