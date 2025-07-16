@@ -11,31 +11,30 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       line-height: 1.6;
-      /* New styles for centering the content */
-      max-width: 1200px; /* Set a maximum width for your content */
-      margin: 0 auto; /* This centers the body horizontally */
-      padding-top: 20px; /* Add padding to the top if needed */
-      padding-bottom: 50px; /* Add padding to the bottom if needed */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 50px;
     }
-    h1 { /* Main Film Title */
-      font-size: 2.5em; /* Larger than default */
-      margin-bottom: 0.1em; /* Reduced bottom margin */
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.1em;
     }
-    h2 { /* If you introduce H2 later */
+    h2 {
       font-size: 1.8em;
       margin-bottom: 0.5em;
     }
-    h3 { /* Section Titles like "Logline", "Festivals", "Crew" */
-      font-size: 1.4em; /* Slightly larger than standard paragraph text */
-      margin-top: 25px; /* More space above sections */
-      margin-bottom: 5px; /* Less space below title before content */
+    h3 {
+      font-size: 1.4em;
+      margin-top: 25px;
+      margin-bottom: 5px;
     }
-        .logo-container { /* New style for logo positioning */
+    .logo-container {
       text-align: center;
-      margin-bottom: 30px; /* Space below the logo */
+      margin-bottom: 30px;
     }
     .logo-container img {
-      max-width: 200px; /* Adjust logo size as needed */
+      max-width: 200px;
       height: auto;
     }
     .subtitle {
@@ -55,6 +54,7 @@
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .poster-column {
       flex: 0 0 250px;
@@ -82,19 +82,90 @@
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .half {
       flex: 1;
       min-width: 300px;
     }
-    /* New style for the aligned section */
     .aligned-section {
-      margin-left: calc(250px + 40px); /* Poster column width + gap */
-      margin-right: 20px; /* Adjust as needed for overall page padding */
+      margin-left: calc(250px + 40px);
+      margin-right: 20px;
       margin-bottom: 20px;
     }
     a {
       color: white;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      h3 {
+        font-size: 1.2em;
+      }
+      .logo-container img {
+        max-width: 150px;
+      }
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .poster-column {
+        flex: none;
+        width: 80%;
+        max-width: 250px;
+      }
+      .info-column {
+        min-width: unset;
+        width: 100%;
+      }
+      .flex-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .half {
+        min-width: unset;
+        width: 100%;
+      }
+      .aligned-section {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.3em;
+      }
+      h3 {
+        font-size: 1.1em;
+      }
+      .logo-container img {
+        max-width: 120px;
+      }
+      .poster-column {
+        width: 90%;
+      }
+      .aligned-section {
+        padding: 0 10px;
+      }
     }
   </style>
 </head>
@@ -107,7 +178,7 @@
   <div class="subtitle">Original Title: Krajan</div>
   <div class="horizontal-line"></div>
 
-  <div class="info-line">psychological, drama, historical, war |  | 24 minutes | Czech, German with English, Czech subtitles | Czech Republic</div>
+  <div class="info-line">psychological, drama, historical, war | 2023 | 24 minutes | Czech, German with English, Czech subtitles | Czech Republic</div>
 
   <div class="top-section">
     <div class="poster-column">
@@ -149,7 +220,7 @@
       </div>
     </div>
     <div class="label">Technical Specs</div>
-    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': '', 'Other': ''}</li><li>Anamorphic Lens: No</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': ''}</li><li>Speed: {'Scan_Method': '', 'FPS': '', 'FPS_Other': ''}</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Colour: Colour</li></ul>
+    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': '', 'Other': ''}</li><li>Anamorphic Lens: No</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': ''}</li><li>Resolution: 4k</li><li>Speed: {'Scan_Method': '', 'FPS': '25', 'FPS_Other': ''}</li><li>Aspect Ratio: 1.78 (16:9)</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Colour: Colour</li></ul>
   </div>
 </body>
 </html>

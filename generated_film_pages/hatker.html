@@ -11,31 +11,30 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       line-height: 1.6;
-      /* New styles for centering the content */
-      max-width: 1200px; /* Set a maximum width for your content */
-      margin: 0 auto; /* This centers the body horizontally */
-      padding-top: 20px; /* Add padding to the top if needed */
-      padding-bottom: 50px; /* Add padding to the bottom if needed */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 50px;
     }
-    h1 { /* Main Film Title */
-      font-size: 2.5em; /* Larger than default */
-      margin-bottom: 0.1em; /* Reduced bottom margin */
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.1em;
     }
-    h2 { /* If you introduce H2 later */
+    h2 {
       font-size: 1.8em;
       margin-bottom: 0.5em;
     }
-    h3 { /* Section Titles like "Logline", "Festivals", "Crew" */
-      font-size: 1.4em; /* Slightly larger than standard paragraph text */
-      margin-top: 25px; /* More space above sections */
-      margin-bottom: 5px; /* Less space below title before content */
+    h3 {
+      font-size: 1.4em;
+      margin-top: 25px;
+      margin-bottom: 5px;
     }
-        .logo-container { /* New style for logo positioning */
+    .logo-container {
       text-align: center;
-      margin-bottom: 30px; /* Space below the logo */
+      margin-bottom: 30px;
     }
     .logo-container img {
-      max-width: 200px; /* Adjust logo size as needed */
+      max-width: 200px;
       height: auto;
     }
     .subtitle {
@@ -55,6 +54,7 @@
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .poster-column {
       flex: 0 0 250px;
@@ -82,19 +82,90 @@
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .half {
       flex: 1;
       min-width: 300px;
     }
-    /* New style for the aligned section */
     .aligned-section {
-      margin-left: calc(250px + 40px); /* Poster column width + gap */
-      margin-right: 20px; /* Adjust as needed for overall page padding */
+      margin-left: calc(250px + 40px);
+      margin-right: 20px;
       margin-bottom: 20px;
     }
     a {
       color: white;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      h3 {
+        font-size: 1.2em;
+      }
+      .logo-container img {
+        max-width: 150px;
+      }
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .poster-column {
+        flex: none;
+        width: 80%;
+        max-width: 250px;
+      }
+      .info-column {
+        min-width: unset;
+        width: 100%;
+      }
+      .flex-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .half {
+        min-width: unset;
+        width: 100%;
+      }
+      .aligned-section {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.3em;
+      }
+      h3 {
+        font-size: 1.1em;
+      }
+      .logo-container img {
+        max-width: 120px;
+      }
+      .poster-column {
+        width: 90%;
+      }
+      .aligned-section {
+        padding: 0 10px;
+      }
     }
   </style>
 </head>
@@ -107,7 +178,7 @@
   <div class="subtitle">Original Title: Hatker</div>
   <div class="horizontal-line"></div>
 
-  <div class="info-line">animation, absurd, mystery | February 2025 | 7 minutes | no dialogue with  subtitles | Argentina</div>
+  <div class="info-line">animation, absurd | 2025 | 7 minutes | Without dialogue with None subtitles | Argentina</div>
 
   <div class="top-section">
     <div class="poster-column">
@@ -122,7 +193,7 @@
 
     <div class="info-column">
       <h3>Logline</h3><p>In a world ruled by a mysterious telephone, power shifts from a distant force to the people themselves—revealing how the oppressed become oppressors.</p>
-      <h3>Synopsis</h3><p>On a late night in a run-down office, a group of workers find themselves stuck to the ceiling by their hats. Blindly carrying out their tasks, they are oblivious to the absurdity of their situation. When an old telephone rings, they begin to disappear one by one. A worker named Hatker dares to confront the reality, ultimately turning the Kafkaesque</p>
+      <h3>Synopsis</h3><p>Late at night in a shabby office, workers are stuck to the ceiling by their hats, blindly doing their jobs. Oblivious to the absurdity, they vanish one by one when an old phone rings. Only Hatker dares to face reality — turning their Kafkaesque world upside down.</p>
       <h3>Director's Note</h3><p>Hatker explores the theme of power, symbolized by a telephone dictating behavior from afar. As the story unfolds, power proves decentralized—internalized and reproduced by individuals themselves. Inspired by my own experience in a corporate office, the film uses the metaphor of “hats” to represent the roles we adopt until the protagonist chooses to break free by taking his off.</p>
       
       
@@ -133,7 +204,7 @@
     <div class="flex-row">
       <div class="half">
         <div class="label">Festivals</div>
-        <h3></h3><ul><li>BAFICI - Buenos Aires International Festival of Independent Cinema, Argentina (1. 4. 2025)</li><li>Annecy Festival, France (June 2025)</li></ul>
+        <h3></h3><ul><li>,  ()</li></ul>
         <div class="label">Awards</div>
         <h3></h3><ul><li> ()</li></ul>
         <div class="label">Sales Status</div>
@@ -143,13 +214,13 @@
       </div>
       <div class="half">
         <div class="label">Crew</div>
-        <h3></h3><ul><li>Director: Alejandro Ariel Martin</li><li>Screenplay writer: Alejandro Ariel Martin, Florencia Pilotti</li><li>Director of Photography: Alejandro Ariel Martin</li><li>Editor: Alejandro Ariel Martin</li><li>Sound director: Santiago Zecca</li><li>Art director: Carolina Cairo, Alejandro Ariel Martin</li><li>Music composer: Hermes Scipioni</li></ul>
+        <h3></h3><ul><li>Director: Alejandro Ariel Martin</li><li>Screenplay writer: Alejandro Ariel Martin, Florencia Pilotti</li><li>Director of Photography: Alejandro Ariel Martin</li><li>Editor: Alejandro Ariel Martin</li><li>Sound director: Santiago Zecca</li><li>Music composer: Hermes Scipioni</li></ul>
         <div class="label">Cast</div>
         
       </div>
     </div>
     <div class="label">Technical Specs</div>
-    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': 'DSLR/DSLM', 'Other': ''}</li><li>Anamorphic Lens: No</li><li>Animation Technique: stop-motion</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': ''}</li><li>Resolution: 4k</li><li>Speed: {'Scan_Method': '', 'FPS': '24', 'FPS_Other': ''}</li><li>Aspect Ratio: 1.85 ("flat format")</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Colour: Colour</li></ul>
+    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': 'DSLR/DSLM', 'Other': ''}</li><li>Anamorphic Lens: No</li><li>Animation Technique: puppet</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': ''}</li><li>Resolution: 4k</li><li>Speed: {'Scan_Method': '', 'FPS': '24', 'FPS_Other': ''}</li><li>Aspect Ratio: 1.85 ("flat format")</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Colour: Colour</li></ul>
   </div>
 </body>
 </html>

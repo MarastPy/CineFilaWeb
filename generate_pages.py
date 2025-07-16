@@ -23,31 +23,30 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       font-family: Arial, sans-serif;
       padding: 20px;
       line-height: 1.6;
-      /* New styles for centering the content */
-      max-width: 1200px; /* Set a maximum width for your content */
-      margin: 0 auto; /* This centers the body horizontally */
-      padding-top: 20px; /* Add padding to the top if needed */
-      padding-bottom: 50px; /* Add padding to the bottom if needed */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 50px;
     }}
-    h1 {{ /* Main Film Title */
-      font-size: 2.5em; /* Larger than default */
-      margin-bottom: 0.1em; /* Reduced bottom margin */
+    h1 {{
+      font-size: 2.5em;
+      margin-bottom: 0.1em;
     }}
-    h2 {{ /* If you introduce H2 later */
+    h2 {{
       font-size: 1.8em;
       margin-bottom: 0.5em;
     }}
-    h3 {{ /* Section Titles like "Logline", "Festivals", "Crew" */
-      font-size: 1.4em; /* Slightly larger than standard paragraph text */
-      margin-top: 25px; /* More space above sections */
-      margin-bottom: 5px; /* Less space below title before content */
+    h3 {{
+      font-size: 1.4em;
+      margin-top: 25px;
+      margin-bottom: 5px;
     }}
-        .logo-container {{ /* New style for logo positioning */
+    .logo-container {{
       text-align: center;
-      margin-bottom: 30px; /* Space below the logo */
+      margin-bottom: 30px;
     }}
     .logo-container img {{
-      max-width: 200px; /* Adjust logo size as needed */
+      max-width: 200px;
       height: auto;
     }}
     .subtitle {{
@@ -67,6 +66,7 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
+      justify-content: center;
     }}
     .poster-column {{
       flex: 0 0 250px;
@@ -94,19 +94,90 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
+      justify-content: center;
     }}
     .half {{
       flex: 1;
       min-width: 300px;
     }}
-    /* New style for the aligned section */
     .aligned-section {{
-      margin-left: calc(250px + 40px); /* Poster column width + gap */
-      margin-right: 20px; /* Adjust as needed for overall page padding */
+      margin-left: calc(250px + 40px);
+      margin-right: 20px;
       margin-bottom: 20px;
     }}
     a {{
       color: white;
+    }}
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {{
+      body {{
+        padding: 15px;
+      }}
+      h1 {{
+        font-size: 2em;
+      }}
+      h2 {{
+        font-size: 1.5em;
+      }}
+      h3 {{
+        font-size: 1.2em;
+      }}
+      .logo-container img {{
+        max-width: 150px;
+      }}
+      .top-section {{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }}
+      .poster-column {{
+        flex: none;
+        width: 80%;
+        max-width: 250px;
+      }}
+      .info-column {{
+        min-width: unset;
+        width: 100%;
+      }}
+      .flex-row {{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }}
+      .half {{
+        min-width: unset;
+        width: 100%;
+      }}
+      .aligned-section {{
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 15px;
+      }}
+    }}
+
+    @media (max-width: 480px) {{
+      body {{
+        padding: 10px;
+      }}
+      h1 {{
+        font-size: 1.8em;
+      }}
+      h2 {{
+        font-size: 1.3em;
+      }}
+      h3 {{
+        font-size: 1.1em;
+      }}
+      .logo-container img {{
+        max-width: 120px;
+      }}
+      .poster-column {{
+        width: 90%;
+      }}
+      .aligned-section {{
+        padding: 0 10px;
+      }}
     }}
   </style>
 </head>
@@ -218,9 +289,9 @@ for film in films:
     html = FILM_TEMPLATE.format(
         title_english=title_en,
         title_original=title_orig,
-        genre=", ".join([g for g in fdata.get("Genre_List", []) if g] + ([fdata.get("Genre_Other", "")] if fdata.get("Genre_Other") else [])), # Refined genre
-        year=fdata.get("Date_of_completion", "").split(".")[-1] if fdata.get("Date_of_completion") else "", # Handle empty year
-        duration=int(fdata.get("Runtime", "0:0:0").split(":")[0]) * 60 + int(fdata.get("Runtime", "0:0:0").split(":")[1]) if fdata.get("Runtime", "0:0:0") != "0:0:0" else "", # Handle empty duration
+        genre=", ".join([g for g in fdata.get("Genre_List", []) if g] + ([fdata.get("Genre_Other", "")] if fdata.get("Genre_Other") else [])),
+        year=fdata.get("Date_of_completion", "").split(".")[-1] if fdata.get("Date_of_completion") else "",
+        duration=int(fdata.get("Runtime", "0:0:0").split(":")[0]) * 60 + int(fdata.get("Runtime", "0:0:0").split(":")[1]) if fdata.get("Runtime", "0:0:0") != "0:0:0" else "",
         language=fdata.get("Language_Original", ""),
         subtitles=fdata.get("Language_Subtitles", ""),
         country=fdata.get("Country_of_production", ""),
@@ -229,11 +300,11 @@ for film in films:
         logline_html=optional_block("Logline", film.get("Logline")),
         synopsis_html=optional_block("Synopsis", film.get("Synopsis")),
         note_html=optional_block("Director's Note", film.get("Directors_Note")),
-        target_html=optional_block("Target Group", target_group_content), # Use the new content
-        topics_html=optional_block("Story Topics & Notes", film.get("Keywords")), # Assuming Keywords is a string or None
+        target_html=optional_block("Target Group", target_group_content),
+        topics_html=optional_block("Story Topics & Notes", film.get("Keywords")),
         festivals_html=list_block("", [f"{fest['Name_of_Festival']}, {fest['Country']} ({fest['Date']})" for fest in film.get("Festivals", [])]),
         awards_html=list_block("", [f"{a['Festival_Section_of_Competition']} ({a['Date']})" for a in film.get("Awards", [])]),
-        crew_html=list_block("", [f"{k.replace('_', ' ').replace('(s)', '')}: {v}" for k, v in film.get("Crew", {}).items() if not isinstance(v, list) and v]), # Added 'and v' to filter empty crew values
+        crew_html=list_block("", [f"{k.replace('_', ' ').replace('(s)', '')}: {v}" for k, v in film.get("Crew", {}).items() if not isinstance(v, list) and v]),
         cast_html=list_block("", film.get("Crew", {}).get("Cast", [])),
         technical_html=list_block("", [f"{k.replace('_', ' ')}: {v}" for k, v in film.get("Technical_Details", {}).items() if v]),
         downloads=film.get("Downloads", "—"),
