@@ -22,13 +22,22 @@ body {
 
 /* Body Padding for Fixed Headers */
 /* Adjusts top padding on the body to prevent content from being hidden by fixed headers, accounting for scrolled state. */
-body:not(.scrolled) {
-  padding-top: 300px; /* Original 150px + estimated 230px for the new banner */
+/* General (for non-index pages) */
+body:not(.index-page):not(.scrolled) {
+  padding-top: 150px; /* Height of logo-top (90px) + main-header (60px) */
+}
+body:not(.index-page).scrolled {
+  padding-top: 60px; /* Compact height when scrolled */
 }
 
-body.scrolled {
-  padding-top: 150px; /* Consistent padding when scrolled */
+/* Body Padding for Index Page */
+body.index-page:not(.scrolled) {
+    padding-top: 0; /* No fixed header visible initially, content starts after banner */
 }
+body.index-page.scrolled {
+    padding-top: 60px; /* When scrolled, compact header appears */
+}
+
 
 /* Typography - Headings */
 /* Defines font families, colors, and sizes for various heading levels. */
@@ -123,21 +132,22 @@ body.scrolled #initial-info-banner {
 }
 
 .logo-top img {
-  height: 160px;
+  height: 60px; /* Adjusted height for default */
   display: block;
   margin: 0 auto;
   transition: height 0.3s ease;
 }
 
+/* Scrolled state for header (General - for all pages unless index overrides) */
 body.scrolled .logo-top {
   height: 60px; /* Smaller height when scrolled */
-  padding: 10px 500px; /* Increased horizontal padding to 100px to move it further right */
-  text-align: left; /* Align content to the left when scrolled */
+  padding: 10px 20px; /* Default horizontal padding */
+  text-align: center; /* Default logo alignment */
 }
 
 body.scrolled .logo-top img {
-  height: 70px; /* Smaller logo when scrolled */
-  margin: 0; /* Remove auto margins to align the image to the left */
+  height: 40px; /* Smaller logo when scrolled */
+  margin: 0 auto; /* Keep centered for non-index pages */
 }
 
 
@@ -159,6 +169,11 @@ body.scrolled .logo-top img {
 
 body.scrolled #main-header {
   top: 60px; /* Moves up to be below the smaller logo-top when scrolled */
+}
+
+body.scrolled #main-header .main-nav {
+  justify-content: flex-start; /* Align navigation to the left when scrolled */
+  padding: 0 20px;
 }
 
 /* Navigation Links Container */
@@ -184,17 +199,22 @@ nav a:hover {
   color: #ffc107;
 }
 
-/* Hamburger Menu Icon (Mobile) */
+/* Hamburger Menu Icon */
 /* Styles for the icon that toggles the mobile navigation menu. */
 .hamburger-menu-icon {
   display: none; /* Hidden by default on desktop */
   cursor: pointer;
-  padding: 15px;
-  position: absolute;
-  right: 20px;
-  top: 20px; /* Aligned with logo-top */
-  z-index: 1004; /* Above everything else */
+  padding: 10px; /* Smaller padding for the icon itself */
+  position: absolute; /* Position relative to the parent .logo-top */
+  right: 20px; /* Position on the right */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  z-index: 1004;
 }
+.hamburger-menu-icon img {
+  height: 30px; /* Size of the hamburger icon */
+}
+
 
 /* ==================================================
    3. GLOBAL SECTION STYLES
@@ -952,6 +972,41 @@ footer {
     background-color: #ffc107;
 }
 
+/* ---- INDEX PAGE SPECIFIC STYLES (Overrides for default header behavior) ---- */
+
+/* Hide logo and main navigation initially on index page */
+body.index-page .logo-top {
+    top: -90px; /* Move out of view */
+    transition: top 0.3s ease, height 0.3s ease, padding 0.3s ease; /* Smooth transition for hidden state */
+}
+body.index-page #main-header {
+    top: -60px; /* Move out of view */
+    transition: top 0.3s ease; /* Smooth transition for hidden state */
+}
+
+/* Show and style logo-top when scrolled on index page */
+body.index-page.scrolled .logo-top {
+    top: 0 !important; /* Bring into view */
+    height: 60px; /* Compact height */
+    padding: 10px 100px; /* Requested left alignment and padding */
+    display: flex; /* For logo and hamburger alignment */
+    justify-content: space-between; /* Space out logo and hamburger */
+    align-items: center; /* Vertically align */
+    background: #2b2b2b; /* Ensure solid background */
+}
+body.index-page.scrolled .logo-top img {
+    height: 40px; /* Smaller logo */
+    margin: 0; /* Align left */
+}
+
+/* Hide main navigation on index page when scrolled */
+body.index-page.scrolled #main-header {
+    display: none !important; /* Hide navigation */
+}
+
+/* ---- END INDEX PAGE SPECIFIC STYLES ---- */
+
+
 /* ==================================================
    10. RESPONSIVE DESIGN
    ================================================== */
@@ -974,7 +1029,7 @@ footer {
     font-size: 1.2em;
   }
 
-  /* Header and Navigation adjustments */
+  /* Header and Navigation adjustments for mobile */
   .header-area {
     display: flex;
     flex-direction: row;
@@ -999,7 +1054,9 @@ footer {
     height: auto;
     padding: 0;
     transform: none;
-    text-align: flex;
+    display: flex; /* Make it a flex container */
+    justify-content: flex-start; /* Default: logo on left */
+    align-items: center;
   }
 
   .logo-top img {
@@ -1009,7 +1066,7 @@ footer {
 
   #main-header {
     position: fixed;
-    top: 0;
+    top: 0; /* Adjust to be full screen for mobile menu */
     left: 0;
     padding: 0;
     height: 100vh;
@@ -1044,14 +1101,15 @@ footer {
   }
 
   .hamburger-menu-icon {
-    display: block;
+    display: block; /* Ensure it's visible on mobile */
     cursor: pointer;
     padding: 0;
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    transform: translateY(0);
-    z-index: 1004;
+    position: static; /* Make it flow with parent flex container */
+    margin-left: auto; /* Pushes it to the right within .logo-top */
+    right: unset; /* Clear desktop fixed-position properties */
+    top: unset;
+    transform: none; /* Clear desktop fixed-position properties */
+    z-index: 1004; /* Keep high z-index */
   }
 
   .hamburger-menu-icon img {
@@ -1061,12 +1119,11 @@ footer {
   }
 
   body:not(.scrolled) {
-    padding-top: 70px; /* Revert to mobile header height + banner estimated height */
-    /* Needs re-estimation for mobile */
+    padding-top: 70px; /* Header height on mobile */
   }
 
   body.scrolled {
-    padding-top: 70px; /* Consistent with existing mobile header */
+    padding-top: 70px; /* Consistent with mobile header */
   }
 
   /* General Layouts */

@@ -225,7 +225,7 @@ for film in films:
         subtitles=fdata.get("Language_Subtitles", ""),
         country=fdata.get("Country_of_production", ""),
         poster_image=f"{POSTER_DIR}/{sanitize_filename(title_en)}/{sanitize_filename(title_en)}.jpg",
-        still_image=f"{STILLS_DIR}/{sanitize_filename(title_en)}/{sanitize_filename(title_en)}_1.png",
+        still_image=f"{STILLS_DIR}/{sanitize_filename(title_en)}/{sanitize_filename(title_en)}_1.jpg",
         logline_html=optional_block("Logline", film.get("Logline")),
         synopsis_html=optional_block("Synopsis", film.get("Synopsis")),
         note_html=optional_block("Director's Note", film.get("Directors_Note")),

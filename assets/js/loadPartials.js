@@ -9,25 +9,54 @@ async function loadPartials() {
   };
 
   // Load header and footer
-  await load('./partials/header.html', 'header-container'); // This ensures header is loaded first
+  await load('./partials/header.html', 'header-container');
   await load('./partials/footer.html', 'footer-container');
 
-  // Scroll behavior
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 60) {
-      document.body.classList.add('scrolled');
+  // Determine if it's the index page
+  const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
+
+  if (isIndexPage) {
+    document.body.classList.add('index-page');
+    const initialInfoBanner = document.getElementById('initial-info-banner');
+
+    // Set scroll threshold based on banner height for index page
+    if (initialInfoBanner) {
+      const scrollThreshold = initialInfoBanner.offsetHeight;
+
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > scrollThreshold) {
+          document.body.classList.add('scrolled');
+        } else {
+          document.body.classList.remove('scrolled');
+        }
+      });
     } else {
-      document.body.classList.remove('scrolled');
+        console.warn('initial-info-banner not found on index page. Using default scroll threshold.');
+        // Fallback if banner is not found on index page
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 60) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
     }
-  });
+  } else {
+    // Default scroll behavior for other pages (header compacts after 60px scroll)
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 60) {
+        document.body.classList.add('scrolled');
+      } else {
+        document.body.classList.remove('scrolled');
+      }
+    });
+  }
 
   // Mobile nav toggle logic - NOW ATTACHED AFTER header.html IS LOADED
   const headerContainer = document.getElementById('header-container');
   if (headerContainer) {
-    const hamburger = headerContainer.querySelector('.hamburger-menu-icon');
-    // Assuming your main navigation element inside header.html has the class 'main-nav'
-    // If it has id="main-header" as per previous CSS, you might need:
-    // const nav = headerContainer.querySelector('#main-header');
+    // Assuming you moved .hamburger-menu-icon inside .logo-top
+    const hamburger = headerContainer.querySelector('.logo-top .hamburger-menu-icon');
     const nav = headerContainer.querySelector('.main-nav');
 
     if (hamburger && nav) {
@@ -41,11 +70,10 @@ async function loadPartials() {
         });
       });
     } else {
-        console.error('Hamburger or Navigation element not found after header load.');
+        console.error('Hamburger or Navigation element not found after header load. Check header.html structure.');
     }
-  } else {
-      console.error('Header container not found.');
   }
 }
 
-loadPartials();
+// Call loadPartials when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', loadPartials);
