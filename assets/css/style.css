@@ -59,6 +59,12 @@ h3 {
   font-size: 1.3em; /* Example size for h3 */
 }
 
+/* Typography - Paragraphs */
+p {
+  text-align: justify; /* Ensure text is justified */
+}
+
+
 /* Typography - Links */
 /* Sets default link color, removes underlines, and adds a smooth transition for hover effects. */
 a {
@@ -87,12 +93,64 @@ a:hover {
 #initial-info-banner {
   background-color: #2b2b2b; /* Matches section-dark-grey */
   color: #ffffff; /* Matches section-dark-grey */
-  padding: 20px 2cm; /* Reduced from 40px to 20px top/bottom */
+  padding: 40px 2cm; /* Adjusted padding for better banner feel */
   text-align: center; /* To center content */
   overflow: hidden;
   max-height: 500px; /* A safe initial max-height for content, will collapse to 0 */
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
 }
+
+#initial-info-banner .banner-logo {
+    max-width: 250px; /* Adjust logo size */
+    height: auto;
+    margin-bottom: 20px; /* Space between logo and h2 */
+    display: block; /* Ensures margin auto works for centering */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#initial-info-banner h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+
+#initial-info-banner hr {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+#initial-info-banner hr:nth-of-type(1) { /* First hr in the banner */
+    margin-bottom: 40px;
+}
+
+#initial-info-banner hr:nth-of-type(2) { /* Second hr in the banner */
+    margin-top: 40px;
+}
+
+#initial-info-banner p {
+    font-family: 'Nunito', sans-serif; /* Default Nunito for all paragraphs in banner */
+    font-size: 1.1em; /* Default size for general paragraphs in banner */
+    margin-bottom: 10px; /* Default margin for paragraphs in banner */
+    color: #ffffff; /* Default color for paragraphs in banner */
+    text-align: center; /* Center paragraph text in the banner */
+}
+
+#initial-info-banner p:nth-of-type(1) { /* Specific style for the 'cinefila' quote */
+    font-family: 'EB Garamond', serif;
+    font-size: 1.8em;
+    color: #ff9800;
+    margin-bottom: 20px;
+}
+
+#initial-info-banner p:nth-of-type(2) { /* Specific style for 'noun' */
+    font-size: 1.2em; /* Slightly larger for 'noun' */
+    margin-bottom: 10px;
+}
+
+#initial-info-banner p:nth-of-type(3) { /* Specific style for '1. A person who...' */
+    margin-bottom: 5px;
+}
+
 
 body.scrolled #initial-info-banner {
   max-height: 0;
@@ -216,7 +274,7 @@ nav a:hover {
   position: absolute; /* Position relative to .header-area */
   right: 20px; /* Far right */
   top: 50%;
-  transform: translateY(-50%); /* Center vertically */
+  transform: translateY(-50%);
   z-index: 1004;
 }
 .hamburger-menu-icon img {
@@ -235,14 +293,15 @@ nav a:hover {
   margin: 0 auto;
   max-width: none; /* Allows content to span full width if needed */
   background-color: #fff;
-  text-align: Left; /* Center the section content */
+  text-align: left; /* Keep left alignment for the section container */
 }
 
 /* Text Alignment within Sections */
-/* Ensures specific content types within sections are left-aligned. */
-.section h2, .section hr, .section p, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid {
+/* Ensures specific content types within sections are left-aligned, letting global 'p' justify. */
+.section h2, .section hr, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid {
   text-align: left;
 }
+
 
 /* Section Color Themes */
 /* Classes for applying different background and text color schemes to sections. */
@@ -402,6 +461,7 @@ nav a:hover {
   font-size: 1.3rem;
   margin: 15px 15px 10px 15px;
   color: #000000;
+  text-align: left; /* Keep left aligned for headings in cards */
 }
 
 .news-item p {
@@ -410,6 +470,7 @@ nav a:hover {
   flex-grow: 1;
   line-height: 1.5;
   padding: 0 15px 15px 15px;
+  text-align: justify; /* Ensure justified */
 }
 
 /* Titles and Text for Preview Items */
@@ -420,12 +481,14 @@ nav a:hover {
   margin: 15px 15px 10px 15px;
   margin-bottom: 12px;
   color: #ffffff;
+  text-align: left; /* Keep left aligned for headings in cards */
 }
 
 .preview-item p {
   font-size: 0.95rem;
   color: #ffffff;
   flex-grow: 1;
+  text-align: justify; /* Ensure justified */
 }
 
 /* News Date Styling */
@@ -435,6 +498,7 @@ nav a:hover {
   color: #444;
   margin-bottom: 18px;
   font-weight: bold;
+  text-align: left; /* Keep left aligned for dates */
 }
 
 /* ==================================================
@@ -464,7 +528,7 @@ nav a:hover {
 .member-left {
   flex-shrink: 0;
   width: 220px;
-  text-align: center;
+  text-align: center; /* Keep centered for image/name/role */
 }
 
 .member-left img {
@@ -495,7 +559,7 @@ nav a:hover {
 .member-middle {
   flex-shrink: 0;
   width: 250px;
-  text-align: center;
+  text-align: center; /* Keep centered */
   padding-top: 20px;
 }
 
@@ -508,12 +572,13 @@ nav a:hover {
 /* Styles for the main text content/biography of the team member. */
 .member-right {
   flex-grow: 1;
-  text-align: justify;
+  text-align: justify; /* This was already justified, keep it */
 }
 
 .member-info p {
   color: #1c1c1c;
   margin-bottom: 1.2em;
+  text-align: justify; /* Ensure justified */
 }
 
 .member-info p:last-child {
@@ -525,6 +590,7 @@ nav a:hover {
   font-style: italic;
   font-size: 0.95rem;
   color: #444;
+  text-align: center; /* Email typically centered */
 }
 
 /* ==================================================
@@ -580,7 +646,7 @@ nav a:hover {
 /* Footer Container */
 /* Overall styling for the page footer, including background, text alignment, and spacing. */
 footer {
-  text-align: center;
+  text-align: center; /* Keep centered */
   padding: 25px;
   font-size: 0.9rem;
   background: #2b2b2b;
@@ -606,7 +672,7 @@ footer {
 /* Catalogue Header */
 /* Styles for the main heading and introductory text of the catalogue page. */
 .catalogue-header {
-  text-align: left;
+  text-align: left; /* Keep left aligned for headings */
   margin-bottom: 30px;
 }
 
@@ -736,12 +802,14 @@ footer {
   font-size: 1.6em;
   margin-bottom: 8px;
   color: #ffffff;
+  text-align: left; /* Keep left aligned for titles */
 }
 
 .film-year-runtime {
   font-size: 0.9em;
   color: #ffffff;
   margin-bottom: 10px;
+  text-align: left; /* Keep left aligned */
 }
 
 .film-genres,
@@ -749,6 +817,7 @@ footer {
   font-size: 1.1em;
   color: #ffffff;
   margin-bottom: 8px;
+  text-align: left; /* Keep left aligned */
 }
 
 .film-logline {
@@ -756,6 +825,7 @@ footer {
   color: #ffffff;
   line-height: 1.5;
   margin-top: auto;
+  text-align: justify; /* Ensure justified */
 }
 
 /* Film Detail Page Styles */
@@ -798,6 +868,7 @@ footer {
   font-size: 3.5em;
   color: #ffffff;
   margin-bottom: 10px;
+  text-align: left; /* Keep left aligned */
 }
 
 .film-detail-original-title {
@@ -806,12 +877,14 @@ footer {
   color: #ffffff;
   margin-bottom: 20px;
   font-style: italic;
+  text-align: left; /* Keep left aligned */
 }
 
 .film-detail-meta p {
   font-size: 1.1em;
   margin-bottom: 8px;
   color: #ffffff;
+  text-align: left; /* Keep left aligned for meta info */
 }
 
 .film-detail-meta strong {
@@ -825,6 +898,7 @@ footer {
   margin-bottom: 30px;
   color: #ffffff;
   font-style: italic;
+  text-align: justify; /* This was already justified, keep it */
 }
 
 .film-detail-synopsis {
@@ -832,7 +906,7 @@ footer {
   line-height: 1.7;
   color: #ffffff;
   margin-bottom: 25px;
-  text-align: justify;
+  text-align: justify; /* This was already justified, keep it */
 }
 
 .film-detail-sections {
@@ -846,6 +920,7 @@ footer {
   margin-bottom: 15px;
   border-bottom: 1px solid rgba(255, 152, 0, 0.3);
   padding-bottom: 5px;
+  text-align: left; /* Keep left aligned */
 }
 
 .film-detail-section ul {
@@ -858,6 +933,7 @@ footer {
   font-size: 1em;
   color: #ffffff;
   margin-bottom: 5px;
+  text-align: left; /* Keep left aligned for list items */
 }
 
 .film-detail-section li strong {
@@ -1043,6 +1119,10 @@ body.index-page.scrolled .logo-top img {
     padding: 20px 15px;
   }
 
+  #initial-info-banner .banner-logo {
+    max-width: 200px; /* Smaller logo for mobile */
+  }
+
   /* Hamburger menu position is already handled by base styles (absolute to header-area) */
   .hamburger-menu-icon {
     display: block; /* Already in base, but re-confirm */
@@ -1120,7 +1200,7 @@ body.index-page.scrolled .logo-top img {
   }
 
   .member-right {
-    text-align: center;
+    text-align: justify; /* Keep justified */
   }
 
   /* Catalogue specific */
@@ -1150,8 +1230,13 @@ body.index-page.scrolled .logo-top img {
   .film-detail-synopsis,
   .film-detail-section h3,
   .film-detail-section li {
-    text-align: center;
+    text-align: center; /* Adjust for mobile where appropriate, or rely on global p */
   }
+  .film-detail-logline,
+  .film-detail-synopsis {
+    text-align: justify; /* Ensure these paragraphs remain justified */
+  }
+
 
   /* Filters for Tablet */
   .filters {
@@ -1188,6 +1273,10 @@ body.index-page.scrolled .logo-top img {
 
   .logo-top img {
     height: 40px;
+  }
+
+  #initial-info-banner .banner-logo {
+    max-width: 150px; /* Even smaller logo for very small mobiles */
   }
 
   /* Adjust grid columns further for very small screens */
@@ -1231,7 +1320,7 @@ body.index-page.scrolled .logo-top img {
       max-width: 300px;
   }
 
-  .filter-group.search-filter-group input[type=\"text\"] {
+  .filter-group.search-filter-group input[type="text"] {
       width: 100%; /* Full width within its group */
       max-width: unset; /* Remove max-width */
       margin-bottom: 10px; /* Space between input and button */
