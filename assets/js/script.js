@@ -210,7 +210,7 @@ function displayFilms(films) {
         const imageWrapper = document.createElement('div');
         imageWrapper.classList.add('news-item-image-wrapper');
         const filmStillImg = document.createElement('img');
-        filmStillImg.src = filmFolder ? `images/stills/${filmFolder}/${filmFolder}_1.png` : '';
+        filmStillImg.src = filmFolder ? `images/stills/${filmFolder}/${filmFolder}_1.jpg` : '';
         filmStillImg.alt = `Still from ${displayTitle}`;
         imageWrapper.appendChild(filmStillImg);
         filmCard.appendChild(imageWrapper);

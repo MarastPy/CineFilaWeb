@@ -75,5 +75,4 @@ async function loadPartials() {
   }
 }
 
-// Call loadPartials when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', loadPartials);

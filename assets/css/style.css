@@ -114,19 +114,24 @@ body.scrolled #initial-info-banner {
   padding-top: 0;
   z-index: 1000;
   background: #2b2b2b;
+  position: fixed; /* Make header-area fixed for consistent positioning */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px; /* Default height */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
 }
 
 /* Top Logo Section */
 /* Styles for the fixed logo area at the very top of the page, including its transitions and scrolled state. */
 .logo-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 90px;
+  position: static; /* Let it flow normally within header-area */
+  height: auto;
   text-align: center;
-  padding: 15px 20px;
-  background: #2b2b2b;
+  padding: 0;
   z-index: 1003;
   transition: height 0.3s ease, padding 0.3s ease;
 }
@@ -134,15 +139,14 @@ body.scrolled #initial-info-banner {
 .logo-top img {
   height: 60px; /* Adjusted height for default */
   display: block;
-  margin: 0 auto;
+  margin: 0 auto; /* Center logo by default in desktop */
   transition: height 0.3s ease;
 }
 
 /* Scrolled state for header (General - for all pages unless index overrides) */
-body.scrolled .logo-top {
-  height: 60px; /* Smaller height when scrolled */
-  padding: 10px 20px; /* Default horizontal padding */
-  text-align: center; /* Default logo alignment */
+body.scrolled .header-area {
+    height: 60px; /* Smaller height when scrolled */
+    padding: 10px 20px;
 }
 
 body.scrolled .logo-top img {
@@ -155,34 +159,36 @@ body.scrolled .logo-top img {
 /* Styles for the primary navigation bar, including its fixed positioning and scrolled state. */
 #main-header {
   position: fixed;
-  top: 90px; /* Stays below the logo-top */
+  top: 0; /* Starts at the top of the viewport */
   left: 0;
   right: 0;
-  z-index: 1002;
-  background: #2b2b2b;
-  padding: 15px 20px;
+  padding: 0; /* Padding controlled by nav inside */
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  transform: translateX(100%); /* Hidden by default (slides off to the right) */
+  transition: transform 0.3s ease; /* Smooth slide transition */
+  background-color: rgba(0, 0, 0, 0.95); /* Semi-transparent overlay background */
+  z-index: 999;
   display: flex;
-  justify-content: center;
-  transition: top 0.3s ease, background 0.3s ease;
-  font-family: 'Nunito', sans-serif;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 90px; /* Space for the header-area content above the nav links */
 }
 
-body.scrolled #main-header {
-  top: 60px; /* Moves up to be below the smaller logo-top when scrolled */
-}
-
-body.scrolled #main-header .main-nav {
-  justify-content: flex-start; /* Align navigation to the left when scrolled */
-  padding: 0 20px;
+body.menu-open #main-header {
+  transform: translateX(0); /* Show when menu is open */
 }
 
 /* Navigation Links Container */
 /* Styles for the layout and spacing of navigation links. */
 nav {
   display: flex;
-  justify-content: center;
-  gap: 35px;
+  flex-direction: column; /* Stack links vertically */
+  justify-content: flex-start;
+  gap: 20px; /* Spacing between stacked links */
   align-items: center;
+  width: 100%;
+  padding: 20px 0;
 }
 
 /* Individual Navigation Links */
@@ -190,9 +196,11 @@ nav {
 nav a {
   font-family: 'EB Garamond', serif;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.5rem; /* Larger font size for overlay menu */
   color: #ffffff;
-  padding: 8px 0;
+  padding: 15px 0; /* Generous padding for easier tapping/clicking */
+  width: 100%; /* Make links full width for better click area */
+  text-align: center;
 }
 
 nav a:hover {
@@ -202,11 +210,11 @@ nav a:hover {
 /* Hamburger Menu Icon */
 /* Styles for the icon that toggles the mobile navigation menu. */
 .hamburger-menu-icon {
-  display: none; /* Hidden by default on desktop */
+  display: block; /* Always visible */
   cursor: pointer;
-  padding: 10px; /* Smaller padding for the icon itself */
-  position: absolute; /* Position relative to the parent .logo-top */
-  right: 20px; /* Position on the right */
+  padding: 10px;
+  position: absolute; /* Position relative to .header-area */
+  right: 20px; /* Far right */
   top: 50%;
   transform: translateY(-50%); /* Center vertically */
   z-index: 1004;
@@ -273,7 +281,7 @@ nav a:hover {
    ================================================== */
 
 /* Two-Column Layout (Text and Image) */
-/* Flexbox-based layout for arranging content in two columns, often text next to an image. */
+/* Flexbox-based layout for arranging content in two columns, often text next to an "image". */
 .two-column-layout {
   display: flex;
   gap: 40px;
@@ -361,7 +369,9 @@ nav a:hover {
 .news-item-image-wrapper,
 .preview-item-image-wrapper {
   width: 100%;
-  height: 250px; /* Increased height */
+  padding-top: 56.25%; /* This creates the 16:9 aspect ratio (9/16 = 0.5625) */
+  height: 0; /* Set height to 0 as padding creates the height */
+  position: relative; /* Needed for absolutely positioned child image */
   overflow: hidden;
   border-radius: 5px;
   margin-bottom: 12px;
@@ -370,9 +380,12 @@ nav a:hover {
 
 .news-item-image-wrapper img,
 .preview-item-image-wrapper img {
+  position: absolute; /* Position the image absolutely within its wrapper */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
   transition: transform 0.3s ease;
 }
 
@@ -974,34 +987,25 @@ footer {
 
 /* ---- INDEX PAGE SPECIFIC STYLES (Overrides for default header behavior) ---- */
 
-/* Hide logo and main navigation initially on index page */
-body.index-page .logo-top {
-    top: -90px; /* Move out of view */
-    transition: top 0.3s ease, height 0.3s ease, padding 0.3s ease; /* Smooth transition for hidden state */
-}
-body.index-page #main-header {
-    top: -60px; /* Move out of view */
-    transition: top 0.3s ease; /* Smooth transition for hidden state */
+/* On index page, logo-top and header are initially hidden, then appear on scroll */
+body.index-page .header-area {
+    top: -90px; /* Hide header-area initially */
+    transition: top 0.3s ease, height 0.3s ease, padding 0.3s ease;
 }
 
-/* Show and style logo-top when scrolled on index page */
-body.index-page.scrolled .logo-top {
+/* When scrolled on index page, bring header-area into view */
+body.index-page.scrolled .header-area {
     top: 0 !important; /* Bring into view */
     height: 60px; /* Compact height */
-    padding: 10px 100px; /* Requested left alignment and padding */
-    display: flex; /* For logo and hamburger alignment */
+    padding: 10px 20px; /* Adjust padding */
+    display: flex; /* Ensure it's a flex container */
     justify-content: space-between; /* Space out logo and hamburger */
-    align-items: center; /* Vertically align */
-    background: #2b2b2b; /* Ensure solid background */
+    align-items: center;
 }
+
 body.index-page.scrolled .logo-top img {
     height: 40px; /* Smaller logo */
     margin: 0; /* Align left */
-}
-
-/* Hide main navigation on index page when scrolled */
-body.index-page.scrolled #main-header {
-    display: none !important; /* Hide navigation */
 }
 
 /* ---- END INDEX PAGE SPECIFIC STYLES ---- */
@@ -1031,91 +1035,32 @@ body.index-page.scrolled #main-header {
 
   /* Header and Navigation adjustments for mobile */
   .header-area {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    height: 70px; /* Height for mobile header */
     padding: 10px 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: #2b2b2b;
-    z-index: 1000;
-    height: 70px;
   }
 
   #initial-info-banner { /* Adjust padding for mobile screens */
     padding: 20px 15px;
   }
 
-  .logo-top {
-    position: static;
-    height: auto;
-    padding: 0;
-    transform: none;
-    display: flex; /* Make it a flex container */
-    justify-content: flex-start; /* Default: logo on left */
-    align-items: center;
-  }
-
-  .logo-top img {
-    height: 50px;
-    margin: 0;
-  }
-
-  #main-header {
-    position: fixed;
-    top: 0; /* Adjust to be full screen for mobile menu */
-    left: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100%;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 80px;
-    background-color: rgba(0, 0, 0, 0.95);
-    z-index: 999;
-  }
-
-  body.menu-open #main-header {
-    transform: translateX(0);
-  }
-
-  nav {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    width: 100%;
-    padding: 20px 0;
-    display: flex;
-  }
-
-  nav a {
-    font-size: 1.5rem;
-    padding: 15px 0;
-    width: 100%;
-    color: #ffffff;
-  }
-
+  /* Hamburger menu position is already handled by base styles (absolute to header-area) */
   .hamburger-menu-icon {
-    display: block; /* Ensure it's visible on mobile */
-    cursor: pointer;
-    padding: 0;
-    position: static; /* Make it flow with parent flex container */
-    margin-left: auto; /* Pushes it to the right within .logo-top */
-    right: unset; /* Clear desktop fixed-position properties */
-    top: unset;
-    transform: none; /* Clear desktop fixed-position properties */
-    z-index: 1004; /* Keep high z-index */
+    display: block; /* Already in base, but re-confirm */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: unset; /* Remove auto margin if it was applied elsewhere */
   }
 
   .hamburger-menu-icon img {
     width: 30px;
     height: auto;
-    display: block;
+  }
+
+  .logo-top img {
+    height: 50px;
+    margin: 0; /* Left align logo */
   }
 
   body:not(.scrolled) {
@@ -1241,21 +1186,8 @@ body.index-page.scrolled #main-header {
     font-size: 1.5em;
   }
 
-  .logo-top {
-    height: 60px;
-  }
-
   .logo-top img {
     height: 40px;
-  }
-
-  body:not(.scrolled),
-  body.scrolled {
-    padding-top: 70px;
-  }
-
-  #main-header {
-    padding-top: 70px;
   }
 
   /* Adjust grid columns further for very small screens */
@@ -1299,7 +1231,7 @@ body.index-page.scrolled #main-header {
       max-width: 300px;
   }
 
-  .filter-group.search-filter-group input[type="text"] {
+  .filter-group.search-filter-group input[type=\"text\"] {
       width: 100%; /* Full width within its group */
       max-width: unset; /* Remove max-width */
       margin-bottom: 10px; /* Space between input and button */
