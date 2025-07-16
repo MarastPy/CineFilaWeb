@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First patrol</title>
+  <style>
+    body {
+      background-color: #2b2b2b;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.1em;
+    }
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+    h3 {
+      font-size: 1.4em;
+      margin-top: 25px;
+      margin-bottom: 5px;
+    }
+    .logo-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo-container img {
+      max-width: 200px;
+      height: auto;
+    }
+    .subtitle {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .horizontal-line {
+      border-bottom: 1px solid white;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .info-line {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .top-section {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .poster-column {
+      flex: 0 0 250px;
+      max-width: 250px;
+    }
+    .info-column {
+      flex: 1;
+      min-width: 300px;
+    }
+    .poster-column img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid white;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .block {
+      margin-bottom: 20px;
+    }
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .flex-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .half {
+      flex: 1;
+      min-width: 300px;
+    }
+    .aligned-section {
+      margin-left: calc(250px + 40px);
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+    a {
+      color: white;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      h3 {
+        font-size: 1.2em;
+      }
+      .logo-container img {
+        max-width: 150px;
+      }
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .poster-column {
+        flex: none;
+        width: 80%;
+        max-width: 250px;
+      }
+      .info-column {
+        min-width: unset;
+        width: 100%;
+      }
+      .flex-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .half {
+        min-width: unset;
+        width: 100%;
+      }
+      .aligned-section {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.3em;
+      }
+      h3 {
+        font-size: 1.1em;
+      }
+      .logo-container img {
+        max-width: 120px;
+      }
+      .poster-column {
+        width: 90%;
+      }
+      .aligned-section {
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo" />
+  </div>
+
+  <h1>First patrol</h1>
+  <div class="subtitle">Original Title: První hlídka</div>
+  <div class="horizontal-line"></div>
+
+  <div class="info-line">drama, crime, psychological | 2025 | 18 minutes | Czech with English subtitles | Czech Republic</div>
+
+  <div class="top-section">
+    <div class="poster-column">
+      <div>
+        <img src="../images/posters/first_patrol/first_patrol.jpg" alt="Poster" />
+        <div class="label">Poster</div>
+        <div><a href="../images/posters/first_patrol/first_patrol.jpg">Link to poster</a></div>
+        <div class="label">Still</div>
+        <img src="../images/stills/first_patrol/first_patrol_1.jpg" alt="Still" />
+      </div>
+    </div>
+
+    <div class="info-column">
+      <h3>Logline</h3><p>Two small-town policemen are first on the scene of a mass shooting — and must act fast with hostages still inside.</p>
+      <h3>Synopsis</h3><p>A routine day for two small-town policemen, young Pavel and experienced Michal, is turned upside down when they become the first patrol to arrive at the scene of a mass shooting at a restaurant with hostages still inside.</p>
+      <h3>Director's Note</h3><p>I drew inspiration for First Patrol from a 2015 tragedy in the South Moravian town of Uherský Brod, Czech Republic – the country’s first mass shooting. The title reflects both the officers’ arrival as the first patrol and Czech society’s first encounter with such violence. My intention was never a reconstruction, but a fictional immersive journey that places us in the patrol car and uniform of the first responders, who are both the earliest witnesses to such horrors and, above all, human beings.</p>
+      
+      
+    </div>
+  </div>
+
+  <div class="aligned-section"> <h3>Festival, Crew, Cast & Technical Info</h3>
+    <div class="flex-row">
+      <div class="half">
+        <div class="label">Festivals</div>
+        <h3></h3><ul><li>,  ()</li></ul>
+        <div class="label">Awards</div>
+        <h3></h3><ul><li> ()</li></ul>
+        <div class="label">Sales Status</div>
+        —
+        <div class="label">Downloads</div>
+        —
+      </div>
+      <div class="half">
+        <div class="label">Crew</div>
+        <h3></h3><ul><li>Director: Vojtěch Konečný</li><li>Screenplay writer: Jan Dvořáček, Vojtěch Konečný</li><li>Director of Photography: Filip Hájek</li><li>Editor: Enis Saraçi</li><li>Sound director: Jan Strnad</li><li>Art director: Anna Machátová</li><li>Music composer: Tomáš Borl</li></ul>
+        <div class="label">Cast</div>
+        <h3></h3><ul><li>František Beleš</li><li>Pavel Řezníček</li></ul>
+      </div>
+    </div>
+    <div class="label">Technical Specs</div>
+    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': '', 'Other': 'Sony'}</li><li>Camera: Sony Venice, lenses: PANAVISION G SERIES ANAMORPHICS</li><li>Anamorphic Lens: Yes</li><li>Video Editing Software: Adobe Premiere Pro</li><li>Digital Audio Workstation: Protools</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': 'ProRes'}</li><li>Resolution: 4k</li><li>Speed: {'Scan_Method': 'progressive (DCP, e-cinema, TV)', 'FPS': '24', 'FPS_Other': ''}</li><li>Aspect Ratio: 2.00 (Netflix, Apple TV+, RED, Arri...)</li><li>Aspect Ratio Other: DCP is S-200 (scope 2:1)</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Sound Mix Other: or stereo for screeners</li><li>Colour: Colour</li></ul>
+  </div>
+</body>
+</html>
