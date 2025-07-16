@@ -116,130 +116,7 @@
                 "WEB": ""
             }
         },
-        "Source_File": "about_cow.html"
-    },
-    {
-        "Film": {
-            "Title_Original": "Řepa",
-            "Title_English": "The Beetroot",
-            "Title_Other": "",
-            "Language_Original": "Czech",
-            "Language_Subtitles": "English",
-            "Country_of_production": "Czech Republic",
-            "Date_of_completion": "05.01.2025",
-            "Runtime": "00:12:56",
-            "Number_of_series": "",
-            "Number_of_episodes": "",
-            "Titles_and_runtime_of_episodes": "",
-            "First_Film": "No",
-            "Genre_List": [
-                "animation",
-                "fairytale",
-                "sci-fi"
-            ],
-            "Genre_Other": "",
-            "Keywords": "beetroot, fairytale, kaiju, enviroment",
-            "Target_Group": {
-                "Rating": "",
-                "Audience": "general audience",
-                "Other": ""
-            }
-        },
-        "Premiere": [
-            {
-                "Date": "May 2025",
-                "Country": "Czech Republic",
-                "Name_of_place_of_premiere": "Anifilm (czech and world premiere)"
-            }
-        ],
-        "Festivals": [
-            {
-                "Date": "May 2025",
-                "Country": "Czech Republic",
-                "Name_of_Festival": "Anifilm"
-            }
-        ],
-        "Awards": [
-            {
-                "Date": "",
-                "Country": "",
-                "Festival_Section_of_Competition": ""
-            }
-        ],
-        "Logline": "A giant beetroot goes on a rampage in this wild Slavic kaiju tale mixing live action, stop-motion, and 2D animation.",
-        "Synopsis": "Inspired by the traditional Slavic folktale “The Enormous Turnip,” a beetroot grows so huge that no one can pull it from the ground. When a local crane operator is hired to do the job, the giant vegetable turns violent and destructive. As chaos unfolds, an army is mobilized to stop it — but maybe there’s another way to appease this monstrous force.",
-        "Directors_Note": "Beetroot is a collaboration between two directors from FAMU and UMPRUM, blending distinct authorial styles. Inspired by the classic Czech tale The Big Beetroot, we reimagine the beet as an uncontrollable force, merging fairy tale with the Japanese Kaiju genre. As the beet grows, so do the problems—nature's power takes monstrous form.",
-        "Crew": {
-            "Director(s)": "Jáchym Štulíř, David Šourek",
-            "Screenplay_writer(s)": "Jáchym Štulíř, David Šourek",
-            "Director(s)_of_Photography": "David Šourek",
-            "Editor(s)": "Ondřej Plecháč",
-            "Sound_director(s)": "Juras Karaka",
-            "Art_director(s)": "Jáchym Štulíř",
-            "Music_composer(s)": "Juras Karaka",
-            "Cast": []
-        },
-        "Director_Bio": {
-            "Date_of_birth": "",
-            "Bio_Text": ""
-        },
-        "Director_Filmography": [],
-        "Technical_Details": {
-            "Shooting_Format": {
-                "Film": "",
-                "Video": "",
-                "Other": ""
-            },
-            "Camera": "",
-            "Anamorphic_Lens": "No",
-            "Animation_Technique": "2D computer",
-            "Animation_Technique_Other": "mixing live action",
-            "Video_Editing_Software": "",
-            "Digital_Audio_Workstation": "",
-            "Screening_Format": {
-                "Film": "",
-                "Tape": "",
-                "File": "DCP",
-                "Other": "ProRes, h264"
-            },
-            "Resolution": "2K",
-            "Resolution_Other": "",
-            "Speed": {
-                "Scan_Method": "progressive (DCP, e-cinema, TV)",
-                "FPS": "25",
-                "FPS_Other": ""
-            },
-            "Aspect_Ratio": "1.33 (4:3)",
-            "Aspect_Ratio_Other": "",
-            "Sound_Mix": "Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)",
-            "Sound_Mix_Other": "",
-            "Colour": "Colour",
-            "Notes": ""
-        },
-        "Production": {
-            "Producers": {
-                "Name": "FAMU",
-                "Address": "Smetanovo nábřeží 2",
-                "Postal code, city": "116 65 Prague 1",
-                "Country": "Czech Republic",
-                "WEB": "famu.cz"
-            },
-            "Production_Company": {
-                "Name": "UMPRUM - Michaela Režová",
-                "Address": "nám. J. Palacha 80/3",
-                "Postal code, city": "116 93 Prague 1",
-                "Country": "Czech Republic",
-                "WEB": "umprum.cz"
-            },
-            "Co_Producer": {
-                "Name": "Altum Frames - Hynek Spurný",
-                "Address": "Záhořanského 1944/4",
-                "Postal code, city": "120 00 Prague 2",
-                "Country": "Czech Republic",
-                "WEB": "altumframes.com"
-            }
-        },
-        "Source_File": "beetroot.html"
+        "Source_File": "about_a_cow.html"
     },
     {
         "Film": {
@@ -1303,6 +1180,129 @@
             }
         },
         "Source_File": "soul_ shift.html"
+    },
+    {
+        "Film": {
+            "Title_Original": "Řepa",
+            "Title_English": "The Beetroot",
+            "Title_Other": "",
+            "Language_Original": "Czech",
+            "Language_Subtitles": "English",
+            "Country_of_production": "Czech Republic",
+            "Date_of_completion": "05.01.2025",
+            "Runtime": "00:12:56",
+            "Number_of_series": "",
+            "Number_of_episodes": "",
+            "Titles_and_runtime_of_episodes": "",
+            "First_Film": "No",
+            "Genre_List": [
+                "animation",
+                "fairytale",
+                "sci-fi"
+            ],
+            "Genre_Other": "",
+            "Keywords": "beetroot, fairytale, kaiju, enviroment",
+            "Target_Group": {
+                "Rating": "",
+                "Audience": "general audience",
+                "Other": ""
+            }
+        },
+        "Premiere": [
+            {
+                "Date": "May 2025",
+                "Country": "Czech Republic",
+                "Name_of_place_of_premiere": "Anifilm (czech and world premiere)"
+            }
+        ],
+        "Festivals": [
+            {
+                "Date": "May 2025",
+                "Country": "Czech Republic",
+                "Name_of_Festival": "Anifilm"
+            }
+        ],
+        "Awards": [
+            {
+                "Date": "",
+                "Country": "",
+                "Festival_Section_of_Competition": ""
+            }
+        ],
+        "Logline": "A giant beetroot goes on a rampage in this wild Slavic kaiju tale mixing live action, stop-motion, and 2D animation.",
+        "Synopsis": "Inspired by the traditional Slavic folktale “The Enormous Turnip,” a beetroot grows so huge that no one can pull it from the ground. When a local crane operator is hired to do the job, the giant vegetable turns violent and destructive. As chaos unfolds, an army is mobilized to stop it — but maybe there’s another way to appease this monstrous force.",
+        "Directors_Note": "Beetroot is a collaboration between two directors from FAMU and UMPRUM, blending distinct authorial styles. Inspired by the classic Czech tale The Big Beetroot, we reimagine the beet as an uncontrollable force, merging fairy tale with the Japanese Kaiju genre. As the beet grows, so do the problems—nature's power takes monstrous form.",
+        "Crew": {
+            "Director(s)": "Jáchym Štulíř, David Šourek",
+            "Screenplay_writer(s)": "Jáchym Štulíř, David Šourek",
+            "Director(s)_of_Photography": "David Šourek",
+            "Editor(s)": "Ondřej Plecháč",
+            "Sound_director(s)": "Juras Karaka",
+            "Art_director(s)": "Jáchym Štulíř",
+            "Music_composer(s)": "Juras Karaka",
+            "Cast": []
+        },
+        "Director_Bio": {
+            "Date_of_birth": "",
+            "Bio_Text": ""
+        },
+        "Director_Filmography": [],
+        "Technical_Details": {
+            "Shooting_Format": {
+                "Film": "",
+                "Video": "",
+                "Other": ""
+            },
+            "Camera": "",
+            "Anamorphic_Lens": "No",
+            "Animation_Technique": "2D computer",
+            "Animation_Technique_Other": "mixing live action",
+            "Video_Editing_Software": "",
+            "Digital_Audio_Workstation": "",
+            "Screening_Format": {
+                "Film": "",
+                "Tape": "",
+                "File": "DCP",
+                "Other": "ProRes, h264"
+            },
+            "Resolution": "2K",
+            "Resolution_Other": "",
+            "Speed": {
+                "Scan_Method": "progressive (DCP, e-cinema, TV)",
+                "FPS": "25",
+                "FPS_Other": ""
+            },
+            "Aspect_Ratio": "1.33 (4:3)",
+            "Aspect_Ratio_Other": "",
+            "Sound_Mix": "Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)",
+            "Sound_Mix_Other": "",
+            "Colour": "Colour",
+            "Notes": ""
+        },
+        "Production": {
+            "Producers": {
+                "Name": "FAMU",
+                "Address": "Smetanovo nábřeží 2",
+                "Postal code, city": "116 65 Prague 1",
+                "Country": "Czech Republic",
+                "WEB": "famu.cz"
+            },
+            "Production_Company": {
+                "Name": "UMPRUM - Michaela Režová",
+                "Address": "nám. J. Palacha 80/3",
+                "Postal code, city": "116 93 Prague 1",
+                "Country": "Czech Republic",
+                "WEB": "umprum.cz"
+            },
+            "Co_Producer": {
+                "Name": "Altum Frames - Hynek Spurný",
+                "Address": "Záhořanského 1944/4",
+                "Postal code, city": "120 00 Prague 2",
+                "Country": "Czech Republic",
+                "WEB": "altumframes.com"
+            }
+        },
+        "Source_File": "the_beetroot.html"
     },
     {
         "Film": {
