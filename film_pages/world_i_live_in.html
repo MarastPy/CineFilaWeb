@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World I live in</title>
+  <style>
+    body {
+      background-color: #2b2b2b;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.1em;
+    }
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+    h3 {
+      font-size: 1.4em;
+      margin-top: 25px;
+      margin-bottom: 5px;
+    }
+    .logo-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo-container img {
+      max-width: 200px;
+      height: auto;
+    }
+    .subtitle {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .horizontal-line {
+      border-bottom: 1px solid white;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .info-line {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .top-section {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .poster-column {
+      flex: 0 0 250px;
+      max-width: 250px;
+    }
+    .info-column {
+      flex: 1;
+      min-width: 300px;
+    }
+    .poster-column img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid white;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .block {
+      margin-bottom: 20px;
+    }
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .flex-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .half {
+      flex: 1;
+      min-width: 300px;
+    }
+    .aligned-section {
+      margin-left: calc(250px + 40px);
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+    a {
+      color: white;
+    }
+
+    /* Video Responsiveness */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+      margin-top: 20px;
+    }
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      h3 {
+        font-size: 1.2em;
+      }
+      .logo-container img {
+        max-width: 150px;
+      }
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .poster-column {
+        flex: none;
+        width: 80%;
+        max-width: 250px;
+      }
+      .info-column {
+        min-width: unset;
+        width: 100%;
+      }
+      .flex-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .half {
+        min-width: unset;
+        width: 100%;
+      }
+      .aligned-section {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.3em;
+      }
+      h3 {
+        font-size: 1.1em;
+      }
+      .logo-container img {
+        max-width: 120px;
+      }
+      .poster-column {
+        width: 90%;
+      }
+      .aligned-section {
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo" />
+    </a>
+  </div>
+
+
+  <h1>World I live in</h1>
+  <div class="subtitle">Original Title: Svět, ve kterém žiji</div>
+  <div class="horizontal-line"></div>
+
+  <div class="info-line">animation, educational | 05/01/2024 | 7 minutes | Without dialogue with None subtitles | Czech Republic</div>
+
+  <div class="top-section">
+    <div class="poster-column">
+      <div>
+        <img src="../images/posters/world_i_live_in/world_i_live_in.jpg" alt="Poster" />
+        <div class="label">Still</div>
+        <img src="../images/stills/world_i_live_in/world_i_live_in_1.jpg" alt="Still" />
+        
+        <div class="label">Poster</div>
+        <div><a href="../images/posters/world_i_live_in/world_i_live_in.jpg">Link to poster</a></div>
+      </div>
+    </div>
+
+    <div class="info-column">
+      <h3>Logline</h3><p>Alice and her grandpa uncovers their shared interest in butterflies, uniting their distinct perspectives - through a video game and the real world.</p>
+      <h3>Synopsis</h3><p>Alice's summer at her grandpa's takes an unexpected turn. Obsessed with a butterfly-catching video game, she's oblivious to the world around, as well as her entomologist grandpa's interest in protecting endangered butterflies. In a powerful thunderstorm, her wonder for reality awakens, and their bond deepens.</p>
+      <h3>Director's Note</h3><p>I myself grew up in a time when digital techonology influenced me at a young age. In the film I wanted to project a subjective view of the world of the heroine, who prefers the colourful reality of a video game to the actual world Our film can inspire kids to look up from their screens and encourage them to seek adventure outside of their comfort zone, with their friends.</p>
+      
+      
+    </div>
+  </div>
+
+  <div class="aligned-section"> <h3>Festival, Crew, Cast & Technical Info</h3>
+    <div class="flex-row">
+      <div class="half">
+        <div class="label">Festivals</div>
+        <h3></h3><ul><li>ShorTS - International Film Festival, Italy (07/2024)</li><li>Internationale Kurzfilmtage Winterthur, Switzerland (11/2024)</li><li>Primanima World Festival of First Animations, Hungary (10/2024)</li><li>BUFF Malmö Film Festival, Sweden (03/2025)</li></ul>
+        <div class="label">Awards</div>
+        <h3></h3><ul><li> ()</li></ul>
+        <div class="label">Sales Status</div>
+        —
+        <div class="label">Downloads</div>
+        —
+      </div>
+      <div class="half">
+        <div class="label">Crew</div>
+        <h3></h3><ul><li>Director: Ester Kasalová</li><li>Screenplay writer: Ester Kasalová</li><li>Editor: Lucie Hecht</li><li>Sound director: Tomáš Jiřička</li><li>Art director: Ester Kasalová, Eliška Kerbachová, Viktorie Ramiková</li><li>Music composer: Pavel Duda</li></ul>
+        <div class="label">Cast</div>
+        
+      </div>
+    </div>
+    <div class="label">Technical Specs</div>
+    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': '', 'Other': ''}</li><li>Anamorphic Lens: No</li><li>Animation Technique: 2D computer</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': '', 'Other': ''}</li><li>Resolution: HD: 1920X1080</li><li>Speed: {'Scan_Method': '', 'FPS': '24', 'FPS_Other': ''}</li><li>Aspect Ratio: 1.78 (16:9)</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Colour: Colour</li></ul>
+  </div>
+</body>
+</html>

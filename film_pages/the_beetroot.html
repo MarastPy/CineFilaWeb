@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Beetroot</title>
+  <style>
+    body {
+      background-color: #2b2b2b;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.1em;
+    }
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+    h3 {
+      font-size: 1.4em;
+      margin-top: 25px;
+      margin-bottom: 5px;
+    }
+    .logo-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo-container img {
+      max-width: 200px;
+      height: auto;
+    }
+    .subtitle {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .horizontal-line {
+      border-bottom: 1px solid white;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .info-line {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .top-section {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .poster-column {
+      flex: 0 0 250px;
+      max-width: 250px;
+    }
+    .info-column {
+      flex: 1;
+      min-width: 300px;
+    }
+    .poster-column img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid white;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .block {
+      margin-bottom: 20px;
+    }
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .flex-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .half {
+      flex: 1;
+      min-width: 300px;
+    }
+    .aligned-section {
+      margin-left: calc(250px + 40px);
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+    a {
+      color: white;
+    }
+
+    /* Video Responsiveness */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+      margin-top: 20px;
+    }
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      h3 {
+        font-size: 1.2em;
+      }
+      .logo-container img {
+        max-width: 150px;
+      }
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .poster-column {
+        flex: none;
+        width: 80%;
+        max-width: 250px;
+      }
+      .info-column {
+        min-width: unset;
+        width: 100%;
+      }
+      .flex-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .half {
+        min-width: unset;
+        width: 100%;
+      }
+      .aligned-section {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.3em;
+      }
+      h3 {
+        font-size: 1.1em;
+      }
+      .logo-container img {
+        max-width: 120px;
+      }
+      .poster-column {
+        width: 90%;
+      }
+      .aligned-section {
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo" />
+    </a>
+  </div>
+
+
+  <h1>The Beetroot</h1>
+  <div class="subtitle">Original Title: Řepa</div>
+  <div class="horizontal-line"></div>
+
+  <div class="info-line">animation, fairytale, sci-fi | 2025 | 12 minutes | Czech with English subtitles | Czech Republic</div>
+
+  <div class="top-section">
+    <div class="poster-column">
+      <div>
+        <img src="../images/posters/the_beetroot/the_beetroot.jpg" alt="Poster" />
+        <div class="label">Still</div>
+        <img src="../images/stills/the_beetroot/the_beetroot_1.jpg" alt="Still" />
+        
+        <div class="label">Poster</div>
+        <div><a href="../images/posters/the_beetroot/the_beetroot.jpg">Link to poster</a></div>
+      </div>
+    </div>
+
+    <div class="info-column">
+      <h3>Logline</h3><p>A giant beetroot goes on a rampage in this wild Slavic kaiju tale mixing live action, stop-motion, and 2D animation.</p>
+      <h3>Synopsis</h3><p>Inspired by the traditional Slavic folktale “The Enormous Turnip,” a beetroot grows so huge that no one can pull it from the ground. When a local crane operator is hired to do the job, the giant vegetable turns violent and destructive. As chaos unfolds, an army is mobilized to stop it — but maybe there’s another way to appease this monstrous force.</p>
+      <h3>Director's Note</h3><p>Beetroot is a collaboration between two directors from FAMU and UMPRUM, blending distinct authorial styles. Inspired by the classic Czech tale The Big Beetroot, we reimagine the beet as an uncontrollable force, merging fairy tale with the Japanese Kaiju genre. As the beet grows, so do the problems—nature's power takes monstrous form.</p>
+      <h3>Target Group</h3><p>general audience</p>
+      
+    </div>
+  </div>
+
+  <div class="aligned-section"> <h3>Festival, Crew, Cast & Technical Info</h3>
+    <div class="flex-row">
+      <div class="half">
+        <div class="label">Festivals</div>
+        <h3></h3><ul><li>Anifilm, Czech Republic (May 2025)</li></ul>
+        <div class="label">Awards</div>
+        <h3></h3><ul><li> ()</li></ul>
+        <div class="label">Sales Status</div>
+        —
+        <div class="label">Downloads</div>
+        —
+      </div>
+      <div class="half">
+        <div class="label">Crew</div>
+        <h3></h3><ul><li>Director: Jáchym Štulíř, David Šourek</li><li>Screenplay writer: Jáchym Štulíř, David Šourek</li><li>Director of Photography: David Šourek</li><li>Editor: Ondřej Plecháč</li><li>Sound director: Juras Karaka</li><li>Art director: Jáchym Štulíř</li><li>Music composer: Juras Karaka</li></ul>
+        <div class="label">Cast</div>
+        
+      </div>
+    </div>
+    <div class="label">Technical Specs</div>
+    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': '', 'Other': ''}</li><li>Anamorphic Lens: No</li><li>Animation Technique: 2D computer</li><li>Animation Technique Other: mixing live action</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': 'ProRes, h264'}</li><li>Resolution: 2K</li><li>Speed: {'Scan_Method': 'progressive (DCP, e-cinema, TV)', 'FPS': '25', 'FPS_Other': ''}</li><li>Aspect Ratio: 1.33 (4:3)</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Colour: Colour</li></ul>
+  </div>
+</body>
+</html>
