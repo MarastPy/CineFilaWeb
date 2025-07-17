@@ -203,8 +203,11 @@ FILM_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
   <div class="logo-container">
-    <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo" />
+    <a href="about.html">
+      <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo" />
+    </a>
   </div>
+
 
   <h1>{title_english}</h1>
   <div class="subtitle">Original Title: {title_original}</div>
