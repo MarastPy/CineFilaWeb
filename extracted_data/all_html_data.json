@@ -130,144 +130,6 @@
   },
   {
     "Film": {
-      "Title_Original": "Krajan",
-      "Title_English": "The Compatriot",
-      "Title_Other": "",
-      "Language_Original": "Czech, German",
-      "Language_Subtitles": "English, Czech",
-      "Country_of_production": "Czech Republic",
-      "Date_of_completion": "01.01.2023",
-      "Runtime": "00:24:34",
-      "Number_of_series": "",
-      "Number_of_episodes": "",
-      "Titles_and_runtime_of_episodes": "",
-      "First_Film": "No",
-      "Genre_List": [
-        "psychological",
-        "drama",
-        "historical",
-        "war"
-      ],
-      "Genre_Other": "",
-      "Keywords": "WWII, second world war, Sudeten",
-      "Target_Group": {
-        "Rating": "12+",
-        "Audience": "general audience",
-        "Other": ""
-      }
-    },
-    "Premiere": [
-      {
-        "Date": "",
-        "Country": "",
-        "Name_of_place_of_premiere": ""
-      }
-    ],
-    "Festivals": [
-      {
-        "Date": "September 2025",
-        "Country": "Czech Republic",
-        "Name_of_Festival": "ZLÍN FILM FESTIVAL – International Film Festival for Children and Youth"
-      }
-    ],
-    "Awards": [
-      {
-        "Date": "2024",
-        "Country": "USA",
-        "Festival_Section_of_Competition": "Student Academy Awards - Golden Medal"
-      }
-    ],
-    "Logline": "On New Year's Eve 1944, two Sudeten men—one a widower, the other an SS officer—confront a shared past in a snowbound cottage cut off from the world.",
-    "Synopsis": "On New Year’s Eve 1944, widower Petr Bernat and SS officer Konrad Neumann meet in a remote cottage during a snowstorm. United only by their Sudeten origins, their conversation shifts from trivial topics to painful truths, leading to a fateful night for both men.",
-    "Directors_Note": "",
-    "Crew": {
-      "Director(s)": "Viktor Horák, Pavel Sýkora",
-      "Screenplay_writer(s)": "Petr Pelech, Pavel Sýkora",
-      "Director(s)_of_Photography": "Pavel Sýkora",
-      "Editor(s)": "Lukáš Skalník",
-      "Sound_director(s)": "Yurii Fenynets",
-      "Art_director(s)": "",
-      "Music_composer(s)": "Jakub Zajíc",
-      "Cast": [
-        "Jiří Štěpnička",
-        "Pavel Batěk",
-        "Martin Hlubocký"
-      ]
-    },
-    "Director_Bio": {
-      "Date_of_birth": "",
-      "Bio_Text": ""
-    },
-    "Director_Filmography": [],
-    "Technical_Details": {
-      "Shooting_Format": {
-        "Film": "",
-        "Video": "",
-        "Other": ""
-      },
-      "Camera": "",
-      "Anamorphic_Lens": "No",
-      "Animation_Technique": "",
-      "Animation_Technique_Other": "",
-      "Video_Editing_Software": "",
-      "Digital_Audio_Workstation": "",
-      "Screening_Format": {
-        "Film": "",
-        "Tape": "",
-        "File": "DCP",
-        "Other": ""
-      },
-      "Resolution": "4k",
-      "Resolution_Other": "",
-      "Speed": {
-        "Scan_Method": "",
-        "FPS": "25",
-        "FPS_Other": ""
-      },
-      "Aspect_Ratio": "1.78 (16:9)",
-      "Aspect_Ratio_Other": "",
-      "Sound_Mix": "Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)",
-      "Sound_Mix_Other": "",
-      "Colour": "Colour",
-      "Notes": ""
-    },
-    "Production": {
-      "Producers": {
-        "Name": "FAMO",
-        "Address": "Lipová alej 2068",
-        "Postal code, city": "397 01 Písek",
-        "Country": "Czech Republic",
-        "WEB": "www.filmovka.cz"
-      },
-      "Production_Company": {
-        "Name": "",
-        "Address": "",
-        "Postal code, city": "",
-        "Country": "",
-        "WEB": ""
-      },
-      "Co_Producer": {
-        "Name": "",
-        "Address": "",
-        "Postal code, city": "",
-        "Country": "",
-        "WEB": ""
-      }
-    },
-    "Source_File": "compatriot.html",
-    "Ranking": "1",
-    "Review": "Milan Marčetić",
-    "Festival_Distribution_Only": "Milan Marčetić",
-    "Sales": "Milan Marčetić",
-    "Status": "Milan Marčetić",
-    "Download_poster": "Milan Marčetić",
-    "Download_stills": "Milan Marčetić",
-    "Download_presskit": "Milan Marčetić",
-    "Sharing": "Milan Marčetić",
-    "Trailer_url": ""
-  },
-  {
-    "Film": {
       "Title_Original": "První hlídka",
       "Title_English": "First patrol",
       "Title_Other": "",
@@ -674,7 +536,17 @@
         "WEB": ""
       }
     },
-    "Source_File": "home.html"
+    "Source_File": "home.html",
+    "Ranking": "4",
+    "Review": "Milan Marčetić",
+    "Festival_Distribution_Only": "Milan Marčetić",
+    "Sales": "Milan Marčetić",
+    "Status": "Milan Marčetić",
+    "Download_poster": "Milan Marčetić",
+    "Download_stills": "Milan Marčetić",
+    "Download_presskit": "Milan Marčetić",
+    "Sharing": "Milan Marčetić",
+    "Trailer_url": "https://vimeo.com/1031297187?p=0s"
   },
   {
     "Film": {
@@ -1194,6 +1066,144 @@
       }
     },
     "Source_File": "the_beetroot.html"
+  },
+  {
+    "Film": {
+      "Title_Original": "Krajan",
+      "Title_English": "The Compatriot",
+      "Title_Other": "",
+      "Language_Original": "Czech, German",
+      "Language_Subtitles": "English, Czech",
+      "Country_of_production": "Czech Republic",
+      "Date_of_completion": "01.01.2023",
+      "Runtime": "00:24:34",
+      "Number_of_series": "",
+      "Number_of_episodes": "",
+      "Titles_and_runtime_of_episodes": "",
+      "First_Film": "No",
+      "Genre_List": [
+        "psychological",
+        "drama",
+        "historical",
+        "war"
+      ],
+      "Genre_Other": "",
+      "Keywords": "WWII, second world war, Sudeten",
+      "Target_Group": {
+        "Rating": "12+",
+        "Audience": "general audience",
+        "Other": ""
+      }
+    },
+    "Premiere": [
+      {
+        "Date": "",
+        "Country": "",
+        "Name_of_place_of_premiere": ""
+      }
+    ],
+    "Festivals": [
+      {
+        "Date": "September 2025",
+        "Country": "Czech Republic",
+        "Name_of_Festival": "ZLÍN FILM FESTIVAL – International Film Festival for Children and Youth"
+      }
+    ],
+    "Awards": [
+      {
+        "Date": "2024",
+        "Country": "USA",
+        "Festival_Section_of_Competition": "Student Academy Awards - Golden Medal"
+      }
+    ],
+    "Logline": "On New Year's Eve 1944, two Sudeten men—one a widower, the other an SS officer—confront a shared past in a snowbound cottage cut off from the world.",
+    "Synopsis": "On New Year’s Eve 1944, widower Petr Bernat and SS officer Konrad Neumann meet in a remote cottage during a snowstorm. United only by their Sudeten origins, their conversation shifts from trivial topics to painful truths, leading to a fateful night for both men.",
+    "Directors_Note": "",
+    "Crew": {
+      "Director(s)": "Viktor Horák, Pavel Sýkora",
+      "Screenplay_writer(s)": "Petr Pelech, Pavel Sýkora",
+      "Director(s)_of_Photography": "Pavel Sýkora",
+      "Editor(s)": "Lukáš Skalník",
+      "Sound_director(s)": "Yurii Fenynets",
+      "Art_director(s)": "",
+      "Music_composer(s)": "Jakub Zajíc",
+      "Cast": [
+        "Jiří Štěpnička",
+        "Pavel Batěk",
+        "Martin Hlubocký"
+      ]
+    },
+    "Director_Bio": {
+      "Date_of_birth": "",
+      "Bio_Text": ""
+    },
+    "Director_Filmography": [],
+    "Technical_Details": {
+      "Shooting_Format": {
+        "Film": "",
+        "Video": "",
+        "Other": ""
+      },
+      "Camera": "",
+      "Anamorphic_Lens": "No",
+      "Animation_Technique": "",
+      "Animation_Technique_Other": "",
+      "Video_Editing_Software": "",
+      "Digital_Audio_Workstation": "",
+      "Screening_Format": {
+        "Film": "",
+        "Tape": "",
+        "File": "DCP",
+        "Other": ""
+      },
+      "Resolution": "4k",
+      "Resolution_Other": "",
+      "Speed": {
+        "Scan_Method": "",
+        "FPS": "25",
+        "FPS_Other": ""
+      },
+      "Aspect_Ratio": "1.78 (16:9)",
+      "Aspect_Ratio_Other": "",
+      "Sound_Mix": "Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)",
+      "Sound_Mix_Other": "",
+      "Colour": "Colour",
+      "Notes": ""
+    },
+    "Production": {
+      "Producers": {
+        "Name": "FAMO",
+        "Address": "Lipová alej 2068",
+        "Postal code, city": "397 01 Písek",
+        "Country": "Czech Republic",
+        "WEB": "www.filmovka.cz"
+      },
+      "Production_Company": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      },
+      "Co_Producer": {
+        "Name": "",
+        "Address": "",
+        "Postal code, city": "",
+        "Country": "",
+        "WEB": ""
+      }
+    },
+    "Source_File": "the_compatriot.html",
+    "Ranking": "1",
+    "Review": "Milan Marčetić",
+    "Festival_Distribution_Only": "Milan Marčetić",
+    "Sales": "Milan Marčetić",
+    "Status": "Milan Marčetić",
+    "Download_poster": "Milan Marčetić",
+    "Download_stills": "Milan Marčetić",
+    "Download_presskit": "Milan Marčetić",
+    "Sharing": "Milan Marčetić",
+    "Trailer_url": ""
   },
   {
     "Film": {
