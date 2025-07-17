@@ -216,11 +216,11 @@ FILM_TEMPLATE = """<!DOCTYPE html>
     <div class="poster-column">
       <div>
         <img src="{poster_image}" alt="Poster" />
-        <div class="label">Poster</div>
-        <div><a href="{poster_image}">Link to poster</a></div>
         <div class="label">Still</div>
         <img src="{still_image}" alt="Still" />
         {trailer_html}
+        <div class="label">Poster</div>
+        <div><a href="{poster_image}">Link to poster</a></div>
       </div>
     </div>
 
