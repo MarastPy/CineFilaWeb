@@ -31,7 +31,7 @@ for film_entry in all_html_data:
                     film_entry[key] = value
 
 # Step 4: Save the result
-with open("all_html_data_merged.json", "w", encoding="utf-8") as f:
+with open("extracted_data/all_html_data.json", "w", encoding="utf-8") as f:
     json.dump(all_html_data, f, ensure_ascii=False, indent=2)
 
-print("✅ Merged file saved as all_html_data_merged.json")
+print("✅ Merged file saved as extracted_data/all_html_data.json")

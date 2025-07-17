@@ -109,6 +109,26 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       color: white;
     }}
 
+    /* Video Responsiveness */
+    .video-container {{
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+      margin-top: 20px;
+    }}
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }}
+
     /* Media Queries for Responsiveness */
     @media (max-width: 768px) {{
       body {{
@@ -200,6 +220,7 @@ FILM_TEMPLATE = """<!DOCTYPE html>
         <div><a href="{poster_image}">Link to poster</a></div>
         <div class="label">Still</div>
         <img src="{still_image}" alt="Still" />
+        {trailer_html}
       </div>
     </div>
 
@@ -238,13 +259,16 @@ FILM_TEMPLATE = """<!DOCTYPE html>
 </html>
 """
 
+
 # ---------------------- Helper Functions ----------------------
 
 def sanitize_filename(title):
     return re.sub(r'[^\w\s-]', '', title).strip().replace(' ', '_').lower()
 
+
 def optional_block(title, content):
     return f"<h3>{title}</h3><p>{content}</p>" if content else ""
+
 
 def list_block(title, items):
     if not items:
@@ -255,17 +279,47 @@ def list_block(title, items):
     html += "</ul>"
     return html
 
+
 def build_crew(crew):
     return list_block("Crew", [f"{k.title().replace('_', ' ')}: {v}" for k, v in crew.items()]) if crew else ""
+
 
 def build_cast(cast):
     return list_block("Cast", cast) if cast else ""
 
+
 def build_tech_specs(specs):
-    return list_block("Technical Specs", [f"{k.replace('_', ' ').title()}: {v}" for k, v in specs.items()]) if specs else ""
+    return list_block("Technical Specs",
+                      [f"{k.replace('_', ' ').title()}: {v}" for k, v in specs.items()]) if specs else ""
+
 
 def build_festivals(fests):
-    return list_block("Festivals", [f"{f.get('Name_of_Festival', '')} ({f.get('Year', '')})" for f in fests]) if fests else ""
+    return list_block("Festivals",
+                      [f"{f.get('Name_of_Festival', '')} ({f.get('Year', '')})" for f in fests]) if fests else ""
+
+
+def get_vimeo_id(url):
+    if not url:
+        return None
+    match = re.search(r'vimeo\.com/(\d+)', url)
+    if match:
+        return match.group(1)
+    return None
+
+
+def build_trailer_embed(trailer_url):
+    vimeo_id = get_vimeo_id(trailer_url)
+    if not vimeo_id:
+        return ""
+
+    embed_url = f"https://player.vimeo.com/video/{vimeo_id}"
+    return f"""
+    <div class="label">Trailer</div>
+    <div class="video-container">
+      <iframe src="{embed_url}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    """
+
 
 # ---------------------- Main Logic ----------------------
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -289,9 +343,11 @@ for film in films:
     html = FILM_TEMPLATE.format(
         title_english=title_en,
         title_original=title_orig,
-        genre=", ".join([g for g in fdata.get("Genre_List", []) if g] + ([fdata.get("Genre_Other", "")] if fdata.get("Genre_Other") else [])),
+        genre=", ".join([g for g in fdata.get("Genre_List", []) if g] + (
+            [fdata.get("Genre_Other", "")] if fdata.get("Genre_Other") else [])),
         year=fdata.get("Date_of_completion", "").split(".")[-1] if fdata.get("Date_of_completion") else "",
-        duration=int(fdata.get("Runtime", "0:0:0").split(":")[0]) * 60 + int(fdata.get("Runtime", "0:0:0").split(":")[1]) if fdata.get("Runtime", "0:0:0") != "0:0:0" else "",
+        duration=int(fdata.get("Runtime", "0:0:0").split(":")[0]) * 60 + int(
+            fdata.get("Runtime", "0:0:0").split(":")[1]) if fdata.get("Runtime", "0:0:0") != "0:0:0" else "",
         language=fdata.get("Language_Original", ""),
         subtitles=fdata.get("Language_Subtitles", ""),
         country=fdata.get("Country_of_production", ""),
@@ -302,13 +358,20 @@ for film in films:
         note_html=optional_block("Director's Note", film.get("Directors_Note")),
         target_html=optional_block("Target Group", target_group_content),
         topics_html=optional_block("Story Topics & Notes", film.get("Keywords")),
-        festivals_html=list_block("", [f"{fest['Name_of_Festival']}, {fest['Country']} ({fest['Date']})" for fest in film.get("Festivals", [])]),
-        awards_html=list_block("", [f"{a['Festival_Section_of_Competition']} ({a['Date']})" for a in film.get("Awards", [])]),
-        crew_html=list_block("", [f"{k.replace('_', ' ').replace('(s)', '')}: {v}" for k, v in film.get("Crew", {}).items() if not isinstance(v, list) and v]),
+        festivals_html=list_block("", [f"{fest['Name_of_Festival']}, {fest['Country']} ({fest['Date']})" for fest in
+                                       film.get("Festivals", [])]),
+        awards_html=list_block("", [f"{a['Festival_Section_of_Competition']} ({a['Date']})" for a in
+                                    film.get("Awards", [])]),
+        crew_html=list_block("",
+                             [f"{k.replace('_', ' ').replace('(s)', '')}: {v}" for k, v in film.get("Crew", {}).items()
+                              if not isinstance(v, list) and v]),
         cast_html=list_block("", film.get("Crew", {}).get("Cast", [])),
-        technical_html=list_block("", [f"{k.replace('_', ' ')}: {v}" for k, v in film.get("Technical_Details", {}).items() if v]),
+        technical_html=list_block("",
+                                  [f"{k.replace('_', ' ')}: {v}" for k, v in film.get("Technical_Details", {}).items()
+                                   if v]),
         downloads=film.get("Downloads", "—"),
-        status=fdata.get("Status", "—")
+        status=fdata.get("Status", "—"),
+        trailer_html=build_trailer_embed(film.get("Trailer_url"))
     )
 
     with open(os.path.join(OUTPUT_DIR, fname), 'w', encoding='utf-8') as out:
