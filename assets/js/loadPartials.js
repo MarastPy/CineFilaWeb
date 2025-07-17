@@ -55,9 +55,9 @@ async function loadPartials() {
   // Mobile nav toggle logic - NOW ATTACHED AFTER header.html IS LOADED
   const headerContainer = document.getElementById('header-container');
   if (headerContainer) {
-    // Assuming you moved .hamburger-menu-icon inside .logo-top
-    const hamburger = headerContainer.querySelector('.logo-top .hamburger-menu-icon');
-    const nav = headerContainer.querySelector('.main-nav');
+    // CORRECTED: Select the hamburger menu icon as a direct child of header-inner
+    const hamburger = headerContainer.querySelector('.header-inner .hamburger-menu-icon');
+    const nav = headerContainer.querySelector('#main-header .main-nav'); // More specific selector for clarity
 
     if (hamburger && nav) {
       hamburger.addEventListener('click', () => {
@@ -70,7 +70,7 @@ async function loadPartials() {
         });
       });
     } else {
-        console.error('Hamburger or Navigation element not found after header load. Check header.html structure.');
+        console.error('Hamburger or Navigation element not found for event listeners.');
     }
   }
 }

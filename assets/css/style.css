@@ -32,10 +32,12 @@ body:not(.index-page).scrolled {
 
 /* Body Padding for Index Page */
 body.index-page:not(.scrolled) {
-    padding-top: 0; /* No fixed header visible initially, content starts after banner */
+  /* On index page, the header is initially hidden and appears on scroll. */
+  /* No top padding is needed here as the content starts from the top. */
+  padding-top: 0;
 }
 body.index-page.scrolled {
-    padding-top: 60px; /* When scrolled, compact header appears */
+  padding-top: 60px; /* Space for the scrolled header */
 }
 
 
@@ -177,39 +179,49 @@ body.scrolled #initial-info-banner {
   left: 0;
   right: 0;
   height: 90px; /* Default height */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
+  transition: height 0.3s ease; /* Only height transition remains here */
+}
+
+/* New inner container for header content */
+.header-inner {
+    max-width: 1200px; /* Match .content max-width */
+    margin: 0 auto; /* Center the inner container */
+    height: 100%; /* Take full height of header-area */
+    display: flex;
+    justify-content: space-between; /* Space logo and hamburger */
+    align-items: center;
+    padding: 0 2cm; /* Match .content horizontal padding */
+    transition: padding 0.3s ease; /* Add transition for padding changes */
 }
 
 /* Top Logo Section */
 /* Styles for the fixed logo area at the very top of the page, including its transitions and scrolled state. */
 .logo-top {
-  position: static; /* Let it flow normally within header-area */
   height: auto;
-  text-align: center;
   padding: 0;
   z-index: 1003;
-  transition: height 0.3s ease, padding 0.3s ease;
+  transition: height 0.3s ease;
 }
 
 .logo-top img {
   height: 60px; /* Adjusted height for default */
   display: block;
-  margin: 0 auto; /* Center logo by default in desktop */
+  margin: 0; /* Align left within header-inner */
   transition: height 0.3s ease;
 }
 
 /* Scrolled state for header (General - for all pages unless index overrides) */
 body.scrolled .header-area {
     height: 60px; /* Smaller height when scrolled */
-    padding: 10px 20px;
+}
+
+body.scrolled .header-inner {
+    padding: 0 2cm; /* Keep consistent padding when scrolled */
 }
 
 body.scrolled .logo-top img {
   height: 40px; /* Smaller logo when scrolled */
-  margin: 0 auto; /* Keep centered for non-index pages */
+  margin: 0; /* Keep left aligned */
 }
 
 
@@ -271,14 +283,18 @@ nav a:hover {
   display: block; /* Always visible */
   cursor: pointer;
   padding: 10px;
-  position: absolute; /* Position relative to .header-area */
-  right: 20px; /* Far right */
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1004;
+  z-index: 1004; /* Keep z-index */
 }
 .hamburger-menu-icon img {
   height: 30px; /* Size of the hamburger icon */
+}
+
+/* Add absolute positioning if needed when the menu is open, e.g., to function as a close button */
+body.menu-open .hamburger-menu-icon {
+    position: absolute;
+    right: 20px; /* Adjust as needed for specific overlay positioning */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 
@@ -1066,15 +1082,26 @@ footer {
 /* On index page, logo-top and header are initially hidden, then appear on scroll */
 body.index-page .header-area {
     top: -90px; /* Hide header-area initially */
-    transition: top 0.3s ease, height 0.3s ease, padding 0.3s ease;
+    transition: top 0.3s ease; /* Only top transition */
+}
+
+body.index-page .header-inner {
+    padding: 0 2cm; /* Default padding for index-page, hidden with header-area */
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* When scrolled on index page, bring header-area into view */
 body.index-page.scrolled .header-area {
     top: 0 !important; /* Bring into view */
     height: 60px; /* Compact height */
-    padding: 10px 20px; /* Adjust padding */
-    display: flex; /* Ensure it's a flex container */
+}
+
+body.index-page.scrolled .header-inner {
+    padding: 0 2cm; /* Apply correct padding for index-page scrolled */
+    display: flex; /* Ensure flex behavior */
     justify-content: space-between; /* Space out logo and hamburger */
     align-items: center;
 }
@@ -1112,7 +1139,10 @@ body.index-page.scrolled .logo-top img {
   /* Header and Navigation adjustments for mobile */
   .header-area {
     height: 70px; /* Height for mobile header */
-    padding: 10px 20px;
+  }
+
+  .header-inner {
+    padding: 0 15px; /* Adjust inner padding for mobile */
   }
 
   #initial-info-banner { /* Adjust padding for mobile screens */
@@ -1126,10 +1156,6 @@ body.index-page.scrolled .logo-top img {
   /* Hamburger menu position is already handled by base styles (absolute to header-area) */
   .hamburger-menu-icon {
     display: block; /* Already in base, but re-confirm */
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
     margin-left: unset; /* Remove auto margin if it was applied elsewhere */
   }
 
@@ -1149,6 +1175,20 @@ body.index-page.scrolled .logo-top img {
 
   body.scrolled {
     padding-top: 70px; /* Consistent with mobile header */
+  }
+
+  body.scrolled .header-area {
+    height: 70px; /* Consistent with mobile header */
+  }
+  body.scrolled .header-inner {
+    padding: 0 15px;
+  }
+
+  body.index-page.scrolled .header-area {
+    height: 70px; /* Consistent with mobile header */
+  }
+  body.index-page.scrolled .header-inner {
+    padding: 0 15px;
   }
 
   /* General Layouts */
@@ -1320,7 +1360,7 @@ body.index-page.scrolled .logo-top img {
       max-width: 300px;
   }
 
-  .filter-group.search-filter-group input[type="text"] {
+  .filter-group.search-filter-group input[type=\"text\"] {
       width: 100%; /* Full width within its group */
       max-width: unset; /* Remove max-width */
       margin-bottom: 10px; /* Space between input and button */
