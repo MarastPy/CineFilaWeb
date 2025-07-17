@@ -13,7 +13,21 @@ async function fetchData() {
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         allFilms = await response.json();
+
+        // Parse and store ranking as a number
+        allFilms.forEach(film => {
+            if (film.Ranking) {
+                film.ParsedRanking = parseInt(film.Ranking, 10);
+                if (isNaN(film.ParsedRanking)) {
+                    film.ParsedRanking = Infinity; // Place films without valid ranking at the end
+                }
+            } else {
+                film.ParsedRanking = Infinity; // Place films without ranking at the end
+            }
+        });
+
         filteredFilms = [...allFilms];
+        sortFilmsByRanking(); // Sort initially
         populateFilters();
         displayFilms(filteredFilms);
     } catch (error) {
@@ -115,6 +129,10 @@ function populateSelect(selectId, options) {
     });
 }
 
+function sortFilmsByRanking() {
+    filteredFilms.sort((a, b) => a.ParsedRanking - b.ParsedRanking);
+}
+
 function applyFilters() {
     const searchInput = document.getElementById('searchInput');
     const genreFilter = document.getElementById('genresFilter');
@@ -166,6 +184,7 @@ function applyFilters() {
             matchesCountry && matchesRating && matchesAudience && matchesKeywords;
     });
 
+    sortFilmsByRanking(); // Sort filtered results
     displayFilms(filteredFilms);
 }
 
@@ -181,7 +200,7 @@ function displayFilms(films) {
         const filmFolder = sourceFileName ? sourceFileName.replace(/\.html$/i, '').toLowerCase() : '';
 
         const filmLink = document.createElement('a');
-        filmLink.href = `generated_film_pages/${filmFolder}.html`;
+        filmLink.href = `film_pages/${filmFolder}.html`;
         filmLink.classList.add('preview-item-link');
 
         const filmCard = document.createElement('div');
@@ -235,6 +254,7 @@ function resetFilters(clearSearch = true) {
     }
 
     filteredFilms = [...allFilms];
+    sortFilmsByRanking(); // Sort after reset
     displayFilms(filteredFilms);
 }
 

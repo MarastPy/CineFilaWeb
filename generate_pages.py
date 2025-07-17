@@ -4,7 +4,7 @@ import re
 
 # ---------------------- Configuration ----------------------
 JSON_PATH = 'extracted_data/all_html_data.json'
-OUTPUT_DIR = 'generated_film_pages'
+OUTPUT_DIR = 'film_pages'
 INDEX_FILE = 'index.html'
 POSTER_DIR = '../images/posters'
 STILLS_DIR = '../images/stills'
