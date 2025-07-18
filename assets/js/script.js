@@ -61,16 +61,12 @@ function displayTopFilmsOnIndexPage() {
     displayFilms(top3Films, 'topFilmsContainer');
 }
 
-// ✅ FIXED version of getRoundedRuntime()
-function getRoundedRuntime(runtimeString) {
+// Helper function to get the exact total minutes from a runtime string
+function getExactTotalMinutes(runtimeString) {
     if (!runtimeString || typeof runtimeString !== "string") return null;
 
-    // Clean the input
     const cleanStr = runtimeString.trim().toLowerCase().replace(/[^0-9:]/g, '');
-
     let totalMinutes = 0;
-
-    // Handle formats like hh:mm:ss or mm:ss
     const parts = cleanStr.split(':').map(Number);
 
     if (parts.length === 3) {
@@ -86,9 +82,13 @@ function getRoundedRuntime(runtimeString) {
     }
 
     if (isNaN(totalMinutes)) return null;
+    return Math.round(totalMinutes);
+}
 
-    // Round totalMinutes to nearest whole number
-    totalMinutes = Math.round(totalMinutes);
+// getRoundedRuntime remains the same for filter categorization
+function getRoundedRuntime(runtimeString) {
+    const totalMinutes = getExactTotalMinutes(runtimeString);
+    if (totalMinutes === null) return null;
 
     if (totalMinutes < 40) return "short";
     if (totalMinutes <= 70) return "mid-length";
@@ -177,7 +177,18 @@ function applyFilters() {
         const audience = f.Target_Group?.Audience?.toLowerCase() || '';
         const keywords = f.Keywords ? f.Keywords.split(',').map(k => k.trim().toLowerCase()) : [];
 
+        // Additional filter for runtime: only include films with runtime >= 40 minutes if no length filter is selected
+        let meetsMinimumRuntime = true;
+        if (!values.length && f.Runtime) {
+            const totalMinutes = getExactTotalMinutes(f.Runtime);
+            if (totalMinutes !== null && totalMinutes < 40) {
+                meetsMinimumRuntime = false;
+            }
+        }
+
+
         return (
+            meetsMinimumRuntime && // Apply the minimum runtime filter here
             (!values.searchTerm || title.includes(values.searchTerm) || originalTitle.includes(values.searchTerm) || logline.includes(values.searchTerm) || synopsis.includes(values.searchTerm) || director.includes(values.searchTerm)) &&
             (!values.genre || genres.includes(values.genre)) &&
             (!values.year || year === values.year) &&
@@ -233,6 +244,16 @@ function updateDependentFilterOptions() {
         const relevantFilmsForThisFilterPopulation = allFilms.filter(film => {
             const f = film.Film || {};
 
+            // Apply the minimum runtime filter here as well when populating options
+            let meetsMinimumRuntime = true;
+            if (!currentSelectedValues.length && f.Runtime) { // Only apply if no length filter is currently selected
+                const totalMinutes = getExactTotalMinutes(f.Runtime);
+                if (totalMinutes !== null && totalMinutes < 40) {
+                    meetsMinimumRuntime = false;
+                }
+            }
+            if (!meetsMinimumRuntime) return false;
+
             return filtersConfig.every(otherFilterConfig => {
                 if (otherFilterConfig.id === filterConfig.id || !currentSelectedValues[otherFilterConfig.key]) {
                     return true;
@@ -287,17 +308,13 @@ function displayFilms(films, containerId = 'filmContainer') {
 
         const title = (f.Title_English || f.Title_Original || 'Untitled').trim();
         const year = f.Date_of_completion?.match(/\b\d{4}\b/)?.[0] || '';
-        // Re-calculate totalMinutes based on getRoundedRuntime for display consistency
-        const runtimeCategory = f.Runtime ? getRoundedRuntime(f.Runtime) : null;
-        let displayRuntime = '';
-        if (runtimeCategory === 'short') {
-            displayRuntime = ' (<40 min)';
-        } else if (runtimeCategory === 'mid-length') {
-            displayRuntime = ' (40-70 min)';
-        } else if (runtimeCategory === 'full-length') {
-            displayRuntime = ' (>70 min)';
-        }
 
+        // Get exact runtime in minutes for display
+        const exactMinutes = getExactTotalMinutes(f.Runtime);
+        let displayRuntime = '';
+        if (exactMinutes !== null) {
+            displayRuntime = ` | ${exactMinutes} min`;
+        }
 
         const director = (crew['Director(s)'] || 'Unknown Director').trim();
         const logline = (filmData.Logline || '').trim();
