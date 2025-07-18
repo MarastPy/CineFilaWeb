@@ -668,18 +668,48 @@ body.menu-open .hamburger-menu-icon {
 .all-news-link {
   display: inline-block;
   padding: 12px 25px;
-  background-color: #ff9800;
-  color: #fff;
+  /* Original background-color: #ff9800; */
+  /* Original color: #fff; */
   text-decoration: none;
   border-radius: 6px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Added color and border-color for transition */
   margin-top: 25px;
   font-size: 1rem;
+  font-weight: bold; /* Make the text bold */
+  border: 2px solid; /* Add a border to easily change color */
 }
 
-.all-news-link:hover {
-  background-color: #ffc107;
+/* Specific styles for .all-news-link when in a dark-grey section */
+.section-dark-grey .all-news-link {
+  background-color: transparent; /* Transparent background */
+  color: #ffffff; /* White text */
+  border-color: #ffffff; /* White border */
 }
+
+.section-dark-grey .all-news-link:hover {
+  background-color: #ffffff; /* White background on hover */
+  color: #2b2b2b; /* Dark text on hover */
+  border-color: #ffffff; /* White border on hover */
+}
+
+/* Specific styles for .all-news-link when NOT in a dark-grey section (i.e., light background) */
+/* Assuming default sections are light, or explicitly white/light-grey */
+.section:not(.section-dark-grey) .all-news-link,
+.news-section .all-news-link,
+.section-light-grey .all-news-link {
+  background-color: transparent; /* Transparent background */
+  color: #1c1c1c; /* Dark text */
+  border-color: #1c1c1c; /* Dark border */
+}
+
+.section:not(.section-dark-grey) .all-news-link:hover,
+.news-section .all-news-link:hover,
+.section-light-grey .all-news-link:hover {
+  background-color: #1c1c1c; /* Dark background on hover */
+  color: #ffffff; /* White text on hover */
+  border-color: #1c1c1c; /* Dark border on hover */
+}
+
 
 /* Reset Button (General - not used directly for .clear-filters-btn anymore) */
 /* Kept for reference or other buttons if needed */

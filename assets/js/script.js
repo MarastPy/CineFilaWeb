@@ -2,14 +2,11 @@ let allFilms = [];
 let filteredFilms = []; // This holds the currently displayed films
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Detect presence of specific containers to determine page type
     const isIndexPage = document.getElementById('topFilmsContainer') !== null;
     const isCataloguePage = document.getElementById('filmContainer') !== null;
 
-    // Fetch data regardless of the page type
     fetchData(isIndexPage, isCataloguePage);
 
-    // Attach event listeners for filters/search on catalogue page
     if (isCataloguePage) {
         document.getElementById('searchInput')?.addEventListener('input', applyFilters);
         document.getElementById('genresFilter')?.addEventListener('change', applyFilters);
@@ -31,7 +28,6 @@ async function fetchData(isIndexPage, isCataloguePage) {
         allFilms = await response.json();
         console.log('All Films loaded:', allFilms);
 
-        // Parse rankings
         allFilms.forEach(film => {
             film.ParsedRanking = parseInt(film.Ranking, 10);
             if (isNaN(film.ParsedRanking)) film.ParsedRanking = Infinity;
@@ -40,7 +36,7 @@ async function fetchData(isIndexPage, isCataloguePage) {
         if (isCataloguePage) {
             filteredFilms = [...allFilms];
             sortFilmsByRanking();
-            populateAllFiltersInitial(); // This populates initial filters from ALL films
+            populateAllFiltersInitial(); // This will now dynamically populate length
             displayFilms(filteredFilms, 'filmContainer');
         } else if (isIndexPage) {
             displayTopFilmsOnIndexPage();
@@ -65,24 +61,45 @@ function displayTopFilmsOnIndexPage() {
     displayFilms(top3Films, 'topFilmsContainer');
 }
 
+// ✅ FIXED version of getRoundedRuntime()
 function getRoundedRuntime(runtimeString) {
-    if (!runtimeString || typeof runtimeString !== 'string') return null;
-    const parts = runtimeString.split(':').map(Number);
-    if (parts.length < 2) return null;
+    if (!runtimeString || typeof runtimeString !== "string") return null;
 
-    let hours = parts[0], minutes = parts[1], seconds = parts[2] || 0;
-    let totalMinutes = hours * 60 + minutes + (seconds >= 40 ? 1 : 0);
+    // Clean the input
+    const cleanStr = runtimeString.trim().toLowerCase().replace(/[^0-9:]/g, '');
+
+    let totalMinutes = 0;
+
+    // Handle formats like hh:mm:ss or mm:ss
+    const parts = cleanStr.split(':').map(Number);
+
+    if (parts.length === 3) {
+        const [hours, minutes, seconds] = parts;
+        totalMinutes = (hours || 0) * 60 + (minutes || 0) + (seconds || 0) / 60;
+    } else if (parts.length === 2) {
+        const [minutes, seconds] = parts;
+        totalMinutes = (minutes || 0) + (seconds || 0) / 60;
+    } else if (parts.length === 1 && cleanStr !== '') {
+        totalMinutes = parseInt(parts[0], 10);
+    } else {
+        return null;
+    }
+
+    if (isNaN(totalMinutes)) return null;
+
+    // Round totalMinutes to nearest whole number
+    totalMinutes = Math.round(totalMinutes);
 
     if (totalMinutes < 40) return "short";
-    else if (totalMinutes <= 70) return "mid-length";
-    else return "full-length";
+    if (totalMinutes <= 70) return "mid-length";
+    return "full-length";
 }
 
-// Initial population of all filters when the page loads
+
 function populateAllFiltersInitial() {
     const genres = new Set();
     const years = new Set();
-    const lengths = new Set();
+    const lengths = new Set(); // This will now collect actual lengths
     const countries = new Set();
     const ratings = new Set();
     const audiences = new Set();
@@ -97,7 +114,7 @@ function populateAllFiltersInitial() {
         }
         if (f.Runtime) {
             const len = getRoundedRuntime(f.Runtime);
-            if (len) lengths.add(len);
+            if (len) lengths.add(len); // Collect actual lengths present
         }
         if (f.Country_of_production) countries.add(f.Country_of_production.trim());
         if (f.Target_Group?.Rating) ratings.add(f.Target_Group.Rating.trim());
@@ -113,8 +130,10 @@ function populateAllFiltersInitial() {
     });
 
     populateSelect('genresFilter', Array.from(genres).sort(), '', 'Genre');
-    populateSelect('yearFilter', Array.from(years).sort((a, b) => b - a), '', 'Year'); // Sort years descending
-    populateSelect('lengthFilter', ['short', 'mid-length', 'full-length'], '', 'Length');
+    populateSelect('yearFilter', Array.from(years).sort((a, b) => b - a), '', 'Year');
+    // Dynamically sort lengths into the correct order if they exist
+    const sortedLengths = ['short', 'mid-length', 'full-length'].filter(cat => lengths.has(cat));
+    populateSelect('lengthFilter', sortedLengths, '', 'Length');
     populateSelect('countryFilter', Array.from(countries).sort(), '', 'Country');
     populateSelect('ratingFilter', Array.from(ratings).sort(), '', 'Rating');
     populateSelect('audienceFilter', Array.from(audiences).sort(), '', 'Audience');
@@ -141,7 +160,6 @@ function populateSelect(selectId, options, selectedValue = '', placeholder = 'Se
 function applyFilters() {
     const values = getCurrentFilterValues();
 
-    // Filter allFilms down to filteredFilms based on ALL selected criteria
     filteredFilms = allFilms.filter(film => {
         const f = film.Film || {};
         const crew = film.Crew || {};
@@ -173,7 +191,7 @@ function applyFilters() {
 
     sortFilmsByRanking();
     displayFilms(filteredFilms, 'filmContainer');
-    updateDependentFilterOptions(); // Crucially, re-populate filter options based on the NEW filteredFilms
+    updateDependentFilterOptions();
 }
 
 function getCurrentFilterValues() {
@@ -194,7 +212,8 @@ function updateDependentFilterOptions() {
 
     const filtersConfig = [
         { id: 'genresFilter', key: 'genre', path: f => f.Genre_List?.map(g => g.trim()), sort: arr => arr.sort(), placeholder: 'Genre' },
-        { id: 'yearFilter', key: 'year', path: f => f.Date_of_completion?.match(/\b\d{4}\b/)?.[0], sort: (arr) => arr.sort((a, b) => b - a), placeholder: 'Year' }, // Ensure years are sorted descending
+        { id: 'yearFilter', key: 'year', path: f => f.Date_of_completion?.match(/\b\d{4}\b/)?.[0], sort: arr => arr.sort((a, b) => b - a), placeholder: 'Year' },
+        // IMPORTANT: The sort function for length here ensures the correct order
         { id: 'lengthFilter', key: 'length', path: f => getRoundedRuntime(f.Runtime), sort: arr => ['short', 'mid-length', 'full-length'].filter(cat => arr.includes(cat)), placeholder: 'Length' },
         { id: 'countryFilter', key: 'country', path: f => f.Country_of_production?.trim(), sort: arr => arr.sort(), placeholder: 'Country' },
         { id: 'ratingFilter', key: 'rating', path: f => f.Target_Group?.Rating?.trim(), sort: arr => arr.sort(), placeholder: 'Rating' },
@@ -211,16 +230,10 @@ function updateDependentFilterOptions() {
     filtersConfig.forEach(filterConfig => {
         const uniqueOptions = new Set();
 
-        // Films to consider for populating *this* specific filter's options.
-        // These are 'allFilms' filtered by all *other* active filters.
         const relevantFilmsForThisFilterPopulation = allFilms.filter(film => {
             const f = film.Film || {};
 
-            // Check if this film satisfies ALL *other* currently selected filters.
-            // We iterate through all filtersConfig.
             return filtersConfig.every(otherFilterConfig => {
-                // If this is the filter we're currently populating, or if there's no selected
-                // value for the other filter, then this filter doesn't restrict the current film.
                 if (otherFilterConfig.id === filterConfig.id || !currentSelectedValues[otherFilterConfig.key]) {
                     return true;
                 }
@@ -229,16 +242,13 @@ function updateDependentFilterOptions() {
                 const filmDataForOtherFilter = otherFilterConfig.path(f);
 
                 if (Array.isArray(filmDataForOtherFilter)) {
-                    // For array-based film data (genres, keywords), check if any value matches the selected.
                     return filmDataForOtherFilter.some(val => val?.toLowerCase() === selectedValueForOtherFilter.toLowerCase());
                 } else {
-                    // For single-value film data (year, country), check for direct match.
                     return filmDataForOtherFilter?.toLowerCase() === selectedValueForOtherFilter.toLowerCase();
                 }
             });
         });
 
-        // Now, collect the options for the current filter from the `relevantFilmsForThisFilterPopulation`
         relevantFilmsForThisFilterPopulation.forEach(film => {
             const values = filterConfig.path(film.Film || {});
             if (Array.isArray(values)) {
@@ -252,7 +262,6 @@ function updateDependentFilterOptions() {
         populateSelect(filterConfig.id, sortedOptions, currentSelectedValues[filterConfig.key], filterConfig.placeholder);
     });
 }
-
 
 function displayFilms(films, containerId = 'filmContainer') {
     const container = document.getElementById(containerId);
@@ -278,14 +287,24 @@ function displayFilms(films, containerId = 'filmContainer') {
 
         const title = (f.Title_English || f.Title_Original || 'Untitled').trim();
         const year = f.Date_of_completion?.match(/\b\d{4}\b/)?.[0] || '';
-        const runtimeParts = f.Runtime?.split(':').map(Number) || [];
-        const totalMinutes = (runtimeParts[0] || 0) * 60 + (runtimeParts[1] || 0) + ((runtimeParts[2] || 0) >= 40 ? 1 : 0);
+        // Re-calculate totalMinutes based on getRoundedRuntime for display consistency
+        const runtimeCategory = f.Runtime ? getRoundedRuntime(f.Runtime) : null;
+        let displayRuntime = '';
+        if (runtimeCategory === 'short') {
+            displayRuntime = ' (<40 min)';
+        } else if (runtimeCategory === 'mid-length') {
+            displayRuntime = ' (40-70 min)';
+        } else if (runtimeCategory === 'full-length') {
+            displayRuntime = ' (>70 min)';
+        }
+
+
         const director = (crew['Director(s)'] || 'Unknown Director').trim();
         const logline = (filmData.Logline || '').trim();
 
         const titleMeta = document.createElement('h3');
         titleMeta.classList.add('film-card-title-meta');
-        titleMeta.textContent = `${title}${year ? ` | ${year}` : ''}${totalMinutes ? ` | ${totalMinutes} min` : ''}`;
+        titleMeta.textContent = `${title}${year ? ` | ${year}` : ''}${displayRuntime}`; // Updated display
         filmCard.appendChild(titleMeta);
 
         const directorEl = document.createElement('p');
@@ -318,13 +337,12 @@ function resetFilters(clearSearch = true) {
         if (searchInput) searchInput.value = '';
     }
 
-    filteredFilms = [...allFilms]; // Reset filteredFilms to all films
+    filteredFilms = [...allFilms];
     sortFilmsByRanking();
     displayFilms(filteredFilms, 'filmContainer');
-    populateAllFiltersInitial(); // Re-populate all filters to their initial state (all options)
+    populateAllFiltersInitial(); // Re-populate filters to show all initial options based on data
 }
 
-// Expose functions
 window.applyFilters = applyFilters;
 window.resetFilters = resetFilters;
 window.performSearch = applyFilters;
