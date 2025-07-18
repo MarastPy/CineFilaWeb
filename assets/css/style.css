@@ -95,10 +95,10 @@ a:hover {
 #initial-info-banner {
   background-color: #2b2b2b; /* Matches section-dark-grey */
   color: #ffffff; /* Matches section-dark-grey */
-  padding: 40px 2cm; /* Adjusted padding for better banner feel */
+  padding: 40px 2cm; /* Original padding for better banner feel */
   text-align: center; /* To center content */
   overflow: hidden;
-  max-height: 800px; /* A safe initial max-height for content, will collapse to 0 */
+  max-height: 1200px; /* A safe initial max-height for content, will collapse to 0 */
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
 }
 
@@ -129,28 +129,67 @@ a:hover {
     margin-top: 40px;
 }
 
-#initial-info-banner p {
-    font-family: 'Nunito', sans-serif; /* Default Nunito for all paragraphs in banner */
-    font-size: 1.1em; /* Default size for general paragraphs in banner */
-    margin-bottom: 10px; /* Default margin for paragraphs in banner */
-    color: #ffffff; /* Default color for paragraphs in banner */
-    text-align: center; /* Center paragraph text in the banner */
+#initial-info-banner .banner-text-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
 }
 
-#initial-info-banner p:nth-of-type(1) { /* Specific style for the 'cinefila' quote */
+#initial-info-banner .banner-quote {
     font-family: 'EB Garamond', serif;
     font-size: 1.8em;
-    color: #ff9800;
+    color: #999999;
     margin-bottom: 20px;
 }
 
-#initial-info-banner p:nth-of-type(2) { /* Specific style for 'noun' */
-    font-size: 1.2em; /* Slightly larger for 'noun' */
+#initial-info-banner .banner-noun-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2em;
     margin-bottom: 10px;
+    color: #999999;
+    font-weight: bold;
 }
 
-#initial-info-banner p:nth-of-type(3) { /* Specific style for '1. A person who...' */
+#initial-info-banner .banner-definition {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1em;
     margin-bottom: 5px;
+    color: #999999;
+}
+
+#initial-info-banner .banner-definition:last-of-type {
+    margin-bottom: 0;
+}
+
+#initial-info-banner .banner-buttons-container {
+    display: flex;
+    justify-content: center; /* Centers the button group */
+    gap: 70px; /* Increased space between buttons to 60px */
+    margin-top: 40px; /* Space from content above */
+}
+
+#initial-info-banner .banner-button {
+    display: flex; /* Use flexbox for inner centering */
+    align-items: center; /* Vertically center text */
+    justify-content: center; /* Horizontally center text */
+    text-align: center; /* Fallback for older browsers or simple text wrap */
+    width: 220px; /* Fixed width for consistent size */
+    height: 70px; /* Fixed height for consistent size, adjust as needed */
+    padding: 10px 20px; /* Adjust padding due to fixed width/height */
+    border: 4px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2em;
+    font-weight: bold; /* Added: Makes the text bold */
+    transition: background-color 0.3s, color 0.3s;
+    box-sizing: border-box; /* Include padding/border in width/height */
+    border-radius: 5px; /* Added for consistency, if desired */
+}
+
+#initial-info-banner .banner-button:hover {
+    background-color: #ffffff;
+    color: #2b2b2b;
 }
 
 
@@ -162,7 +201,11 @@ body.scrolled #initial-info-banner {
   margin-top: 0; /* Ensure no residual margin */
   margin-bottom: 0; /* Ensure no residual margin */
 }
-
+#initial-info-banner div[style*="max-width: 600px"] {
+    margin-left: auto !important;
+    margin-right: 0 !important; /* Aligns the block to the right */
+    text-align: right !important; /* Aligns the text inside the block to the right */
+}
 /* ==================================================
    2. HEADER & NAVIGATION
    ================================================== */
@@ -1043,7 +1086,7 @@ footer {
   background-color: #ffffff;
   color: #00000;
   appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.5%2075.1a17.6%2017.6%200%200%200-24.7%2024.7l140.2%20140.2a17.6%2017.6%200%200%200%2024.7%200l140.2-140.2a17.6%2017.6%200%200%200%200-24.7z%22%2F%3E%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.5%2075.1a17.6%2017.6%200%200%200-24.7%2024.7l140.2%20140.2a17.6%2017.6%200%200%200%2024.7%200l140.2-140.2a17.6%2017.6%200%200%200%200-24.7z%22%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 12px;
@@ -1151,6 +1194,17 @@ body.index-page.scrolled .logo-top img {
 
   #initial-info-banner .banner-logo {
     max-width: 200px; /* Smaller logo for mobile */
+  }
+
+  #initial-info-banner .banner-buttons-container {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 20px; /* Smaller gap for stacked buttons */
+  }
+
+  #initial-info-banner .banner-button {
+    width: 100%; /* Full width for stacked buttons */
+    max-width: 300px; /* Limit width on larger mobile devices */
+    margin: 0 auto; /* Center buttons */
   }
 
   /* Hamburger menu position is already handled by base styles (absolute to header-area) */
