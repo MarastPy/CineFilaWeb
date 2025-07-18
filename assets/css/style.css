@@ -98,7 +98,7 @@ a:hover {
   padding: 40px 2cm; /* Adjusted padding for better banner feel */
   text-align: center; /* To center content */
   overflow: hidden;
-  max-height: 700px; /* A safe initial max-height for content, will collapse to 0 */
+  max-height: 800px; /* A safe initial max-height for content, will collapse to 0 */
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
 }
 
