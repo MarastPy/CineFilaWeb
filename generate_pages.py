@@ -5,7 +5,7 @@ import re
 # ---------------------- Configuration ----------------------
 JSON_PATH = 'extracted_data/all_html_data.json'
 OUTPUT_DIR = 'film_pages'
-INDEX_FILE = 'index.html'  # This variable is defined but not used in this specific script portion
+INDEX_FILE = 'index.html'
 POSTER_DIR = '../images/posters'
 STILLS_DIR = '../images/stills'
 
@@ -71,18 +71,20 @@ FILM_TEMPLATE = """<!DOCTYPE html>
     .poster-column {{
       flex: 0 0 250px;
       max-width: 250px;
+      /* Adjust width for better alignment if needed, e.g., if poster and still are different aspect ratios */
     }}
     .info-column {{
       flex: 1;
       min-width: 300px;
     }}
-    .poster-column img.film-poster {{
+    .poster-column img.film-poster,
+    .poster-column img.main-film-still {{ /* Apply similar styling to the main still */
       max-width: 100%;
       height: auto;
       border: 2px solid white;
       display: block;
       margin-bottom: 10px;
-      cursor: pointer; /* Make poster clickable */
+      cursor: pointer; /* Make both clickable */
     }}
     .block {{
       margin-bottom: 20px;
@@ -130,28 +132,12 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       height: 100%;
     }}
 
-    /* Stills Gallery */
+    /* Stills Gallery (now for hidden thumbnails for lightbox data) */
     .stills-gallery {{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 10px;
+        display: none; /* Hide the entire gallery div as only the first still is displayed prominently */
     }}
-    .stills-gallery img {{
-        width: 100px; /* Thumbnail size */
-        height: auto;
-        border: 1px solid #555;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }}
-    .stills-gallery img:hover {{
-        transform: scale(1.05);
-    }}
+    /* The individual img tags within stills-gallery are still needed for the lightbox JS data-stills attribute */
 
-    /* Hide all but the first still by default */
-    .stills-gallery img + img {{
-        display: none;
-    }}
 
     /* Lightbox Styles (General for stills, poster) */
     .lightbox {{
@@ -216,13 +202,7 @@ FILM_TEMPLATE = """<!DOCTYPE html>
     }}
 
 
-    /* Media Queries for Responsiveness */
-    @media (min-width: 769px) {{ /* On larger screens, show all stills */
-        .stills-gallery img + img {{
-            display: block; /* Override display: none for larger screens */
-        }}
-    }}
-
+    /* Media Queries for Responsiveness (kept for overall layout) */
     @media (max-width: 768px) {{
       body {{
         padding: 15px;
@@ -247,7 +227,7 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       .poster-column {{
         flex: none;
         width: 80%;
-        max-width: 250px;
+        max-width: 250px; /* Keep consistent with desktop max-width for column */
       }}
       .info-column {{
         min-width: unset;
@@ -312,11 +292,10 @@ FILM_TEMPLATE = """<!DOCTYPE html>
     <div class="poster-column">
       <div>
         <img src="{poster_image}" alt="Poster" class="film-poster" id="poster-img"/>
-        <div class="label">Stills</div>
-        <div class="stills-gallery">
-            {stills_html}
-        </div>
-        {trailer_html} <div class="label">Poster</div>
+        <div class="label">Still</div>
+        {main_still_html}
+        {trailer_html}
+        <div class="label">Poster</div>
         <div><a href="{poster_image}" target="_blank">Link to poster (opens in new tab)</a></div>
       </div>
     </div>
@@ -353,6 +332,8 @@ FILM_TEMPLATE = """<!DOCTYPE html>
     {technical_html}
   </div>
 
+  {stills_gallery_for_lightbox_data}
+
   <div id="lightbox" class="lightbox">
     <span class="close-btn">&times;</span>
     <img class="lightbox-content" id="lightbox-img" src="" alt="Still Image">
@@ -377,6 +358,21 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       let currentStillIndex = 0;
       let currentStills = [];
 
+      // TARGET THE MAIN STILL IMAGE FOR CLICK EVENT
+      const mainFilmStill = document.getElementById('main-film-still');
+      if (mainFilmStill) {{
+        // Initialize currentStills from the data-stills attribute of the main still
+        currentStills = JSON.parse(mainFilmStill.dataset.stills);
+        mainFilmStill.addEventListener('click', function() {{
+          const clickedStill = this.getAttribute('src');
+          currentStillIndex = currentStills.indexOf(clickedStill); // Should be 0 for the first still
+          showStill(currentStillIndex);
+          stillsLightbox.style.display = 'flex';
+        }});
+      }}
+
+      // Fallback/alternative for if main still isn't present but other stills exist
+      // This is less likely if main_still_html is always generated from all_stills[0]
       document.querySelectorAll('.stills-gallery img').forEach(img => {{
         img.addEventListener('click', function() {{
           currentStills = JSON.parse(this.dataset.stills);
@@ -386,6 +382,7 @@ FILM_TEMPLATE = """<!DOCTYPE html>
           stillsLightbox.style.display = 'flex';
         }});
       }});
+
 
       stillsCloseBtn.addEventListener('click', function() {{
         stillsLightbox.style.display = 'none';
@@ -490,26 +487,22 @@ def list_block(title, items):
 
 def build_crew(crew):
     """Formats crew dictionary into an HTML list."""
-    # This function is not used directly in the template filling, but kept for completeness
     return list_block("Crew", [f"{k.title().replace('_', ' ')}: {v}" for k, v in crew.items()]) if crew else ""
 
 
 def build_cast(cast):
     """Formats cast list into an HTML list."""
-    # This function is not used directly in the template filling, but kept for completeness
     return list_block("Cast", cast) if cast else ""
 
 
 def build_tech_specs(specs):
     """Formats technical specifications dictionary into an HTML list."""
-    # This function is not used directly in the template filling, but kept for completeness
     return list_block("Technical Specs",
                       [f"{k.replace('_', ' ').title()}: {v}" for k, v in specs.items()]) if specs else ""
 
 
 def build_festivals(fests):
     """Formats festivals list into an HTML list."""
-    # This function is not used directly in the template filling, but kept for completeness
     return list_block("Festivals",
                       [f"{f.get('Name_of_Festival', '')}, {f.get('Country', '')} ({f.get('Date', '')})" for f in
                        fests]) if fests else ""
@@ -548,19 +541,15 @@ def get_film_stills(film_sanitized_title):
     Checks for existence on the file system.
     """
     stills = []
-    # Adjust this range if you have more than 3 stills or different naming conventions
-    for i in range(1, 4):  # Checks for _1.jpg, _2.jpg, _3.jpg (adjust as needed)
-        # Construct the full path to check for file existence
-        # Make sure this path correctly reflects where your stills are relative to the script
+    # Checks for _1.jpg, _2.jpg, _3.jpg (adjust range as needed)
+    for i in range(1, 4):
         full_still_file_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), # Directory of the current script
-            STILLS_DIR.replace('../', ''), # Remove ../ to make it relative to the script dir
+            os.path.dirname(os.path.abspath(__file__)),
+            STILLS_DIR.replace('../', ''),
             film_sanitized_title,
             f"{film_sanitized_title}_{i}.jpg"
         )
-
         if os.path.exists(full_still_file_path):
-            # Construct the relative path for HTML
             relative_still_path = f"{STILLS_DIR}/{film_sanitized_title}/{film_sanitized_title}_{i}.jpg"
             stills.append(relative_still_path)
     return stills
@@ -602,7 +591,7 @@ for film in films:
                 year = fdata["Date_of_completion"]
             if not (isinstance(year, str) and year.isdigit() and len(year) == 4):
                 year = ""
-        except Exception: # Catch any other potential errors during parsing
+        except Exception:
             year = ""
 
     duration = ""
@@ -611,9 +600,9 @@ for film in films:
         try:
             parts = [int(p) for p in runtime_str.split(":")]
             if len(parts) >= 2:
-                duration = parts[0] * 60 + parts[1] # Convert to minutes
+                duration = parts[0] * 60 + parts[1]
             elif len(parts) == 1:
-                duration = parts[0] # Assume it's already in minutes
+                duration = parts[0]
         except ValueError:
             duration = ""
 
@@ -630,12 +619,23 @@ for film in films:
 
     # Get all stills for the current film
     all_stills = get_film_stills(fname_sanitized)
-    stills_html_list = []
+
+    # --- HTML for the prominently displayed first still ---
+    main_still_html = ""
     if all_stills:
-        # Pass all stills URL to the data-stills attribute for the lightbox to use
+        # The first still, with a unique ID and data-stills for lightbox
+        main_still_html = f'<img src="{all_stills[0]}" alt="Still" class="main-film-still" id="main-film-still" data-stills=\'{json.dumps(all_stills)}\' />'
+    else:
+        main_still_html = "<p>No stills available.</p>"
+
+    # --- HTML for the hidden stills gallery (only for lightbox data) ---
+    stills_gallery_for_lightbox_data = ""
+    if all_stills:
+        stills_gallery_for_lightbox_data = f'<div class="stills-gallery" style="display:none;">'
         for still_url in all_stills:
-            stills_html_list.append(f'<img src="{still_url}" alt="Still" data-stills=\'{json.dumps(all_stills)}\' />')
-    stills_html = "\n".join(stills_html_list) if stills_html_list else "<p>No stills available.</p>"
+            stills_gallery_for_lightbox_data += f'<img src="{still_url}" alt="Still Thumbnail (hidden)" data-stills=\'{json.dumps(all_stills)}\' />'
+        stills_gallery_for_lightbox_data += '</div>'
+
 
     # Generate trailer embed HTML (direct embed)
     trailer_embed_html_content = build_trailer_embed(film.get("Trailer_url"))
@@ -644,7 +644,7 @@ for film in films:
     poster_path = f"{POSTER_DIR}/{fname_sanitized}/{fname_sanitized}.jpg"
     # Fallback for poster if not found in specific folder
     if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), POSTER_DIR.replace('../', ''), fname_sanitized, f"{fname_sanitized}.jpg")):
-        poster_path = f"{POSTER_DIR}/default_poster.jpg" # Consider having a default poster
+        poster_path = f"{POSTER_DIR}/default_poster.jpg"
 
     # Fill the template
     html = FILM_TEMPLATE.format(
@@ -657,7 +657,8 @@ for film in films:
         subtitles=subtitles,
         country=country,
         poster_image=poster_path,
-        stills_html=stills_html,
+        main_still_html=main_still_html, # New placeholder for the main still
+        stills_gallery_for_lightbox_data=stills_gallery_for_lightbox_data, # New placeholder for the hidden gallery
         trailer_html=trailer_embed_html_content,
         logline_html=optional_block("Logline", film.get("Logline")),
         synopsis_html=optional_block("Synopsis", film.get("Synopsis")),

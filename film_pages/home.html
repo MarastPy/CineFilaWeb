@@ -59,18 +59,20 @@
     .poster-column {
       flex: 0 0 250px;
       max-width: 250px;
+      /* Adjust width for better alignment if needed, e.g., if poster and still are different aspect ratios */
     }
     .info-column {
       flex: 1;
       min-width: 300px;
     }
-    .poster-column img.film-poster {
+    .poster-column img.film-poster,
+    .poster-column img.main-film-still { /* Apply similar styling to the main still */
       max-width: 100%;
       height: auto;
       border: 2px solid white;
       display: block;
       margin-bottom: 10px;
-      cursor: pointer; /* Make poster clickable */
+      cursor: pointer; /* Make both clickable */
     }
     .block {
       margin-bottom: 20px;
@@ -118,28 +120,12 @@
       height: 100%;
     }
 
-    /* Stills Gallery */
+    /* Stills Gallery (now for hidden thumbnails for lightbox data) */
     .stills-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 10px;
+        display: none; /* Hide the entire gallery div as only the first still is displayed prominently */
     }
-    .stills-gallery img {
-        width: 100px; /* Thumbnail size */
-        height: auto;
-        border: 1px solid #555;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-    .stills-gallery img:hover {
-        transform: scale(1.05);
-    }
+    /* The individual img tags within stills-gallery are still needed for the lightbox JS data-stills attribute */
 
-    /* Hide all but the first still by default */
-    .stills-gallery img + img {
-        display: none;
-    }
 
     /* Lightbox Styles (General for stills, poster) */
     .lightbox {
@@ -204,13 +190,7 @@
     }
 
 
-    /* Media Queries for Responsiveness */
-    @media (min-width: 769px) { /* On larger screens, show all stills */
-        .stills-gallery img + img {
-            display: block; /* Override display: none for larger screens */
-        }
-    }
-
+    /* Media Queries for Responsiveness (kept for overall layout) */
     @media (max-width: 768px) {
       body {
         padding: 15px;
@@ -235,7 +215,7 @@
       .poster-column {
         flex: none;
         width: 80%;
-        max-width: 250px;
+        max-width: 250px; /* Keep consistent with desktop max-width for column */
       }
       .info-column {
         min-width: unset;
@@ -300,18 +280,15 @@
     <div class="poster-column">
       <div>
         <img src="../images/posters/default_poster.jpg" alt="Poster" class="film-poster" id="poster-img"/>
-        <div class="label">Stills</div>
-        <div class="stills-gallery">
-            <img src="../images/stills/home/home_1.jpg" alt="Still" data-stills='["../images/stills/home/home_1.jpg", "../images/stills/home/home_2.jpg", "../images/stills/home/home_3.jpg"]' />
-<img src="../images/stills/home/home_2.jpg" alt="Still" data-stills='["../images/stills/home/home_1.jpg", "../images/stills/home/home_2.jpg", "../images/stills/home/home_3.jpg"]' />
-<img src="../images/stills/home/home_3.jpg" alt="Still" data-stills='["../images/stills/home/home_1.jpg", "../images/stills/home/home_2.jpg", "../images/stills/home/home_3.jpg"]' />
-        </div>
+        <div class="label">Still</div>
+        <img src="../images/stills/home/home_1.jpg" alt="Still" class="main-film-still" id="main-film-still" data-stills='["../images/stills/home/home_1.jpg", "../images/stills/home/home_2.jpg", "../images/stills/home/home_3.jpg"]' />
         
     <div class="label">Trailer</div>
     <div class="video-container">
       <iframe src="https://player.vimeo.com/video/1031297187" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
-     <div class="label">Poster</div>
+    
+        <div class="label">Poster</div>
         <div><a href="../images/posters/default_poster.jpg" target="_blank">Link to poster (opens in new tab)</a></div>
       </div>
     </div>
@@ -348,6 +325,8 @@
     <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': '', 'Other': ''}</li><li>Anamorphic Lens: No</li><li>Animation Technique Other: 2D</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': ''}</li><li>Resolution: HD: 1920X1080</li><li>Speed: {'Scan_Method': '', 'FPS': '24', 'FPS_Other': ''}</li><li>Aspect Ratio: 1.78 (16:9)</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Colour: Black & White</li></ul>
   </div>
 
+  <div class="stills-gallery" style="display:none;"><img src="../images/stills/home/home_1.jpg" alt="Still Thumbnail (hidden)" data-stills='["../images/stills/home/home_1.jpg", "../images/stills/home/home_2.jpg", "../images/stills/home/home_3.jpg"]' /><img src="../images/stills/home/home_2.jpg" alt="Still Thumbnail (hidden)" data-stills='["../images/stills/home/home_1.jpg", "../images/stills/home/home_2.jpg", "../images/stills/home/home_3.jpg"]' /><img src="../images/stills/home/home_3.jpg" alt="Still Thumbnail (hidden)" data-stills='["../images/stills/home/home_1.jpg", "../images/stills/home/home_2.jpg", "../images/stills/home/home_3.jpg"]' /></div>
+
   <div id="lightbox" class="lightbox">
     <span class="close-btn">&times;</span>
     <img class="lightbox-content" id="lightbox-img" src="" alt="Still Image">
@@ -372,6 +351,21 @@
       let currentStillIndex = 0;
       let currentStills = [];
 
+      // TARGET THE MAIN STILL IMAGE FOR CLICK EVENT
+      const mainFilmStill = document.getElementById('main-film-still');
+      if (mainFilmStill) {
+        // Initialize currentStills from the data-stills attribute of the main still
+        currentStills = JSON.parse(mainFilmStill.dataset.stills);
+        mainFilmStill.addEventListener('click', function() {
+          const clickedStill = this.getAttribute('src');
+          currentStillIndex = currentStills.indexOf(clickedStill); // Should be 0 for the first still
+          showStill(currentStillIndex);
+          stillsLightbox.style.display = 'flex';
+        });
+      }
+
+      // Fallback/alternative for if main still isn't present but other stills exist
+      // This is less likely if main_still_html is always generated from all_stills[0]
       document.querySelectorAll('.stills-gallery img').forEach(img => {
         img.addEventListener('click', function() {
           currentStills = JSON.parse(this.dataset.stills);
@@ -381,6 +375,7 @@
           stillsLightbox.style.display = 'flex';
         });
       });
+
 
       stillsCloseBtn.addEventListener('click', function() {
         stillsLightbox.style.display = 'none';
