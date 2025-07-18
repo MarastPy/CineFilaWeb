@@ -27,7 +27,7 @@ body:not(.index-page):not(.scrolled) {
   padding-top: 150px; /* Height of logo-top (90px) + main-header (60px) */
 }
 body:not(.index-page).scrolled {
-  padding-top: 60px; /* Compact height when scrolled */
+  padding-top: 80px; /* Compact height when scrolled, adjusted for more space */
 }
 
 /* Body Padding for Index Page */
@@ -37,7 +37,7 @@ body.index-page:not(.scrolled) {
   padding-top: 0;
 }
 body.index-page.scrolled {
-  padding-top: 60px; /* Space for the scrolled header */
+  padding-top: 80px; /* Space for the scrolled header, adjusted for more space */
 }
 
 
@@ -220,7 +220,7 @@ body.scrolled .header-inner {
 }
 
 body.scrolled .logo-top img {
-  height: 40px; /* Smaller logo when scrolled */
+  height: 60px; /* Smaller logo when scrolled possibility*/
   margin: 0; /* Keep left aligned */
 }
 
@@ -1360,7 +1360,7 @@ body.index-page.scrolled .logo-top img {
       max-width: 300px;
   }
 
-  .filter-group.search-filter-group input[type=\"text\"] {
+  .filter-group.search-filter-group input[type="text"] {
       width: 100%; /* Full width within its group */
       max-width: unset; /* Remove max-width */
       margin-bottom: 10px; /* Space between input and button */
