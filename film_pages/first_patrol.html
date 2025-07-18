@@ -1,350 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>First patrol</title>
-  <style>
-    body { /* ESCAPED */
-      background-color: #2b2b2b;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      line-height: 1.6;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-top: 20px;
-      padding-bottom: 50px;
-    } /* ESCAPED */
-    h1 { /* ESCAPED */
-      font-size: 2.5em;
-      margin-bottom: 0.1em;
-    } /* ESCAPED */
-    h2 { /* ESCAPED */
-      font-size: 1.8em;
-      margin-bottom: 0.5em;
-    } /* ESCAPED */
-    h3 { /* ESCAPED */
-      font-size: 1.4em;
-      margin-top: 25px;
-      margin-bottom: 5px;
-    } /* ESCAPED */
-    .logo-container { /* ESCAPED */
-      text-align: center;
-      margin-bottom: 30px;
-    } /* ESCAPED */
-    .logo-container img { /* ESCAPED */
-      max-width: 200px;
-      height: auto;
-    } /* ESCAPED */
-    .subtitle { /* ESCAPED */
-      font-style: italic;
-      margin-bottom: 10px;
-    } /* ESCAPED */
-    .horizontal-line { /* ESCAPED */
-      border-bottom: 1px solid white;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    } /* ESCAPED */
-    .info-line { /* ESCAPED */
-      margin-bottom: 20px;
-      font-weight: bold;
-    } /* ESCAPED */
-    .top-section { /* ESCAPED */
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-    } /* ESCAPED */
-    .poster-column { /* ESCAPED */
-      flex: 0 0 250px;
-      max-width: 250px;
-    } /* ESCAPED */
-    .info-column { /* ESCAPED */
-      flex: 1;
-      min-width: 300px;
-    } /* ESCAPED */
-    .poster-column img.film-poster { /* ESCAPED */
-      max-width: 100%;
-      height: auto;
-      border: 2px solid white;
-      display: block;
-      margin-bottom: 10px;
-      cursor: pointer; /* Make poster clickable */
-    } /* ESCAPED */
-    .block { /* ESCAPED */
-      margin-bottom: 20px;
-    } /* ESCAPED */
-    .label { /* ESCAPED */
-      font-weight: bold;
-      margin-top: 10px;
-    } /* ESCAPED */
-    .flex-row { /* ESCAPED */
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-    } /* ESCAPED */
-    .half { /* ESCAPED */
-      flex: 1;
-      min-width: 300px;
-    } /* ESCAPED */
-    .aligned-section { /* ESCAPED */
-      margin-left: calc(250px + 40px);
-      margin-right: 20px;
-      margin-bottom: 20px;
-    } /* ESCAPED */
-    a { /* ESCAPED */
-      color: white;
-    } /* ESCAPED */
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>First patrol</title>
+    <style>
+        body { /* ESCAPED */
+          background-color: #2b2b2b;
+          color: white;
+          font-family: Arial, sans-serif;
+          padding: 20px;
+          line-height: 1.6;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding-top: 20px;
+          padding-bottom: 50px;
+        } /* ESCAPED */
+        h1 { /* ESCAPED */
+          font-size: 2.5em;
+          margin-bottom: 0.1em;
+        } /* ESCAPED */
+        h2 { /* ESCAPED */
+          font-size: 1.8em;
+          margin-bottom: 0.5em;
+        } /* ESCAPED */
+        h3 { /* ESCAPED */
+          font-size: 1.4em;
+          margin-top: 25px;
+          margin-bottom: 5px;
+        } /* ESCAPED */
+        .logo-container { /* ESCAPED */
+          text-align: center;
+          margin-bottom: 30px;
+        } /* ESCAPED */
+        .logo-container img { /* ESCAPED */
+          max-width: 200px;
+          height: auto;
+        } /* ESCAPED */
+        .subtitle { /* ESCAPED */
+          font-style: italic;
+          margin-bottom: 10px;
+        } /* ESCAPED */
+        .horizontal-line { /* ESCAPED */
+          border-bottom: 1px solid white;
+          margin-top: 10px;
+          margin-bottom: 20px;
+        } /* ESCAPED */
+        .info-line { /* ESCAPED */
+          margin-bottom: 20px;
+          font-weight: bold;
+        } /* ESCAPED */
+        .top-section { /* ESCAPED */
+          display: flex;
+          gap: 40px;
+          flex-wrap: wrap;
+          justify-content: center;
+        } /* ESCAPED */
+        .poster-column { /* ESCAPED */
+          flex: 0 0 250px;
+          max-width: 250px;
+        } /* ESCAPED */
+        .info-column { /* ESCAPED */
+          flex: 1;
+          min-width: 300px;
+        } /* ESCAPED */
+        .poster-column img.film-poster { /* ESCAPED */
+          max-width: 100%;
+          height: auto;
+          border: 2px solid white;
+          display: block;
+          margin-bottom: 10px;
+          cursor: pointer; /* Make poster clickable */
+        } /* ESCAPED */
+        .block { /* ESCAPED */
+          margin-bottom: 20px;
+        } /* ESCAPED */
+        .label { /* ESCAPED */
+          font-weight: bold;
+          margin-top: 10px;
+        } /* ESCAPED */
+        .flex-row { /* ESCAPED */
+          display: flex;
+          gap: 40px;
+          flex-wrap: wrap;
+          justify-content: center;
+        } /* ESCAPED */
+        .half { /* ESCAPED */
+          flex: 1;
+          min-width: 300px;
+        } /* ESCAPED */
+        .aligned-section { /* ESCAPED */
+          margin-left: calc(250px + 40px);
+          margin-right: 20px;
+          margin-bottom: 20px;
+        } /* ESCAPED */
+        a { /* ESCAPED */
+          color: white;
+        } /* ESCAPED */
 
-    /* Video Responsiveness */
-    .video-container { /* ESCAPED */
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
-      max-width: 100%;
-      background: #000;
-      margin-top: 20px;
-    } /* ESCAPED */
-    .video-container iframe,
-    .video-container object,
-    .video-container embed { /* ESCAPED */
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    } /* ESCAPED */
+        /* Video Responsiveness */
+        .video-container { /* ESCAPED */
+          position: relative;
+          padding-bottom: 56.25%; /* 16:9 aspect ratio */
+          height: 0;
+          overflow: hidden;
+          max-width: 100%;
+          background: #000;
+          margin-top: 20px;
+        } /* ESCAPED */
+        .video-container iframe,
+        .video-container object,
+        .video-container embed { /* ESCAPED */
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        } /* ESCAPED */
 
-    /* Stills Gallery */
-    .stills-gallery { /* ESCAPED */
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 10px;
-    } /* ESCAPED */
-    .stills-gallery img { /* ESCAPED */
-        width: 100px; /* Thumbnail size */
-        height: auto;
-        border: 1px solid #555;
-        cursor: pointer;
-        transition: transform 0.2s;
-    } /* ESCAPED */
-    .stills-gallery img:hover { /* ESCAPED */
-        transform: scale(1.05);
-    } /* ESCAPED */
+        /* Stills Gallery */
+        .stills-gallery { /* ESCAPED */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        } /* ESCAPED */
+        .stills-gallery img { /* ESCAPED */
+            width: 100px; /* Thumbnail size */
+            height: auto;
+            border: 1px solid #555;
+            cursor: pointer;
+            transition: transform 0.2s;
+        } /* ESCAPED */
+        .stills-gallery img:hover { /* ESCAPED */
+            transform: scale(1.05);
+        } /* ESCAPED */
 
-    /* Lightbox Styles (General for stills, poster) */
-    .lightbox { /* ESCAPED */
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1000; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-      align-items: center;
-      justify-content: center;
-    } /* ESCAPED */
+        /* Lightbox Styles (General for stills, poster) */
+        .lightbox { /* ESCAPED */
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1000; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+          align-items: center;
+          justify-content: center;
+        } /* ESCAPED */
 
-    .lightbox-content { /* ESCAPED */
-      position: relative;
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 90%;
-    } /* ESCAPED */
+        .lightbox-content { /* ESCAPED */
+          position: relative;
+          margin: auto;
+          display: block;
+          max-width: 90%;
+          max-height: 90%;
+        } /* ESCAPED */
 
-    .lightbox-content img { /* ESCAPED */
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* Ensure the image fits within the bounds without cropping */
-    } /* ESCAPED */
+        .lightbox-content img { /* ESCAPED */
+          width: 100%;
+          height: 100%;
+          object-fit: contain; /* Ensure the image fits within the bounds without cropping */
+        } /* ESCAPED */
 
-    .close-btn, .prev-btn, .next-btn { /* ESCAPED */
-      position: absolute;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      user-select: none;
-      text-shadow: 0 0 5px black;
-    } /* ESCAPED */
+        .close-btn, .prev-btn, .next-btn { /* ESCAPED */
+          position: absolute;
+          color: #fff;
+          font-size: 40px;
+          font-weight: bold;
+          cursor: pointer;
+          user-select: none;
+          text-shadow: 0 0 5px black;
+        } /* ESCAPED */
 
-    .close-btn { /* ESCAPED */
-      top: 15px;
-      right: 35px;
-    } /* ESCAPED */
+        .close-btn { /* ESCAPED */
+          top: 15px;
+          right: 35px;
+        } /* ESCAPED */
 
-    .prev-btn { /* ESCAPED */
-      top: 50%;
-      left: 35px;
-      transform: translateY(-50%);
-    } /* ESCAPED */
+        .prev-btn { /* ESCAPED */
+          top: 50%;
+          left: 35px;
+          transform: translateY(-50%);
+        } /* ESCAPED */
 
-    .next-btn { /* ESCAPED */
-      top: 50%;
-      right: 35px;
-      transform: translateY(-50%);
-    } /* ESCAPED */
+        .next-btn { /* ESCAPED */
+          top: 50%;
+          right: 35px;
+          transform: translateY(-50%);
+        } /* ESCAPED */
 
-    .close-btn:hover,
-    .prev-btn:hover,
-    .next-btn:hover { /* ESCAPED */
-      color: #bbb;
-    } /* ESCAPED */
+        .close-btn:hover,
+        .prev-btn:hover,
+        .next-btn:hover { /* ESCAPED */
+          color: #bbb;
+        } /* ESCAPED */
 
 
-    /* Media Queries for Responsiveness */
-    @media (max-width: 768px) { /* ESCAPED */
-      body { /* ESCAPED */
-        padding: 15px;
-      } /* ESCAPED */
-      h1 { /* ESCAPED */
-        font-size: 2em;
-      } /* ESCAPED */
-      h2 { /* ESCAPED */
-        font-size: 1.5em;
-      } /* ESCAPED */
-      h3 { /* ESCAPED */
-        font-size: 1.2em;
-      } /* ESCAPED */
-      .logo-container img { /* ESCAPED */
-        max-width: 150px;
-      } /* ESCAPED */
-      .top-section { /* ESCAPED */
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-      } /* ESCAPED */
-      .poster-column { /* ESCAPED */
-        flex: none;
-        width: 80%;
-        max-width: 250px;
-      } /* ESCAPED */
-      .info-column { /* ESCAPED */
-        min-width: unset;
-        width: 100%;
-      } /* ESCAPED */
-      .flex-row { /* ESCAPED */
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-      } /* ESCAPED */
-      .half { /* ESCAPED */
-        min-width: unset;
-        width: 100%;
-      } /* ESCAPED */
-      .aligned-section { /* ESCAPED */
-        margin-left: 0;
-        margin-right: 0;
-        padding: 0 15px;
-      } /* ESCAPED */
-    } /* ESCAPED */
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) { /* ESCAPED */
+          body { /* ESCAPED */
+            padding: 15px;
+          } /* ESCAPED */
+          h1 { /* ESCAPED */
+            font-size: 2em;
+          } /* ESCAPED */
+          h2 { /* ESCAPED */
+            font-size: 1.5em;
+          } /* ESCAPED */
+          h3 { /* ESCAPED */
+            font-size: 1.2em;
+          } /* ESCAPED */
+          .logo-container img { /* ESCAPED */
+            max-width: 150px;
+          } /* ESCAPED */
+          .top-section { /* ESCAPED */
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+          } /* ESCAPED */
+          .poster-column { /* ESCAPED */
+            flex: none;
+            width: 80%;
+            max-width: 250px;
+          } /* ESCAPED */
+          .info-column { /* ESCAPED */
+            min-width: unset;
+            width: 100%;
+          } /* ESCAPED */
+          .flex-row { /* ESCAPED */
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+          } /* ESCAPED */
+          .half { /* ESCAPED */
+            min-width: unset;
+            width: 100%;
+          } /* ESCAPED */
+          .aligned-section { /* ESCAPED */
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0 15px;
+          } /* ESCAPED */
+        } /* ESCAPED */
 
-    @media (max-width: 480px) { /* ESCAPED */
-      body { /* ESCAPED */
-        padding: 10px;
-      } /* ESCAPED */
-      h1 { /* ESCAPED */
-        font-size: 1.8em;
-      } /* ESCAPED */
-      h2 { /* ESCAPED */
-        font-size: 1.3em;
-      } /* ESCAPED */
-      h3 { /* ESCAPED */
-        font-size: 1.1em;
-      } /* ESCAPED */
-      .logo-container img { /* ESCAPED */
-        max-width: 120px;
-      } /* ESCAPED */
-      .poster-column { /* ESCAPED */
-        width: 90%;
-      } /* ESCAPED */
-      .aligned-section { /* ESCAPED */
-        padding: 0 10px;
-      } /* ESCAPED */
-    } /* ESCAPED */
-  </style>
+        @media (max-width: 480px) { /* ESCAPED */
+          body { /* ESCAPED */
+            padding: 10px;
+          } /* ESCAPED */
+          h1 { /* ESCAPED */
+            font-size: 1.8em;
+          } /* ESCAPED */
+          h2 { /* ESCAPED */
+            font-size: 1.3em;
+          } /* ESCAPED */
+          h3 { /* ESCAPED */
+            font-size: 1.1em;
+          } /* ESCAPED */
+          .logo-container img { /* ESCAPED */
+            max-width: 120px;
+          } /* ESCAPED */
+          .poster-column { /* ESCAPED */
+            width: 90%;
+          } /* ESCAPED */
+          .aligned-section { /* ESCAPED */
+            padding: 0 10px;
+          } /* ESCAPED */
+        } /* ESCAPED */
+    </style>
 </head>
 <body>
-  <div class="logo-container">
+<div class="logo-container">
     <a href="index.html">
-      <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo" />
+        <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo"/>
     </a>
-  </div>
+</div>
 
 
-  <h1>First patrol</h1>
-  <div class="subtitle">Original Title: První hlídka</div>
-  <div class="horizontal-line"></div>
+<h1>First patrol</h1>
+<div class="subtitle">Original Title: První hlídka</div>
+<div class="horizontal-line"></div>
 
-  <div class="info-line">drama, crime, psychological | 2025 | 18 minutes | Czech with English subtitles | Czech Republic</div>
+<div class="info-line">drama, crime, psychological | 2025 | 18 minutes | Czech with English subtitles | Czech Republic
+</div>
 
-  <div class="top-section">
+<div class="top-section">
     <div class="poster-column">
-      <div>
-        <img src="../images/posters/first_patrol/first_patrol.jpg" alt="Poster" class="film-poster" id="poster-img"/>
-        <div class="label">Stills</div>
-        <div class="stills-gallery">
-            <img src="../images/stills/first_patrol/first_patrol_1.jpg" alt="Still" data-stills='["../images/stills/first_patrol/first_patrol_1.jpg", "../images/stills/first_patrol/first_patrol_2.jpg", "../images/stills/first_patrol/first_patrol_3.jpg"]' />
-<img src="../images/stills/first_patrol/first_patrol_2.jpg" alt="Still" data-stills='["../images/stills/first_patrol/first_patrol_1.jpg", "../images/stills/first_patrol/first_patrol_2.jpg", "../images/stills/first_patrol/first_patrol_3.jpg"]' />
-<img src="../images/stills/first_patrol/first_patrol_3.jpg" alt="Still" data-stills='["../images/stills/first_patrol/first_patrol_1.jpg", "../images/stills/first_patrol/first_patrol_2.jpg", "../images/stills/first_patrol/first_patrol_3.jpg"]' />
+        <div>
+            <img src="../images/posters/first_patrol/first_patrol.jpg" alt="Poster" class="film-poster"
+                 id="poster-img"/>
+            <div class="label">Stills</div>
+            <div class="stills-gallery">
+                <img src="../images/stills/first_patrol/first_patrol_1.jpg" alt="Still"
+                     data-stills='["../images/stills/first_patrol/first_patrol_1.jpg", "../images/stills/first_patrol/first_patrol_2.jpg", "../images/stills/first_patrol/first_patrol_3.jpg"]'/>
+                <img src="../images/stills/first_patrol/first_patrol_2.jpg" alt="Still"
+                     data-stills='["../images/stills/first_patrol/first_patrol_1.jpg", "../images/stills/first_patrol/first_patrol_2.jpg", "../images/stills/first_patrol/first_patrol_3.jpg"]'/>
+                <img src="../images/stills/first_patrol/first_patrol_3.jpg" alt="Still"
+                     data-stills='["../images/stills/first_patrol/first_patrol_1.jpg", "../images/stills/first_patrol/first_patrol_2.jpg", "../images/stills/first_patrol/first_patrol_3.jpg"]'/>
+            </div>
+            <div class="label">Poster</div>
+            <div><a href="../images/posters/first_patrol/first_patrol.jpg" target="_blank">Link to poster (opens in new
+                tab)</a></div>
         </div>
-         <div class="label">Poster</div>
-        <div><a href="../images/posters/first_patrol/first_patrol.jpg" target="_blank">Link to poster (opens in new tab)</a></div>
-      </div>
     </div>
 
     <div class="info-column">
-      <h3>Logline</h3><p>Two small-town policemen are first on the scene of a mass shooting — and must act fast with hostages still inside.</p>
-      <h3>Synopsis</h3><p>A routine day for two small-town policemen, young Pavel and experienced Michal, is turned upside down when they become the first patrol to arrive at the scene of a mass shooting at a restaurant with hostages still inside.</p>
-      <h3>Director's Note</h3><p>I drew inspiration for First Patrol from a 2015 tragedy in the South Moravian town of Uherský Brod, Czech Republic – the country’s first mass shooting. The title reflects both the officers’ arrival as the first patrol and Czech society’s first encounter with such violence. My intention was never a reconstruction, but a fictional immersive journey that places us in the patrol car and uniform of the first responders, who are both the earliest witnesses to such horrors and, above all, human beings.</p>
-      
-      
-    </div>
-  </div>
+        <h3>Logline</h3>
+        <p>Two small-town policemen are first on the scene of a mass shooting — and must act fast with hostages still
+            inside.</p>
+        <h3>Synopsis</h3>
+        <p>A routine day for two small-town policemen, young Pavel and experienced Michal, is turned upside down when
+            they become the first patrol to arrive at the scene of a mass shooting at a restaurant with hostages still
+            inside.</p>
+        <h3>Director's Note</h3>
+        <p>I drew inspiration for First Patrol from a 2015 tragedy in the South Moravian town of Uherský Brod, Czech
+            Republic – the country’s first mass shooting. The title reflects both the officers’ arrival as the first
+            patrol and Czech society’s first encounter with such violence. My intention was never a reconstruction, but
+            a fictional immersive journey that places us in the patrol car and uniform of the first responders, who are
+            both the earliest witnesses to such horrors and, above all, human beings.</p>
 
-  <div class="aligned-section"> <h3>Festival, Crew, Cast & Technical Info</h3>
+
+    </div>
+</div>
+
+<div class="aligned-section"><h3>Festival, Crew, Cast & Technical Info</h3>
     <div class="flex-row">
-      <div class="half">
-        <div class="label">Festivals</div>
-        <h3></h3><ul><li>,  ()</li></ul>
-        <div class="label">Awards</div>
-        <h3></h3><ul><li> ()</li></ul>
-        <div class="label">Sales Status</div>
-        —
-        <div class="label">Downloads</div>
-        —
-      </div>
-      <div class="half">
-        <div class="label">Crew</div>
-        <h3></h3><ul><li>Director: Vojtěch Konečný</li><li>Screenplay writer: Jan Dvořáček, Vojtěch Konečný</li><li>Director of Photography: Filip Hájek</li><li>Editor: Enis Saraçi</li><li>Sound director: Jan Strnad</li><li>Art director: Anna Machátová</li><li>Music composer: Tomáš Borl</li></ul>
-        <div class="label">Cast</div>
-        <h3></h3><ul><li>František Beleš</li><li>Pavel Řezníček</li></ul>
-      </div>
+        <div class="half">
+            <div class="label">Festivals</div>
+            <h3></h3>
+            <ul>
+                <li>, ()</li>
+            </ul>
+            <div class="label">Awards</div>
+            <h3></h3>
+            <ul>
+                <li> ()</li>
+            </ul>
+            <div class="label">Sales Status</div>
+            —
+            <div class="label">Downloads</div>
+            —
+        </div>
+        <div class="half">
+            <div class="label">Crew</div>
+            <h3></h3>
+            <ul>
+                <li>Director: Vojtěch Konečný</li>
+                <li>Screenplay writer: Jan Dvořáček, Vojtěch Konečný</li>
+                <li>Director of Photography: Filip Hájek</li>
+                <li>Editor: Enis Saraçi</li>
+                <li>Sound director: Jan Strnad</li>
+                <li>Art director: Anna Machátová</li>
+                <li>Music composer: Tomáš Borl</li>
+            </ul>
+            <div class="label">Cast</div>
+            <h3></h3>
+            <ul>
+                <li>František Beleš</li>
+                <li>Pavel Řezníček</li>
+            </ul>
+        </div>
     </div>
     <div class="label">Technical Specs</div>
-    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': '', 'Other': 'Sony'}</li><li>Camera: Sony Venice, lenses: PANAVISION G SERIES ANAMORPHICS</li><li>Anamorphic Lens: Yes</li><li>Video Editing Software: Adobe Premiere Pro</li><li>Digital Audio Workstation: Protools</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': 'ProRes'}</li><li>Resolution: 4k</li><li>Speed: {'Scan_Method': 'progressive (DCP, e-cinema, TV)', 'FPS': '24', 'FPS_Other': ''}</li><li>Aspect Ratio: 2.00 (Netflix, Apple TV+, RED, Arri...)</li><li>Aspect Ratio Other: DCP is S-200 (scope 2:1)</li><li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li><li>Sound Mix Other: or stereo for screeners</li><li>Colour: Colour</li></ul>
-  </div>
+    <h3></h3>
+    <ul>
+        <li>Shooting Format: {'Film': '', 'Video': '', 'Other': 'Sony'}</li>
+        <li>Camera: Sony Venice, lenses: PANAVISION G SERIES ANAMORPHICS</li>
+        <li>Anamorphic Lens: Yes</li>
+        <li>Video Editing Software: Adobe Premiere Pro</li>
+        <li>Digital Audio Workstation: Protools</li>
+        <li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': 'ProRes'}</li>
+        <li>Resolution: 4k</li>
+        <li>Speed: {'Scan_Method': 'progressive (DCP, e-cinema, TV)', 'FPS': '24', 'FPS_Other': ''}</li>
+        <li>Aspect Ratio: 2.00 (Netflix, Apple TV+, RED, Arri...)</li>
+        <li>Aspect Ratio Other: DCP is S-200 (scope 2:1)</li>
+        <li>Sound Mix: Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</li>
+        <li>Sound Mix Other: or stereo for screeners</li>
+        <li>Colour: Colour</li>
+    </ul>
+</div>
 
-  <div id="lightbox" class="lightbox">
+<div id="lightbox" class="lightbox">
     <span class="close-btn">&times;</span>
     <img class="lightbox-content" id="lightbox-img" src="" alt="Still Image">
     <span class="prev-btn">&#10094;</span>
     <span class="next-btn">&#10095;</span>
-  </div>
+</div>
 
-  <div id="poster-lightbox" class="lightbox">
+<div id="poster-lightbox" class="lightbox">
     <span class="close-btn">&times;</span>
     <img class="lightbox-content" id="poster-lightbox-img" src="" alt="Film Poster">
-  </div>
+</div>
 
-  <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() { /* ESCAPED */
       // Stills Lightbox
       const stillsLightbox = document.getElementById('lightbox');
@@ -438,6 +488,6 @@
           }); /* ESCAPED */
       }); /* ESCAPED */
     }); /* ESCAPED */
-  </script>
+</script>
 </body>
 </html>

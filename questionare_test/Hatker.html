@@ -1,79 +1,81 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <title>CINEFILA - info sheet</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&amp;family=Nunito:wght@400;600&amp;display=swap" rel="stylesheet">
-  <style>
-    body {
-            font-family: 'Nunito', sans-serif;
-            background: #f5f5f5;
-            color: #1c1c1c;
-            line-height: 1.6;
-            margin: 20px; /* Add default margin to body */
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CINEFILA - info sheet</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600&amp;family=Nunito:wght@400;600&amp;display=swap"
+          rel="stylesheet">
+    <style>
+        body {
+                font-family: 'Nunito', sans-serif;
+                background: #f5f5f5;
+                color: #1c1c1c;
+                line-height: 1.6;
+                margin: 20px; /* Add default margin to body */
+            }
+
+       h2, h3 {
+                font-family: 'EB Garamond', serif;
+                color: #222;
+            }
+
+
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 18px}
+        input, textarea, select { width: 100%; padding: 3px; margin-top: 4px; font-size: 14px, height: 25px; box-sizing: border-box;}
+        textarea {
+          width: 100%;
+          min-height: 25px;
+          resize: none;
+          overflow: hidden;
+          box-sizing: border-box;
         }
 
-   h2, h3 {
-            font-family: 'EB Garamond', serif;
-            color: #222;
+      .genre-row {
+          margin-bottom: 5px;
+        }
+
+      .row {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 10px;
+          align-items: flex-start;
+        }
+
+        .date {
+          width: 100px;
+        }
+
+        .country {
+          width: 200px;
+        }
+
+        .festival {
+          flex: 1;
         }
 
 
-    label { display: block; margin-top: 10px; font-weight: bold; font-size: 18px}
-    input, textarea, select { width: 100%; padding: 3px; margin-top: 4px; font-size: 14px, height: 25px; box-sizing: border-box;}
-    textarea {
-      width: 100%;
-      min-height: 25px;
-      resize: none;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
+        .button {
+          padding: 5px 5px;
+          font-size: 12px;
+          cursor: pointer;
+          border: 1px solid #aaa;
+          border-radius: 1px;
+          background-color: #f0f0f0;
+        }
 
-  .genre-row {
-      margin-bottom: 5px;
-    }
+        .delete-button {
+          color: #900;
+        }
 
-  .row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
-      align-items: flex-start;
+        @media print {
+      .button {
+        display: none;
+      }
     }
-
-    .date {
-      width: 100px;
-    }
-
-    .country {
-      width: 200px;
-    }
-
-    .festival {
-      flex: 1;
-    }
-
-    
-    .button {
-      padding: 5px 5px;
-      font-size: 12px;
-      cursor: pointer;
-      border: 1px solid #aaa;
-      border-radius: 1px;
-      background-color: #f0f0f0;
-    }
-
-    .delete-button {
-      color: #900;
-    }
-
-    @media print {
-  .button {
-    display: none;
-  }
-}
-  </style>
+    </style>
 </head>
 <body>
-  <script>
+<script>
     function autoResize(textarea) {
       textarea.style.height = '25px';
       textarea.style.height = textarea.scrollHeight + 'px' ;
@@ -83,40 +85,42 @@
       document.querySelectorAll('textarea').forEach(autoResize);
     });
 
-  </script>
-  
+</script>
+
 
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background-color: #ffe5e5; padding: 10px; border-radius: 1px; border-bottom: 1px solid black;">
-  <h1 style="margin: 0;">CINEFILA - info sheet</h1>
-  <div style="text-align: right; font-size: 18px;">
-    <div>Alexandra Hroncová</div>
-    <div><a href="mailto:alex@cinefila.cz" style="color: inherit; text-decoration: none;">alex@cinefila.cz</a></div>
-    <div><a href="tel:+420724753713" style="color: inherit; text-decoration: none;">+420 724 753 713</a></div>
-    <div><a href="https://www.cinefila.cz" style="color: inherit; text-decoration: none; " target="_blank">www.cinefila.cz</a></div>
-  </div>
+    <h1 style="margin: 0;">CINEFILA - info sheet</h1>
+    <div style="text-align: right; font-size: 18px;">
+        <div>Alexandra Hroncová</div>
+        <div><a href="mailto:alex@cinefila.cz" style="color: inherit; text-decoration: none;">alex@cinefila.cz</a></div>
+        <div><a href="tel:+420724753713" style="color: inherit; text-decoration: none;">+420 724 753 713</a></div>
+        <div><a href="https://www.cinefila.cz" style="color: inherit; text-decoration: none; " target="_blank">www.cinefila.cz</a>
+        </div>
+    </div>
 </div>
 
-  <h2>1. Film</h2>
-  <label>Title</label>
-  Original:<textarea oninput="autoResize(this)" style="height: 23px;">Hatker</textarea>
-  English:<textarea oninput="autoResize(this)" style="height: 23px;">Hatker</textarea>
-  Other:<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+<h2>1. Film</h2>
+<label>Title</label>
+Original:<textarea oninput="autoResize(this)" style="height: 23px;">Hatker</textarea>
+English:<textarea oninput="autoResize(this)" style="height: 23px;">Hatker</textarea>
+Other:<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 <br>
 <br>
-  <label>Language</label>
- Original:<textarea oninput="autoResize(this)" style="height: 23px;">no dialogue</textarea>
- Subtitles:<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+<label>Language</label>
+Original:<textarea oninput="autoResize(this)" style="height: 23px;">no dialogue</textarea>
+Subtitles:<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 <br>
 <br>
-  <label>Country of production</label>
-  <textarea oninput="autoResize(this)" style="height: 23px;">Argentina</textarea>
+<label>Country of production</label>
+<textarea oninput="autoResize(this)" style="height: 23px;">Argentina</textarea>
 <br>
 <br>
-  <label>Date of completion</label>
-  <textarea oninput="autoResize(this)" placeholder="DD.MM.YYYY" style="height: 23px;">February 2025</textarea>
+<label>Date of completion</label>
+<textarea oninput="autoResize(this)" placeholder="DD.MM.YYYY" style="height: 23px;">February 2025</textarea>
 <br>
 <br>
-  <label>Runtime (for the series average value)</label><textarea oninput="autoResize(this)" placeholder="HH:MM:SS" style="height: 23px;">00:07:33</textarea>
+<label>Runtime (for the series average value)</label><textarea oninput="autoResize(this)" placeholder="HH:MM:SS"
+                                                               style="height: 23px;">00:07:33</textarea>
 <br>
 <br>
 Number of series:<textarea oninput="autoResize(this)" placeholder="Total number" style="height: 23px;"></textarea>
@@ -124,22 +128,82 @@ Number of series:<textarea oninput="autoResize(this)" placeholder="Total number"
 Number of episodes:<textarea oninput="autoResize(this)" placeholder="Total number" style="height: 23px;"></textarea>
 <br>
 Titles and runtime of episodes:
-<textarea oninput="autoResize(this)" placeholder="S1E1: Name of episode (running time)" style="height: 23px;"></textarea>
+<textarea oninput="autoResize(this)" placeholder="S1E1: Name of episode (running time)"
+          style="height: 23px;"></textarea>
 <br>
 <br>
-  <label>First film?</label>
-  <select><option selected="selected">No</option><option>Yes</option></select>
+<label>First film?</label>
+<select>
+    <option selected="selected">No</option>
+    <option>Yes</option>
+</select>
 <br>
 <br>
-  <label>Genre</label>
+<label>Genre</label>
 <div id="genre-container">
     <div class="genre-row">
-      <select>
+        <select>
+            <option></option>
+            <option>absurd</option>
+            <option>autobiographical</option>
+            <option>action</option>
+            <option selected="selected">animation</option>
+            <option>ani-doc</option>
+            <option>adventure</option>
+            <option>based on true story</option>
+            <option>biographical</option>
+            <option>children</option>
+            <option>comedy</option>
+            <option>crime</option>
+            <option>dance</option>
+            <option>disaster</option>
+            <option>documentary</option>
+            <option>drama</option>
+            <option>educational</option>
+            <option>erotic</option>
+            <option>experimental</option>
+            <option>fairytale</option>
+            <option>family</option>
+            <option>fantasy</option>
+            <option>feature</option>
+            <option>noir</option>
+            <option>fulldome</option>
+            <option>historical</option>
+            <option>horror</option>
+            <option>musical</option>
+            <option>music video</option>
+            <option>non-narrative</option>
+            <option>puppet</option>
+            <option>mystery</option>
+            <option>parables</option>
+            <option>parody</option>
+            <option>poetic</option>
+            <option>tales</option>
+            <option>psychological</option>
+            <option>journalistic</option>
+            <option>reality TV</option>
+            <option>road movie</option>
+            <option>romantic</option>
+            <option>sci-fi</option>
+            <option>sitcom</option>
+            <option>student</option>
+            <option>tragedy</option>
+            <option>travel diary</option>
+            <option>game-show</option>
+            <option>sport</option>
+            <option>talkshow</option>
+            <option>soap opera</option>
+            <option>thriller</option>
+            <option>war</option>
+            <option>western</option>
+        </select>
+    </div>
+    <div class="genre-row"><select>
         <option></option>
-        <option>absurd</option>
+        <option selected="selected">absurd</option>
         <option>autobiographical</option>
         <option>action</option>
-        <option selected="selected">animation</option>
+        <option>animation</option>
         <option>ani-doc</option>
         <option>adventure</option>
         <option>based on true story</option>
@@ -188,207 +252,153 @@ Titles and runtime of episodes:
         <option>thriller</option>
         <option>war</option>
         <option>western</option>
-      </select>
-    </div>
-  <div class="genre-row"><select>
-      <option></option>
-      <option selected="selected">absurd</option>
-      <option>autobiographical</option>
-      <option>action</option>
-      <option>animation</option>
-      <option>ani-doc</option>
-      <option>adventure</option>
-      <option>based on true story</option>
-      <option>biographical</option>
-      <option>children</option>
-      <option>comedy</option>
-      <option>crime</option>
-      <option>dance</option>
-      <option>disaster</option>
-      <option>documentary</option>
-      <option>drama</option>
-      <option>educational</option>
-      <option>erotic</option>
-      <option>experimental</option>
-      <option>fairytale</option>
-      <option>family</option>
-      <option>fantasy</option>
-      <option>feature</option>
-      <option>noir</option>
-      <option>fulldome</option>
-      <option>historical</option>
-      <option>horror</option>
-      <option>musical</option>
-      <option>music video</option>
-      <option>non-narrative</option>
-      <option>puppet</option>
-      <option>mystery</option>
-      <option>parables</option>
-      <option>parody</option>
-      <option>poetic</option>
-      <option>tales</option>
-      <option>psychological</option>
-      <option>journalistic</option>
-      <option>reality TV</option>
-      <option>road movie</option>
-      <option>romantic</option>
-      <option>sci-fi</option>
-      <option>sitcom</option>
-      <option>student</option>
-      <option>tragedy</option>
-      <option>travel diary</option>
-      <option>game-show</option>
-      <option>sport</option>
-      <option>talkshow</option>
-      <option>soap opera</option>
-      <option>thriller</option>
-      <option>war</option>
-      <option>western</option>
-    </select></div><div class="genre-row"><select>
-      <option></option>
-      <option>absurd</option>
-      <option>autobiographical</option>
-      <option>action</option>
-      <option>animation</option>
-      <option>ani-doc</option>
-      <option>adventure</option>
-      <option>based on true story</option>
-      <option>biographical</option>
-      <option>children</option>
-      <option>comedy</option>
-      <option>crime</option>
-      <option>dance</option>
-      <option>disaster</option>
-      <option>documentary</option>
-      <option>drama</option>
-      <option>educational</option>
-      <option>erotic</option>
-      <option>experimental</option>
-      <option>fairytale</option>
-      <option>family</option>
-      <option>fantasy</option>
-      <option>feature</option>
-      <option>noir</option>
-      <option>fulldome</option>
-      <option>historical</option>
-      <option>horror</option>
-      <option>musical</option>
-      <option>music video</option>
-      <option>non-narrative</option>
-      <option>puppet</option>
-      <option selected="selected">mystery</option>
-      <option>parables</option>
-      <option>parody</option>
-      <option>poetic</option>
-      <option>tales</option>
-      <option>psychological</option>
-      <option>journalistic</option>
-      <option>reality TV</option>
-      <option>road movie</option>
-      <option>romantic</option>
-      <option>sci-fi</option>
-      <option>sitcom</option>
-      <option>student</option>
-      <option>tragedy</option>
-      <option>travel diary</option>
-      <option>game-show</option>
-      <option>sport</option>
-      <option>talkshow</option>
-      <option>soap opera</option>
-      <option>thriller</option>
-      <option>war</option>
-      <option>western</option>
-    </select></div></div>
+    </select></div>
+    <div class="genre-row"><select>
+        <option></option>
+        <option>absurd</option>
+        <option>autobiographical</option>
+        <option>action</option>
+        <option>animation</option>
+        <option>ani-doc</option>
+        <option>adventure</option>
+        <option>based on true story</option>
+        <option>biographical</option>
+        <option>children</option>
+        <option>comedy</option>
+        <option>crime</option>
+        <option>dance</option>
+        <option>disaster</option>
+        <option>documentary</option>
+        <option>drama</option>
+        <option>educational</option>
+        <option>erotic</option>
+        <option>experimental</option>
+        <option>fairytale</option>
+        <option>family</option>
+        <option>fantasy</option>
+        <option>feature</option>
+        <option>noir</option>
+        <option>fulldome</option>
+        <option>historical</option>
+        <option>horror</option>
+        <option>musical</option>
+        <option>music video</option>
+        <option>non-narrative</option>
+        <option>puppet</option>
+        <option selected="selected">mystery</option>
+        <option>parables</option>
+        <option>parody</option>
+        <option>poetic</option>
+        <option>tales</option>
+        <option>psychological</option>
+        <option>journalistic</option>
+        <option>reality TV</option>
+        <option>road movie</option>
+        <option>romantic</option>
+        <option>sci-fi</option>
+        <option>sitcom</option>
+        <option>student</option>
+        <option>tragedy</option>
+        <option>travel diary</option>
+        <option>game-show</option>
+        <option>sport</option>
+        <option>talkshow</option>
+        <option>soap opera</option>
+        <option>thriller</option>
+        <option>war</option>
+        <option>western</option>
+    </select></div>
+</div>
 
 
 <!-- Tlačítka pro GENRES -->
-  <button class="button add" onclick="addGenreRow()">➕</button>
-  <button class="button delete-button" onclick="removeGenreRow()">➖</button>
+<button class="button add" onclick="addGenreRow()">➕</button>
+<button class="button delete-button" onclick="removeGenreRow()">➖</button>
 
 
-  <script>
-  function addGenreRow() {
-    const container = document.getElementById("genre-container");
-    const newRow = document.createElement("div");
-    newRow.classList.add("genre-row");
+<script>
+    function addGenreRow() {
+      const container = document.getElementById("genre-container");
+      const newRow = document.createElement("div");
+      newRow.classList.add("genre-row");
 
-    const select = document.createElement("select");
-    select.innerHTML = `
-      <option></option>
-      <option>absurd</option>
-      <option>autobiographical</option>
-      <option>action</option>
-      <option>animation</option>
-      <option>ani-doc</option>
-      <option>adventure</option>
-      <option>based on true story</option>
-      <option>biographical</option>
-      <option>children</option>
-      <option>comedy</option>
-      <option>crime</option>
-      <option>dance</option>
-      <option>disaster</option>
-      <option>documentary</option>
-      <option>drama</option>
-      <option>educational</option>
-      <option>erotic</option>
-      <option>experimental</option>
-      <option>fairytale</option>
-      <option>family</option>
-      <option>fantasy</option>
-      <option>feature</option>
-      <option>noir</option>
-      <option>fulldome</option>
-      <option>historical</option>
-      <option>horror</option>
-      <option>musical</option>
-      <option>music video</option>
-      <option>non-narrative</option>
-      <option>puppet</option>
-      <option>mystery</option>
-      <option>parables</option>
-      <option>parody</option>
-      <option>poetic</option>
-      <option>tales</option>
-      <option>psychological</option>
-      <option>journalistic</option>
-      <option>reality TV</option>
-      <option>road movie</option>
-      <option>romantic</option>
-      <option>sci-fi</option>
-      <option>sitcom</option>
-      <option>student</option>
-      <option>tragedy</option>
-      <option>travel diary</option>
-      <option>game-show</option>
-      <option>sport</option>
-      <option>talkshow</option>
-      <option>soap opera</option>
-      <option>thriller</option>
-      <option>war</option>
-      <option>western</option>
-    `;
-    newRow.appendChild(select);
-    container.appendChild(newRow);
-  }
-
-  function removeGenreRow() {
-    const container = document.getElementById("genre-container");
-    const rows = container.getElementsByClassName("genre-row");
-    if (rows.length > 1) {
-      container.removeChild(rows[rows.length - 1]);
+      const select = document.createElement("select");
+      select.innerHTML = `
+        <option></option>
+        <option>absurd</option>
+        <option>autobiographical</option>
+        <option>action</option>
+        <option>animation</option>
+        <option>ani-doc</option>
+        <option>adventure</option>
+        <option>based on true story</option>
+        <option>biographical</option>
+        <option>children</option>
+        <option>comedy</option>
+        <option>crime</option>
+        <option>dance</option>
+        <option>disaster</option>
+        <option>documentary</option>
+        <option>drama</option>
+        <option>educational</option>
+        <option>erotic</option>
+        <option>experimental</option>
+        <option>fairytale</option>
+        <option>family</option>
+        <option>fantasy</option>
+        <option>feature</option>
+        <option>noir</option>
+        <option>fulldome</option>
+        <option>historical</option>
+        <option>horror</option>
+        <option>musical</option>
+        <option>music video</option>
+        <option>non-narrative</option>
+        <option>puppet</option>
+        <option>mystery</option>
+        <option>parables</option>
+        <option>parody</option>
+        <option>poetic</option>
+        <option>tales</option>
+        <option>psychological</option>
+        <option>journalistic</option>
+        <option>reality TV</option>
+        <option>road movie</option>
+        <option>romantic</option>
+        <option>sci-fi</option>
+        <option>sitcom</option>
+        <option>student</option>
+        <option>tragedy</option>
+        <option>travel diary</option>
+        <option>game-show</option>
+        <option>sport</option>
+        <option>talkshow</option>
+        <option>soap opera</option>
+        <option>thriller</option>
+        <option>war</option>
+        <option>western</option>
+      `;
+      newRow.appendChild(select);
+      container.appendChild(newRow);
     }
-  }
+
+    function removeGenreRow() {
+      const container = document.getElementById("genre-container");
+      const rows = container.getElementsByClassName("genre-row");
+      if (rows.length > 1) {
+        container.removeChild(rows[rows.length - 1]);
+      }
+    }
 
 </script>
 
 <p>
-Other:<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+    Other:<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 </p>
 
 <br>
 
-  <label>Keywords (story topics)</label>
+<label>Keywords (story topics)</label>
 List keywords that describe the theme of the film, such as migration, environmental issues, LGBT, family,
 children, journey, parable, etc.:
 <textarea oninput="autoResize(this)" style="height: 23px;">hat, power</textarea>
@@ -399,53 +409,60 @@ children, journey, parable, etc.:
 <label>Target group</label>
 Rating:
 <select>
-<option selected="selected"></option>
-<option>3+</option>
-<option>6+</option>
-<option>12+</option>
-<option>15+</option>
-<option>18+</option>
+    <option selected="selected"></option>
+    <option>3+</option>
+    <option>6+</option>
+    <option>12+</option>
+    <option>15+</option>
+    <option>18+</option>
 </select>
 
 Audience:
 <select>
-<option selected="selected"></option>
-<option>family </option>
-<option>general audience</option>
-<option>adults</option>
+    <option selected="selected"></option>
+    <option>family</option>
+    <option>general audience</option>
+    <option>adults</option>
 </select>
 
 Other:<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 
 <br>
 <br>
-  <h2>2. Premiere</h2>
-  <label>Did the movie premiere?</label>
-  
-    <div id="premiere-container">
+<h2>2. Premiere</h2>
+<label>Did the movie premiere?</label>
+
+<div id="premiere-container">
     <div class="row">
-      <textarea class="date" placeholder="date" oninput="autoResize(this)" style="height: 23px;">1. 4. 2025</textarea>
-      <textarea class="country" placeholder="Country" oninput="autoResize(this)" style="height: 23px;">Argentina</textarea>
-      <textarea class="festival" placeholder="Name of place of premiere" oninput="autoResize(this)" style="height: 23px;">BAFICI - Buenos Aires International Festival of Independent Cinema</textarea>
+        <textarea class="date" placeholder="date" oninput="autoResize(this)" style="height: 23px;">1. 4. 2025</textarea>
+        <textarea class="country" placeholder="Country" oninput="autoResize(this)"
+                  style="height: 23px;">Argentina</textarea>
+        <textarea class="festival" placeholder="Name of place of premiere" oninput="autoResize(this)"
+                  style="height: 23px;">BAFICI - Buenos Aires International Festival of Independent Cinema</textarea>
     </div>
-  </div>
+</div>
 
 <br>
 <br>
-  <h2>3. Festivals</h2>
-  <label>Did the film have a festival screening?</label>
-    <div id="festival-container">
+<h2>3. Festivals</h2>
+<label>Did the film have a festival screening?</label>
+<div id="festival-container">
     <div class="row">
-      <textarea class="date" placeholder="date" oninput="autoResize(this)" style="height: 23px;">1. 4. 2025</textarea>
-      <textarea class="country" placeholder="Country" oninput="autoResize(this)" style="height: 23px;">Argentina</textarea>
-      <textarea class="festival" placeholder="Name of Festival" oninput="autoResize(this)" style="height: 23px;">BAFICI - Buenos Aires International Festival of Independent Cinema</textarea>
+        <textarea class="date" placeholder="date" oninput="autoResize(this)" style="height: 23px;">1. 4. 2025</textarea>
+        <textarea class="country" placeholder="Country" oninput="autoResize(this)"
+                  style="height: 23px;">Argentina</textarea>
+        <textarea class="festival" placeholder="Name of Festival" oninput="autoResize(this)" style="height: 23px;">BAFICI - Buenos Aires International Festival of Independent Cinema</textarea>
     </div>
-    <div class="row"><textarea class="date" placeholder="dd.mm.yyyy" oninput="autoResize(this)" style="height: 23px;">June 2025</textarea><textarea class="country" placeholder="Country" oninput="autoResize(this)" style="height: 23px;">France</textarea><textarea class="festival" placeholder="Name of Festival" oninput="autoResize(this)" style="height: 23px;">Annecy Festival</textarea></div></div>
+    <div class="row"><textarea class="date" placeholder="dd.mm.yyyy" oninput="autoResize(this)" style="height: 23px;">June 2025</textarea><textarea
+            class="country" placeholder="Country" oninput="autoResize(this)"
+            style="height: 23px;">France</textarea><textarea class="festival" placeholder="Name of Festival"
+                                                             oninput="autoResize(this)" style="height: 23px;">Annecy Festival</textarea>
+    </div>
+</div>
 
 
-
-    <button class="button add" onclick="addFestivalRow()">➕</button>
-    <button class="button delete-button" onclick="removeFestivalRow()">➖</button>
+<button class="button add" onclick="addFestivalRow()">➕</button>
+<button class="button delete-button" onclick="removeFestivalRow()">➖</button>
 
 
 <script>
@@ -478,81 +495,82 @@ Other:<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
         container.removeChild(rows[rows.length - 1]);
       } 
     }
-  </script>
+</script>
 
 <br>
 <br>
 
-  <h2>4. Awards</h2>
-  <label> Did the film win an award?</label>
-  <div id="awards-container">
+<h2>4. Awards</h2>
+<label> Did the film win an award?</label>
+<div id="awards-container">
     <div class="row">
-      <textarea class="date" placeholder="date" oninput="autoResize(this)" style="height: 23px;"></textarea>
-      <textarea class="country" placeholder="Country" oninput="autoResize(this)" style="height: 23px;"></textarea>
-      <textarea class="festival" placeholder="Festival, section of competion" oninput="autoResize(this)" style="height: 23px;"></textarea>
+        <textarea class="date" placeholder="date" oninput="autoResize(this)" style="height: 23px;"></textarea>
+        <textarea class="country" placeholder="Country" oninput="autoResize(this)" style="height: 23px;"></textarea>
+        <textarea class="festival" placeholder="Festival, section of competion" oninput="autoResize(this)"
+                  style="height: 23px;"></textarea>
     </div>
-  </div>
+</div>
 
-  
- <button class="button add" onclick="addAwardRow()">➕</button>
- <button class="button delete-button" onclick="removeAwardRow()">➖</button>
-  
+
+<button class="button add" onclick="addAwardRow()">➕</button>
+<button class="button delete-button" onclick="removeAwardRow()">➖</button>
+
 
 <script>
-  function addAwardRow() {
-    const container = document.getElementById('awards-container');
-    const row = document.createElement('div');
-    row.className = 'row';
+    function addAwardRow() {
+      const container = document.getElementById('awards-container');
+      const row = document.createElement('div');
+      row.className = 'row';
 
-    ['date', 'country', 'festival'].forEach(cls => {
-      const ta = document.createElement('textarea');
-      ta.className = cls;
-      ta.placeholder = cls === 'date' ? 'date' : (cls === 'country' ? 'Country' : 'Festival, section of competition');
-      ta.setAttribute('oninput', 'autoResize(this)');
-      row.appendChild(ta);
-    });
+      ['date', 'country', 'festival'].forEach(cls => {
+        const ta = document.createElement('textarea');
+        ta.className = cls;
+        ta.placeholder = cls === 'date' ? 'date' : (cls === 'country' ? 'Country' : 'Festival, section of competition');
+        ta.setAttribute('oninput', 'autoResize(this)');
+        row.appendChild(ta);
+      });
 
-    container.appendChild(row);
-  }
-
-  function removeAwardRow() {
-    const container = document.getElementById('awards-container');
-    const rows = container.getElementsByClassName('row');
-    if (rows.length > 1) {
-      container.removeChild(rows[rows.length - 1]);
+      container.appendChild(row);
     }
-  }
+
+    function removeAwardRow() {
+      const container = document.getElementById('awards-container');
+      const rows = container.getElementsByClassName('row');
+      if (rows.length > 1) {
+        container.removeChild(rows[rows.length - 1]);
+      }
+    }
 </script>
 
 
 <br>
 <br>
-  <h2>5. Logline (max. 150 characters)</h2>
-    <textarea oninput="autoResize(this)" maxlength="150" style="height: 23px;">In a world ruled by a mysterious telephone, power shifts from a distant force to the people themselves—revealing how the oppressed become oppressors.</textarea>
+<h2>5. Logline (max. 150 characters)</h2>
+<textarea oninput="autoResize(this)" maxlength="150" style="height: 23px;">In a world ruled by a mysterious telephone, power shifts from a distant force to the people themselves—revealing how the oppressed become oppressors.</textarea>
 <br>
 <br>
-  <h2>6. Synopsis (max. 350 characters)</h2>
+<h2>6. Synopsis (max. 350 characters)</h2>
 <textarea oninput="autoResize(this)" maxlength="350" style="height: 45px;">On a late night in a run-down office, a group of workers find themselves stuck to the ceiling by their hats. Blindly carrying out their tasks, they are oblivious to the absurdity of their situation. When an old telephone rings, they begin to disappear one by one. A worker named Hatker dares to confront the reality, ultimately turning the Kafkaesque</textarea>
 <br>
 <br>
-  <h2>7. Director's note (max. 500 characters)</h2>
-  <textarea oninput="autoResize(this)" maxlength="500" style="height: 45px;">Hatker explores the theme of power, symbolized by a telephone dictating behavior from afar. As the story unfolds, power proves decentralized—internalized and reproduced by individuals themselves. Inspired by my own experience in a corporate office, the film uses the metaphor of “hats” to represent the roles we adopt until the protagonist chooses to break free by taking his off.</textarea>
+<h2>7. Director's note (max. 500 characters)</h2>
+<textarea oninput="autoResize(this)" maxlength="500" style="height: 45px;">Hatker explores the theme of power, symbolized by a telephone dictating behavior from afar. As the story unfolds, power proves decentralized—internalized and reproduced by individuals themselves. Inspired by my own experience in a corporate office, the film uses the metaphor of “hats” to represent the roles we adopt until the protagonist chooses to break free by taking his off.</textarea>
 <br>
 <br>
-  <h2>8. Crew</h2>
-  <label>Director(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Alejandro Ariel Martin</textarea>
-  <label>Screenplay writer(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Alejandro Ariel Martin, Florencia Pilotti</textarea>
-  <label>Director(s) of Photography:</label><textarea oninput="autoResize(this)" style="height: 23px;">Alejandro Ariel Martin</textarea>
-  <label>Editor(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Alejandro Ariel Martin</textarea>
-  <label>Sound director(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Santiago Zecca</textarea>
-  <label>Art director(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Carolina Cairo, Alejandro Ariel Martin</textarea>
-  <label>Music composer(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Hermes Scipioni</textarea>
-  <label>Cast (actor's name: role):</label><textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+<h2>8. Crew</h2>
+<label>Director(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Alejandro Ariel Martin</textarea>
+<label>Screenplay writer(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Alejandro Ariel Martin, Florencia Pilotti</textarea>
+<label>Director(s) of Photography:</label><textarea oninput="autoResize(this)" style="height: 23px;">Alejandro Ariel Martin</textarea>
+<label>Editor(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Alejandro Ariel Martin</textarea>
+<label>Sound director(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Santiago Zecca</textarea>
+<label>Art director(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Carolina Cairo, Alejandro Ariel Martin</textarea>
+<label>Music composer(s):</label><textarea oninput="autoResize(this)" style="height: 23px;">Hermes Scipioni</textarea>
+<label>Cast (actor's name: role):</label><textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 <br>
 <br>
-  <h2>9. Director's bio </h2>
+<h2>9. Director's bio </h2>
 <label>Date of birth:</label>
-  <textarea oninput="autoResize(this)" placeholder="DD.MM.YYYY" style="height: 23px;"></textarea>
+<textarea oninput="autoResize(this)" placeholder="DD.MM.YYYY" style="height: 23px;"></textarea>
 
 <label>Max. 500 characters:</label>
 <textarea oninput="autoResize(this)" style="height: 45px;">Alejandro Ariel Martin is an Argentinian Film Director. He has a degree in Social Communication from the UNR and a postgraduate degree in Creative Communication from the Autonomous University of Barcelona.
@@ -560,7 +578,7 @@ He is the director and scriptwriter of the short film “Epirenov” (2020). Epi
 
 <br>
 <br>
-  <h2>10. Director's filmography</h2>
+<h2>10. Director's filmography</h2>
 <textarea oninput="autoResize(this)" placeholder="Title (year)" style="height: 32px;">Epirenov (2020)
 Hatker (2025)</textarea>
 
@@ -568,38 +586,36 @@ Hatker (2025)</textarea>
 <br>
 
 
-
-
-  <h2>11. Technical details</h2>
-  <label>Shooting format</label>
+<h2>11. Technical details</h2>
+<label>Shooting format</label>
 Film:
 <select>
-<option selected="selected"></option>
-<option>8 mm</option>
-<option>super 8 mm</option>
-<option>16 mm</option>
-<option>super 16 mm</option>
-<option>35 mm</option>
-<option>Cinemascope (35 mm anamorphic)</option>
-<option>VistaVision (35 mm horizontal)</option>
-<option>65 mm / 70 mm </option>
-<option>IMAX 70 mm</option>
-<option>Technirama (35 mm horizontal, anamorphic)</option>
+    <option selected="selected"></option>
+    <option>8 mm</option>
+    <option>super 8 mm</option>
+    <option>16 mm</option>
+    <option>super 16 mm</option>
+    <option>35 mm</option>
+    <option>Cinemascope (35 mm anamorphic)</option>
+    <option>VistaVision (35 mm horizontal)</option>
+    <option>65 mm / 70 mm</option>
+    <option>IMAX 70 mm</option>
+    <option>Technirama (35 mm horizontal, anamorphic)</option>
 </select>
 Video:
 <select>
-<option></option>
-<option>Betacam SP</option>
-<option>Digital Betacam</option>
-<option>miniDV</option>
-<option>HDV</option>
-<option>HDCAM</option>
-<option>XDCAM</option>
-<option>mobile phone</option>
-<option selected="selected">DSLR/DSLM</option>
-<option>RED</option>
-<option>Arri</option>
-<option>Blackmagic Design</option>
+    <option></option>
+    <option>Betacam SP</option>
+    <option>Digital Betacam</option>
+    <option>miniDV</option>
+    <option>HDV</option>
+    <option>HDCAM</option>
+    <option>XDCAM</option>
+    <option>mobile phone</option>
+    <option selected="selected">DSLR/DSLM</option>
+    <option>RED</option>
+    <option>Arri</option>
+    <option>Blackmagic Design</option>
 </select>
 Other:
 <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
@@ -611,85 +627,88 @@ Other:
 <br>
 
 <label>Anamorphic lens:</label>
-<select><option selected="selected">No</option><option>Yes</option></select>
+<select>
+    <option selected="selected">No</option>
+    <option>Yes</option>
+</select>
 <br>
 <br>
 <label>Animation technique</label>
 <select>
-<option></option>
-<option>2D computer</option>
-<option>3D computer</option>
-<option>cel animation</option>
-<option>clay animation</option>
-<option>drawing on paper</option>
-<option>ink on paper</option>
-<option>mixed media</option>
-<option>painting on paper</option>
-<option>painting on glass</option>
-<option>paper cut out</option>
-<option>pin screen</option>
-<option>pixilation</option>
-<option>puppet</option>
-<option>real shooting</option>
-<option>rotoscoping</option>
-<option>sand/powder</option>
-<option selected="selected">stop-motion</option>
+    <option></option>
+    <option>2D computer</option>
+    <option>3D computer</option>
+    <option>cel animation</option>
+    <option>clay animation</option>
+    <option>drawing on paper</option>
+    <option>ink on paper</option>
+    <option>mixed media</option>
+    <option>painting on paper</option>
+    <option>painting on glass</option>
+    <option>paper cut out</option>
+    <option>pin screen</option>
+    <option>pixilation</option>
+    <option>puppet</option>
+    <option>real shooting</option>
+    <option>rotoscoping</option>
+    <option>sand/powder</option>
+    <option selected="selected">stop-motion</option>
 </select>
 Other:
 <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 <br>
 <br>
 <label>Video editing software</label>
-  <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 <br>
 <br>
 
 <label>Digital audio workstation</label>
-  <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 
 <br>
 <br>
 <label>Screening format</label>
 Film:
 <select>
-<option selected="selected"></option>
-<option>8 mm</option>
-<option>Super 8 mm</option>
-<option>16 mm</option>
-<option>Super 16 mm</option>
-<option>35 mm</option>
-<option>Cinemascope (35 mm anamorphic)</option>
-<option>70 mm</option>
-<option>IMAX 70 mm</option>
+    <option selected="selected"></option>
+    <option>8 mm</option>
+    <option>Super 8 mm</option>
+    <option>16 mm</option>
+    <option>Super 16 mm</option>
+    <option>35 mm</option>
+    <option>Cinemascope (35 mm anamorphic)</option>
+    <option>70 mm</option>
+    <option>IMAX 70 mm</option>
 </select>
 
 Tape:
 <select>
-<option selected="selected"></option>
-<option>HDCAM</option>
-<option>HDCAM SR</option>
-<option>Betacam</option>
-<option>Digital Betacam</option>
-<option>DV</option>
-<option>miniDV</option>
-<option>digital8</option>
-<option>Hi8</option>
-<option>video8</option>
-<option>VHS</option>
-<option>VHS-C/DSLM</option>
-<option>S-VHS</option>
+    <option selected="selected"></option>
+    <option>HDCAM</option>
+    <option>HDCAM SR</option>
+    <option>Betacam</option>
+    <option>Digital Betacam</option>
+    <option>DV</option>
+    <option>miniDV</option>
+    <option>digital8</option>
+    <option>Hi8</option>
+    <option>video8</option>
+    <option>VHS</option>
+    <option>VHS-C/DSLM</option>
+    <option>S-VHS</option>
 </select>
 File:
 <select>
-<option></option>
-<option>Apple ProRes</option>
-<option>AVID DNxHD</option>
-<option>BluRay</option>
-<option selected="selected">DCP</option>
-<option>DVD</option>
-<option>HEVC/H.265</option>
-<option>H.264/MPEG-4</option>
-<option>MPEG-2</option>
+    <option></option>
+    <option>Apple ProRes</option>
+    <option>AVID DNxHD</option>
+    <option>BluRay</option>
+    <option selected="selected">DCP</option>
+    <option>DVD</option>
+    <option>HEVC/H.265</option>
+    <option>H.264/MPEG-4</option>
+    <option>MPEG-2</option>
 </select>
 Other:
 <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
@@ -698,15 +717,15 @@ Other:
 <br>
 <label>Resolution</label>
 <select>
-<option></option>
-<option>SD: NTSC (640x480)</option>
-<option>SD: PAL (720x576)</option>
-<option>HD: 1280X720</option>
-<option>HD: 1440X1080</option>
-<option>HD: 1920X1080</option>
-<option>2K</option>
-<option selected="selected">4k</option>
-<option>8k</option>
+    <option></option>
+    <option>SD: NTSC (640x480)</option>
+    <option>SD: PAL (720x576)</option>
+    <option>HD: 1280X720</option>
+    <option>HD: 1440X1080</option>
+    <option>HD: 1920X1080</option>
+    <option>2K</option>
+    <option selected="selected">4k</option>
+    <option>8k</option>
 </select>
 Other:
 <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
@@ -716,89 +735,90 @@ Other:
 <label>Speed</label>
 Scan method (for video):
 <select>
-<option selected="selected"></option>
-<option>progressive (DCP, e-cinema, TV)</option>
-<option>interlace (TV, video)</option>
-<option>PsF (progressive segmented frame)</option>
+    <option selected="selected"></option>
+    <option>progressive (DCP, e-cinema, TV)</option>
+    <option>interlace (TV, video)</option>
+    <option>PsF (progressive segmented frame)</option>
 </select>
 
 <p>
-FPS (frame per second):
-<select>
-<option></option>
-<option>23.976 (USA)</option>
-<option selected="selected">24</option>
-<option>25</option>
-<option>29.97 (USA, JAP)</option>
-<option>30</option>
-<option>48</option>
-<option>50</option>
-<option>59.94</option>
-<option>60</option>
-<option>120+</option>
-<option>50i</option>
-<option>60i</option>
-</select>
-Other:
-<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
-<br>
-<br>
+    FPS (frame per second):
+    <select>
+        <option></option>
+        <option>23.976 (USA)</option>
+        <option selected="selected">24</option>
+        <option>25</option>
+        <option>29.97 (USA, JAP)</option>
+        <option>30</option>
+        <option>48</option>
+        <option>50</option>
+        <option>59.94</option>
+        <option>60</option>
+        <option>120+</option>
+        <option>50i</option>
+        <option>60i</option>
+    </select>
+    Other:
+    <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+    <br>
+    <br>
 
-<label>Aspect ratio</label>
-<select>
-<option></option>
-<option>1.33 (4:3)</option>
-<option>1.37</option>
-<option>1.43 (IMAX 70 mm)</option>
-<option>1.66</option>
-<option>1.78 (16:9)</option>
-<option selected="selected">1.85 ("flat format")</option>
-<option>1.90 (Netflix, digital IMAX...)</option>
-<option>2.00 (Netflix, Apple TV+, RED, Arri...)</option>
-<option>2.20 (70 mm)</option>
-<option>2.35 (CinemaScope)</option>
-<option>2.39 / 2.40 (modern "scope")</option>
-<option>2.55 (original CinemaScope)</option>
-<option>2.76 (Ultra Panavision 70)</option>
-</select>
-Other:
-<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+    <label>Aspect ratio</label>
+    <select>
+        <option></option>
+        <option>1.33 (4:3)</option>
+        <option>1.37</option>
+        <option>1.43 (IMAX 70 mm)</option>
+        <option>1.66</option>
+        <option>1.78 (16:9)</option>
+        <option selected="selected">1.85 ("flat format")</option>
+        <option>1.90 (Netflix, digital IMAX...)</option>
+        <option>2.00 (Netflix, Apple TV+, RED, Arri...)</option>
+        <option>2.20 (70 mm)</option>
+        <option>2.35 (CinemaScope)</option>
+        <option>2.39 / 2.40 (modern "scope")</option>
+        <option>2.55 (original CinemaScope)</option>
+        <option>2.76 (Ultra Panavision 70)</option>
+    </select>
+    Other:
+    <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
 
-<br>
-<br>
-<label>Sound mix</label>
-<select>
-<option></option>
-<option>Mono (1.0)</option>
-<option>Stereo (2.0, L+R)</option>
-<option>Dolby Stereo (3.1, LCRS)</option>
-<option selected="selected">Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</option>
-<option>Dolby Digital 7.1 (5.1 + Lss, Rss)</option>
-<option>Dolby Atmos</option>
-<option>DTS (Digital Theater Systems)</option>
-<option>SDDS (Sony Dynamic Digital Sound)</option>
-<option>IMAX 6-Track</option>
-<option>Auro 11.1 / 13.1</option>
-</select>
-Other:
-<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
-<br>
-<br>
-<label>Colour</label>
-  <select>
-    <option selected="selected">Colour</option>
-    <option>Black &amp; White</option>
-    <option>Colour + Black &amp; White</option>
-  </select>
-<br>
-<br>
-<label>Notes</label>
-<textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
-<br>
-<br>
+    <br>
+    <br>
+    <label>Sound mix</label>
+    <select>
+        <option></option>
+        <option>Mono (1.0)</option>
+        <option>Stereo (2.0, L+R)</option>
+        <option>Dolby Stereo (3.1, LCRS)</option>
+        <option selected="selected">Dolby Digital 5.1 (L, C, R, Ls, Rs, LFE)</option>
+        <option>Dolby Digital 7.1 (5.1 + Lss, Rss)</option>
+        <option>Dolby Atmos</option>
+        <option>DTS (Digital Theater Systems)</option>
+        <option>SDDS (Sony Dynamic Digital Sound)</option>
+        <option>IMAX 6-Track</option>
+        <option>Auro 11.1 / 13.1</option>
+    </select>
+    Other:
+    <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+    <br>
+    <br>
+    <label>Colour</label>
+    <select>
+        <option selected="selected">Colour</option>
+        <option>Black &amp; White</option>
+        <option>Colour + Black &amp; White</option>
+    </select>
+    <br>
+    <br>
+    <label>Notes</label>
+    <textarea oninput="autoResize(this)" style="height: 23px;"></textarea>
+    <br>
+    <br>
 
-  </p><h2>12. Production</h2>
-  <label>Producers:</label>
+</p>
+<h2>12. Production</h2>
+<label>Producers:</label>
 <textarea oninput="autoResize(this)" style="height: 84px;">Name: Alejandro Ariel Martin, Florencia Pilotti
 Address:
 Postal code, city:
@@ -806,15 +826,15 @@ Country:
 WEB:
 </textarea>
 
-  <label>Production company:</label>
-  <textarea oninput="autoResize(this)" style="height: 84px;">Name:
+<label>Production company:</label>
+<textarea oninput="autoResize(this)" style="height: 84px;">Name:
 Address:
 Postal code, city:
 Country:
 WEB:
 </textarea>
-  <label>Co-producer:</label>
-  <textarea oninput="autoResize(this)" style="height: 84px;">Name:
+<label>Co-producer:</label>
+<textarea oninput="autoResize(this)" style="height: 84px;">Name:
 Address:
 Postal code, city:
 Country:
@@ -824,51 +844,50 @@ WEB:
 <br>
 
 
-  <button class="button" onclick="window.print()">Print / Export PDF</button>
+<button class="button" onclick="window.print()">Print / Export PDF</button>
 <button class="button" onclick="saveForm()">Save form</button>
 
 
-
 <script>
-function saveForm() {
-  const doc = document.documentElement.cloneNode(true);
+    function saveForm() {
+      const doc = document.documentElement.cloneNode(true);
 
-  const originalInputs = document.querySelectorAll('input, textarea, select');
-  const clonedInputs = doc.querySelectorAll('input, textarea, select');
+      const originalInputs = document.querySelectorAll('input, textarea, select');
+      const clonedInputs = doc.querySelectorAll('input, textarea, select');
 
-  originalInputs.forEach((input, i) => {
-    const clone = clonedInputs[i];
+      originalInputs.forEach((input, i) => {
+        const clone = clonedInputs[i];
 
-    if (input.tagName === 'SELECT') {
-      const options = input.options;
-      const clonedOptions = clone.options;
-      for (let j = 0; j < options.length; j++) {
-        if (options[j].selected) {
-          clonedOptions[j].setAttribute("selected", "selected");
+        if (input.tagName === 'SELECT') {
+          const options = input.options;
+          const clonedOptions = clone.options;
+          for (let j = 0; j < options.length; j++) {
+            if (options[j].selected) {
+              clonedOptions[j].setAttribute("selected", "selected");
+            } else {
+              clonedOptions[j].removeAttribute("selected");
+            }
+          }
+        } else if (input.tagName === 'TEXTAREA') {
+          clone.innerHTML = input.value;
+        } else if (input.type === 'checkbox' || input.type === 'radio') {
+          if (input.checked) {
+            clone.setAttribute("checked", "checked");
+          } else {
+            clone.removeAttribute("checked");
+          }
         } else {
-          clonedOptions[j].removeAttribute("selected");
+          clone.setAttribute("value", input.value);
         }
-      }
-    } else if (input.tagName === 'TEXTAREA') {
-      clone.innerHTML = input.value;
-    } else if (input.type === 'checkbox' || input.type === 'radio') {
-      if (input.checked) {
-        clone.setAttribute("checked", "checked");
-      } else {
-        clone.removeAttribute("checked");
-      }
-    } else {
-      clone.setAttribute("value", input.value);
-    }
-  });
+      });
 
-  const html = '<!DOCTYPE html>\n' + doc.outerHTML;
-  const blob = new Blob([html], { type: 'text/html' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'form_save.html';
-  a.click();
-}
+      const html = '<!DOCTYPE html>\n' + doc.outerHTML;
+      const blob = new Blob([html], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'form_save.html';
+      a.click();
+    }
 </script>
 
 <br>
@@ -876,4 +895,5 @@ function saveForm() {
 <br>
 
 
-</body></html>
+</body>
+</html>

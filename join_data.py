@@ -16,12 +16,14 @@ aditional_info = json.loads(fixed_text)
 with open("extracted_data/all_html_data.json", "r", encoding="utf-8") as f:
     all_html_data = json.load(f)
 
+
 # Step 3: Merge based on Title_Original and Title_English
 def match_titles(film1, film2):
     return (
-        film1["Title_Original"] == film2["Title_Original"] and
-        film1["Title_English"] == film2["Title_English"]
+            film1["Title_Original"] == film2["Title_Original"] and
+            film1["Title_English"] == film2["Title_English"]
     )
+
 
 for film_entry in all_html_data:
     for info_entry in aditional_info:

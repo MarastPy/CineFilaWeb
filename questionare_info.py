@@ -682,5 +682,3 @@ if __name__ == "__main__":
     print("You can modify 'html_files_folder' to point to your actual directory of HTML files.")
 
 subprocess.run(["python", "generate_pages.py"])
-
-

@@ -5,7 +5,7 @@ import re
 # ---------------------- Configuration ----------------------
 JSON_PATH = 'extracted_data/all_html_data.json'
 OUTPUT_DIR = 'film_pages'
-INDEX_FILE = 'index.html' # This variable is defined but not used in this specific script portion
+INDEX_FILE = 'index.html'  # This variable is defined but not used in this specific script portion
 POSTER_DIR = '../images/posters'
 STILLS_DIR = '../images/stills'
 
@@ -496,7 +496,8 @@ def build_tech_specs(specs):
 def build_festivals(fests):
     """Formats festivals list into an HTML list."""
     return list_block("Festivals",
-                      [f"{f.get('Name_of_Festival', '')}, {f.get('Country', '')} ({f.get('Date', '')})" for f in fests]) if fests else ""
+                      [f"{f.get('Name_of_Festival', '')}, {f.get('Country', '')} ({f.get('Date', '')})" for f in
+                       fests]) if fests else ""
 
 
 def get_vimeo_id(url):
@@ -558,7 +559,6 @@ except FileNotFoundError:
 except json.JSONDecodeError:
     print(f"Error: Could not decode JSON from {JSON_PATH}. Check file for valid JSON format.")
     exit()
-
 
 for film in films:
     fdata = film.get("Film", {})
@@ -635,14 +635,17 @@ for film in films:
         country=country,
         poster_image=poster_path,
         stills_html=stills_html,
-        trailer_html=trailer_embed_html_content, # Reverted to direct embed for trailer
+        trailer_html=trailer_embed_html_content,  # Reverted to direct embed for trailer
         logline_html=optional_block("Logline", film.get("Logline")),
         synopsis_html=optional_block("Synopsis", film.get("Synopsis")),
         note_html=optional_block("Director's Note", film.get("Directors_Note")),
         target_html=optional_block("Target Group", target_group_content),
         topics_html=optional_block("Story Topics & Notes", film.get("Keywords")),
-        festivals_html=list_block("", [f"{fest.get('Name_of_Festival', '')}, {fest.get('Country', '')} ({fest.get('Date', '')})" for fest in film.get("Festivals", [])]),
-        awards_html=list_block("", [f"{a.get('Festival_Section_of_Competition', '')} ({a.get('Date', '')})" for a in film.get("Awards", [])]),
+        festivals_html=list_block("", [
+            f"{fest.get('Name_of_Festival', '')}, {fest.get('Country', '')} ({fest.get('Date', '')})" for fest in
+            film.get("Festivals", [])]),
+        awards_html=list_block("", [f"{a.get('Festival_Section_of_Competition', '')} ({a.get('Date', '')})" for a in
+                                    film.get("Awards", [])]),
         crew_html=list_block("",
                              [f"{k.replace('_', ' ').replace('(s)', '')}: {v}" for k, v in film.get("Crew", {}).items()
                               if not isinstance(v, list) and v and k != "Cast"]),

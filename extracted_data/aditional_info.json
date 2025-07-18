@@ -1,5 +1,5 @@
 [
-    {
+  {
     "Film": {
       "Title_Original": "O krávě",
       "Title_English": "About a cow"
@@ -14,8 +14,8 @@
     "Download_presskit": "Milan Marčetić",
     "Sharing": "Milan Marčetić",
     "Trailer_url": "https://vimeo.com/1031297187?p=0s"
-    },
-    {
+  },
+  {
     "Film": {
       "Title_Original": "Krajan",
       "Title_English": "The Compatriot"
@@ -31,8 +31,7 @@
     "Sharing": "Milan Marčetić",
     "Trailer_url": ""
   },
-
-{
+  {
     "Film": {
       "Title_Original": "Domov",
       "Title_English": "Home"
@@ -47,7 +46,7 @@
     "Download_presskit": "Milan Marčetić",
     "Sharing": "Milan Marčetić",
     "Trailer_url": "https://vimeo.com/1031297187?p=0s"
-    },
+  },
   {
     "Film": {
       "Title_Original": "Hatker",
