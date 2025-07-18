@@ -17,7 +17,7 @@ FILM_TEMPLATE = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title_english}</title>
   <style>
-    body {{ /* ESCAPED */
+    body {{
       background-color: #2b2b2b;
       color: white;
       font-family: Arial, sans-serif;
@@ -27,91 +27,91 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       margin: 0 auto;
       padding-top: 20px;
       padding-bottom: 50px;
-    }} /* ESCAPED */
-    h1 {{ /* ESCAPED */
+    }}
+    h1 {{
       font-size: 2.5em;
       margin-bottom: 0.1em;
-    }} /* ESCAPED */
-    h2 {{ /* ESCAPED */
+    }}
+    h2 {{
       font-size: 1.8em;
       margin-bottom: 0.5em;
-    }} /* ESCAPED */
-    h3 {{ /* ESCAPED */
+    }}
+    h3 {{
       font-size: 1.4em;
       margin-top: 25px;
       margin-bottom: 5px;
-    }} /* ESCAPED */
-    .logo-container {{ /* ESCAPED */
+    }}
+    .logo-container {{
       text-align: center;
       margin-bottom: 30px;
-    }} /* ESCAPED */
-    .logo-container img {{ /* ESCAPED */
+    }}
+    .logo-container img {{
       max-width: 200px;
       height: auto;
-    }} /* ESCAPED */
-    .subtitle {{ /* ESCAPED */
+    }}
+    .subtitle {{
       font-style: italic;
       margin-bottom: 10px;
-    }} /* ESCAPED */
-    .horizontal-line {{ /* ESCAPED */
+    }}
+    .horizontal-line {{
       border-bottom: 1px solid white;
       margin-top: 10px;
       margin-bottom: 20px;
-    }} /* ESCAPED */
-    .info-line {{ /* ESCAPED */
+    }}
+    .info-line {{
       margin-bottom: 20px;
       font-weight: bold;
-    }} /* ESCAPED */
-    .top-section {{ /* ESCAPED */
+    }}
+    .top-section {{
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
       justify-content: center;
-    }} /* ESCAPED */
-    .poster-column {{ /* ESCAPED */
+    }}
+    .poster-column {{
       flex: 0 0 250px;
       max-width: 250px;
-    }} /* ESCAPED */
-    .info-column {{ /* ESCAPED */
+    }}
+    .info-column {{
       flex: 1;
       min-width: 300px;
-    }} /* ESCAPED */
-    .poster-column img.film-poster {{ /* ESCAPED */
+    }}
+    .poster-column img.film-poster {{
       max-width: 100%;
       height: auto;
       border: 2px solid white;
       display: block;
       margin-bottom: 10px;
       cursor: pointer; /* Make poster clickable */
-    }} /* ESCAPED */
-    .block {{ /* ESCAPED */
+    }}
+    .block {{
       margin-bottom: 20px;
-    }} /* ESCAPED */
-    .label {{ /* ESCAPED */
+    }}
+    .label {{
       font-weight: bold;
       margin-top: 10px;
-    }} /* ESCAPED */
-    .flex-row {{ /* ESCAPED */
+    }}
+    .flex-row {{
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
       justify-content: center;
-    }} /* ESCAPED */
-    .half {{ /* ESCAPED */
+    }}
+    .half {{
       flex: 1;
       min-width: 300px;
-    }} /* ESCAPED */
-    .aligned-section {{ /* ESCAPED */
+    }}
+    .aligned-section {{
       margin-left: calc(250px + 40px);
       margin-right: 20px;
       margin-bottom: 20px;
-    }} /* ESCAPED */
-    a {{ /* ESCAPED */
+    }}
+    a {{
       color: white;
-    }} /* ESCAPED */
+    }}
 
     /* Video Responsiveness */
-    .video-container {{ /* ESCAPED */
+    .video-container {{
       position: relative;
       padding-bottom: 56.25%; /* 16:9 aspect ratio */
       height: 0;
@@ -119,37 +119,42 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       max-width: 100%;
       background: #000;
       margin-top: 20px;
-    }} /* ESCAPED */
+    }}
     .video-container iframe,
     .video-container object,
-    .video-container embed {{ /* ESCAPED */
+    .video-container embed {{
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-    }} /* ESCAPED */
+    }}
 
     /* Stills Gallery */
-    .stills-gallery {{ /* ESCAPED */
+    .stills-gallery {{
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         margin-top: 10px;
-    }} /* ESCAPED */
-    .stills-gallery img {{ /* ESCAPED */
+    }}
+    .stills-gallery img {{
         width: 100px; /* Thumbnail size */
         height: auto;
         border: 1px solid #555;
         cursor: pointer;
         transition: transform 0.2s;
-    }} /* ESCAPED */
-    .stills-gallery img:hover {{ /* ESCAPED */
+    }}
+    .stills-gallery img:hover {{
         transform: scale(1.05);
-    }} /* ESCAPED */
+    }}
+
+    /* Hide all but the first still by default */
+    .stills-gallery img + img {{
+        display: none;
+    }}
 
     /* Lightbox Styles (General for stills, poster) */
-    .lightbox {{ /* ESCAPED */
+    .lightbox {{
       display: none; /* Hidden by default */
       position: fixed; /* Stay in place */
       z-index: 1000; /* Sit on top */
@@ -161,23 +166,23 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
       align-items: center;
       justify-content: center;
-    }} /* ESCAPED */
+    }}
 
-    .lightbox-content {{ /* ESCAPED */
+    .lightbox-content {{
       position: relative;
       margin: auto;
       display: block;
       max-width: 90%;
       max-height: 90%;
-    }} /* ESCAPED */
+    }}
 
-    .lightbox-content img {{ /* ESCAPED */
+    .lightbox-content img {{
       width: 100%;
       height: 100%;
       object-fit: contain; /* Ensure the image fits within the bounds without cropping */
-    }} /* ESCAPED */
+    }}
 
-    .close-btn, .prev-btn, .next-btn {{ /* ESCAPED */
+    .close-btn, .prev-btn, .next-btn {{
       position: absolute;
       color: #fff;
       font-size: 40px;
@@ -185,102 +190,108 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       cursor: pointer;
       user-select: none;
       text-shadow: 0 0 5px black;
-    }} /* ESCAPED */
+    }}
 
-    .close-btn {{ /* ESCAPED */
+    .close-btn {{
       top: 15px;
       right: 35px;
-    }} /* ESCAPED */
+    }}
 
-    .prev-btn {{ /* ESCAPED */
+    .prev-btn {{
       top: 50%;
       left: 35px;
       transform: translateY(-50%);
-    }} /* ESCAPED */
+    }}
 
-    .next-btn {{ /* ESCAPED */
+    .next-btn {{
       top: 50%;
       right: 35px;
       transform: translateY(-50%);
-    }} /* ESCAPED */
+    }}
 
     .close-btn:hover,
     .prev-btn:hover,
-    .next-btn:hover {{ /* ESCAPED */
+    .next-btn:hover {{
       color: #bbb;
-    }} /* ESCAPED */
+    }}
 
 
     /* Media Queries for Responsiveness */
-    @media (max-width: 768px) {{ /* ESCAPED */
-      body {{ /* ESCAPED */
+    @media (min-width: 769px) {{ /* On larger screens, show all stills */
+        .stills-gallery img + img {{
+            display: block; /* Override display: none for larger screens */
+        }}
+    }}
+
+    @media (max-width: 768px) {{
+      body {{
         padding: 15px;
-      }} /* ESCAPED */
-      h1 {{ /* ESCAPED */
+      }}
+      h1 {{
         font-size: 2em;
-      }} /* ESCAPED */
-      h2 {{ /* ESCAPED */
+      }}
+      h2 {{
         font-size: 1.5em;
-      }} /* ESCAPED */
-      h3 {{ /* ESCAPED */
+      }}
+      h3 {{
         font-size: 1.2em;
-      }} /* ESCAPED */
-      .logo-container img {{ /* ESCAPED */
+      }}
+      .logo-container img {{
         max-width: 150px;
-      }} /* ESCAPED */
-      .top-section {{ /* ESCAPED */
+      }}
+      .top-section {{
         flex-direction: column;
         align-items: center;
         gap: 20px;
-      }} /* ESCAPED */
-      .poster-column {{ /* ESCAPED */
+      }}
+      .poster-column {{
         flex: none;
         width: 80%;
         max-width: 250px;
-      }} /* ESCAPED */
-      .info-column {{ /* ESCAPED */
+      }}
+      .info-column {{
         min-width: unset;
         width: 100%;
-      }} /* ESCAPED */
-      .flex-row {{ /* ESCAPED */
+      }}
+      .flex-row {{
         flex-direction: column;
         align-items: center;
         gap: 20px;
-      }} /* ESCAPED */
-      .half {{ /* ESCAPED */
+      }}
+      .half {{
         min-width: unset;
         width: 100%;
-      }} /* ESCAPED */
-      .aligned-section {{ /* ESCAPED */
+      }}
+      .aligned-section {{
         margin-left: 0;
         margin-right: 0;
         padding: 0 15px;
-      }} /* ESCAPED */
-    }} /* ESCAPED */
+      }}
+    }}
 
-    @media (max-width: 480px) {{ /* ESCAPED */
-      body {{ /* ESCAPED */
+    @media (max-width: 480px) {{
+      body {{
         padding: 10px;
-      }} /* ESCAPED */
-      h1 {{ /* ESCAPED */
+      }}
+      h1 {{
         font-size: 1.8em;
-      }} /* ESCAPED */
-      h2 {{ /* ESCAPED */
+      }}
+      h2 {{
         font-size: 1.3em;
-      }} /* ESCAPED */
-      h3 {{ /* ESCAPED */
+      }}
+      h3 {{
         font-size: 1.1em;
-      }} /* ESCAPED */
-      .logo-container img {{ /* ESCAPED */
+      }}
+      .logo-container img {{
         max-width: 120px;
-      }} /* ESCAPED */
-      .poster-column {{ /* ESCAPED */
+      }}
+      .poster-column {{
         width: 90%;
-      }} /* ESCAPED */
-      .aligned-section {{ /* ESCAPED */
+      }}
+      .aligned-section {{
         padding: 0 10px;
-      }} /* ESCAPED */
-    }} /* ESCAPED */
+      }}
+    }}
   </style>
 </head>
 <body>
@@ -355,7 +366,7 @@ FILM_TEMPLATE = """<!DOCTYPE html>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {{ /* ESCAPED */
+    document.addEventListener('DOMContentLoaded', function() {{
       // Stills Lightbox
       const stillsLightbox = document.getElementById('lightbox');
       const stillsLightboxImg = document.getElementById('lightbox-img');
@@ -366,41 +377,41 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       let currentStillIndex = 0;
       let currentStills = [];
 
-      document.querySelectorAll('.stills-gallery img').forEach(img => {{ /* ESCAPED */
-        img.addEventListener('click', function() {{ /* ESCAPED */
+      document.querySelectorAll('.stills-gallery img').forEach(img => {{
+        img.addEventListener('click', function() {{
           currentStills = JSON.parse(this.dataset.stills);
           const clickedStill = this.getAttribute('src');
           currentStillIndex = currentStills.indexOf(clickedStill);
           showStill(currentStillIndex);
           stillsLightbox.style.display = 'flex';
-        }}); /* ESCAPED */
-      }}); /* ESCAPED */
+        }});
+      }});
 
-      stillsCloseBtn.addEventListener('click', function() {{ /* ESCAPED */
+      stillsCloseBtn.addEventListener('click', function() {{
         stillsLightbox.style.display = 'none';
-      }}); /* ESCAPED */
+      }});
 
-      stillsLightbox.addEventListener('click', function(e) {{ /* ESCAPED */
-        if (e.target === stillsLightbox) {{ /* ESCAPED */
+      stillsLightbox.addEventListener('click', function(e) {{
+        if (e.target === stillsLightbox) {{
           stillsLightbox.style.display = 'none';
-        }} /* ESCAPED */
-      }}); /* ESCAPED */
+        }}
+      }});
 
-      stillsPrevBtn.addEventListener('click', function() {{ /* ESCAPED */
+      stillsPrevBtn.addEventListener('click', function() {{
         currentStillIndex = (currentStillIndex - 1 + currentStills.length) % currentStills.length;
         showStill(currentStillIndex);
-      }}); /* ESCAPED */
+      }});
 
-      stillsNextBtn.addEventListener('click', function() {{ /* ESCAPED */
+      stillsNextBtn.addEventListener('click', function() {{
         currentStillIndex = (currentStillIndex + 1) % currentStills.length;
         showStill(currentStillIndex);
-      }}); /* ESCAPED */
+      }});
 
-      function showStill(index) {{ /* ESCAPED */
-        if (currentStills.length > 0) {{ /* ESCAPED */
+      function showStill(index) {{
+        if (currentStills.length > 0) {{
           stillsLightboxImg.src = currentStills[index];
-        }} /* ESCAPED */
-      }} /* ESCAPED */
+        }}
+      }}
 
       // Poster Lightbox
       const posterLightbox = document.getElementById('poster-lightbox');
@@ -408,46 +419,46 @@ FILM_TEMPLATE = """<!DOCTYPE html>
       const posterCloseBtn = posterLightbox.querySelector('.close-btn');
       const filmPoster = document.getElementById('poster-img');
 
-      if (filmPoster) {{ /* ESCAPED */
-        filmPoster.addEventListener('click', function() {{ /* ESCAPED */
+      if (filmPoster) {{
+        filmPoster.addEventListener('click', function() {{
           posterLightboxImg.src = this.src;
           posterLightbox.style.display = 'flex';
-        }}); /* ESCAPED */
-      }} /* ESCAPED */
+        }});
+      }}
 
-      posterCloseBtn.addEventListener('click', function() {{ /* ESCAPED */
+      posterCloseBtn.addEventListener('click', function() {{
         posterLightbox.style.display = 'none';
-      }}); /* ESCAPED */
+      }});
 
-      posterLightbox.addEventListener('click', function(e) {{ /* ESCAPED */
-        if (e.target === posterLightbox) {{ /* ESCAPED */
+      posterLightbox.addEventListener('click', function(e) {{
+        if (e.target === posterLightbox) {{
           posterLightbox.style.display = 'none';
-        }} /* ESCAPED */
-      }}); /* ESCAPED */
+        }}
+      }});
 
       // Global Keydown for closing any lightbox
-      document.addEventListener('keydown', function(e) {{ /* ESCAPED */
-        if (e.key === 'Escape') {{ /* ESCAPED */
-          if (stillsLightbox.style.display === 'flex') {{ /* ESCAPED */
+      document.addEventListener('keydown', function(e) {{
+        if (e.key === 'Escape') {{
+          if (stillsLightbox.style.display === 'flex') {{
             stillsCloseBtn.click();
-          }} /* ESCAPED */
-          if (posterLightbox.style.display === 'flex') {{ /* ESCAPED */
+          }}
+          if (posterLightbox.style.display === 'flex') {{
             posterCloseBtn.click();
-          }} /* ESCAPED */
-        }} /* ESCAPED */
-      }}); /* ESCAPED */
+          }}
+        }}
+      }});
 
       // Centralized Click-to-Close (for both stills and poster lightboxes)
       const allLightboxes = [stillsLightbox, posterLightbox];
-      allLightboxes.forEach(lb => {{ /* ESCAPED */
-          lb.addEventListener('click', function(e) {{ /* ESCAPED */
+      allLightboxes.forEach(lb => {{
+          lb.addEventListener('click', function(e) {{
               // Check if the click is directly on the lightbox background
-              if (e.target === lb) {{ /* ESCAPED */
+              if (e.target === lb) {{
                   lb.style.display = 'none';
-              }} /* ESCAPED */
-          }}); /* ESCAPED */
-      }}); /* ESCAPED */
-    }}); /* ESCAPED */
+              }}
+          }});
+      }});
+    }});
   </script>
 </body>
 </html>
@@ -479,22 +490,26 @@ def list_block(title, items):
 
 def build_crew(crew):
     """Formats crew dictionary into an HTML list."""
+    # This function is not used directly in the template filling, but kept for completeness
     return list_block("Crew", [f"{k.title().replace('_', ' ')}: {v}" for k, v in crew.items()]) if crew else ""
 
 
 def build_cast(cast):
     """Formats cast list into an HTML list."""
+    # This function is not used directly in the template filling, but kept for completeness
     return list_block("Cast", cast) if cast else ""
 
 
 def build_tech_specs(specs):
     """Formats technical specifications dictionary into an HTML list."""
+    # This function is not used directly in the template filling, but kept for completeness
     return list_block("Technical Specs",
                       [f"{k.replace('_', ' ').title()}: {v}" for k, v in specs.items()]) if specs else ""
 
 
 def build_festivals(fests):
     """Formats festivals list into an HTML list."""
+    # This function is not used directly in the template filling, but kept for completeness
     return list_block("Festivals",
                       [f"{f.get('Name_of_Festival', '')}, {f.get('Country', '')} ({f.get('Date', '')})" for f in
                        fests]) if fests else ""
@@ -533,15 +548,19 @@ def get_film_stills(film_sanitized_title):
     Checks for existence on the file system.
     """
     stills = []
+    # Adjust this range if you have more than 3 stills or different naming conventions
     for i in range(1, 4):  # Checks for _1.jpg, _2.jpg, _3.jpg (adjust as needed)
+        # Construct the full path to check for file existence
+        # Make sure this path correctly reflects where your stills are relative to the script
         full_still_file_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            STILLS_DIR.replace('../', ''),
+            os.path.dirname(os.path.abspath(__file__)), # Directory of the current script
+            STILLS_DIR.replace('../', ''), # Remove ../ to make it relative to the script dir
             film_sanitized_title,
             f"{film_sanitized_title}_{i}.jpg"
         )
 
         if os.path.exists(full_still_file_path):
+            # Construct the relative path for HTML
             relative_still_path = f"{STILLS_DIR}/{film_sanitized_title}/{film_sanitized_title}_{i}.jpg"
             stills.append(relative_still_path)
     return stills
@@ -583,7 +602,7 @@ for film in films:
                 year = fdata["Date_of_completion"]
             if not (isinstance(year, str) and year.isdigit() and len(year) == 4):
                 year = ""
-        except Exception:
+        except Exception: # Catch any other potential errors during parsing
             year = ""
 
     duration = ""
@@ -592,9 +611,9 @@ for film in films:
         try:
             parts = [int(p) for p in runtime_str.split(":")]
             if len(parts) >= 2:
-                duration = parts[0] * 60 + parts[1]
+                duration = parts[0] * 60 + parts[1] # Convert to minutes
             elif len(parts) == 1:
-                duration = parts[0]
+                duration = parts[0] # Assume it's already in minutes
         except ValueError:
             duration = ""
 
@@ -613,6 +632,7 @@ for film in films:
     all_stills = get_film_stills(fname_sanitized)
     stills_html_list = []
     if all_stills:
+        # Pass all stills URL to the data-stills attribute for the lightbox to use
         for still_url in all_stills:
             stills_html_list.append(f'<img src="{still_url}" alt="Still" data-stills=\'{json.dumps(all_stills)}\' />')
     stills_html = "\n".join(stills_html_list) if stills_html_list else "<p>No stills available.</p>"
@@ -622,6 +642,9 @@ for film in films:
 
     # Construct poster path
     poster_path = f"{POSTER_DIR}/{fname_sanitized}/{fname_sanitized}.jpg"
+    # Fallback for poster if not found in specific folder
+    if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), POSTER_DIR.replace('../', ''), fname_sanitized, f"{fname_sanitized}.jpg")):
+        poster_path = f"{POSTER_DIR}/default_poster.jpg" # Consider having a default poster
 
     # Fill the template
     html = FILM_TEMPLATE.format(
@@ -635,7 +658,7 @@ for film in films:
         country=country,
         poster_image=poster_path,
         stills_html=stills_html,
-        trailer_html=trailer_embed_html_content,  # Reverted to direct embed for trailer
+        trailer_html=trailer_embed_html_content,
         logline_html=optional_block("Logline", film.get("Logline")),
         synopsis_html=optional_block("Synopsis", film.get("Synopsis")),
         note_html=optional_block("Director's Note", film.get("Directors_Note")),

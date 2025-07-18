@@ -1,390 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Waves</title>
-    <style>
-        body { /* ESCAPED */
-          background-color: #2b2b2b;
-          color: white;
-          font-family: Arial, sans-serif;
-          padding: 20px;
-          line-height: 1.6;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding-top: 20px;
-          padding-bottom: 50px;
-        } /* ESCAPED */
-        h1 { /* ESCAPED */
-          font-size: 2.5em;
-          margin-bottom: 0.1em;
-        } /* ESCAPED */
-        h2 { /* ESCAPED */
-          font-size: 1.8em;
-          margin-bottom: 0.5em;
-        } /* ESCAPED */
-        h3 { /* ESCAPED */
-          font-size: 1.4em;
-          margin-top: 25px;
-          margin-bottom: 5px;
-        } /* ESCAPED */
-        .logo-container { /* ESCAPED */
-          text-align: center;
-          margin-bottom: 30px;
-        } /* ESCAPED */
-        .logo-container img { /* ESCAPED */
-          max-width: 200px;
-          height: auto;
-        } /* ESCAPED */
-        .subtitle { /* ESCAPED */
-          font-style: italic;
-          margin-bottom: 10px;
-        } /* ESCAPED */
-        .horizontal-line { /* ESCAPED */
-          border-bottom: 1px solid white;
-          margin-top: 10px;
-          margin-bottom: 20px;
-        } /* ESCAPED */
-        .info-line { /* ESCAPED */
-          margin-bottom: 20px;
-          font-weight: bold;
-        } /* ESCAPED */
-        .top-section { /* ESCAPED */
-          display: flex;
-          gap: 40px;
-          flex-wrap: wrap;
-          justify-content: center;
-        } /* ESCAPED */
-        .poster-column { /* ESCAPED */
-          flex: 0 0 250px;
-          max-width: 250px;
-        } /* ESCAPED */
-        .info-column { /* ESCAPED */
-          flex: 1;
-          min-width: 300px;
-        } /* ESCAPED */
-        .poster-column img.film-poster { /* ESCAPED */
-          max-width: 100%;
-          height: auto;
-          border: 2px solid white;
-          display: block;
-          margin-bottom: 10px;
-          cursor: pointer; /* Make poster clickable */
-        } /* ESCAPED */
-        .block { /* ESCAPED */
-          margin-bottom: 20px;
-        } /* ESCAPED */
-        .label { /* ESCAPED */
-          font-weight: bold;
-          margin-top: 10px;
-        } /* ESCAPED */
-        .flex-row { /* ESCAPED */
-          display: flex;
-          gap: 40px;
-          flex-wrap: wrap;
-          justify-content: center;
-        } /* ESCAPED */
-        .half { /* ESCAPED */
-          flex: 1;
-          min-width: 300px;
-        } /* ESCAPED */
-        .aligned-section { /* ESCAPED */
-          margin-left: calc(250px + 40px);
-          margin-right: 20px;
-          margin-bottom: 20px;
-        } /* ESCAPED */
-        a { /* ESCAPED */
-          color: white;
-        } /* ESCAPED */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Waves</title>
+  <style>
+    body {
+      background-color: #2b2b2b;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.1em;
+    }
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+    h3 {
+      font-size: 1.4em;
+      margin-top: 25px;
+      margin-bottom: 5px;
+    }
+    .logo-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo-container img {
+      max-width: 200px;
+      height: auto;
+    }
+    .subtitle {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .horizontal-line {
+      border-bottom: 1px solid white;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .info-line {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .top-section {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .poster-column {
+      flex: 0 0 250px;
+      max-width: 250px;
+    }
+    .info-column {
+      flex: 1;
+      min-width: 300px;
+    }
+    .poster-column img.film-poster {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid white;
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer; /* Make poster clickable */
+    }
+    .block {
+      margin-bottom: 20px;
+    }
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .flex-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .half {
+      flex: 1;
+      min-width: 300px;
+    }
+    .aligned-section {
+      margin-left: calc(250px + 40px);
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+    a {
+      color: white;
+    }
 
-        /* Video Responsiveness */
-        .video-container { /* ESCAPED */
-          position: relative;
-          padding-bottom: 56.25%; /* 16:9 aspect ratio */
-          height: 0;
-          overflow: hidden;
-          max-width: 100%;
-          background: #000;
-          margin-top: 20px;
-        } /* ESCAPED */
-        .video-container iframe,
-        .video-container object,
-        .video-container embed { /* ESCAPED */
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        } /* ESCAPED */
+    /* Video Responsiveness */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+      margin-top: 20px;
+    }
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-        /* Stills Gallery */
-        .stills-gallery { /* ESCAPED */
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        } /* ESCAPED */
-        .stills-gallery img { /* ESCAPED */
-            width: 100px; /* Thumbnail size */
-            height: auto;
-            border: 1px solid #555;
-            cursor: pointer;
-            transition: transform 0.2s;
-        } /* ESCAPED */
-        .stills-gallery img:hover { /* ESCAPED */
-            transform: scale(1.05);
-        } /* ESCAPED */
+    /* Stills Gallery */
+    .stills-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .stills-gallery img {
+        width: 100px; /* Thumbnail size */
+        height: auto;
+        border: 1px solid #555;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .stills-gallery img:hover {
+        transform: scale(1.05);
+    }
 
-        /* Lightbox Styles (General for stills, poster) */
-        .lightbox { /* ESCAPED */
-          display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
-          z-index: 1000; /* Sit on top */
-          left: 0;
-          top: 0;
-          width: 100%; /* Full width */
-          height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
-          background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-          align-items: center;
-          justify-content: center;
-        } /* ESCAPED */
+    /* Hide all but the first still by default */
+    .stills-gallery img + img {
+        display: none;
+    }
 
-        .lightbox-content { /* ESCAPED */
-          position: relative;
-          margin: auto;
-          display: block;
-          max-width: 90%;
-          max-height: 90%;
-        } /* ESCAPED */
+    /* Lightbox Styles (General for stills, poster) */
+    .lightbox {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1000; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+      align-items: center;
+      justify-content: center;
+    }
 
-        .lightbox-content img { /* ESCAPED */
-          width: 100%;
-          height: 100%;
-          object-fit: contain; /* Ensure the image fits within the bounds without cropping */
-        } /* ESCAPED */
+    .lightbox-content {
+      position: relative;
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+    }
 
-        .close-btn, .prev-btn, .next-btn { /* ESCAPED */
-          position: absolute;
-          color: #fff;
-          font-size: 40px;
-          font-weight: bold;
-          cursor: pointer;
-          user-select: none;
-          text-shadow: 0 0 5px black;
-        } /* ESCAPED */
+    .lightbox-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Ensure the image fits within the bounds without cropping */
+    }
 
-        .close-btn { /* ESCAPED */
-          top: 15px;
-          right: 35px;
-        } /* ESCAPED */
+    .close-btn, .prev-btn, .next-btn {
+      position: absolute;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      text-shadow: 0 0 5px black;
+    }
 
-        .prev-btn { /* ESCAPED */
-          top: 50%;
-          left: 35px;
-          transform: translateY(-50%);
-        } /* ESCAPED */
+    .close-btn {
+      top: 15px;
+      right: 35px;
+    }
 
-        .next-btn { /* ESCAPED */
-          top: 50%;
-          right: 35px;
-          transform: translateY(-50%);
-        } /* ESCAPED */
+    .prev-btn {
+      top: 50%;
+      left: 35px;
+      transform: translateY(-50%);
+    }
 
-        .close-btn:hover,
-        .prev-btn:hover,
-        .next-btn:hover { /* ESCAPED */
-          color: #bbb;
-        } /* ESCAPED */
+    .next-btn {
+      top: 50%;
+      right: 35px;
+      transform: translateY(-50%);
+    }
+
+    .close-btn:hover,
+    .prev-btn:hover,
+    .next-btn:hover {
+      color: #bbb;
+    }
 
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) { /* ESCAPED */
-          body { /* ESCAPED */
-            padding: 15px;
-          } /* ESCAPED */
-          h1 { /* ESCAPED */
-            font-size: 2em;
-          } /* ESCAPED */
-          h2 { /* ESCAPED */
-            font-size: 1.5em;
-          } /* ESCAPED */
-          h3 { /* ESCAPED */
-            font-size: 1.2em;
-          } /* ESCAPED */
-          .logo-container img { /* ESCAPED */
-            max-width: 150px;
-          } /* ESCAPED */
-          .top-section { /* ESCAPED */
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-          } /* ESCAPED */
-          .poster-column { /* ESCAPED */
-            flex: none;
-            width: 80%;
-            max-width: 250px;
-          } /* ESCAPED */
-          .info-column { /* ESCAPED */
-            min-width: unset;
-            width: 100%;
-          } /* ESCAPED */
-          .flex-row { /* ESCAPED */
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-          } /* ESCAPED */
-          .half { /* ESCAPED */
-            min-width: unset;
-            width: 100%;
-          } /* ESCAPED */
-          .aligned-section { /* ESCAPED */
-            margin-left: 0;
-            margin-right: 0;
-            padding: 0 15px;
-          } /* ESCAPED */
-        } /* ESCAPED */
+    /* Media Queries for Responsiveness */
+    @media (min-width: 769px) { /* On larger screens, show all stills */
+        .stills-gallery img + img {
+            display: block; /* Override display: none for larger screens */
+        }
+    }
 
-        @media (max-width: 480px) { /* ESCAPED */
-          body { /* ESCAPED */
-            padding: 10px;
-          } /* ESCAPED */
-          h1 { /* ESCAPED */
-            font-size: 1.8em;
-          } /* ESCAPED */
-          h2 { /* ESCAPED */
-            font-size: 1.3em;
-          } /* ESCAPED */
-          h3 { /* ESCAPED */
-            font-size: 1.1em;
-          } /* ESCAPED */
-          .logo-container img { /* ESCAPED */
-            max-width: 120px;
-          } /* ESCAPED */
-          .poster-column { /* ESCAPED */
-            width: 90%;
-          } /* ESCAPED */
-          .aligned-section { /* ESCAPED */
-            padding: 0 10px;
-          } /* ESCAPED */
-        } /* ESCAPED */
-    </style>
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      h3 {
+        font-size: 1.2em;
+      }
+      .logo-container img {
+        max-width: 150px;
+      }
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .poster-column {
+        flex: none;
+        width: 80%;
+        max-width: 250px;
+      }
+      .info-column {
+        min-width: unset;
+        width: 100%;
+      }
+      .flex-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .half {
+        min-width: unset;
+        width: 100%;
+      }
+      .aligned-section {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      h2 {
+        font-size: 1.3em;
+      }
+      h3 {
+        font-size: 1.1em;
+      }
+      .logo-container img {
+        max-width: 120px;
+      }
+      .poster-column {
+        width: 90%;
+      }
+      .aligned-section {
+        padding: 0 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="logo-container">
+  <div class="logo-container">
     <a href="index.html">
-        <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo"/>
+      <img src="../images/logo/Cinefila_logo_white_web.svg" alt="OFC Cinefila Logo" />
     </a>
-</div>
+  </div>
 
 
-<h1>Waves</h1>
-<div class="subtitle">Original Title: Vlny</div>
-<div class="horizontal-line"></div>
+  <h1>Waves</h1>
+  <div class="subtitle">Original Title: Vlny</div>
+  <div class="horizontal-line"></div>
 
-<div class="info-line">animation, children, war, poetic | | 8 minutes | no dialogue with subtitles | Czech Republic
-</div>
+  <div class="info-line">animation, children, war, poetic |  | 8 minutes | no dialogue with  subtitles | Czech Republic</div>
 
-<div class="top-section">
+  <div class="top-section">
     <div class="poster-column">
-        <div>
-            <img src="../images/posters/waves/waves.jpg" alt="Poster" class="film-poster" id="poster-img"/>
-            <div class="label">Stills</div>
-            <div class="stills-gallery">
-                <img src="../images/stills/waves/waves_1.jpg" alt="Still"
-                     data-stills='["../images/stills/waves/waves_1.jpg", "../images/stills/waves/waves_2.jpg", "../images/stills/waves/waves_3.jpg"]'/>
-                <img src="../images/stills/waves/waves_2.jpg" alt="Still"
-                     data-stills='["../images/stills/waves/waves_1.jpg", "../images/stills/waves/waves_2.jpg", "../images/stills/waves/waves_3.jpg"]'/>
-                <img src="../images/stills/waves/waves_3.jpg" alt="Still"
-                     data-stills='["../images/stills/waves/waves_1.jpg", "../images/stills/waves/waves_2.jpg", "../images/stills/waves/waves_3.jpg"]'/>
-            </div>
-            <div class="label">Poster</div>
-            <div><a href="../images/posters/waves/waves.jpg" target="_blank">Link to poster (opens in new tab)</a></div>
+      <div>
+        <img src="../images/posters/waves/waves.jpg" alt="Poster" class="film-poster" id="poster-img"/>
+        <div class="label">Stills</div>
+        <div class="stills-gallery">
+            <img src="../images/stills/waves/waves_1.jpg" alt="Still" data-stills='["../images/stills/waves/waves_1.jpg", "../images/stills/waves/waves_2.jpg", "../images/stills/waves/waves_3.jpg"]' />
+<img src="../images/stills/waves/waves_2.jpg" alt="Still" data-stills='["../images/stills/waves/waves_1.jpg", "../images/stills/waves/waves_2.jpg", "../images/stills/waves/waves_3.jpg"]' />
+<img src="../images/stills/waves/waves_3.jpg" alt="Still" data-stills='["../images/stills/waves/waves_1.jpg", "../images/stills/waves/waves_2.jpg", "../images/stills/waves/waves_3.jpg"]' />
         </div>
+         <div class="label">Poster</div>
+        <div><a href="../images/posters/waves/waves.jpg" target="_blank">Link to poster (opens in new tab)</a></div>
+      </div>
     </div>
 
     <div class="info-column">
-        <h3>Logline</h3>
-        <p>The film explores waves in nature and life through dramatic moments, human fragments, and flowing movements
-            in sea, grass, and branches.</p>
-        <h3>Synopsis</h3>
-        <p>This short author film is being created using sand animation, and explores the theme of waves in various
-            forms and contexts. A collage of situations from non-specific places around the globe, and the rhythmical
-            motion and sound of waves occuring naturally in the world around us.</p>
-
-        <h3>Target Group</h3>
-        <p>15+, general audience</p>
-
+      <h3>Logline</h3><p>The film explores waves in nature and life through dramatic moments, human fragments, and flowing movements in sea, grass, and branches.</p>
+      <h3>Synopsis</h3><p>This short author film is being created using sand animation, and explores the theme of waves in various forms and contexts. A collage of situations from non-specific places around the globe, and the rhythmical motion and sound of waves occuring naturally in the world around us.</p>
+      
+      <h3>Target Group</h3><p>15+, general audience</p>
+      
     </div>
-</div>
+  </div>
 
-<div class="aligned-section"><h3>Festival, Crew, Cast & Technical Info</h3>
+  <div class="aligned-section"> <h3>Festival, Crew, Cast & Technical Info</h3>
     <div class="flex-row">
-        <div class="half">
-            <div class="label">Festivals</div>
-            <h3></h3>
-            <ul>
-                <li>Anifilm, Czech Republic (2024)</li>
-                <li>Cinanima, Portugal (October 2024)</li>
-                <li>Animateka International Animated Film Festival, Slovenia (December 2024)</li>
-                <li>Film Festival della Lessinia, Italy (August 2025)</li>
-                <li>Animest, Romania (October 2025)</li>
-                <li>Reggio Film Festival, Italy (November 2025)</li>
-            </ul>
-            <div class="label">Awards</div>
-            <h3></h3>
-            <ul>
-                <li> ()</li>
-            </ul>
-            <div class="label">Sales Status</div>
-            —
-            <div class="label">Downloads</div>
-            —
-        </div>
-        <div class="half">
-            <div class="label">Crew</div>
-            <h3></h3>
-            <ul>
-                <li>Director: Michael Carrington</li>
-                <li>Screenplay writer: Michael Carrington</li>
-                <li>Editor: Tomáš Doruška</li>
-                <li>Sound director: Turgut Mavuk</li>
-                <li>Music composer: Ahmet Kenan Bilgic</li>
-            </ul>
-            <div class="label">Cast</div>
-
-        </div>
+      <div class="half">
+        <div class="label">Festivals</div>
+        <h3></h3><ul><li>Anifilm, Czech Republic (2024)</li><li>Cinanima, Portugal (October 2024)</li><li>Animateka International Animated Film Festival, Slovenia (December 2024)</li><li>Film Festival della Lessinia, Italy (August 2025)</li><li>Animest, Romania (October 2025)</li><li>Reggio Film Festival, Italy (November 2025)</li></ul>
+        <div class="label">Awards</div>
+        <h3></h3><ul><li> ()</li></ul>
+        <div class="label">Sales Status</div>
+        —
+        <div class="label">Downloads</div>
+        —
+      </div>
+      <div class="half">
+        <div class="label">Crew</div>
+        <h3></h3><ul><li>Director: Michael Carrington</li><li>Screenplay writer: Michael Carrington</li><li>Editor: Tomáš Doruška</li><li>Sound director: Turgut Mavuk</li><li>Music composer: Ahmet Kenan Bilgic</li></ul>
+        <div class="label">Cast</div>
+        
+      </div>
     </div>
     <div class="label">Technical Specs</div>
-    <h3></h3>
-    <ul>
-        <li>Shooting Format: {'Film': '', 'Video': '', 'Other': ''}</li>
-        <li>Anamorphic Lens: No</li>
-        <li>Animation Technique: sand/powder</li>
-        <li>Animation Technique Other: monochromatic underlit sand animation</li>
-        <li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': ''}</li>
-        <li>Speed: {'Scan_Method': '', 'FPS': '24', 'FPS_Other': ''}</li>
-        <li>Aspect Ratio: 1.78 (16:9)</li>
-        <li>Sound Mix: Stereo (2.0, L+R)</li>
-        <li>Colour: Colour</li>
-    </ul>
-</div>
+    <h3></h3><ul><li>Shooting Format: {'Film': '', 'Video': '', 'Other': ''}</li><li>Anamorphic Lens: No</li><li>Animation Technique: sand/powder</li><li>Animation Technique Other: monochromatic underlit sand animation</li><li>Screening Format: {'Film': '', 'Tape': '', 'File': 'DCP', 'Other': ''}</li><li>Speed: {'Scan_Method': '', 'FPS': '24', 'FPS_Other': ''}</li><li>Aspect Ratio: 1.78 (16:9)</li><li>Sound Mix: Stereo (2.0, L+R)</li><li>Colour: Colour</li></ul>
+  </div>
 
-<div id="lightbox" class="lightbox">
+  <div id="lightbox" class="lightbox">
     <span class="close-btn">&times;</span>
     <img class="lightbox-content" id="lightbox-img" src="" alt="Still Image">
     <span class="prev-btn">&#10094;</span>
     <span class="next-btn">&#10095;</span>
-</div>
+  </div>
 
-<div id="poster-lightbox" class="lightbox">
+  <div id="poster-lightbox" class="lightbox">
     <span class="close-btn">&times;</span>
     <img class="lightbox-content" id="poster-lightbox-img" src="" alt="Film Poster">
-</div>
+  </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() { /* ESCAPED */
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
       // Stills Lightbox
       const stillsLightbox = document.getElementById('lightbox');
       const stillsLightboxImg = document.getElementById('lightbox-img');
@@ -395,41 +367,41 @@
       let currentStillIndex = 0;
       let currentStills = [];
 
-      document.querySelectorAll('.stills-gallery img').forEach(img => { /* ESCAPED */
-        img.addEventListener('click', function() { /* ESCAPED */
+      document.querySelectorAll('.stills-gallery img').forEach(img => {
+        img.addEventListener('click', function() {
           currentStills = JSON.parse(this.dataset.stills);
           const clickedStill = this.getAttribute('src');
           currentStillIndex = currentStills.indexOf(clickedStill);
           showStill(currentStillIndex);
           stillsLightbox.style.display = 'flex';
-        }); /* ESCAPED */
-      }); /* ESCAPED */
+        });
+      });
 
-      stillsCloseBtn.addEventListener('click', function() { /* ESCAPED */
+      stillsCloseBtn.addEventListener('click', function() {
         stillsLightbox.style.display = 'none';
-      }); /* ESCAPED */
+      });
 
-      stillsLightbox.addEventListener('click', function(e) { /* ESCAPED */
-        if (e.target === stillsLightbox) { /* ESCAPED */
+      stillsLightbox.addEventListener('click', function(e) {
+        if (e.target === stillsLightbox) {
           stillsLightbox.style.display = 'none';
-        } /* ESCAPED */
-      }); /* ESCAPED */
+        }
+      });
 
-      stillsPrevBtn.addEventListener('click', function() { /* ESCAPED */
+      stillsPrevBtn.addEventListener('click', function() {
         currentStillIndex = (currentStillIndex - 1 + currentStills.length) % currentStills.length;
         showStill(currentStillIndex);
-      }); /* ESCAPED */
+      });
 
-      stillsNextBtn.addEventListener('click', function() { /* ESCAPED */
+      stillsNextBtn.addEventListener('click', function() {
         currentStillIndex = (currentStillIndex + 1) % currentStills.length;
         showStill(currentStillIndex);
-      }); /* ESCAPED */
+      });
 
-      function showStill(index) { /* ESCAPED */
-        if (currentStills.length > 0) { /* ESCAPED */
+      function showStill(index) {
+        if (currentStills.length > 0) {
           stillsLightboxImg.src = currentStills[index];
-        } /* ESCAPED */
-      } /* ESCAPED */
+        }
+      }
 
       // Poster Lightbox
       const posterLightbox = document.getElementById('poster-lightbox');
@@ -437,46 +409,46 @@
       const posterCloseBtn = posterLightbox.querySelector('.close-btn');
       const filmPoster = document.getElementById('poster-img');
 
-      if (filmPoster) { /* ESCAPED */
-        filmPoster.addEventListener('click', function() { /* ESCAPED */
+      if (filmPoster) {
+        filmPoster.addEventListener('click', function() {
           posterLightboxImg.src = this.src;
           posterLightbox.style.display = 'flex';
-        }); /* ESCAPED */
-      } /* ESCAPED */
+        });
+      }
 
-      posterCloseBtn.addEventListener('click', function() { /* ESCAPED */
+      posterCloseBtn.addEventListener('click', function() {
         posterLightbox.style.display = 'none';
-      }); /* ESCAPED */
+      });
 
-      posterLightbox.addEventListener('click', function(e) { /* ESCAPED */
-        if (e.target === posterLightbox) { /* ESCAPED */
+      posterLightbox.addEventListener('click', function(e) {
+        if (e.target === posterLightbox) {
           posterLightbox.style.display = 'none';
-        } /* ESCAPED */
-      }); /* ESCAPED */
+        }
+      });
 
       // Global Keydown for closing any lightbox
-      document.addEventListener('keydown', function(e) { /* ESCAPED */
-        if (e.key === 'Escape') { /* ESCAPED */
-          if (stillsLightbox.style.display === 'flex') { /* ESCAPED */
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          if (stillsLightbox.style.display === 'flex') {
             stillsCloseBtn.click();
-          } /* ESCAPED */
-          if (posterLightbox.style.display === 'flex') { /* ESCAPED */
+          }
+          if (posterLightbox.style.display === 'flex') {
             posterCloseBtn.click();
-          } /* ESCAPED */
-        } /* ESCAPED */
-      }); /* ESCAPED */
+          }
+        }
+      });
 
       // Centralized Click-to-Close (for both stills and poster lightboxes)
       const allLightboxes = [stillsLightbox, posterLightbox];
-      allLightboxes.forEach(lb => { /* ESCAPED */
-          lb.addEventListener('click', function(e) { /* ESCAPED */
+      allLightboxes.forEach(lb => {
+          lb.addEventListener('click', function(e) {
               // Check if the click is directly on the lightbox background
-              if (e.target === lb) { /* ESCAPED */
+              if (e.target === lb) {
                   lb.style.display = 'none';
-              } /* ESCAPED */
-          }); /* ESCAPED */
-      }); /* ESCAPED */
-    }); /* ESCAPED */
-</script>
+              }
+          });
+      });
+    });
+  </script>
 </body>
 </html>
