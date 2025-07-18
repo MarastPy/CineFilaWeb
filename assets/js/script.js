@@ -61,8 +61,42 @@ function displayTopFilmsOnIndexPage() {
     displayFilms(top3Films, 'topFilmsContainer');
 }
 
-// Helper function to get the exact total minutes from a runtime string
-function getExactTotalMinutes(runtimeString) {
+// ✅ FIXED version of getRoundedRuntime() - KEPT FOR FILTERING PURPOSES
+function getRoundedRuntime(runtimeString) {
+    if (!runtimeString || typeof runtimeString !== "string") return null;
+
+    // Clean the input
+    const cleanStr = runtimeString.trim().toLowerCase().replace(/[^0-9:]/g, '');
+
+    let totalMinutes = 0;
+
+    // Handle formats like hh:mm:ss or mm:ss
+    const parts = cleanStr.split(':').map(Number);
+
+    if (parts.length === 3) {
+        const [hours, minutes, seconds] = parts;
+        totalMinutes = (hours || 0) * 60 + (minutes || 0) + (seconds || 0) / 60;
+    } else if (parts.length === 2) {
+        const [minutes, seconds] = parts;
+        totalMinutes = (minutes || 0) + (seconds || 0) / 60;
+    } else if (parts.length === 1 && cleanStr !== '') {
+        totalMinutes = parseInt(parts[0], 10);
+    } else {
+        return null;
+    }
+
+    if (isNaN(totalMinutes)) return null;
+
+    // Round totalMinutes to nearest whole number
+    totalMinutes = Math.round(totalMinutes);
+
+    if (totalMinutes < 40) return "short";
+    if (totalMinutes <= 70) return "mid-length";
+    return "full-length";
+}
+
+// ✨ NEW HELPER FUNCTION to get exact minutes for display
+function parseRuntimeToMinutes(runtimeString) {
     if (!runtimeString || typeof runtimeString !== "string") return null;
 
     const cleanStr = runtimeString.trim().toLowerCase().replace(/[^0-9:]/g, '');
@@ -82,17 +116,7 @@ function getExactTotalMinutes(runtimeString) {
     }
 
     if (isNaN(totalMinutes)) return null;
-    return Math.round(totalMinutes);
-}
-
-// getRoundedRuntime remains the same for filter categorization
-function getRoundedRuntime(runtimeString) {
-    const totalMinutes = getExactTotalMinutes(runtimeString);
-    if (totalMinutes === null) return null;
-
-    if (totalMinutes < 40) return "short";
-    if (totalMinutes <= 70) return "mid-length";
-    return "full-length";
+    return Math.round(totalMinutes); // Round to nearest whole minute for display
 }
 
 
@@ -113,8 +137,9 @@ function populateAllFiltersInitial() {
             if (yearMatch) years.add(yearMatch[0]);
         }
         if (f.Runtime) {
+            // Still use getRoundedRuntime for filter population
             const len = getRoundedRuntime(f.Runtime);
-            if (len) lengths.add(len); // Collect actual lengths present
+            if (len) lengths.add(len);
         }
         if (f.Country_of_production) countries.add(f.Country_of_production.trim());
         if (f.Target_Group?.Rating) ratings.add(f.Target_Group.Rating.trim());
@@ -170,29 +195,18 @@ function applyFilters() {
         const director = (crew['Director(s)'] || '').toLowerCase();
 
         const genres = f.Genre_List?.map(g => g.toLowerCase()) || [];
-        const runtimeCategory = f.Runtime ? getRoundedRuntime(f.Runtime) : null;
+        const runtimeCategory = f.Runtime ? getRoundedRuntime(f.Runtime) : null; // Use category for filtering
         const year = f.Date_of_completion?.match(/\b\d{4}\b/)?.[0] || '';
         const country = f.Country_of_production?.toLowerCase() || '';
         const rating = f.Target_Group?.Rating?.toLowerCase() || '';
         const audience = f.Target_Group?.Audience?.toLowerCase() || '';
         const keywords = f.Keywords ? f.Keywords.split(',').map(k => k.trim().toLowerCase()) : [];
 
-        // Additional filter for runtime: only include films with runtime >= 40 minutes if no length filter is selected
-        let meetsMinimumRuntime = true;
-        if (!values.length && f.Runtime) {
-            const totalMinutes = getExactTotalMinutes(f.Runtime);
-            if (totalMinutes !== null && totalMinutes < 40) {
-                meetsMinimumRuntime = false;
-            }
-        }
-
-
         return (
-            meetsMinimumRuntime && // Apply the minimum runtime filter here
             (!values.searchTerm || title.includes(values.searchTerm) || originalTitle.includes(values.searchTerm) || logline.includes(values.searchTerm) || synopsis.includes(values.searchTerm) || director.includes(values.searchTerm)) &&
             (!values.genre || genres.includes(values.genre)) &&
             (!values.year || year === values.year) &&
-            (!values.length || runtimeCategory === values.length) &&
+            (!values.length || runtimeCategory === values.length) && // Filter by category
             (!values.country || country === values.country) &&
             (!values.rating || rating === values.rating) &&
             (!values.audience || audience === values.audience) &&
@@ -243,16 +257,6 @@ function updateDependentFilterOptions() {
 
         const relevantFilmsForThisFilterPopulation = allFilms.filter(film => {
             const f = film.Film || {};
-
-            // Apply the minimum runtime filter here as well when populating options
-            let meetsMinimumRuntime = true;
-            if (!currentSelectedValues.length && f.Runtime) { // Only apply if no length filter is currently selected
-                const totalMinutes = getExactTotalMinutes(f.Runtime);
-                if (totalMinutes !== null && totalMinutes < 40) {
-                    meetsMinimumRuntime = false;
-                }
-            }
-            if (!meetsMinimumRuntime) return false;
 
             return filtersConfig.every(otherFilterConfig => {
                 if (otherFilterConfig.id === filterConfig.id || !currentSelectedValues[otherFilterConfig.key]) {
@@ -309,11 +313,22 @@ function displayFilms(films, containerId = 'filmContainer') {
         const title = (f.Title_English || f.Title_Original || 'Untitled').trim();
         const year = f.Date_of_completion?.match(/\b\d{4}\b/)?.[0] || '';
 
-        // Get exact runtime in minutes for display
-        const exactMinutes = getExactTotalMinutes(f.Runtime);
+        // ✨ MODIFIED: Get and display exact minutes
+        const exactRuntimeMinutes = parseRuntimeToMinutes(f.Runtime);
         let displayRuntime = '';
-        if (exactMinutes !== null) {
-            displayRuntime = ` | ${exactMinutes} min`;
+        if (exactRuntimeMinutes !== null) {
+            displayRuntime = ` | ${exactRuntimeMinutes} min`;
+        } else {
+            // Fallback to category if exact minutes can't be parsed, or show nothing
+            const runtimeCategory = f.Runtime ? getRoundedRuntime(f.Runtime) : null;
+            if (runtimeCategory === 'short') {
+                displayRuntime = ' (<40 min)';
+            } else if (runtimeCategory === 'mid-length') {
+                displayRuntime = ' (40-70 min)';
+            } else if (runtimeCategory === 'full-length') {
+                displayRuntime = ' (>70 min)';
+            }
+            // If you truly only want exact minutes, you could just leave displayRuntime empty here.
         }
 
         const director = (crew['Director(s)'] || 'Unknown Director').trim();
