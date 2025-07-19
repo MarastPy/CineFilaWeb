@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchData(isIndexPage, isCataloguePage) {
     try {
-        const response = await fetch('extracted_data/all_html_data.json');
+        const response = await fetch('data/all_html_data.json');
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         allFilms = await response.json();

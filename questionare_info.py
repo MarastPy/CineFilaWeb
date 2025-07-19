@@ -669,10 +669,10 @@ if __name__ == "__main__":
     html_files_folder = r'questionare'
 
     # Define the output directory for JSON and Excel files
-    output_directory = 'extracted_data'  # This folder will be created in the script's execution directory
+    output_directory = 'data'  # This folder will be created in the script's execution directory
 
     # Ensure the html_files_folder exists.
-    # The script will create 'extracted_data' if it doesn't exist.
+    # The script will create 'data' if it doesn't exist.
     os.makedirs(html_files_folder, exist_ok=True)  # Ensure the input folder exists
 
     # Run the processing

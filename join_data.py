@@ -2,7 +2,7 @@ import json
 import re
 
 # Step 1: Fix and load aditional_info.json
-with open("extracted_data/aditional_info.json", "r", encoding="utf-8") as f:
+with open("data/aditional_info.json", "r", encoding="utf-8") as f:
     raw_text = f.read()
 
 # Fix common JSON formatting issues
@@ -13,7 +13,7 @@ fixed_text = fixed_text.replace('"Review" "Milan Marčetić"', '"Review": "Milan
 aditional_info = json.loads(fixed_text)
 
 # Step 2: Load all_html_data.json
-with open("extracted_data/all_html_data.json", "r", encoding="utf-8") as f:
+with open("data/all_html_data.json", "r", encoding="utf-8") as f:
     all_html_data = json.load(f)
 
 
@@ -33,7 +33,7 @@ for film_entry in all_html_data:
                     film_entry[key] = value
 
 # Step 4: Save the result
-with open("extracted_data/all_html_data.json", "w", encoding="utf-8") as f:
+with open("data/all_html_data.json", "w", encoding="utf-8") as f:
     json.dump(all_html_data, f, ensure_ascii=False, indent=2)
 
-print("✅ Merged file saved as extracted_data/all_html_data.json")
+print("✅ Merged file saved as data/all_html_data.json")

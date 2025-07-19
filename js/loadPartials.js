@@ -9,8 +9,8 @@ async function loadPartials() {
   };
 
   // Load header and footer
-  await load('./partials/header.html', 'header-container');
-  await load('./partials/footer.html', 'footer-container');
+  await load('./includes/header.html', 'header-container');
+  await load('./includes/footer.html', 'footer-container');
 
   // Determine if it's the index page
   const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
