@@ -1,1502 +1,631 @@
 /* ==================================================
-   1. BASE & UTILITIES
+   CINEFILA — GLOBAL STYLESHEET
+   ==================================================
+   - Base & utilities
+   - Hero / initial info banner
+   - Header (fixed + sliding) + nav
+   - Sections & common layouts
+   - Cards / grids (news, preview)
+   - Team / People (unchanged)
+   - Footer
+   - Catalogue (list, detail, filters)
+   - Search overlay (scrollable, body lock)
+   - Responsive
+   - Button restorations (ALL FILMS, Read More News)
    ================================================== */
 
-/* Universal Box-Sizing Reset */
-/* Applies to all elements, ensuring padding and borders are included in an element's total width and height. */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/* Body Base Styles */
-/* Sets the default font, text color, line height, and background for the entire page. */
+/* ==================================================
+   1) BASE & UTILITIES
+   ================================================== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
 body {
   font-family: 'Nunito', sans-serif;
   color: #1c1c1c;
   line-height: 1.6;
-  transition: padding-top 0.3s ease; /* Smooth transition for padding changes */
-  background-color: #2b2b2b; /* Ensures the whole body has the dark background */
+  background-color: #2b2b2b;
+  /* header spacer handled via --header-height; see .header-spacer */
 }
 
-/* Body Padding for Fixed Headers */
-/* Adjusts top padding on the body to prevent content from being hidden by fixed headers, accounting for scrolled state. */
-/* General (for non-index pages) */
-body:not(.index-page):not(.scrolled) {
-  padding-top: 150px; /* Height of logo-top (90px) + main-header (60px) */
-}
-body:not(.index-page).scrolled {
-  padding-top: 80px; /* Compact height when scrolled, adjusted for more space */
-}
+h1, h2, h3 { font-family: 'EB Garamond', serif; color: #222; }
+h1 { font-size: 4.5em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.3em; }
 
-/* Body Padding for Index Page */
-body.index-page:not(.scrolled) {
-  /* On index page, the header is initially hidden and appears on scroll. */
-  /* No top padding is needed here as the content starts from the top. */
-  padding-top: 0;
-}
-body.index-page.scrolled {
-  padding-top: 80px; /* Space for the scrolled header, adjusted for more space */
-}
+p { text-align: justify; }
 
+a { color: #ff9800; text-decoration: none; transition: color .3s; }
+a:hover { color: #ffc107; }
 
-/* Typography - Headings */
-/* Defines font families, colors, and sizes for various heading levels. */
-h1 {
-  font-family: 'EB Garamond', serif;
-  color: #222;
-  font-size: 4.5em; /* Example size for h1 */
+img { max-width: 100%; height: auto; display: block; }
+
+.content { padding: 40px 2cm; max-width: 1200px; margin: 0 auto; }
+.hidden  { display: none !important; }
+
+.visually-hidden {
+  position: absolute !important; height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; border: 0; padding: 0; margin: -1px;
 }
 
-h2 {
-  font-family: 'EB Garamond', serif;
-  color: #222;
-  font-size: 1.5em; /* Example size for h2 */
-}
-
-h3 {
-  font-family: 'EB Garamond', serif;
-  color: #222;
-  font-size: 1.3em; /* Example size for h3 */
-}
-
-/* Typography - Paragraphs */
-p {
-  text-align: justify; /* Ensure text is justified */
-}
+/* Spacer to offset fixed header */
+.header-spacer { height: var(--header-height, 72px); }
 
 
-/* Typography - Links */
-/* Sets default link color, removes underlines, and adds a smooth transition for hover effects. */
-a {
-  color: #ff9800;
-  text-decoration: none;
-  transition: color 0.3s;
-}
+/* ==================================================
+   2) HERO / INITIAL INFO BANNER (Index)
+   ================================================== */
 
-a:hover {
-  color: #ffc107;
-}
-
-/* Utility Classes */
-/* General-purpose classes for common layout or visibility needs. */
-.content {
-  padding: 40px 2cm;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.hidden {
-  display: none;
-}
-
-/* New Initial Info Banner */
 #initial-info-banner {
-  background-color: #2b2b2b; /* Matches section-dark-grey */
-  color: #ffffff; /* Matches section-dark-grey */
-  padding: 40px 2cm; /* Original padding for better banner feel */
-  text-align: center; /* To center content */
-  overflow: hidden;
-  max-height: 1200px; /* A safe initial max-height for content, will collapse to 0 */
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
-}
-
-#initial-info-banner .banner-logo {
-    max-width: 250px; /* Adjust logo size */
-    height: auto;
-    margin-bottom: 20px; /* Space between logo and h2 */
-    display: block; /* Ensures margin auto works for centering */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#initial-info-banner h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-    color: #ffffff;
-}
-
-#initial-info-banner hr {
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-#initial-info-banner hr:nth-of-type(1) { /* First hr in the banner */
-    margin-bottom: 40px;
-}
-
-#initial-info-banner hr:nth-of-type(2) { /* Second hr in the banner */
-    margin-top: 40px;
-}
-
-#initial-info-banner .banner-text-container {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-#initial-info-banner .banner-quote {
-    font-family: 'EB Garamond', serif;
-    font-size: 1.8em;
-    color: #999999;
-    margin-bottom: 20px;
-}
-
-#initial-info-banner .banner-noun-label {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    color: #999999;
-    font-weight: bold;
-}
-
-#initial-info-banner .banner-definition {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.1em;
-    margin-bottom: 5px;
-    color: #999999;
-}
-
-#initial-info-banner .banner-definition:last-of-type {
-    margin-bottom: 0;
-}
-
-#initial-info-banner .banner-buttons-container {
-    display: flex;
-    justify-content: center; /* Centers the button group */
-    gap: 70px; /* Increased space between buttons to 60px */
-    margin-top: 40px; /* Space from content above */
-}
-
-#initial-info-banner .banner-button {
-    display: flex; /* Use flexbox for inner centering */
-    align-items: center; /* Vertically center text */
-    justify-content: center; /* Horizontally center text */
-    text-align: center; /* Fallback for older browsers or simple text wrap */
-    width: 220px; /* Fixed width for consistent size */
-    height: 70px; /* Fixed height for consistent size, adjust as needed */
-    padding: 10px 20px; /* Adjust padding due to fixed width/height */
-    border: 4px solid #ffffff;
-    color: #ffffff;
-    text-decoration: none;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.2em;
-    font-weight: bold; /* Added: Makes the text bold */
-    transition: background-color 0.3s, color 0.3s;
-    box-sizing: border-box; /* Include padding/border in width/height */
-    border-radius: 5px; /* Added for consistency, if desired */
-}
-
-#initial-info-banner .banner-button:hover {
-    background-color: #ffffff;
-    color: #2b2b2b;
-}
-
-
-body.scrolled #initial-info-banner {
-  max-height: 0;
-  opacity: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-top: 0; /* Ensure no residual margin */
-  margin-bottom: 0; /* Ensure no residual margin */
-}
-#initial-info-banner div[style*="max-width: 600px"] {
-    margin-left: auto !important;
-    margin-right: 0 !important; /* Aligns the block to the right */
-    text-align: right !important; /* Aligns the text inside the block to the right */
-}
-/* ==================================================
-   2. HEADER & NAVIGATION
-   ================================================== */
-
-/* Header Area Container */
-/* Defines the overall container for the header elements, often used for positioning and background. */
-.header-area {
-  position: relative;
-  padding-top: 0;
-  z-index: 1000;
-  background: #2b2b2b;
-  position: fixed; /* Make header-area fixed for consistent positioning */
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 90px; /* Default height */
-  transition: height 0.3s ease; /* Only height transition remains here */
-}
-
-/* New inner container for header content */
-.header-inner {
-    max-width: 1200px; /* Match .content max-width */
-    margin: 0 auto; /* Center the inner container */
-    height: 100%; /* Take full height of header-area */
-    display: flex;
-    justify-content: space-between; /* Space logo and hamburger */
-    align-items: center;
-    padding: 0 2cm; /* Match .content horizontal padding */
-    transition: padding 0.3s ease; /* Add transition for padding changes */
-}
-
-/* Top Logo Section */
-/* Styles for the fixed logo area at the very top of the page, including its transitions and scrolled state. */
-.logo-top {
-  height: auto;
-  padding: 0;
-  z-index: 1003;
-  transition: height 0.3s ease;
-}
-
-.logo-top img {
-  height: 60px; /* Adjusted height for default */
-  display: block;
-  margin: 0; /* Align left within header-inner */
-  transition: height 0.3s ease;
-}
-
-/* Scrolled state for header (General - for all pages unless index overrides) */
-body.scrolled .header-area {
-    height: 60px; /* Smaller height when scrolled */
-}
-
-body.scrolled .header-inner {
-    padding: 0 2cm; /* Keep consistent padding when scrolled */
-}
-
-body.scrolled .logo-top img {
-  height: 60px; /* Smaller logo when scrolled possibility*/
-  margin: 0; /* Keep left aligned */
-}
-
-
-/* Main Navigation Header */
-/* Styles for the primary navigation bar, including its fixed positioning and scrolled state. */
-#main-header {
-  position: fixed;
-  top: 0; /* Starts at the top of the viewport */
-  left: 0;
-  right: 0;
-  padding: 0; /* Padding controlled by nav inside */
-  height: 100vh; /* Full viewport height */
-  width: 100%;
-  transform: translateX(100%); /* Hidden by default (slides off to the right) */
-  transition: transform 0.3s ease; /* Smooth slide transition */
-  background-color: rgba(0, 0, 0, 0.95); /* Semi-transparent overlay background */
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 90px; /* Space for the header-area content above the nav links */
-}
-
-body.menu-open #main-header {
-  transform: translateX(0); /* Show when menu is open */
-}
-
-/* Navigation Links Container */
-/* Styles for the layout and spacing of navigation links. */
-nav {
-  display: flex;
-  flex-direction: column; /* Stack links vertically */
-  justify-content: flex-start;
-  gap: 20px; /* Spacing between stacked links */
-  align-items: center;
-  width: 100%;
-  padding: 20px 0;
-}
-
-/* Individual Navigation Links */
-/* Specific styling for the text and hover effects of navigation menu items. */
-nav a {
-  font-family: 'EB Garamond', serif;
-  font-weight: 600;
-  font-size: 1.5rem; /* Larger font size for overlay menu */
+  background-color: #2b2b2b;
   color: #ffffff;
-  padding: 15px 0; /* Generous padding for easier tapping/clicking */
-  width: 100%; /* Make links full width for better click area */
+  padding: 40px 2cm;
   text-align: center;
+  overflow: hidden;
+  max-height: 1200px;
+  transition: max-height .3s ease-out, opacity .3s ease-out, padding .3s ease-out;
 }
+#initial-info-banner .banner-logo {
+  max-width: 250px; height: auto; margin: 0 auto 20px auto;
+}
+#initial-info-banner h2 { font-size: 2.5em; margin-bottom: 40px; color: #ffffff; }
+#initial-info-banner hr { border: 0; border-top: 1px solid rgba(255,255,255,0.2); }
+#initial-info-banner hr:nth-of-type(1) { margin-bottom: 40px; }
+#initial-info-banner hr:nth-of-type(2) { margin-top: 40px; }
+#initial-info-banner .banner-text-container { max-width: 600px; margin: 0 auto; text-align: left; }
+#initial-info-banner .banner-quote { font-family: 'EB Garamond', serif; font-size: 1.8em; color: #999; margin-bottom: 20px; }
+#initial-info-banner .banner-noun-label { font-size: 1.2em; margin-bottom: 10px; color: #999; font-weight: bold; }
+#initial-info-banner .banner-definition { font-size: 1.1em; margin-bottom: 5px; color: #999; }
+#initial-info-banner .banner-buttons-container {
+  display: flex; justify-content: center; gap: 70px; margin-top: 40px;
+}
+#initial-info-banner .banner-button {
+  display: flex; align-items: center; justify-content: center;
+  width: 220px; height: 70px; padding: 10px 20px; box-sizing: border-box;
+  border: 4px solid #fff; color: #fff; font-size: 1.2em; font-weight: bold; border-radius: 5px;
+  transition: background-color .3s, color .3s;
+}
+#initial-info-banner .banner-button:hover { background: #fff; color: #2b2b2b; }
 
-nav a:hover {
-  color: #ffc107;
-}
-
-/* Hamburger Menu Icon */
-/* Styles for the icon that toggles the mobile navigation menu. */
-.hamburger-menu-icon {
-  display: block; /* Always visible */
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1004; /* Keep z-index */
-}
-.hamburger-menu-icon img {
-  height: 30px; /* Size of the hamburger icon */
-}
-
-/* Add absolute positioning if needed when the menu is open, e.g., to function as a close button */
-body.menu-open .hamburger-menu-icon {
-    position: absolute;
-    right: 20px; /* Adjust as needed for specific overlay positioning */
-    top: 50%;
-    transform: translateY(-50%);
+/* Collapse banner after scroll (JS adds .scrolled on body if you use it) */
+body.scrolled #initial-info-banner {
+  max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; margin: 0;
 }
 
 
 /* ==================================================
-   3. GLOBAL SECTION STYLES
+   3) HEADER & NAVIGATION (FIXED + SLIDING)
    ================================================== */
 
-/* Default Section Styling */
-/* Base padding, width, background, and text alignment for all general sections. */
-.section, .news-section {
-  padding: 90px 0;
+/* Header bar */
+.header-area {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 8000; /* below search overlay (9999), above content */
+  transform: translateY(0);
+  transition: transform 260ms ease, background-color 200ms ease, box-shadow 200ms ease;
+  will-change: transform;
+  background: linear-gradient(180deg, rgba(0,0,0,.92), rgba(0,0,0,.78));
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: saturate(120%) blur(6px);
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
+}
+
+/* Slide states (toggled by JS) */
+.header--hidden .header-area { transform: translateY(-100%); }
+.header--visible .header-area { transform: translateY(0); }
+.header--scrolled .header-area {
+  background: rgba(17,17,17,0.95);
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
+
+/* Inner layout — logo left, actions right (search + burger keep their place) */
+.header-inner{
+  width: min(1200px, 92vw);
   margin: 0 auto;
-  max-width: none; /* Allows content to span full width if needed */
-  background-color: #fff;
-  text-align: left; /* Keep left alignment for the section container */
+  min-height: 56px;
+  padding: .75rem 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
 }
 
-/* Text Alignment within Sections */
-/* Ensures specific content types within sections are left-aligned, letting global 'p' justify. */
-.section h2, .section hr, .section ul, .section ol, .section .two-column-layout, .section .two-column-text-layout, .section .cards, .section .preview-grid, .news-section h2, .news-section hr, .news-section .news-grid {
-  text-align: left;
+.logo-top img{ height: 40px; width: auto; display: block; }
+
+/* Actions: search icon + burger stay grouped and right-aligned */
+.header-actions{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.header-search-btn,
+.hamburger-menu-icon{
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .45rem .6rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  cursor: pointer;
+}
+.header-search-btn:hover,
+.hamburger-menu-icon:hover{ background: rgba(255,255,255,.14); }
+.header-search-btn svg,
+.hamburger-menu-icon svg{ width: 22px; height: 22px; display: block; }
+.header-search-btn svg path,
+.header-search-btn svg rect,
+.hamburger-menu-icon svg path,
+.hamburger-menu-icon svg rect{ fill: currentColor; }
+
+/* Inline nav (desktop) */
+.main-nav{
+  width: min(1200px, 92vw);
+  margin: .2rem auto .6rem auto;
+  display: flex; gap: 1.1rem; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  padding-bottom: .4rem;
+}
+.main-nav a{
+  color:#fff;
+  padding:.35rem .45rem;
+  border-radius:8px;
+}
+.main-nav a:hover{ background: rgba(255,255,255,.08); text-decoration: none; }
+
+/* Mobile overlay menu (opened by body.menu-open) */
+#main-header{
+  position: fixed; inset: 0;
+  transform: translateX(100%);
+  transition: transform .3s ease;
+  background: rgba(0,0,0,.95);
+  z-index: 7999;
+  padding-top: var(--header-height, 72px);
+  display: flex; flex-direction: column; justify-content: flex-start;
+}
+body.menu-open #main-header{ transform: translateX(0); }
+
+#main-header .main-nav {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  gap: 20px; width: 100%; padding: 20px 0; border-bottom: 0;
+}
+#main-header .main-nav a {
+  font-family: 'EB Garamond', serif; font-weight: 600; font-size: 1.5rem;
+  color: #fff; padding: 15px 0; width: 100%; text-align: center;
 }
 
 
-/* Section Color Themes */
-/* Classes for applying different background and text color schemes to sections. */
-.section-light-grey {
-  background-color: #f0f2f5;
-  color: #1c1c1c;
-  padding: 90px 0;
+/* ==================================================
+   4) SECTION THEMES & LAYOUTS
+   ================================================== */
+
+.section, .news-section {
+  padding: 90px 0; margin: 0 auto; max-width: none; background: #fff; text-align: left;
 }
 
-.section-dark-grey {
-  background-color: #2B2B2B;
-  color: #f0f2f5;
-  padding: 90px 0;
-}
+.section-light-grey { background: #f0f2f5; color: #1c1c1c; padding: 90px 0; }
+.section-dark-grey  { background: #2B2B2B; color: #f0f2f5; padding: 90px 0; }
+.section-white      { background: #fff; }
 
 .section-dark-grey h1,
 .section-dark-grey h2,
 .section-dark-grey h3,
-.section-dark-grey p {
-  color: #f0f2f5;
-}
+.section-dark-grey p { color: #f0f2f5; }
 
-.section-white {
-  background-color: #fff;
-}
-
-.section-light-grey h1,
-.section-light-grey h2,
-.section-light-grey h3,
-.section-light-grey p {
-  color: #1c1c1c;
-}
-
-/* ==================================================
-   4. LAYOUTS (General Purpose)
-   ================================================== */
-
-/* Two-Column Layout (Text and Image) */
-/* Flexbox-based layout for arranging content in two columns, often text next to an "image". */
+/* Two-column (image + text) */
 .two-column-layout {
-  display: flex;
-  gap: 40px;
-  margin-bottom: 40px;
-  align-items: center;
-  font-size: 1.05em;
+  display: flex; gap: 40px; margin-bottom: 40px; align-items: center; font-size: 1.05em;
 }
-
-.column-text {
-  flex: 1;
-  flex-basis: 50%;
-  text-align: justify;
-  font-size: 1.05em;
-}
-
-.column-image {
-  flex: 1;
-  flex-basis: 50%;
-}
-
+.column-text  { flex: 1 1 50%; text-align: justify; font-size: 1.05em; }
+.column-image { flex: 1 1 50%; }
 .column-image img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-  display: block;
+  width: 100%; border-radius: 10px; box-shadow: 0 6px 12px rgba(0,0,0,.08);
 }
 
-/* Two-Column Text Layout */
-/* Grid-based layout specifically for two columns of text content. */
+/* Two-column text grid */
 .two-column-text-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;
 }
+.text-column { text-align: justify; font-size: 1.05rem; }
 
-.text-column {
-  text-align: justify;
-  font-size: 1.05rem;
-}
 
 /* ==================================================
-   5. GRID COMPONENTS (Cards, Preview, News)
+   5) GRID COMPONENTS (News / Preview)
    ================================================== */
 
-/* Grid Containers (Cards, Preview, News) */
-/* Defines the grid structure and spacing for multiple types of card-like components. */
-.cards,
-.preview-grid,
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 350px); /* Fixed width 350px per column */
-  gap: 30px 25px; /* Vertical gap 30px, horizontal gap 25px */
-  justify-content: center; /* Center the whole grid */
-  margin-bottom: 40px;
-  max-width: 1100px; /* 3 columns * 350px + gaps = 1050 + 50 = 1100px */
-  margin-left: auto;
-  margin-right: auto;
+.cards, .preview-grid, .news-grid {
+  display: grid; grid-template-columns: repeat(3, 350px);
+  gap: 30px 25px; justify-content: center; margin-bottom: 40px;
+  max-width: 1100px; margin-left: auto; margin-right: auto;
 }
 
-/* Card Item (General) - Placeholder for specific .card-item styles if they exist */
-/* Add specific styles for .card-item if it exists and differs from news/preview */
-
-/* News Item & Preview Item (Unified Styling) */
-/* Common styles for individual news and preview cards, including base appearance and hover effects. */
-.news-item,
-.preview-item {
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-  border-radius: 15px;
+.news-item, .preview-item {
+  padding: 25px; display: flex; flex-direction: column; cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1); border-radius: 15px;
 }
 
-.news-item:hover,
-.preview-item:hover {
-  transform: translateY(-8px);
-  z-index: 10;
-}
+.news-item:hover, .preview-item:hover { transform: translateY(-8px); z-index: 10; }
 
-/* Image Wrappers for Grid Items */
-/* Styles for the containers holding images within news and preview items. */
-.news-item-image-wrapper,
-.preview-item-image-wrapper {
-  width: 100%;
-  padding-top: 56.25%; /* This creates the 16:9 aspect ratio (9/16 = 0.5625) */
-  height: 0; /* Set height to 0 as padding creates the height */
-  position: relative; /* Needed for absolutely positioned child image */
-  overflow: hidden;
-  border-radius: 5px;
-  margin-bottom: 12px;
-  cursor: zoom-in;
+.news-item-image-wrapper, .preview-item-image-wrapper {
+  width: 100%; padding-top: 56.25%; position: relative; overflow: hidden;
+  border-radius: 5px; margin-bottom: 12px; cursor: zoom-in;
 }
-
-.news-item-image-wrapper img,
-.preview-item-image-wrapper img {
-  position: absolute; /* Position the image absolutely within its wrapper */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image covers the area without distortion */
-  transition: transform 0.3s ease;
+.news-item-image-wrapper img, .preview-item-image-wrapper img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease;
 }
-
 .news-item:hover .news-item-image-wrapper img,
-.preview-item:hover .preview-item-image-wrapper img {
-  transform: scale(1.1);
-}
+.preview-item:hover .preview-item-image-wrapper img { transform: scale(1.1); }
 
-/* Titles and Text for News Items */
-/* Specific typography and spacing for titles and paragraphs within news cards. */
-.news-item h3 {
-  color: #1c1c1c;
-  min-height: 55px;
-  font-size: 1.3rem;
-  margin: 15px 15px 10px 15px;
-  color: #000000;
-  text-align: left; /* Keep left aligned for headings in cards */
-}
+.news-item h3 { color: #000; min-height: 55px; font-size: 1.3rem; margin: 15px; text-align: left; }
+.news-item p   { font-size: .95rem; color: #1c1c1c; flex-grow: 1; line-height: 1.5; padding: 0 15px 15px; }
+.news-date     { font-size: .9rem; color: #444; margin-bottom: 18px; font-weight: bold; text-align: left; }
 
-.news-item p {
-  font-size: 0.95rem;
-  color: #1c1c1c;
-  flex-grow: 1;
-  line-height: 1.5;
-  padding: 0 15px 15px 15px;
-  text-align: justify; /* Ensure justified */
-}
+.preview-item h3 { min-height: 55px; font-size: 1.3rem; margin: 15px; color: #fff; text-align: left; }
+.preview-item p  { font-size: .95rem; color: #fff; flex-grow: 1; }
 
-/* Titles and Text for Preview Items */
-/* Specific typography and spacing for titles and paragraphs within preview cards. */
-.preview-item h3 {
-  min-height: 55px;
-  font-size: 1.3rem;
-  margin: 15px 15px 10px 15px;
-  margin-bottom: 12px;
-  color: #ffffff;
-  text-align: left; /* Keep left aligned for headings in cards */
-}
-
-.preview-item p {
-  font-size: 0.95rem;
-  color: #ffffff;
-  flex-grow: 1;
-  text-align: justify; /* Ensure justified */
-}
-
-/* News Date Styling */
-/* Styles for the date displayed on news items. */
-.news-date {
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 18px;
-  font-weight: bold;
-  text-align: left; /* Keep left aligned for dates */
-}
 
 /* ==================================================
-   6. TEAM SECTION
+   6) TEAM / PEOPLE  (kept as-is)
    ================================================== */
 
-/* Individual Team Member Container */
-/* Layout and general styling for each team member's information block. */
 .team-member {
-  /*background-color: #f0f2f5;*/
-  display: flex;
-  gap: 40px;
-  margin-bottom: 50px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #e0e0e0;
-  align-items: flex-start;
+  display: flex; gap: 40px; margin-bottom: 50px; padding-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0; align-items: flex-start;
 }
+.team-member:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
 
-.team-member:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
+.member-left { flex-shrink: 0; width: 220px; text-align: center; }
+.member-left img { width: 100%; height: auto; border-radius: 6px; object-fit: cover; margin-bottom: 18px; }
+.member-left h3 { color: #1c1c1c; font-size: 1.2rem; margin-bottom: 8px; font-weight: bold; text-transform: uppercase; }
+.member-left .role { color: #666; font-size: .95rem; }
 
-/* Team Member Left Column (Image and Basic Info) */
-/* Styles for the section containing the member's photo, name, and role. */
-.member-left {
-  flex-shrink: 0;
-  width: 220px;
-  text-align: center; /* Keep centered for image/name/role */
-}
+.member-middle { flex-shrink: 0; width: 250px; text-align: center; padding-top: 20px; }
+.member-middle h3 { color: #1c1c1c; margin: 0 0 5px; }
 
-.member-left img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  object-fit: cover;
-  margin-bottom: 18px;
-}
+.member-right { flex-grow: 1; text-align: justify; }
+.member-info p { color: #1c1c1c; margin-bottom: 1.2em; }
+.member-info p:last-child { margin-bottom: 0; }
 
-.member-left h3 {
-  color: #1c1c1c;
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
+.email { color: #444; font-style: italic; font-size: .95rem; text-align: center; }
 
-.member-left .role {
-  color: #444;
-  font-weight: normal;
-  font-size: 0.95rem;
-  color: #666;
-}
-
-/* Team Member Middle Column (Optional/Specific Info) */
-/* A specific column for additional centered information, if used. */
-.member-middle {
-  flex-shrink: 0;
-  width: 250px;
-  text-align: center; /* Keep centered */
-  padding-top: 20px;
-}
-
-.member-middle h3 {
-  color: #1c1c1c;
-  margin: 0 0 5px;
-}
-
-/* Team Member Right Column (Detailed Information) */
-/* Styles for the main text content/biography of the team member. */
-.member-right {
-  flex-grow: 1;
-  text-align: justify; /* This was already justified, keep it */
-}
-
-.member-info p {
-  color: #1c1c1c;
-  margin-bottom: 1.2em;
-  text-align: justify; /* Ensure justified */
-}
-
-.member-info p:last-child {
-  margin-bottom: 0;
-}
-
-.email {
-  color: #444;
-  font-style: italic;
-  font-size: 0.95rem;
-  color: #444;
-  text-align: center; /* Email typically centered */
-}
 
 /* ==================================================
-   7. BUTTONS & LINKS
+   7) FOOTER
    ================================================== */
 
-/* Read More Container */
-/* Aligns the "read more" or "all news" link. */
-.read-more-container {
-  text-align: center;
-  margin-top: 30px;
-}
-
-/* "All News" Button/Link */
-/* Styles for a prominent link or button to view more news. */
-.all-news-link {
-  display: inline-block;
-  padding: 12px 25px;
-  /* Original background-color: #ff9800; */
-  /* Original color: #fff; */
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Added color and border-color for transition */
-  margin-top: 25px;
-  font-size: 1rem;
-  font-weight: bold; /* Make the text bold */
-  border: 2px solid; /* Add a border to easily change color */
-}
-
-/* Specific styles for .all-news-link when in a dark-grey section */
-.section-dark-grey .all-news-link {
-  background-color: transparent; /* Transparent background */
-  color: #ffffff; /* White text */
-  border-color: #ffffff; /* White border */
-}
-
-.section-dark-grey .all-news-link:hover {
-  background-color: #ffffff; /* White background on hover */
-  color: #2b2b2b; /* Dark text on hover */
-  border-color: #ffffff; /* White border on hover */
-}
-
-/* Specific styles for .all-news-link when NOT in a dark-grey section (i.e., light background) */
-/* Assuming default sections are light, or explicitly white/light-grey */
-.section:not(.section-dark-grey) .all-news-link,
-.news-section .all-news-link,
-.section-light-grey .all-news-link {
-  background-color: transparent; /* Transparent background */
-  color: #1c1c1c; /* Dark text */
-  border-color: #1c1c1c; /* Dark border */
-}
-
-.section:not(.section-dark-grey) .all-news-link:hover,
-.news-section .all-news-link:hover,
-.section-light-grey .all-news-link:hover {
-  background-color: #1c1c1c; /* Dark background on hover */
-  color: #ffffff; /* White text on hover */
-  border-color: #1c1c1c; /* Dark border on hover */
-}
-
-
-/* Reset Button (General - not used directly for .clear-filters-btn anymore) */
-/* Kept for reference or other buttons if needed */
-.reset-button {
-  padding: 15px 100px;
-  background-color: #ffffff;
-  color: #00000;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.95em;
-  transition: background-color 0.3s ease;
-}
-
-.reset-button:hover {
-  background-color: #ffc107;
-}
-
-/* ==================================================
-   8. FOOTER
-   ================================================= */
-
-/* Footer Container */
-/* Overall styling for the page footer, including background, text alignment, and spacing. */
 footer {
-  text-align: center; /* Keep centered */
-  padding: 25px;
-  font-size: 0.9rem;
-  background: #2b2b2b;
-  color: #bbb;
-  margin-top: 40px;
+  text-align: center; padding: 25px; font-size: .9rem;
+  background: #2b2b2b; color: #bbb; margin-top: 40px;
 }
+.social-links a { color: #bbb; margin: 0 10px; }
+.social-links a:hover { color: #ddd; }
 
-/* Social Links */
-/* Styling for social media icons or links within the footer. */
-.social-links a {
-  color: #bbb;
-  margin: 0 10px;
-}
-
-.social-links a:hover {
-  color: #ddd;
-}
 
 /* ==================================================
-   9. CATALOGUE SPECIFIC STYLES
+   8) CATALOGUE — LIST
    ================================================== */
 
-/* Catalogue Header */
-/* Styles for the main heading and introductory text of the catalogue page. */
-.catalogue-header {
-  text-align: left; /* Keep left aligned for headings */
-  margin-bottom: 30px;
-}
+.catalogue-header { text-align: left; margin-bottom: 30px; }
+.catalogue-header h1 { font-size: 3em; margin-bottom: 10px; color: #fff; }
+.catalogue-main-content { padding-top: 0; background: #2b2b2b; color: #fff; }
 
-.catalogue-header h1 {
-  font-size: 3em;
-  margin-bottom: 10px;
-  color: #ffffff;
-}
-
-/* Main Catalogue Content Area */
-/* Defines the primary content area for the catalogue, often with a dark background. */
-.catalogue-main-content {
-  padding-top: 0;
-  background-color: #2b2b2b;
-  color: #ffffff;
-}
-
-/* Search Container (General) */
-/* Layout and styling for the search input and button. */
 .search-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap;
+  display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap;
 }
-
 .search-container input[type="text"] {
-  padding: 10px 15px;
-  border: 1px solid #555;
-  border-radius: 5px;
-  font-size: 1em;
-  width: 100%;
-  max-width: 400px;
-  background-color: #3a3a3a;
-  color: #ffffff;
+  padding: 10px 15px; border: 1px solid #555; border-radius: 5px; font-size: 1em;
+  width: 100%; max-width: 400px; background: #3a3a3a; color: #fff;
 }
-
 .search-container button {
-  padding: 10px 20px;
-  background-color: #2b2b2b;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
+  padding: 10px 20px; background: #2b2b2b; color: #fff; border: none; border-radius: 5px; cursor: pointer;
+  font-size: 1em; transition: background-color .3s ease;
 }
+.search-container button:hover { background: #2b2b2b; }
 
-.search-container button:hover {
-  background-color: #2b2b2b;
-}
+.catalogue-wrapper { margin-top: 20px; }
 
-/* Catalogue Wrapper */
-/* General wrapper for catalogue content. */
-.catalogue-wrapper {
-  margin-top: 20px;
-}
+.film-list { padding: 20px; background: #2b2b2b; color: #fff; }
 
-/* Film List Styles (General) */
-/* Base styles for film listings. */
-.film-list {
-  padding: 20px;
-  background-color: #2b2b2b;
-  color: #ffffff;
-}
-
-/* Film Grid Layout */
-/* Responsive grid for displaying film item cards. */
 .film-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 350px); /* Fixed width 350px per column, aligned with news/preview */
-  gap: 30px 25px; /* Vertical gap 30px, horizontal gap 25px, aligned with news/preview */
-  justify-content: center; /* Center the whole grid */
-  padding: 0;
-  list-style: none;
-  color: #ffffff;
-  max-width: 1100px; /* Aligned with news/preview */
-  margin-left: auto; /* Aligned with news/preview */
-  margin-right: auto; /* Aligned with news/preview */
+  display: grid; grid-template-columns: repeat(3, 350px);
+  gap: 30px 25px; justify-content: center; padding: 0; list-style: none;
+  color: #fff; max-width: 1100px; margin-left: auto; margin-right: auto;
 }
-
-/* Individual Film Item Card */
-/* Styling for each movie card within the catalogue grid. */
 .film-item-card {
-  background-color: #2b2b2b;
-  border-radius: 15px; /* Aligned with news/preview */
-  overflow: hidden;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.1); /* Aligned with news/preview */
-  transition: transform 0.3s, box-shadow 0.3s; /* Aligned with news/preview */
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 25px; /* Aligned with news/preview */
+  background: #2b2b2b; border-radius: 15px; overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1); transition: transform .3s, box-shadow .3s;
+  color: #fff; display: flex; flex-direction: column; height: 100%; padding: 25px;
 }
-
-.film-item-card:hover {
-  transform: translateY(-8px); /* Aligned with news/preview */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Aligned with news/preview (adjusted slightly for contrast) */
-  z-index: 10; /* Aligned with news/preview */
-}
+.film-item-card:hover { transform: translateY(-8px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); z-index: 10; }
 
 .film-thumbnail {
-  width: 100%;
-  height: 250px; /* Increased height, aligned with news/preview image wrappers */
-  object-fit: cover;
-  display: block;
-  border-radius: 5px; /* Consistent with news/preview images */
-  margin-bottom: 12px; /* Consistent with news/preview images */
-  cursor: zoom-in; /* Consistent with news/preview images */
+  width: 100%; height: 250px; object-fit: cover; display: block;
+  border-radius: 5px; margin-bottom: 12px; cursor: zoom-in;
 }
+.film-item-card:hover .film-thumbnail { transform: scale(1.1); }
 
-.film-item-card:hover .film-thumbnail {
-  transform: scale(1.1); /* Aligned with news/preview image hover effect */
-}
-
-.film-info {
-  padding: 10px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.film-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 1.6em;
-  margin-bottom: 8px;
-  color: #ffffff;
-  text-align: left; /* Keep left aligned for titles */
-}
-
-.film-year-runtime {
-  font-size: 0.9em;
-  color: #ffffff;
-  margin-bottom: 10px;
-  text-align: left; /* Keep left aligned */
-}
-
-.film-genres,
-.film-director {
-  font-size: 1.1em;
-  color: #ffffff;
-  margin-bottom: 8px;
-  text-align: left; /* Keep left aligned */
-}
-
-.film-logline {
-  font-size: 0.95em;
-  color: #ffffff;
-  line-height: 1.5;
-  margin-top: auto;
-  text-align: justify; /* Ensure justified */
-}
-
-/* Film Detail Page Styles */
-/* Styles specifically for the page displaying detailed information about a single film. */
-.film-detail-container {
-  padding: 60px 0;
-  background-color: #2b2b2b;
-  color: #ffffff;
-}
-
-.film-detail-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-  padding: 0 20px;
-}
-
-.film-detail-poster {
-  flex-shrink: 0;
-  width: 350px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.film-detail-poster img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.film-detail-info {
-  flex-grow: 1;
-}
-
-.film-detail-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 3.5em;
-  color: #ffffff;
-  margin-bottom: 10px;
-  text-align: left; /* Keep left aligned */
-}
-
-.film-detail-original-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 1.8em;
-  color: #ffffff;
-  margin-bottom: 20px;
-  font-style: italic;
-  text-align: left; /* Keep left aligned */
-}
-
-.film-detail-meta p {
-  font-size: 1.1em;
-  margin-bottom: 8px;
-  color: #ffffff;
-  text-align: left; /* Keep left aligned for meta info */
-}
-
-.film-detail-meta strong {
-  color: #ffffff;
-}
-
-.film-detail-logline {
-  font-size: 1.2em;
-  line-height: 1.6;
-  margin-top: 25px;
-  margin-bottom: 30px;
-  color: #ffffff;
-  font-style: italic;
-  text-align: justify; /* This was already justified, keep it */
-}
-
-.film-detail-synopsis {
-  font-size: 1em;
-  line-height: 1.7;
-  color: #ffffff;
-  margin-bottom: 25px;
-  text-align: justify; /* This was already justified, keep it */
-}
-
-.film-detail-sections {
-  margin-top: 30px;
-}
-
-.film-detail-section h3 {
-  font-family: 'EB Garamond', serif;
-  font-size: 1.8em;
-  color: #ffffff;
-  margin-bottom: 15px;
-  border-bottom: 1px solid rgba(255, 152, 0, 0.3);
-  padding-bottom: 5px;
-  text-align: left; /* Keep left aligned */
-}
-
-.film-detail-section ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 20px;
-}
-
-.film-detail-section li {
-  font-size: 1em;
-  color: #ffffff;
-  margin-bottom: 5px;
-  text-align: left; /* Keep left aligned for list items */
-}
-
-.film-detail-section li strong {
-  color: #ffffff;
-}
-
-/* Film Stills Grid */
-/* Grid layout for displaying movie stills on the detail page. */
-.film-stills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.film-still {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-}
-
-.film-still:hover {
-  transform: scale(1.03);
-}
-
-/* Filters for Catalogue */
-/* Styles for the filter dropdowns and their layout. */
-.filters {
-  display: flex;
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
-  gap: 15px;
-  margin-bottom: 30px;
-  justify-content: center;
-  padding: 0 20px;
-  align-items: flex-start; /* Align items to the top */
-}
-
-.filter-group {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%; /* Default to full width for stacking on small screens */
-  max-width: 300px; /* Limit individual filter group width */
-}
-
-/* Search input and button styling */
-.filter-group.search-filter-group {
-    flex-basis: 100%; /* Forces this item to take full width and wrap */
-    flex-direction: row; /* Keep input and button side-by-side on desktop */
-    width: 100%;
-    max-width: 600px; /* Limit overall width for larger screens */
-    align-items: center;
-    margin-bottom: 25px; /* Added margin to separate from selects below */
-}
-
-.filter-group.search-filter-group input[type="text"] {
-    flex-grow: 1;
-    padding: 10px 15px; /* Smaller padding, similar to filters */
-    border: 1px solid #555;
-    border-radius: 5px;
-    font-size: 0.95em; /* Smaller font size, similar to filters */
-    background-color: #ffffff;
-    color: #000000;
-    max-width: calc(100% - 70px); /* Adjust max-width to leave space for button */
-}
-
-.filter-group.search-filter-group button {
-    padding: 10px 15px; /* Smaller padding, similar to filters */
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.95em; /* Smaller font size, similar to filters */
-    transition: background-color 0.3s ease;
-}
-
-.filter-group.search-filter-group button:hover {
-    background-color: #ffc107;
-}
-
-.filters select {
-  padding: 10px 15px;
-  border: 1px solid #555;
-  border-radius: 5px;
-  font-size: 0.95em;
-  background-color: #ffffff;
-  color: #00000;
-  appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.5%2075.1a17.6%2017.6%200%200%200-24.7%2024.7l140.2%20140.2a17.6%2017.6%200%200%200%2024.7%200l140.2-140.2a17.6%2017.6%200%200%200%200-24.7z%22%2F%3E%3C%2Fsvg%3E');
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
-  cursor: pointer;
-  flex-grow: 1;
-  min-width: 150px; /* Minimum width for select boxes */
-}
-
-.filters select option {
-  background-color: #ffffff;
-  color: #00000;
-}
-
-/* Reset button styling */
-.filter-group.reset-button-group {
-    max-width: unset; /* Override the default max-width for this specific group to allow full width */
-}
-
-.filter-group.reset-button-group button.clear-filters-btn {
-    padding: 15px 90px; /* Significantly bigger padding */
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.00em; /* Significantly bigger font size */
-    transition: background-color 0.3s ease;
-}
-
-.filter-group.reset-button-group button.clear-filters-btn:hover {
-    background-color: #ffc107;
-}
-
-/* ---- INDEX PAGE SPECIFIC STYLES (Overrides for default header behavior) ---- */
-
-/* On index page, logo-top and header are initially hidden, then appear on scroll */
-body.index-page .header-area {
-    top: -90px; /* Hide header-area initially */
-    transition: top 0.3s ease; /* Only top transition */
-}
-
-body.index-page .header-inner {
-    padding: 0 2cm; /* Default padding for index-page, hidden with header-area */
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* When scrolled on index page, bring header-area into view */
-body.index-page.scrolled .header-area {
-    top: 0 !important; /* Bring into view */
-    height: 60px; /* Compact height */
-}
-
-body.index-page.scrolled .header-inner {
-    padding: 0 2cm; /* Apply correct padding for index-page scrolled */
-    display: flex; /* Ensure flex behavior */
-    justify-content: space-between; /* Space out logo and hamburger */
-    align-items: center;
-}
-
-body.index-page.scrolled .logo-top img {
-    height: 40px; /* Smaller logo */
-    margin: 0; /* Align left */
-}
-
-/* ---- END INDEX PAGE SPECIFIC STYLES ---- */
+.film-info { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; }
+.film-title { font-family: 'EB Garamond', serif; font-size: 1.6em; margin-bottom: 8px; color: #fff; text-align: left; }
+.film-year-runtime, .film-genres, .film-director { color: #fff; text-align: left; margin-bottom: 8px; }
+.film-year-runtime { font-size: .9em; }
+.film-genres, .film-director { font-size: 1.1em; }
+.film-logline { font-size: .95em; color: #fff; line-height: 1.5; margin-top: auto; text-align: justify; }
 
 
 /* ==================================================
-   10. RESPONSIVE DESIGN
+   9) CATALOGUE — FILM DETAIL
    ================================================== */
 
-/* Tablet and Smaller Devices (max-width: 768px) */
-@media (max-width: 768px) {
-  .content {
-    padding: 20px 15px;
-  }
-
-  h1 {
-    font-size: 3em;
-  }
-
-  h2 {
-    font-size: 1.8em;
-  }
-
-  h3 {
-    font-size: 1.2em;
-  }
-
-  /* Header and Navigation adjustments for mobile */
-  .header-area {
-    height: 70px; /* Height for mobile header */
-  }
-
-  .header-inner {
-    padding: 0 15px; /* Adjust inner padding for mobile */
-  }
-
-  #initial-info-banner { /* Adjust padding for mobile screens */
-    padding: 20px 15px;
-  }
-
-  #initial-info-banner .banner-logo {
-    max-width: 200px; /* Smaller logo for mobile */
-  }
-
-  #initial-info-banner .banner-buttons-container {
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 20px; /* Smaller gap for stacked buttons */
-  }
-
-  #initial-info-banner .banner-button {
-    width: 100%; /* Full width for stacked buttons */
-    max-width: 300px; /* Limit width on larger mobile devices */
-    margin: 0 auto; /* Center buttons */
-  }
-
-  /* Hamburger menu position is already handled by base styles (absolute to header-area) */
-  .hamburger-menu-icon {
-    display: block; /* Already in base, but re-confirm */
-    margin-left: unset; /* Remove auto margin if it was applied elsewhere */
-  }
-
-  .hamburger-menu-icon img {
-    width: 30px;
-    height: auto;
-  }
-
-  .logo-top img {
-    height: 50px;
-    margin: 0; /* Left align logo */
-  }
-
-  body:not(.scrolled) {
-    padding-top: 70px; /* Header height on mobile */
-  }
-
-  body.scrolled {
-    padding-top: 70px; /* Consistent with mobile header */
-  }
-
-  body.scrolled .header-area {
-    height: 70px; /* Consistent with mobile header */
-  }
-  body.scrolled .header-inner {
-    padding: 0 15px;
-  }
-
-  body.index-page.scrolled .header-area {
-    height: 70px; /* Consistent with mobile header */
-  }
-  body.index-page.scrolled .header-inner {
-    padding: 0 15px;
-  }
-
-  /* General Layouts */
-  .two-column-layout,
-  .two-column-text-layout,
-  .team-member {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .column-image,
-  .column-text,
-  .text-column,
-  .member-left,
-  .member-middle,
-  .member-right {
-    min-width: unset;
-    flex: 1 1 100%;
-    text-align: center;
-  }
-
-  .column-image img {
-    max-width: 80%;
-    margin: 0 auto;
-  }
-
-  /* Grid components */
-  .cards,
-  .preview-grid,
-  .news-grid,
-  .film-grid { /* Added film-grid here */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    max-width: 100%;
-  }
-
-  /* Team section specifics */
-  .member-left,
-  .member-middle {
-    width: 100%;
-  }
-
-  .member-left img {
-    max-width: 180px;
-  }
-
-  .team-member {
-    align-items: center;
-  }
-
-  .member-right {
-    text-align: justify; /* Keep justified */
-  }
-
-  /* Catalogue specific */
-  .film-detail-content {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .film-detail-poster {
-    width: 80%;
-    max-width: 300px;
-  }
-
-  .film-detail-title {
-    font-size: 2.5em;
-    text-align: center;
-  }
-
-  .film-detail-original-title {
-    font-size: 1.4em;
-    text-align: center;
-  }
-
-  .film-detail-meta p,
-  .film-detail-logline,
-  .film-detail-synopsis,
-  .film-detail-section h3,
-  .film-detail-section li {
-    text-align: center; /* Adjust for mobile where appropriate, or rely on global p */
-  }
-  .film-detail-logline,
-  .film-detail-synopsis {
-    text-align: justify; /* Ensure these paragraphs remain justified */
-  }
+.film-detail-container { padding: 60px 0; background: #2b2b2b; color: #fff; }
+.film-detail-content { max-width: 1000px; margin: 0 auto; display: flex; gap: 40px; align-items: flex-start; padding: 0 20px; }
+.film-detail-poster { flex-shrink: 0; width: 350px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; }
+.film-detail-poster img { width: 100%; height: auto; }
+.film-detail-info { flex-grow: 1; }
+.film-detail-title { font-family: 'EB Garamond', serif; font-size: 3.5em; color: #fff; margin-bottom: 10px; text-align: left; }
+.film-detail-original-title { font-family: 'EB Garamond', serif; font-size: 1.8em; color: #fff; margin-bottom: 20px; font-style: italic; text-align: left; }
+.film-detail-meta p { font-size: 1.1em; margin-bottom: 8px; color: #fff; text-align: left; }
+.film-detail-logline { font-size: 1.2em; line-height: 1.6; margin: 25px 0 30px; color: #fff; font-style: italic; text-align: justify; }
+.film-detail-synopsis { font-size: 1em; line-height: 1.7; color: #fff; margin-bottom: 25px; text-align: justify; }
+.film-detail-sections { margin-top: 30px; }
+.film-detail-section h3 {
+  font-family: 'EB Garamond', serif; font-size: 1.8em; color: #fff; margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 152, 0, 0.3); padding-bottom: 5px; text-align: left;
+}
+.film-detail-section ul { list-style: none; padding: 0; margin-bottom: 20px; }
+.film-detail-section li { font-size: 1em; color: #fff; margin-bottom: 5px; text-align: left; }
+.film-stills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+.film-still { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform .2s; }
+.film-still:hover { transform: scale(1.03); }
 
 
-  /* Filters for Tablet */
-  .filters {
-    flex-direction: row; /* Keep filter groups in a row for tablets */
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+/* ==================================================
+   10) SEARCH OVERLAY (SCROLLABLE + BODY LOCK)
+   ================================================== */
 
-  .filter-group {
-    width: calc(50% - 15px); /* Two columns with gap for tablets */
-    max-width: unset; /* Remove max-width for tablet flex */
-  }
-
-  .filter-group.search-filter-group,
-  .filter-group.reset-button-group {
-      width: 100%; /* Search and Reset still take full width */
-      max-width: 600px;
-  }
+body.search-open {
+  height: 100vh;               /* prevents overscroll bounce on iOS */
+  overflow: hidden;            /* no background scroll */
+  overscroll-behavior: none;   /* block scroll chaining to viewport */
 }
 
-/* Smaller Mobile Devices (max-width: 480px) */
-@media (max-width: 480px) {
-  .content {
-    padding: 15px 10px;
-  }
+.search-overlay[hidden]{ display:none !important; }
 
-  h1 {
-    font-size: 2.5em;
-  }
-
-  h2 {
-    font-size: 1.5em;
-  }
-
-  .logo-top img {
-    height: 40px;
-  }
-
-  #initial-info-banner .banner-logo {
-    max-width: 150px; /* Even smaller logo for very small mobiles */
-  }
-
-  /* Adjust grid columns further for very small screens */
-  .cards,
-  .preview-grid,
-  .news-grid,
-  .film-grid { /* Added film-grid here */
-    grid-template-columns: minmax(250px, 1fr);
-    gap: 15px;
-  }
-
-  .filters {
-    flex-direction: column; /* Stack filter groups vertically on small screens */
-    align-items: center;
-    gap: 15px; /* Adjust gap for vertical stacking */
-  }
-
-  .filter-group {
-      width: 100%; /* Ensure filter groups take full width */
-      justify-content: center;
-  }
-
-  /* Ensure select boxes are two per row within their filter-group */
-  .filter-group:not(.search-filter-group):not(.reset-button-group) {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between; /* Distribute items with space */
-      width: 90%; /* Adjust width to fit two items with space */
-  }
-
-  .filters select {
-    width: 48%; /* Adjusted width to allow two items per row with gap */
-    max-width: none; /* Removed max-width to allow flexible width */
-    min-width: unset; /* Allow it to shrink */
-  }
-
-  /* Search input and button on small screens */
-  .filter-group.search-filter-group {
-      flex-direction: column; /* Stack search input and button */
-      width: 90%; /* Take up most of the width */
-      max-width: 300px;
-  }
-
-  .filter-group.search-filter-group input[type="text"] {
-      width: 100%; /* Full width within its group */
-      max-width: unset; /* Remove max-width */
-      margin-bottom: 10px; /* Space between input and button */
-  }
-
-  .filter-group.search-filter-group button {
-      width: 100%; /* Full width within its group */
-  }
+.search-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
 }
 
-/* Desktop layout (3 tiles in a row for filters) */
-@media (min-width: 769px) {
-    .filter-group:not(.search-filter-group):not(.reset-button-group) {
-        width: calc(33.33% - 10px); /* 3 columns with gap */
-    }
+.search-overlay__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.7); }
 
-    .filters select {
-        width: 100%; /* Ensure select takes full width of its 3-column filter-group */
-    }
+.search-overlay__panel {
+  position: relative;
+  width: min(1200px, 92vw);
+  height: min(90vh, 920px);
+  background: #111;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;           /* panel itself doesn't scroll */
 }
 
-/* Ujisti se, že obrázky nikdy nepřetékají kontejner */
-img { max-width: 100%; height: auto; }
-
-/* Výchozí dvousloupcové mřížky (desktop/tablet) – můžeš ponechat, pokud už to v CSS máš */
-.two-column-text-layout,
-.two-column-layout {
+.search-overlay__tools {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr auto;
+  gap: .75rem;
+  padding: 1rem 1rem .75rem;
+  background: #181818;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
-/* Mobilní rozpad do jednoho sloupce */
+.search-overlay__input {
+  width: 100%;
+  padding: .8rem 1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: #0f0f0f;
+  color: #eee;
+}
+
+.search-overlay__close {
+  padding: .8rem 1rem;
+  font-size: .95rem;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: #eee;
+  border: 1px solid rgba(255,255,255,.15);
+  cursor: pointer;
+}
+.search-overlay__close:hover { background: #353535; }
+
+.search-overlay__stats {
+  padding: 0 1rem 0.75rem;
+  font-size: .9rem;
+  color: #bbb;
+}
+
+/* Scrollable area with catalogue grid inside */
+.search-overlay .film-list {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 0 1rem 1rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  background: #2b2b2b; color: #fff;
+}
+
+/* Optional scrollbar cosmetics */
+.search-overlay .film-list::-webkit-scrollbar { width: 12px; }
+.search-overlay .film-list::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.15); border-radius: 8px;
+}
+.search-overlay .film-list::-webkit-scrollbar-track {
+  background: rgba(255,255,255,.05);
+}
+
+
+/* ==================================================
+   11) RESPONSIVE
+   ================================================== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  /* Inline nav replaced by overlay on mobile */
+  .main-nav { display: none; }
+}
+
+/* Tablet & down */
 @media (max-width: 768px) {
-  .two-column-text-layout,
-  .two-column-layout {
-    grid-template-columns: 1fr;    /* pod sebe */
-    gap: 1.25rem;
+  .content { padding: 20px 15px; }
+  h1 { font-size: 3em; } h2 { font-size: 1.8em; } h3 { font-size: 1.2em; }
+
+  #initial-info-banner { padding: 20px 15px; }
+  #initial-info-banner .banner-logo { max-width: 200px; }
+  #initial-info-banner .banner-buttons-container { flex-direction: column; gap: 20px; }
+  #initial-info-banner .banner-button { width: 100%; max-width: 300px; margin: 0 auto; }
+
+  /* Stacks */
+  .two-column-layout { flex-direction: column; gap: 30px; }
+  .two-column-text-layout { grid-template-columns: 1fr; gap: 30px; }
+  .column-image, .column-text, .text-column { min-width: unset; flex: 1 1 100%; text-align: center; }
+  .column-image img { max-width: 80%; margin: 0 auto; }
+
+  /* Grids */
+  .cards, .preview-grid, .news-grid, .film-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 100%;
   }
 
-  /* Jemné vyčištění okrajů pro lepší čitelnost */
-  .two-column-text-layout .column-text,
-  .two-column-text-layout .text-column,
-  .two-column-layout .column-text,
-  .two-column-layout .column-image {
-    margin: 0;
-  }
+  /* Team */
+  .member-left, .member-middle { width: 100%; }
+  .member-left img { max-width: 180px; }
+  .team-member { align-items: center; }
+  .member-right { text-align: justify; }
 
-  /* Trochu větší vnitřní odsazení na mobilu */
-  .content {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  /* Film detail */
+  .film-detail-content { flex-direction: column; align-items: center; gap: 30px; }
+  .film-detail-poster { width: 80%; max-width: 300px; }
+  .film-detail-title { font-size: 2.5em; text-align: center; }
+  .film-detail-original-title { font-size: 1.4em; text-align: center; }
+  .film-detail-meta p, .film-detail-section h3, .film-detail-section li { text-align: center; }
+  .film-detail-logline, .film-detail-synopsis { text-align: justify; }
+
+  /* Filters tablet */
+  .filters { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .filter-group { width: calc(50% - 15px); max-width: unset; }
+  .filter-group.search-filter-group, .filter-group.reset-button-group { width: 100%; max-width: 600px; }
 }
 
+/* Small mobile */
+@media (max-width: 480px) {
+  .content { padding: 15px 10px; }
+  h1 { font-size: 2.5em; } h2 { font-size: 1.5em; }
+  .logo-top img { height: 36px; }
+
+  .cards, .preview-grid, .news-grid, .film-grid {
+    grid-template-columns: minmax(250px, 1fr); gap: 15px;
+  }
+
+  .filters { flex-direction: column; align-items: center; gap: 15px; }
+  .filter-group { width: 100%; justify-content: center; }
+  .filter-group:not(.search-filter-group):not(.reset-button-group) {
+    flex-direction: row; flex-wrap: wrap; justify-content: space-between; width: 90%;
+  }
+  .filters select { width: 48%; max-width: none; min-width: unset; }
+
+  .filter-group.search-filter-group { flex-direction: column; width: 90%; max-width: 300px; }
+  .filter-group.search-filter-group input[type="text"] { width: 100%; max-width: unset; margin-bottom: 10px; }
+  .filter-group.search-filter-group button { width: 100%; }
+}
+
+/* Desktop filter layout (3 columns) */
+@media (min-width: 769px) {
+  .filter-group:not(.search-filter-group):not(.reset-button-group) { width: calc(33.33% - 10px); }
+  .filters select { width: 100%; }
+}
+
+
+/* ==================================================
+   12) BUTTON RESTORATIONS
+   ================================================== */
+
+/* === "ALL FILMS" button — classic outlined style */
+a.all-films-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: .02em;
+  text-decoration: none;
+  border: 2px solid;
+  background: transparent;
+  transition: background-color .3s, color .3s, border-color .3s;
+}
+a.all-films-btn { color: #1c1c1c; border-color: #1c1c1c; }
+a.all-films-btn:hover { background: #1c1c1c; color: #fff; border-color: #1c1c1c; }
+/* Dark sections invert */
+.section-dark-grey a.all-films-btn,
+.catalogue-main-content a.all-films-btn,
+#initial-info-banner a.all-films-btn {
+  color: #fff; border-color: #fff;
+}
+.section-dark-grey a.all-films-btn:hover,
+.catalogue-main-content a.all-films-btn:hover,
+#initial-info-banner a.all-films-btn:hover {
+  background: #fff; color: #2b2b2b; border-color: #fff;
+}
+a.all-films-btn:visited { color: inherit; }
+
+/* === "Read More News" button — classic outlined style
+     If you already use .all-news-link in markup, these keep it identical.
+     You can also add .read-more-news-btn as an alias. */
+a.all-news-link,
+a.read-more-news-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: .02em;
+  text-decoration: none;
+  border: 2px solid;
+  background: transparent;
+  transition: background-color .3s, color .3s, border-color .3s;
+}
+/* Light sections */
+.section:not(.section-dark-grey) a.all-news-link,
+.section-light-grey a.all-news-link,
+.news-section a.all-news-link,
+a.read-more-news-btn {
+  color: #1c1c1c; border-color: #1c1c1c;
+}
+.section:not(.section-dark-grey) a.all-news-link:hover,
+.section-light-grey a.all-news-link:hover,
+.news-section a.all-news-link:hover,
+a.read-more-news-btn:hover {
+  background: #1c1c1c; color: #fff; border-color: #1c1c1c;
+}
+/* Dark sections */
+.section-dark-grey a.all-news-link {
+  color: #fff; border-color: #fff;
+}
+.section-dark-grey a.all-news-link:hover {
+  background: #fff; color: #2b2b2b; border-color: #fff;
+}
+a.all-news-link:visited,
+a.read-more-news-btn:visited { color: inherit; }

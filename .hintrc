@@ -1,0 +1,7 @@
+{
+  "extends": ["web-recommended"],
+  "ignoredUrls": [
+    { "domain": "fonts.googleapis.com", "hints": ["http-cache"] },
+    { "domain": "fonts.gstatic.com",  "hints": ["http-cache"] }
+  ]
+}

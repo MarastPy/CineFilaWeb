@@ -26,6 +26,9 @@ async function fetchData(isIndexPage, isCataloguePage) {
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         allFilms = await response.json();
+        // 🔴 DŮLEŽITÉ: vystav data globálně pro overlay v hlavičce
+        window.allFilms = allFilms;
+
         console.log('All Films loaded:', allFilms);
 
         allFilms.forEach(film => {
