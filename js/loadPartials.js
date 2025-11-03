@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', loadPartials);
 
 async function loadPartials() {
-  // --- Base path helpers (works locally or on subdirs)
   const clean = (s) => s.replace(/\/+$/,'');
   const parts = clean(location.pathname).split('/').filter(Boolean);
   const projectBase = parts.length ? '/' + parts[0] + '/' : '/';
@@ -27,7 +26,7 @@ async function loadPartials() {
     return null;
   };
 
-  // --- Inject header/footer if hosts exist
+  // Inject header/footer if hosts exist
   const headerHost = document.getElementById('header-container');
   const footerHost = document.getElementById('footer-container');
 
@@ -40,18 +39,17 @@ async function loadPartials() {
     if (footer) footerHost.innerHTML = footer.text;
   }
 
-  // After header is in DOM, init features
-  initHeaderSpacer();        // sets --header-height
-  initSlidingHeader();       // hide on down / show on up
-  initBurgerMenu();          // menu-open toggle
-  initSearchOverlay(projectBase); // overlay with page lock
+  // After header in DOM, init features
+  initHeaderSpacer();
+  initSlidingHeader();
+  initBurgerMenu();
+  initSearchOverlay(projectBase);
 
-  // Keep spacer correct on load/resize
   window.addEventListener('load', initHeaderSpacer);
   window.addEventListener('resize', debounce(initHeaderSpacer, 150));
 }
 
-/* ===================== Header spacer (prevents layout jump) ===================== */
+/* ============== Header spacer ============== */
 function initHeaderSpacer() {
   const headerEl = document.querySelector('.header-area');
   if (!headerEl) return;
@@ -67,16 +65,15 @@ function initHeaderSpacer() {
   document.documentElement.style.setProperty('--header-height', h + 'px');
 }
 
-/* ===================== Sliding Header (hide down / show up) ===================== */
+/* ============== Sliding Header (hide down / show up) ============== */
 function initSlidingHeader() {
   const headerEl = document.querySelector('.header-area');
   if (!headerEl) return;
 
-  // Start visible by default
   document.body.classList.add('header--visible');
 
   let lastY = window.scrollY || 0;
-  let direction = 'up'; // last direction
+  let direction = 'up';
   const HIDE_THRESHOLD = 14;
   const SHOW_THRESHOLD = 6;
   const PIN_AT_TOP = 4;
@@ -85,11 +82,9 @@ function initSlidingHeader() {
     const y = window.scrollY || 0;
     const delta = y - lastY;
 
-    // Styling flag
     if (y > 2) document.body.classList.add('header--scrolled');
     else document.body.classList.remove('header--scrolled');
 
-    // Keep visible when overlays are open
     const forceVisible = document.body.classList.contains('menu-open') ||
                          document.body.classList.contains('search-open');
 
@@ -121,7 +116,7 @@ function initSlidingHeader() {
   }, { passive: true });
 }
 
-/* ===================== Burger (mobile) ===================== */
+/* ============== Burger (mobile) — keeps header visible ============== */
 function initBurgerMenu(){
   const hamburger = document.querySelector('.hamburger-menu-icon');
   const mainHeader = document.getElementById('main-header');
@@ -130,7 +125,6 @@ function initBurgerMenu(){
   if (hamburger && navOverlay) {
     const toggleMenu = () => {
       document.body.classList.toggle('menu-open');
-      // keep header visible when menu opens
       if (document.body.classList.contains('menu-open')) {
         document.body.classList.add('header--visible');
         document.body.classList.remove('header--hidden');
@@ -146,7 +140,7 @@ function initBurgerMenu(){
   }
 }
 
-/* ===================== SEARCH OVERLAY ===================== */
+/* ============== SEARCH OVERLAY ============== */
 function initSearchOverlay(projectBase){
   const openBtn = document.getElementById('header-search-toggle');
   const overlay  = document.getElementById('search-overlay');
@@ -157,7 +151,6 @@ function initSearchOverlay(projectBase){
 
   if (!openBtn || !overlay || !input || !grid || !stats) return;
 
-  // prefer global allFilms, else fetch same JSON as catalogue
   const getAllFilms = async () => {
     if (Array.isArray(window.allFilms) && window.allFilms.length) return window.allFilms;
     try {
@@ -172,7 +165,7 @@ function initSearchOverlay(projectBase){
 
   let FILMS_CACHE = null;
 
-  // Scroll guards (lock background, allow panel)
+  // Lock background scroll while allowing overlay to scroll
   const isInsidePanel = (target) => !!(target && target.closest('.search-overlay__panel'));
   const wheelGuard = (e) => {
     if (!document.body.classList.contains('search-open')) return;
@@ -195,14 +188,12 @@ function initSearchOverlay(projectBase){
   const open = async () => {
     overlay.hidden = false;
     document.body.classList.add('search-open');
-    // keep header visible when opening search
     document.body.classList.add('header--visible');
     document.body.classList.remove('header--hidden');
     openBtn.setAttribute('aria-expanded', 'true');
 
-    if (!FILMS_CACHE) {
-      FILMS_CACHE = await getAllFilms();
-    }
+    if (!FILMS_CACHE) FILMS_CACHE = await getAllFilms();
+
     input.value = '';
     render();
     setTimeout(() => input.focus(), 0);
@@ -242,11 +233,9 @@ function initSearchOverlay(projectBase){
       ? `${filtered.length} films`
       : (input.value ? `No results for “${input.value}”` : 'No films loaded');
 
-    // Use catalogue's card renderer if available
     if (typeof window.displayFilms === 'function') {
       window.displayFilms(filtered, 'search-overlay-grid');
     } else {
-      // Minimal fallback
       grid.innerHTML = filtered.map(f => {
         const F = f.Film || {};
         const title = (F.Title_English || F.Title_Original || 'Untitled').trim();
