@@ -8,216 +8,241 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="index-page">
-<header id="header-container"></header>
+    <!-- Skip link -->
+    <!--a href="#main-content" class="skip-link">Přeskočit na obsah</a-->
 
-<!-- Hero Banner -->
-<div id="initial-info-banner">
-    <img src="images/logo/Cinefila_logo_white_web.svg" alt="Cinefila Logo" class="banner-logo">
-    <h2>Festival strategy | Sales | Distribution</h2>
-    <hr>
+    <header id="header-container" role="banner"></header>
 
-    <div class="banner-text-container">
-        <p class="banner-quote">“ cinefila / cinefil / cinéphile / cinéfilo / σινεφίλ / シネフィル ”</p>
-        <p class="banner-noun-label"><strong>noun</strong></p>
-        <p class="banner-definition">1. A person who lives and breathes the cinema</p>
-        <p class="banner-definition">2. A film lover; enthusiastically interested in and knowledgeable about cinema</p>
-    </div>
-    <hr>
-    <div class="banner-buttons-container">
-        <a href="#whatcanwedo" class="banner-button">What can we do for you</a>
-        <a href="catalogue.html" class="banner-button">Film Catalogue</a>
-        <a href="#about" class="banner-button">About us & contact</a>
-    </div>
-</div>
+    <main id="main-content" role="main">
+        <!-- Hero Banner -->
+        <div id="initial-info-banner" aria-label="Cinefila hero">
+            <img src="images/logo/Cinefila_logo_white_web.svg" alt="Cinefila Logo" class="banner-logo">
+            <h2>Festival strategy | Sales | Distribution</h2>
+            <hr>
 
-<section id="news" class="news-section">
-    <div class="content">
-        <h1>News</h1>
-        <hr>
-        <br>
-        <div class="news-grid">
-    <a href="generated_film_pages/hatker.html" class="news-item-link">
-        <div class="news-item">
-            <h3>Soul Shift</h3>
-            <div class="news-item-image-wrapper">
-                <img src="images/stills/soul_shift/soul_shift_1.jpg" alt="Soul Shift Still">
+            <div class="banner-text-container">
+                <p class="banner-quote">“ cinefila / cinefil / cinéphile / cinéfilo / σινεφίλ / シネフィル ”</p>
+                <p class="banner-noun-label"><strong>noun</strong></p>
+                <p class="banner-definition">1. A person who lives and breathes the cinema</p>
+                <p class="banner-definition">2. A film lover; enthusiastically interested in and knowledgeable about cinema</p>
             </div>
-            <p class="news-date">14/02/2025</p>
-            <p>Soul Shift, animated science-fiction comedy series, will premiere in the competition at Cartoons on the Bay – International Festival of Animation, Transmedia and Meta-Arts!</p>
-        </div>
-    </a>
-    <a href="generated_film_pages/home.html" class="news-item-link">
-        <div class="news-item">
-            <h3>Wolfie</h3>
-            <div class="news-item-image-wrapper">
-                <img src="images/stills/wolfie/wolfie_1.jpg" alt="Wolfie Still">
+            <hr>
+            <div class="banner-buttons-container">
+                <a href="#whatcanwedo" class="banner-button" role="button">What can we do for you</a>
+                <a href="catalogue.html" class="banner-button" role="button">Film Catalogue</a>
+                <a href="#about" class="banner-button" role="button">About us & contact</a>
             </div>
-            <p class="news-date">10/02/2025</p>
-            <p>A brief description of another exciting news article. This will entice readers to click and learn more about the topic.</p>
         </div>
-    </a>
-    <a href="link-to-novinka3.html" class="news-item-link">
-        <div class="news-item">
-            <h3>Film Premiere Announcement</h3>
-            <div class="news-item-image-wrapper">
-                <img src="images/stills/world_i_live_in/world_i_live_in_1.jpg" alt="Film Premiere Image">
-            </div>
-            <p class="news-date">05/02/2025</p>
-            <p>Details about an upcoming film premiere, including dates, venues, and what makes this film a must-see for audiences.</p>
-        </div>
-    </a>
-</div>
-        <div class="read-more-container">
-            <a href="news.html" class="all-news-link">Read More News</a>
-        </div>
-    </div>
-</section>
 
-<section id="whatcanwedo" class="section-light-grey">
-    <div class="content">
-        <h1>Our Mission</h1>
-        <hr>
-        <div class="two-column-layout">
-            <div class="column-text">
-                <p>CINEFILA is a dynamic film distribution company based in Prague, founded by Alexandra Hroncová, an experienced festival strategist and distribution manager. Drawing from over eight years of expertise in helping filmmakers, young talents, and film institutions succeed on the global stage, CINEFILA offers a comprehensive suite of services tailored for independent filmmakers, production companies, festivals, cinemas, and film schools.</p>
-                <p>CINEFILA is dedicated to fostering creativity, elevating underrepresented voices, and connecting exceptional films with audiences worldwide. Whether you’re a filmmaker, festival, cinema, or an academic institution, we are here to help your stories shine on the global stage.</p>
-            </div>
-            <div class="column-image">
+        <section id="news" class="news-section" aria-labelledby="news-title">
+            <div class="content">
+                <h1 id="news-title">News</h1>
+                <hr>
                 <br>
-                <img src="images/homepage/BOTY_CANNES_crop.jpg" alt="Illustrative image for Cinefila mission">
+                <div class="news-grid">
+                    <a href="generated_film_pages/hatker.html" class="news-item-link">
+                        <div class="news-item">
+                            <h3>Soul Shift</h3>
+                            <div class="news-item-image-wrapper">
+                                <img src="images/stills/soul_shift/soul_shift_1.jpg" alt="Soul Shift Still">
+                            </div>
+                            <p class="news-date">14/02/2025</p>
+                            <p>Soul Shift, animated science-fiction comedy series, will premiere in the competition at Cartoons on the Bay – International Festival of Animation, Transmedia and Meta-Arts!</p>
+                        </div>
+                    </a>
+                    <a href="generated_film_pages/home.html" class="news-item-link">
+                        <div class="news-item">
+                            <h3>Wolfie</h3>
+                            <div class="news-item-image-wrapper">
+                                <img src="images/stills/wolfie/wolfie_1.jpg" alt="Wolfie Still">
+                            </div>
+                            <p class="news-date">10/02/2025</p>
+                            <p>A brief description of another exciting news article. This will entice readers to click and learn more about the topic.</p>
+                        </div>
+                    </a>
+                    <a href="link-to-novinka3.html" class="news-item-link">
+                        <div class="news-item">
+                            <h3>Film Premiere Announcement</h3>
+                            <div class="news-item-image-wrapper">
+                                <img src="images/stills/world_i_live_in/world_i_live_in_1.jpg" alt="Film Premiere Image">
+                            </div>
+                            <p class="news-date">05/02/2025</p>
+                            <p>Details about an upcoming film premiere, including dates, venues, and what makes this film a must-see for audiences.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="read-more-container">
+                    <a href="news.html" class="all-news-link">Read More News</a>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<section class="section">
-    <div class="content">
-        <h1>For Independent Filmmakers:<br>
-            Take Your Film to the World</h1>
-        <hr>
-        <div class="two-column-text-layout">
-            <div class="text-column">
-                <p>Are you an independent filmmaker looking to bring your film to the attention of global audiences? At CINEFILA, we specialize in creating personalized festival and distribution strategies to ensure your work receives the recognition it deserves.</p>
-                <ul>
-                    <li><strong>Tailored Festival Strategies:</strong> From identifying the most suitable festivals to planning your film’s journey through the global circuit, we help you maximize exposure.</li>
-                    <li><strong>Marketing and Communication Support:</strong> We craft compelling marketing materials to highlight your film’s unique strengths, ensuring it resonates with audiences and industry professionals alike.</li>
-                    <li><strong>Distribution and Business Strategies:</strong> Beyond festivals, we guide your film toward broader markets and platforms, building a sustainable path for its success.</li>
-                </ul>
-            </div>
-            <div class="text-column">
-                <p>We work with films starting in the development or post-production phase, acting as your project’s first promoter. Our mission is to unleash your film’s full potential and ensure it reaches the widest possible audience.</p>
-                <p>As part of our services, we handle logistics such as material shipping and represent your film at prestigious festivals and markets worldwide.</p>
-                <p>CINEFILA is here to help your film shine, giving independent filmmakers a powerful platform to tell their stories and connect with audiences across the globe.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section section-light-grey">
-    <div class="content">
-        <h1>For Festivals & Cinemas</h1>
-        <hr>
-        <div class="two-column-text-layout">
-            <div class="column-text">
-                <p>CINEFILA offers a carefully curated catalog of films, featuring exceptional works by emerging talents with innovative storytelling approaches and unforgettable narratives. Our selection includes films that leave a lasting impression, perfect for elevating festival programs.</p>
-                <p>We collaborate with festivals to provide tailor-made curated selections, customized to suit various age groups and thematic focuses. Whether you’re seeking thought-provoking shorts, groundbreaking animations, or films that resonate with younger audiences, CINEFILA is your trusted partner in discovering cinematic gems that will captivate your audience and enrich your festival lineup.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="section">
-    <div class="content">
-        <div class="two-column-layout">
-            <div class="column-text">
-                <h1>For Film Schools</h1>
+        <section id="whatcanwedo" class="section-light-grey">
+            <div class="content">
+                <h1>Our Mission</h1>
                 <hr>
-                <p>CINEFILA supports academic institutions by hosting workshops and offering lectures on festival distribution and festival strategies. Learn how to craft a festival strategy for your film. Discover how to choose the right festivals, prepare for promotion, and navigate your film’s festival lifecycle. Get insider tips, tricks, and practical advice to maximize your film’s potential.</p>
-                <p>Building on Alexandra’s success with FAMUfilms.cz, the first European SVOD platform for film schools, we aim to inspire and educate the next generation of filmmakers and scholars.</p>
+                <div class="two-column-layout">
+                    <div class="column-text">
+                        <p>CINEFILA is a dynamic film distribution company based in Prague, founded by Alexandra Hroncová, an experienced festival strategist and distribution manager. Drawing from over eight years of expertise in helping filmmakers, young talents, and film institutions succeed on the global stage, CINEFILA offers a comprehensive suite of services tailored for independent filmmakers, production companies, festivals, cinemas, and film schools.</p>
+                        <p>CINEFILA is dedicated to fostering creativity, elevating underrepresented voices, and connecting exceptional films with audiences worldwide. Whether you’re a filmmaker, festival, cinema, or an academic institution, we are here to help your stories shine on the global stage.</p>
+                    </div>
+                    <div class="column-image">
+                        <br>
+                        <img src="images/homepage/BOTY_CANNES_crop.jpg" alt="Illustrative image for Cinefila mission">
+                    </div>
+                </div>
             </div>
-            <div class="column-text">
-                <h1>For Film Institutions</h1>
+        </section>
+
+        <section class="section">
+            <div class="content">
+                <h1>For Independent Filmmakers:<br>Take Your Film to the World</h1>
+            <hr>
+                <div class="two-column-text-layout">
+                    <div class="text-column">
+                        <p>Are you an independent filmmaker looking to bring your film to the attention of global audiences? At CINEFILA, we specialize in creating personalized festival and distribution strategies to ensure your work receives the recognition it deserves.</p>
+                        <ul>
+                            <li><strong>Tailored Festival Strategies:</strong> From identifying the most suitable festivals to planning your film’s journey through the global circuit, we help you maximize exposure.</li>
+                            <li><strong>Marketing and Communication Support:</strong> We craft compelling marketing materials to highlight your film’s unique strengths, ensuring it resonates with audiences and industry professionals alike.</li>
+                            <li><strong>Distribution and Business Strategies:</strong> Beyond festivals, we guide your film toward broader markets and platforms, building a sustainable path for its success.</li>
+                        </ul>
+                    </div>
+                    <div class="text-column">
+                        <p>We work with films starting in the development or post-production phase, acting as your project’s first promoter. Our mission is to unleash your film’s full potential and ensure it reaches the widest possible audience.</p>
+                        <p>As part of our services, we handle logistics such as material shipping and represent your film at prestigious festivals and markets worldwide.</p>
+                        <p>CINEFILA is here to help your film shine, giving independent filmmakers a powerful platform to tell their stories and connect with audiences across the globe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Improved section -->
+        <section class="section section-light-grey">
+            <div class="content">
+                <h1>For Festivals &amp; Cinemas</h1>
                 <hr>
-                <p>CINEFILA collaborates with film institutions to provide comprehensive festival distribution services, ensuring that your films reach the right audiences and gain the recognition they deserve. We offer tailored strategies for film institutions, helping them navigate the complexities of festival distribution and maximize their films’ impact.</p>
-                <p>Our expertise in festival logistics, marketing, and communication ensures that your films are presented in the best possible light, connecting them with audiences worldwide.</p>
+                <div class="two-column-text-layout">
+                    <div class="column-text">
+                        <p>Curate stronger line-ups with a catalogue focused on bold voices and award-winning student and independent films. We help you build cohesive strands that engage audiences and fit your programming goals — from family shorts and animation showcases to issue-driven selections and emerging-talent spotlights.</p>
+                        <ul>
+                            <li><strong>Curated Selections:</strong> Ready-to-program packs (60–100 min) or bespoke strands by theme, age group, or format.</li>
+                            <li><strong>Premiere Positioning:</strong> Advice on regional/international premieres and timeline planning.</li>
+                            <li><strong>Logistics &amp; Delivery:</strong> DCP/ProRes delivery, KDM coordination, subtitles, metadata &amp; tech sheets.</li>
+                            <li><strong>Guests &amp; Q&amp;A:</strong> Talent coordination, intros, post-screening discussions.</li>
+                            <li><strong>Marketing Toolkits:</strong> Stills, trailers, synopses, press notes, social copy, and assets localized on request.</li>
+                        </ul>
+                    </div>
+                    <div class="column-text">
+                        <p>Whether you’re filling a single slot or designing a multi-day focus, we’ll align curation, rights, and operations so your programme runs smoothly and lands with impact.</p>
+                        <p><strong>Outcomes you can expect:</strong> higher attendance, easier ops, and a line-up that feels fresh yet audience-friendly.</p>
+                        <p><em>Looking for something specific?</em> Tell us your dates, target audience, and technical setup — we’ll propose a shortlist within your parameters.</p>
+                        <p>
+                            <a href="catalogue.html" class="all-news-link">Browse the Film Catalogue</a>
+                            &nbsp;|&nbsp;
+                            <a href="#about" class="all-news-link">Contact our team</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+        <!-- /Improved section -->
 
-<section class="section-dark-grey">
-    <div class="content">
-        <h1>Film Catalogue</h1>
-        <hr>
-        <br>
-        <div class="preview-grid" id="topFilmsContainer"></div>
-        <div class="read-more-container">
-            <a href="catalogue.html" class="all-news-link">ALL FILMS</a>
-        </div>
-    </div>
-</section>
+        <!-- Unified section from previous step -->
+        <section class="section">
+            <div class="content">
+                <h1>For Film Schools &amp; Institutions</h1>
+                <hr>
+                <div class="two-column-text-layout">
+                    <div class="column-text">
+                        <p>CINEFILA supports academic and cultural organisations through workshops and lectures focused on festival distribution and strategy. Learn how to choose the right festivals, prepare materials for promotion, and navigate your film’s entire festival lifecycle. Expect insider tips, practical advice, and actionable workflows that maximise a film’s potential.</p>
+                        <p>Building on Alexandra’s experience with FAMUfilms.cz, the first European SVOD platform dedicated to film schools, we aim to inspire and educate the next generation of filmmakers and scholars.</p>
+                    </div>
+                    <div class="column-text">
+                        <p>For film institutions, we provide comprehensive festival distribution services so your films reach the right audiences and receive the recognition they deserve. We tailor strategies to institutional needs, including curation, positioning, and long-term planning.</p>
+                        <p>Our expertise in logistics, marketing, and communications ensures your films are presented in the best possible light—connecting them with festivals, markets, and viewers worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Unified section -->
 
-<section id="about" class="section">
-    <div class="content">
-        <h1>About us & contacts</h1>
-        <hr class="header-line">
-        <br>
-        <div class="team-members">
-    <div class="team-member">
-        <div class="member-left">
-            <img src="images/contacts/Alex/Alex.jpg" alt="Alexandra">
-        </div>
-        <div class="member-middle">
-            <h3>ALEXANDRA HRONCOVÁ</h3>
-            <div class="role">Founder and director</div>
-            <br><br><br><br>
-            <hr class="header-line">
-            <p class="email">Mail: alex@cinefila.cz</p>
-        </div>
-        <div class="member-right">
-            <p>A film distribution manager and festival strategist based in Prague. Thanks to her work, hundreds of short films have reached festivals, including the most prestigious ones such as Cannes, Berlinale, Annecy, Clermont-Ferrand, Sundance, Toronto, Tribeca, Vision du Réel, and the Academy Awards.</p>
-            <p>For eight years, she has been helping independent filmmakers, young talents, production companies, and students with festival distribution and the global circuit. She curates tailor-made festival strategies, target market research, handles all logistics from submissions to distribution and PR/marketing campaigns, and maximizes the visibility of films at the events.</p>
-        </div>
-    </div>
+        <section class="section-dark-grey">
+            <div class="content">
+                <h1>Film Catalogue</h1>
+                <hr>
+                <br>
+                <div class="preview-grid" id="topFilmsContainer"></div>
+                <div class="read-more-container">
+                    <a href="catalogue.html" class="all-news-link">ALL FILMS</a>
+                </div>
+            </div>
+        </section>
 
-    <div class="team-member">
-        <div class="member-left">
-            <img src="images/contacts/Amira/Amira_Shehatova.jpg" alt="Amira">
-        </div>
-        <div class="member-middle">
-            <h3>AMIRA SHEHATOVÁ</h3>
-            <div class="role">Submissions and sales coordinator</div>
-            <br><br><br>
-            <hr class="header-line">
-            <p class="email">Mail: amira@cinefila.cz</p>
-        </div>
-        <div class="member-right">
-            <p>Amira studied Film History and Audiovisual Culture, as well as Personnel Management at Charles University in Prague. She strives to blend those two disciplines and alternates between them in her professional endeavors.</p>
-            <p>Currently, Amira is part of the CINEFILA festival distribution team, where she is responsible for film submissions and material shipping.</p>
-        </div>
-    </div>
+        <section id="about" class="section">
+            <div class="content">
+                <h1>About us & contacts</h1>
+                <hr class="header-line">
+                <br>
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="member-left">
+                            <img src="images/contacts/Alex/Alex.jpg" alt="Alexandra">
+                        </div>
+                        <div class="member-middle">
+                            <h3>ALEXANDRA HRONCOVÁ</h3>
+                            <div class="role">Founder and director</div>
+                            <br><br><br><br>
+                            <hr class="header-line">
+                            <p class="email">Mail: alex@cinefila.cz</p>
+                        </div>
+                        <div class="member-right">
+                            <p>A film distribution manager and festival strategist based in Prague. Thanks to her work, hundreds of short films have reached festivals, including the most prestigious ones such as Cannes, Berlinale, Annecy, Clermont-Ferrand, Sundance, Toronto, Tribeca, Vision du Réel, and the Academy Awards.</p>
+                            <p>For eight years, she has been helping independent filmmakers, young talents, production companies, and students with festival distribution and the global circuit. She curates tailor-made festival strategies, target market research, handles all logistics from submissions to distribution and PR/marketing campaigns, and maximizes the visibility of films at the events.</p>
+                        </div>
+                    </div>
 
-    <div class="team-member">
-        <div class="member-left">
-            <img src="images/contacts/Marek/Marek.jpg" alt="Marek">
-        </div>
-        <div class="member-middle">
-            <h3>MAREK KOUTEŠ</h3>
-            <div class="role">Film Curator and Student Film Specialist</div>
-            <br><br><br>
-            <hr class="header-line">
-            <p class="email">Mail: marek@cinefila.cz</p>
-        </div>
-        <div class="member-right">
-            <p>Marek is a graduate of the Department of Film Studies at Charles University in Prague. As a film critic and reviewer, he has contributed to cultural sections of Czech Television, Aktualne.cz, Moviescreen.cz, and the magazine Film a doba.</p>
-            <p>At CINEFILA, he is involved in the curatorial selection of films for the catalogue, with a particular focus on student films.</p>
-        </div>
-    </div>
-</div>
-    </div>
-</section>
+                    <div class="team-member">
+                        <div class="member-left">
+                            <img src="images/contacts/Amira/Amira_Shehatova.jpg" alt="Amira">
+                        </div>
+                        <div class="member-middle">
+                            <h3>AMIRA SHEHATOVÁ</h3>
+                            <div class="role">Submissions and sales coordinator</div>
+                            <br><br><br>
+                            <hr class="header-line">
+                            <p class="email">Mail: amira@cinefila.cz</p>
+                        </div>
+                        <div class="member-right">
+                            <p>Amira studied Film History and Audiovisual Culture, as well as Personnel Management at Charles University in Prague. She strives to blend those two disciplines and alternates between them in her professional endeavors.</p>
+                            <p>Currently, Amira is part of the CINEFILA festival distribution team, where she is responsible for film submissions and material shipping.</p>
+                        </div>
+                    </div>
 
-<footer id="footer-container"></footer>
-<script src="js/loadPartials.js"></script>
-<script src="js/script.js"></script>
+                    <div class="team-member">
+                        <div class="member-left">
+                            <img src="images/contacts/Marek/Marek.jpg" alt="Marek">
+                        </div>
+                        <div class="member-middle">
+                            <h3>MAREK KOUTEŠ</h3>
+                            <div class="role">Film Curator and Student Film Specialist</div>
+                            <br><br><br>
+                            <hr class="header-line">
+                            <p class="email">Mail: marek@cinefila.cz</p>
+                        </div>
+                        <div class="member-right">
+                            <p>Marek is a graduate of the Department of Film Studies at Charles University in Prague. As a film critic and reviewer, he has contributed to cultural sections of Czech Television, Aktualne.cz, Moviescreen.cz, and the magazine Film a doba.</p>
+                            <p>At CINEFILA, he is involved in the curatorial selection of films for the catalogue, with a particular focus on student films.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-container" role="contentinfo"></footer>
+
+    <script src="js/loadPartials.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
+
