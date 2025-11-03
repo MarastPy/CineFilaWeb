@@ -1466,3 +1466,37 @@ body.index-page.scrolled .logo-top img {
     }
 }
 
+/* Ujisti se, že obrázky nikdy nepřetékají kontejner */
+img { max-width: 100%; height: auto; }
+
+/* Výchozí dvousloupcové mřížky (desktop/tablet) – můžeš ponechat, pokud už to v CSS máš */
+.two-column-text-layout,
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Mobilní rozpad do jednoho sloupce */
+@media (max-width: 768px) {
+  .two-column-text-layout,
+  .two-column-layout {
+    grid-template-columns: 1fr;    /* pod sebe */
+    gap: 1.25rem;
+  }
+
+  /* Jemné vyčištění okrajů pro lepší čitelnost */
+  .two-column-text-layout .column-text,
+  .two-column-text-layout .text-column,
+  .two-column-layout .column-text,
+  .two-column-layout .column-image {
+    margin: 0;
+  }
+
+  /* Trochu větší vnitřní odsazení na mobilu */
+  .content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
