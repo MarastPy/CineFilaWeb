@@ -8,10 +8,10 @@
    - Cards / grids (news, preview)
    - Team / People (unchanged)
    - Footer
-   - Catalogue (list, detail, filters)
+   - Catalogue (list, detail, filters)  ← restored filter button styles
    - Search overlay (scrollable, body lock)
    - Responsive
-   - Button restorations (ALL FILMS, Read More News)
+   - Button restorations (ALL FILMS, Read More News)  ← centered
    ================================================== */
 
 
@@ -388,7 +388,53 @@ footer {
 
 
 /* ==================================================
-   10) SEARCH OVERLAY (SCROLLABLE + BODY LOCK)
+   10) CATALOGUE — FILTERS (RESTORED)
+   ================================================== */
+
+.filters {
+  display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;
+  justify-content: center; padding: 0 20px; align-items: flex-start;
+}
+.filter-group {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  width: 100%; max-width: 300px;
+}
+
+/* Search box + button (classic white button w/ black text, yellow hover) */
+.filter-group.search-filter-group {
+  flex-basis: 100%; flex-direction: row; width: 100%; max-width: 600px; align-items: center; margin-bottom: 25px;
+}
+.filter-group.search-filter-group input[type="text"] {
+  flex-grow: 1; padding: 10px 15px; border: 1px solid #555; border-radius: 5px; font-size: .95em;
+  background: #fff; color: #000; max-width: calc(100% - 70px);
+}
+.filter-group.search-filter-group button {
+  padding: 10px 15px; background: #fff; color: #000; border: none; border-radius: 5px; cursor: pointer; font-size: .95em;
+  transition: background-color .3s;
+}
+.filter-group.search-filter-group button:hover { background: #ffc107; }
+
+/* Dropdowns (white) with custom caret */
+.filters select {
+  padding: 10px 15px; border: 1px solid #555; border-radius: 5px; font-size: .95em; background: #fff; color: #000;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.5%2075.1a17.6%2017.6%200%200%200-24.7%2024.7l140.2%20140.2a17.6%2017.6%200%200%200%2024.7%200l140.2-140.2a17.6%2017.6%200%200%200%200-24.7z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat; background-position: right 10px center; background-size: 12px;
+  cursor: pointer; flex-grow: 1; min-width: 150px;
+}
+.filters select option { background: #fff; color: #000; }
+
+/* Reset button (white w/ yellow hover) */
+.filter-group.reset-button-group { max-width: unset; }
+.filter-group.reset-button-group .clear-filters-btn {
+  padding: 15px 90px; background: #fff; color: #000; border: none; border-radius: 5px; cursor: pointer; font-size: 1em;
+  transition: background-color .3s;
+}
+.filter-group.reset-button-group .clear-filters-btn:hover { background: #ffc107; }
+
+
+/* ==================================================
+   11) SEARCH OVERLAY (SCROLLABLE + BODY LOCK)
    ================================================== */
 
 body.search-open {
@@ -478,7 +524,7 @@ body.search-open {
 
 
 /* ==================================================
-   11) RESPONSIVE
+   12) RESPONSIVE
    ================================================== */
 
 /* Tablet */
@@ -558,12 +604,14 @@ body.search-open {
 
 
 /* ==================================================
-   12) BUTTON RESTORATIONS
+   13) BUTTON RESTORATIONS (CENTERED)
    ================================================== */
 
-/* === "ALL FILMS" button — classic outlined style */
+/* === "ALL FILMS" button — classic outlined style (centered) */
 a.all-films-btn {
-  display: inline-block;
+  display: block;             /* center without parent text-align */
+  width: max-content;         /* shrink to content */
+  margin: 0 auto;             /* center */
   padding: 12px 25px;
   border-radius: 6px;
   font-weight: 700;
@@ -590,12 +638,12 @@ a.all-films-btn:hover { background: #1c1c1c; color: #fff; border-color: #1c1c1c;
 }
 a.all-films-btn:visited { color: inherit; }
 
-/* === "Read More News" button — classic outlined style
-     If you already use .all-news-link in markup, these keep it identical.
-     You can also add .read-more-news-btn as an alias. */
+/* === "Read More News" button — classic outlined style (centered) */
 a.all-news-link,
 a.read-more-news-btn {
-  display: inline-block;
+  display: block;             /* center without parent text-align */
+  width: max-content;         /* shrink to content */
+  margin: 0 auto;             /* center */
   padding: 12px 25px;
   border-radius: 6px;
   font-weight: 700;
